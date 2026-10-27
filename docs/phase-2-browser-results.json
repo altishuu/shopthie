@@ -1,0 +1,452 @@
+[
+  {
+    "viewport": "small-mobile",
+    "width": 360,
+    "height": 800,
+    "scene": "shop",
+    "overflow": false,
+    "imagesLoaded": true,
+    "heading": "The considered edit.",
+    "runtimeErrors": []
+  },
+  {
+    "viewport": "small-mobile",
+    "width": 360,
+    "height": 800,
+    "scene": "quick-view",
+    "overflow": false,
+    "imagesLoaded": true,
+    "heading": "The considered edit.",
+    "runtimeErrors": []
+  },
+  {
+    "viewport": "small-mobile",
+    "width": 360,
+    "height": 800,
+    "scene": "product",
+    "overflow": false,
+    "imagesLoaded": true,
+    "heading": "AirPods Max",
+    "runtimeErrors": []
+  },
+  {
+    "viewport": "small-mobile",
+    "width": 360,
+    "height": 800,
+    "scene": "bag-drawer",
+    "overflow": false,
+    "imagesLoaded": true,
+    "heading": "Pixel 8",
+    "runtimeErrors": []
+  },
+  {
+    "viewport": "small-mobile",
+    "width": 360,
+    "height": 800,
+    "scene": "cart",
+    "overflow": false,
+    "imagesLoaded": true,
+    "heading": "Your bag.",
+    "runtimeErrors": []
+  },
+  {
+    "viewport": "small-mobile",
+    "width": 360,
+    "height": 800,
+    "scene": "wishlist",
+    "overflow": false,
+    "imagesLoaded": true,
+    "heading": "Your wishlist.",
+    "runtimeErrors": []
+  },
+  {
+    "viewport": "small-mobile",
+    "width": 360,
+    "height": 800,
+    "scene": "checkout",
+    "overflow": false,
+    "imagesLoaded": true,
+    "heading": "Checkout demonstration.",
+    "runtimeErrors": []
+  },
+  {
+    "viewport": "small-mobile",
+    "width": 360,
+    "height": 800,
+    "scene": "about",
+    "overflow": false,
+    "imagesLoaded": true,
+    "heading": "A place tolook closer.",
+    "runtimeErrors": []
+  },
+  {
+    "viewport": "small-mobile",
+    "width": 360,
+    "height": 800,
+    "scene": "collections-speakers",
+    "overflow": false,
+    "imagesLoaded": true,
+    "heading": "Speakers.",
+    "runtimeErrors": []
+  },
+  {
+    "viewport": "mobile",
+    "width": 390,
+    "height": 844,
+    "scene": "shop",
+    "overflow": false,
+    "imagesLoaded": true,
+    "heading": "The considered edit.",
+    "runtimeErrors": []
+  },
+  {
+    "viewport": "mobile",
+    "width": 390,
+    "height": 844,
+    "scene": "quick-view",
+    "overflow": false,
+    "imagesLoaded": true,
+    "heading": "The considered edit.",
+    "runtimeErrors": []
+  },
+  {
+    "viewport": "mobile",
+    "width": 390,
+    "height": 844,
+    "scene": "product",
+    "overflow": false,
+    "imagesLoaded": true,
+    "heading": "AirPods Max",
+    "runtimeErrors": []
+  },
+  {
+    "viewport": "mobile",
+    "width": 390,
+    "height": 844,
+    "scene": "bag-drawer",
+    "overflow": false,
+    "imagesLoaded": true,
+    "heading": "Pixel 8",
+    "runtimeErrors": []
+  },
+  {
+    "viewport": "mobile",
+    "width": 390,
+    "height": 844,
+    "scene": "cart",
+    "overflow": false,
+    "imagesLoaded": true,
+    "heading": "Your bag.",
+    "runtimeErrors": []
+  },
+  {
+    "viewport": "mobile",
+    "width": 390,
+    "height": 844,
+    "scene": "wishlist",
+    "overflow": false,
+    "imagesLoaded": true,
+    "heading": "Your wishlist.",
+    "runtimeErrors": []
+  },
+  {
+    "viewport": "mobile",
+    "width": 390,
+    "height": 844,
+    "scene": "checkout",
+    "overflow": false,
+    "imagesLoaded": true,
+    "heading": "Checkout demonstration.",
+    "runtimeErrors": []
+  },
+  {
+    "viewport": "mobile",
+    "width": 390,
+    "height": 844,
+    "scene": "about",
+    "overflow": false,
+    "imagesLoaded": true,
+    "heading": "A place tolook closer.",
+    "runtimeErrors": []
+  },
+  {
+    "viewport": "mobile",
+    "width": 390,
+    "height": 844,
+    "scene": "collections-speakers",
+    "overflow": false,
+    "imagesLoaded": true,
+    "heading": "Speakers.",
+    "runtimeErrors": []
+  },
+  {
+    "viewport": "tablet",
+    "width": 834,
+    "height": 1112,
+    "scene": "shop",
+    "overflow": false,
+    "imagesLoaded": true,
+    "heading": "The considered edit.",
+    "runtimeErrors": []
+  },
+  {
+    "viewport": "tablet",
+    "width": 834,
+    "height": 1112,
+    "scene": "quick-view",
+    "overflow": false,
+    "imagesLoaded": true,
+    "heading": "The considered edit.",
+    "runtimeErrors": []
+  },
+  {
+    "viewport": "tablet",
+    "width": 834,
+    "height": 1112,
+    "scene": "product",
+    "overflow": false,
+    "imagesLoaded": true,
+    "heading": "AirPods Max",
+    "runtimeErrors": []
+  },
+  {
+    "viewport": "tablet",
+    "width": 834,
+    "height": 1112,
+    "scene": "bag-drawer",
+    "overflow": false,
+    "imagesLoaded": true,
+    "heading": "Pixel 8",
+    "runtimeErrors": []
+  },
+  {
+    "viewport": "tablet",
+    "width": 834,
+    "height": 1112,
+    "scene": "cart",
+    "overflow": false,
+    "imagesLoaded": true,
+    "heading": "Your bag.",
+    "runtimeErrors": []
+  },
+  {
+    "viewport": "tablet",
+    "width": 834,
+    "height": 1112,
+    "scene": "wishlist",
+    "overflow": false,
+    "imagesLoaded": true,
+    "heading": "Your wishlist.",
+    "runtimeErrors": []
+  },
+  {
+    "viewport": "tablet",
+    "width": 834,
+    "height": 1112,
+    "scene": "checkout",
+    "overflow": false,
+    "imagesLoaded": true,
+    "heading": "Checkout demonstration.",
+    "runtimeErrors": []
+  },
+  {
+    "viewport": "tablet",
+    "width": 834,
+    "height": 1112,
+    "scene": "about",
+    "overflow": false,
+    "imagesLoaded": true,
+    "heading": "A place tolook closer.",
+    "runtimeErrors": []
+  },
+  {
+    "viewport": "tablet",
+    "width": 834,
+    "height": 1112,
+    "scene": "collections-speakers",
+    "overflow": false,
+    "imagesLoaded": true,
+    "heading": "Speakers.",
+    "runtimeErrors": []
+  },
+  {
+    "viewport": "desktop",
+    "width": 1440,
+    "height": 1000,
+    "scene": "shop",
+    "overflow": false,
+    "imagesLoaded": true,
+    "heading": "The considered edit.",
+    "runtimeErrors": []
+  },
+  {
+    "viewport": "desktop",
+    "width": 1440,
+    "height": 1000,
+    "scene": "quick-view",
+    "overflow": false,
+    "imagesLoaded": true,
+    "heading": "The considered edit.",
+    "runtimeErrors": []
+  },
+  {
+    "viewport": "desktop",
+    "width": 1440,
+    "height": 1000,
+    "scene": "product",
+    "overflow": false,
+    "imagesLoaded": true,
+    "heading": "AirPods Max",
+    "runtimeErrors": []
+  },
+  {
+    "viewport": "desktop",
+    "width": 1440,
+    "height": 1000,
+    "scene": "bag-drawer",
+    "overflow": false,
+    "imagesLoaded": true,
+    "heading": "Pixel 8",
+    "runtimeErrors": []
+  },
+  {
+    "viewport": "desktop",
+    "width": 1440,
+    "height": 1000,
+    "scene": "cart",
+    "overflow": false,
+    "imagesLoaded": true,
+    "heading": "Your bag.",
+    "runtimeErrors": []
+  },
+  {
+    "viewport": "desktop",
+    "width": 1440,
+    "height": 1000,
+    "scene": "wishlist",
+    "overflow": false,
+    "imagesLoaded": true,
+    "heading": "Your wishlist.",
+    "runtimeErrors": []
+  },
+  {
+    "viewport": "desktop",
+    "width": 1440,
+    "height": 1000,
+    "scene": "checkout",
+    "overflow": false,
+    "imagesLoaded": true,
+    "heading": "Checkout demonstration.",
+    "runtimeErrors": []
+  },
+  {
+    "viewport": "desktop",
+    "width": 1440,
+    "height": 1000,
+    "scene": "about",
+    "overflow": false,
+    "imagesLoaded": true,
+    "heading": "A place tolook closer.",
+    "runtimeErrors": []
+  },
+  {
+    "viewport": "desktop",
+    "width": 1440,
+    "height": 1000,
+    "scene": "collections-speakers",
+    "overflow": false,
+    "imagesLoaded": true,
+    "heading": "Speakers.",
+    "runtimeErrors": []
+  },
+  {
+    "viewport": "wide",
+    "width": 1920,
+    "height": 1080,
+    "scene": "shop",
+    "overflow": false,
+    "imagesLoaded": true,
+    "heading": "The considered edit.",
+    "runtimeErrors": []
+  },
+  {
+    "viewport": "wide",
+    "width": 1920,
+    "height": 1080,
+    "scene": "quick-view",
+    "overflow": false,
+    "imagesLoaded": true,
+    "heading": "The considered edit.",
+    "runtimeErrors": []
+  },
+  {
+    "viewport": "wide",
+    "width": 1920,
+    "height": 1080,
+    "scene": "product",
+    "overflow": false,
+    "imagesLoaded": true,
+    "heading": "AirPods Max",
+    "runtimeErrors": []
+  },
+  {
+    "viewport": "wide",
+    "width": 1920,
+    "height": 1080,
+    "scene": "bag-drawer",
+    "overflow": false,
+    "imagesLoaded": true,
+    "heading": "Pixel 8",
+    "runtimeErrors": []
+  },
+  {
+    "viewport": "wide",
+    "width": 1920,
+    "height": 1080,
+    "scene": "cart",
+    "overflow": false,
+    "imagesLoaded": true,
+    "heading": "Your bag.",
+    "runtimeErrors": []
+  },
+  {
+    "viewport": "wide",
+    "width": 1920,
+    "height": 1080,
+    "scene": "wishlist",
+    "overflow": false,
+    "imagesLoaded": true,
+    "heading": "Your wishlist.",
+    "runtimeErrors": []
+  },
+  {
+    "viewport": "wide",
+    "width": 1920,
+    "height": 1080,
+    "scene": "checkout",
+    "overflow": false,
+    "imagesLoaded": true,
+    "heading": "Checkout demonstration.",
+    "runtimeErrors": []
+  },
+  {
+    "viewport": "wide",
+    "width": 1920,
+    "height": 1080,
+    "scene": "about",
+    "overflow": false,
+    "imagesLoaded": true,
+    "heading": "A place tolook closer.",
+    "runtimeErrors": []
+  },
+  {
+    "viewport": "wide",
+    "width": 1920,
+    "height": 1080,
+    "scene": "collections-speakers",
+    "overflow": false,
+    "imagesLoaded": true,
+    "heading": "Speakers.",
+    "runtimeErrors": []
+  }
+]

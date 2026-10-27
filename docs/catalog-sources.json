@@ -1,0 +1,568 @@
+{
+  "schema_version": 1,
+  "purpose": "Phase 1 seed-catalog research evidence; not production inventory or product data",
+  "reviewed_at": "2026-10-27",
+  "counts": {
+    "products": 7,
+    "photos": 8,
+    "categories": 4,
+    "brands": 5
+  },
+  "editorial_policy": {
+    "real_product_photography": true,
+    "generative_product_imagery": false,
+    "pricing_and_availability": "Any frontend values must be explicitly labeled demo; this evidence file contains neither.",
+    "historical_models": "Some photographed models are older. This is not a claim of current manufacture, sale or stock.",
+    "identity_scope": "Only brand/model/category and Pixel Rose finish are asserted; no storage, connector or hardware SKU inferred.",
+    "rights_status": "Photographers explicitly license these photographs on Commons. Copyright reuse is conditional on attribution, applicable share-alike and change notices. No manufacturer endorsement, trademark clearance, or warranty of other third-party rights is implied.",
+    "publication_gate": "Public-facing linked attribution and license notices must be implemented before deployment; keeping this research doc alone is not public attribution."
+  },
+  "products": [
+    {
+      "id": "apple-airpods-max",
+      "brand": "Apple",
+      "model": "AirPods Max",
+      "category": "headphones",
+      "variant": null,
+      "asset_filenames": [
+        "hero-apple-airpods-max.jpg",
+        "apple-airpods-max-detail.jpg"
+      ],
+      "identity_sources": [
+        {
+          "url": "https://commons.wikimedia.org/wiki/File:Apple_AirPods_Max_3.jpg",
+          "title": "File:Apple AirPods Max 3.jpg"
+        },
+        {
+          "url": "https://commons.wikimedia.org/wiki/File:Apple_AirPods_Max_2.jpg",
+          "title": "File:Apple AirPods Max 2.jpg"
+        }
+      ],
+      "identity_verification": "Photographer-supplied Wikimedia file title/description cross-checked against actual photograph. No serial-number or hardware verification.",
+      "limits": [
+        "No current price, inventory, availability or performance claims.",
+        "Do not relabel as a newer generation, connector version or successor model."
+      ]
+    },
+    {
+      "id": "bose-quietcomfort-25",
+      "brand": "Bose",
+      "model": "QuietComfort 25",
+      "category": "headphones",
+      "variant": null,
+      "asset_filenames": [
+        "bose-quietcomfort-25.jpg"
+      ],
+      "identity_sources": [
+        {
+          "url": "https://commons.wikimedia.org/wiki/File:Bose_QuietComfort_25_Acoustic_Noise_Cancelling_Headphones.jpg",
+          "title": "File:Bose QuietComfort 25 Acoustic Noise Cancelling Headphones.jpg"
+        }
+      ],
+      "identity_verification": "Photographer-supplied Wikimedia file title/description cross-checked against actual photograph. No serial-number or hardware verification.",
+      "limits": [
+        "No current price, inventory, availability or performance claims.",
+        "Do not relabel as a newer generation, connector version or successor model."
+      ]
+    },
+    {
+      "id": "apple-airpods-pro-2nd-gen",
+      "brand": "Apple",
+      "model": "AirPods Pro (2nd generation)",
+      "category": "earbuds",
+      "variant": null,
+      "asset_filenames": [
+        "apple-airpods-pro-2nd-gen.jpg"
+      ],
+      "identity_sources": [
+        {
+          "url": "https://commons.wikimedia.org/wiki/File:AirPods_Pro_(2nd_generation).jpg",
+          "title": "File:AirPods Pro (2nd generation).jpg"
+        }
+      ],
+      "identity_verification": "Photographer-supplied Wikimedia file title/description cross-checked against actual photograph. No serial-number or hardware verification.",
+      "limits": [
+        "No current price, inventory, availability or performance claims.",
+        "Do not relabel as a newer generation, connector version or successor model."
+      ]
+    },
+    {
+      "id": "google-pixel-8",
+      "brand": "Google",
+      "model": "Pixel 8",
+      "category": "smartphones",
+      "variant": "Rose",
+      "asset_filenames": [
+        "google-pixel-8-rose.jpg"
+      ],
+      "identity_sources": [
+        {
+          "url": "https://commons.wikimedia.org/wiki/File:Google_Pixel_8_Rose_rear_top-right.jpg",
+          "title": "File:Google Pixel 8 Rose rear top-right.jpg"
+        }
+      ],
+      "identity_verification": "Photographer-supplied Wikimedia file title/description cross-checked against actual photograph. No serial-number or hardware verification.",
+      "limits": [
+        "No current price, inventory, availability or performance claims.",
+        "Do not relabel as a newer generation, connector version or successor model."
+      ]
+    },
+    {
+      "id": "apple-iphone-15",
+      "brand": "Apple",
+      "model": "iPhone 15",
+      "category": "smartphones",
+      "variant": null,
+      "asset_filenames": [
+        "apple-iphone-15.jpg"
+      ],
+      "identity_sources": [
+        {
+          "url": "https://commons.wikimedia.org/wiki/File:Back_of_iPhone_15.jpg",
+          "title": "File:Back of iPhone 15.jpg"
+        }
+      ],
+      "identity_verification": "Photographer-supplied Wikimedia file title/description cross-checked against actual photograph. No serial-number or hardware verification.",
+      "limits": [
+        "No current price, inventory, availability or performance claims.",
+        "Do not relabel as a newer generation, connector version or successor model."
+      ]
+    },
+    {
+      "id": "jbl-flip-3",
+      "brand": "JBL",
+      "model": "Flip 3",
+      "category": "speakers",
+      "variant": null,
+      "asset_filenames": [
+        "jbl-flip-3.jpg"
+      ],
+      "identity_sources": [
+        {
+          "url": "https://commons.wikimedia.org/wiki/File:JBL_Flip_3_bluetooth_speaker_(DSCF2653).jpg",
+          "title": "File:JBL Flip 3 bluetooth speaker (DSCF2653).jpg"
+        }
+      ],
+      "identity_verification": "Photographer-supplied Wikimedia file title/description cross-checked against actual photograph. No serial-number or hardware verification.",
+      "limits": [
+        "No current price, inventory, availability or performance claims.",
+        "Do not relabel as a newer generation, connector version or successor model."
+      ]
+    },
+    {
+      "id": "sonos-play-1",
+      "brand": "Sonos",
+      "model": "PLAY:1",
+      "category": "speakers",
+      "variant": null,
+      "asset_filenames": [
+        "sonos-play-1.jpg"
+      ],
+      "identity_sources": [
+        {
+          "url": "https://commons.wikimedia.org/wiki/File:Sonos_PLAY_1_wireless_speaker_(cropped).jpg",
+          "title": "File:Sonos PLAY 1 wireless speaker (cropped).jpg"
+        }
+      ],
+      "identity_verification": "Photographer-supplied Wikimedia file title/description cross-checked against actual photograph. No serial-number or hardware verification.",
+      "limits": [
+        "No current price, inventory, availability or performance claims.",
+        "Do not relabel as a newer generation, connector version or successor model."
+      ]
+    }
+  ],
+  "assets": [
+    {
+      "filename": "hero-apple-airpods-max.jpg",
+      "public_path": "/images/products/hero-apple-airpods-max.jpg",
+      "local_path": "public/images/products/hero-apple-airpods-max.jpg",
+      "product_id": "apple-airpods-max",
+      "brand": "Apple",
+      "model": "AirPods Max",
+      "category": "headphones",
+      "source_title": "File:Apple AirPods Max 3.jpg",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Apple_AirPods_Max_3.jpg",
+      "download_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/18/Apple_AirPods_Max_3.jpg/1920px-Apple_AirPods_Max_3.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "author": "SimonWaldherr",
+      "author_html_as_reported": "<a href=\"//commons.wikimedia.org/wiki/User:SimonWaldherr\" title=\"User:SimonWaldherr\">SimonWaldherr</a>",
+      "source_credit": "Own work",
+      "required_attribution_as_reported": "",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "attribution_required": true,
+      "share_alike": true,
+      "source_original_dimensions": [
+        6048,
+        4024
+      ],
+      "downloaded_dimensions": [
+        1920,
+        1277
+      ],
+      "local_dimensions": [
+        1920,
+        1277
+      ],
+      "downloaded_format": "JPEG",
+      "format": "JPEG",
+      "source_original_bytes": 3143618,
+      "downloaded_bytes": 186412,
+      "bytes": 196835,
+      "original_url": "https://upload.wikimedia.org/wikipedia/commons/1/18/Apple_AirPods_Max_3.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "sha256": "3aa36695a52fc27be1dccd92fa3134778f3e5a61e50bc69ea20e0788b8b33c46",
+      "transformations": [
+        "EXIF orientation normalized where present",
+        "Downscaled without cropping",
+        "RGB JPEG re-encode; quality 91; progressive encoding",
+        "No background replacement, product retouching, generative alteration, or watermark removal"
+      ],
+      "identity_evidence": "File title Apple AirPods Max; creator photo series. Numeric suffix is a photo index, not a generation.",
+      "review_note": "Hero photograph; metallic dark earcups against black, landscape; not a transparent cutout. Official color and connector/generation variant are not asserted.",
+      "attribution_text": "Apple AirPods Max 3.jpg — SimonWaldherr; CC BY-SA 4.0; resized and JPEG re-encoded by Shopthie.",
+      "visual_review": "Inspected actual downloaded photo; depicted family, visible branding/design and form factor are consistent with source title/description. Exact model/generation comes from photographer metadata, not visual inference alone."
+    },
+    {
+      "filename": "apple-airpods-max-detail.jpg",
+      "public_path": "/images/products/apple-airpods-max-detail.jpg",
+      "local_path": "public/images/products/apple-airpods-max-detail.jpg",
+      "product_id": "apple-airpods-max",
+      "brand": "Apple",
+      "model": "AirPods Max",
+      "category": "headphones",
+      "source_title": "File:Apple AirPods Max 2.jpg",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Apple_AirPods_Max_2.jpg",
+      "download_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2d/Apple_AirPods_Max_2.jpg/1920px-Apple_AirPods_Max_2.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "author": "SimonWaldherr",
+      "author_html_as_reported": "<a href=\"//commons.wikimedia.org/wiki/User:SimonWaldherr\" title=\"User:SimonWaldherr\">SimonWaldherr</a>",
+      "source_credit": "Own work",
+      "required_attribution_as_reported": "",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "attribution_required": true,
+      "share_alike": true,
+      "source_original_dimensions": [
+        3673,
+        3674
+      ],
+      "downloaded_dimensions": [
+        1920,
+        1921
+      ],
+      "local_dimensions": [
+        1599,
+        1600
+      ],
+      "downloaded_format": "JPEG",
+      "format": "JPEG",
+      "source_original_bytes": 1577734,
+      "downloaded_bytes": 283813,
+      "bytes": 220914,
+      "original_url": "https://upload.wikimedia.org/wikipedia/commons/2/2d/Apple_AirPods_Max_2.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "sha256": "e7f5be9f674ee2fd907b5398486d5785a78b6e9b9e431ad7eab8c95d3a744221",
+      "transformations": [
+        "EXIF orientation normalized where present",
+        "Downscaled without cropping",
+        "RGB JPEG re-encode; quality 91; progressive encoding",
+        "No background replacement, product retouching, generative alteration, or watermark removal"
+      ],
+      "identity_evidence": "File title Apple AirPods Max; creator photo series. Numeric suffix is a photo index, not a generation.",
+      "review_note": "Secondary square composition of the same headphone family; not a separate model or generation.",
+      "attribution_text": "Apple AirPods Max 2.jpg — SimonWaldherr; CC BY-SA 4.0; resized and JPEG re-encoded by Shopthie.",
+      "visual_review": "Inspected actual downloaded photo; depicted family, visible branding/design and form factor are consistent with source title/description. Exact model/generation comes from photographer metadata, not visual inference alone."
+    },
+    {
+      "filename": "bose-quietcomfort-25.jpg",
+      "public_path": "/images/products/bose-quietcomfort-25.jpg",
+      "local_path": "public/images/products/bose-quietcomfort-25.jpg",
+      "product_id": "bose-quietcomfort-25",
+      "brand": "Bose",
+      "model": "QuietComfort 25",
+      "category": "headphones",
+      "source_title": "File:Bose QuietComfort 25 Acoustic Noise Cancelling Headphones.jpg",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Bose_QuietComfort_25_Acoustic_Noise_Cancelling_Headphones.jpg",
+      "download_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/86/Bose_QuietComfort_25_Acoustic_Noise_Cancelling_Headphones.jpg/1920px-Bose_QuietComfort_25_Acoustic_Noise_Cancelling_Headphones.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "author": "Florian Fuchs",
+      "author_html_as_reported": "<a href=\"//commons.wikimedia.org/wiki/User:Florian_Fuchs\" title=\"User:Florian Fuchs\">Florian Fuchs</a>",
+      "source_credit": "Own work",
+      "required_attribution_as_reported": "Florian Fuchs/Wikipedia/CC-BY-SA 3.0",
+      "license": "CC BY-SA 3.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "attribution_required": true,
+      "share_alike": true,
+      "source_original_dimensions": [
+        4267,
+        3200
+      ],
+      "downloaded_dimensions": [
+        1920,
+        1440
+      ],
+      "local_dimensions": [
+        1600,
+        1200
+      ],
+      "downloaded_format": "JPEG",
+      "format": "JPEG",
+      "source_original_bytes": 1926542,
+      "downloaded_bytes": 225512,
+      "bytes": 179125,
+      "original_url": "https://upload.wikimedia.org/wikipedia/commons/8/86/Bose_QuietComfort_25_Acoustic_Noise_Cancelling_Headphones.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "sha256": "8f398b8b35abd7501024853b81b6964477988b7674065176ea316b46618ddd36",
+      "transformations": [
+        "EXIF orientation normalized where present",
+        "Downscaled without cropping",
+        "RGB JPEG re-encode; quality 91; progressive encoding",
+        "No background replacement, product retouching, generative alteration, or watermark removal"
+      ],
+      "identity_evidence": "Bose QuietComfort 25 Acoustic Noise Cancelling Headphones",
+      "review_note": "Clean product photograph on white; original cable/background treatment preserved.",
+      "attribution_text": "Bose QuietComfort 25 Acoustic Noise Cancelling Headphones.jpg — Florian Fuchs/Wikipedia/CC-BY-SA 3.0; CC BY-SA 3.0; resized and JPEG re-encoded by Shopthie.",
+      "visual_review": "Inspected actual downloaded photo; depicted family, visible branding/design and form factor are consistent with source title/description. Exact model/generation comes from photographer metadata, not visual inference alone."
+    },
+    {
+      "filename": "apple-airpods-pro-2nd-gen.jpg",
+      "public_path": "/images/products/apple-airpods-pro-2nd-gen.jpg",
+      "local_path": "public/images/products/apple-airpods-pro-2nd-gen.jpg",
+      "product_id": "apple-airpods-pro-2nd-gen",
+      "brand": "Apple",
+      "model": "AirPods Pro (2nd generation)",
+      "category": "earbuds",
+      "source_title": "File:AirPods Pro (2nd generation).jpg",
+      "source_url": "https://commons.wikimedia.org/wiki/File:AirPods_Pro_(2nd_generation).jpg",
+      "download_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2f/AirPods_Pro_%282nd_generation%29.jpg/1920px-AirPods_Pro_%282nd_generation%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "author": "Hajoon0102",
+      "author_html_as_reported": "<a href=\"//commons.wikimedia.org/wiki/User:Hajoon0102\" title=\"User:Hajoon0102\">Hajoon0102</a>",
+      "source_credit": "Own work",
+      "required_attribution_as_reported": "",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "attribution_required": true,
+      "share_alike": true,
+      "source_original_dimensions": [
+        4032,
+        3024
+      ],
+      "downloaded_dimensions": [
+        1920,
+        1440
+      ],
+      "local_dimensions": [
+        1600,
+        1200
+      ],
+      "downloaded_format": "JPEG",
+      "format": "JPEG",
+      "source_original_bytes": 2095297,
+      "downloaded_bytes": 200584,
+      "bytes": 180081,
+      "original_url": "https://upload.wikimedia.org/wikipedia/commons/2/2f/AirPods_Pro_%282nd_generation%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "sha256": "1c1b17d2d9d2915911b57cd0e486b7c051ac03acff113a72531cdaf96fb5ee94",
+      "transformations": [
+        "EXIF orientation normalized where present",
+        "Downscaled without cropping",
+        "RGB JPEG re-encode; quality 91; progressive encoding",
+        "No background replacement, product retouching, generative alteration, or watermark removal"
+      ],
+      "identity_evidence": "Units and charging case of AirPods Pro (2nd generation)",
+      "review_note": "Pair of earbuds beside closed charging case; neutral gray background; connector version not asserted.",
+      "attribution_text": "AirPods Pro (2nd generation).jpg — Hajoon0102; CC BY-SA 4.0; resized and JPEG re-encoded by Shopthie.",
+      "visual_review": "Inspected actual downloaded photo; depicted family, visible branding/design and form factor are consistent with source title/description. Exact model/generation comes from photographer metadata, not visual inference alone."
+    },
+    {
+      "filename": "google-pixel-8-rose.jpg",
+      "public_path": "/images/products/google-pixel-8-rose.jpg",
+      "local_path": "public/images/products/google-pixel-8-rose.jpg",
+      "product_id": "google-pixel-8",
+      "brand": "Google",
+      "model": "Pixel 8",
+      "category": "smartphones",
+      "source_title": "File:Google Pixel 8 Rose rear top-right.jpg",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Google_Pixel_8_Rose_rear_top-right.jpg",
+      "download_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e1/Google_Pixel_8_Rose_rear_top-right.jpg/1920px-Google_Pixel_8_Rose_rear_top-right.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "author": "IXTA9839",
+      "author_html_as_reported": "<a href=\"//commons.wikimedia.org/wiki/User:IXTA9839\" title=\"User:IXTA9839\">IXTA9839</a>",
+      "source_credit": "Own work",
+      "required_attribution_as_reported": "",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "attribution_required": true,
+      "share_alike": true,
+      "source_original_dimensions": [
+        5472,
+        3648
+      ],
+      "downloaded_dimensions": [
+        1920,
+        1280
+      ],
+      "local_dimensions": [
+        1600,
+        1067
+      ],
+      "downloaded_format": "JPEG",
+      "format": "JPEG",
+      "source_original_bytes": 3724573,
+      "downloaded_bytes": 136507,
+      "bytes": 132899,
+      "original_url": "https://upload.wikimedia.org/wikipedia/commons/e/e1/Google_Pixel_8_Rose_rear_top-right.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "sha256": "0fcdf4b5720f9f567157197fff3568f5851eaadd469a8b61b3ec6771ac08211d",
+      "transformations": [
+        "EXIF orientation normalized where present",
+        "Downscaled without cropping",
+        "RGB JPEG re-encode; quality 91; progressive encoding",
+        "No background replacement, product retouching, generative alteration, or watermark removal"
+      ],
+      "identity_evidence": "斜め右上から撮影したGoogle Pixel 8の背面\n本体色はRose",
+      "review_note": "Rose finish, rear three-quarter view; avoids screen wallpaper rights.",
+      "attribution_text": "Google Pixel 8 Rose rear top-right.jpg — IXTA9839; CC BY-SA 4.0; resized and JPEG re-encoded by Shopthie.",
+      "visual_review": "Inspected actual downloaded photo; depicted family, visible branding/design and form factor are consistent with source title/description. Exact model/generation comes from photographer metadata, not visual inference alone."
+    },
+    {
+      "filename": "apple-iphone-15.jpg",
+      "public_path": "/images/products/apple-iphone-15.jpg",
+      "local_path": "public/images/products/apple-iphone-15.jpg",
+      "product_id": "apple-iphone-15",
+      "brand": "Apple",
+      "model": "iPhone 15",
+      "category": "smartphones",
+      "source_title": "File:Back of iPhone 15.jpg",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Back_of_iPhone_15.jpg",
+      "download_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f9/Back_of_iPhone_15.jpg/1920px-Back_of_iPhone_15.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "author": "ThePhotoGraphIc",
+      "author_html_as_reported": "<a href=\"//commons.wikimedia.org/wiki/User:ThePhotoGraphIc\" title=\"User:ThePhotoGraphIc\">ThePhotoGraphIc</a>",
+      "source_credit": "Own work",
+      "required_attribution_as_reported": "",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "attribution_required": true,
+      "share_alike": true,
+      "source_original_dimensions": [
+        3024,
+        4032
+      ],
+      "downloaded_dimensions": [
+        1920,
+        2560
+      ],
+      "local_dimensions": [
+        1200,
+        1600
+      ],
+      "downloaded_format": "JPEG",
+      "format": "JPEG",
+      "source_original_bytes": 2182231,
+      "downloaded_bytes": 948567,
+      "bytes": 421039,
+      "original_url": "https://upload.wikimedia.org/wikipedia/commons/f/f9/Back_of_iPhone_15.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "sha256": "91bf5bcafa4fa5262ec5ea4c8bb6d42227038ff62bbc7cd86e922b0e629c03c9",
+      "transformations": [
+        "EXIF orientation normalized where present",
+        "Downscaled without cropping",
+        "RGB JPEG re-encode; quality 91; progressive encoding",
+        "No background replacement, product retouching, generative alteration, or watermark removal"
+      ],
+      "identity_evidence": "Back of iPhone 15",
+      "review_note": "Single phone, rear view, dark finish on a textured neutral background; not iPhone 15 Pro.",
+      "attribution_text": "Back of iPhone 15.jpg — ThePhotoGraphIc; CC BY-SA 4.0; resized and JPEG re-encoded by Shopthie.",
+      "visual_review": "Inspected actual downloaded photo; depicted family, visible branding/design and form factor are consistent with source title/description. Exact model/generation comes from photographer metadata, not visual inference alone."
+    },
+    {
+      "filename": "jbl-flip-3.jpg",
+      "public_path": "/images/products/jbl-flip-3.jpg",
+      "local_path": "public/images/products/jbl-flip-3.jpg",
+      "product_id": "jbl-flip-3",
+      "brand": "JBL",
+      "model": "Flip 3",
+      "category": "speakers",
+      "source_title": "File:JBL Flip 3 bluetooth speaker (DSCF2653).jpg",
+      "source_url": "https://commons.wikimedia.org/wiki/File:JBL_Flip_3_bluetooth_speaker_(DSCF2653).jpg",
+      "download_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/67/JBL_Flip_3_bluetooth_speaker_%28DSCF2653%29.jpg/1920px-JBL_Flip_3_bluetooth_speaker_%28DSCF2653%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "author": "Trougnouf",
+      "author_html_as_reported": "<a href=\"//commons.wikimedia.org/wiki/User:Trougnouf\" title=\"User:Trougnouf\">Trougnouf</a>",
+      "source_credit": "Own work",
+      "required_attribution_as_reported": "",
+      "license": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "attribution_required": true,
+      "share_alike": false,
+      "source_original_dimensions": [
+        4937,
+        2596
+      ],
+      "downloaded_dimensions": [
+        1920,
+        1010
+      ],
+      "local_dimensions": [
+        1600,
+        842
+      ],
+      "downloaded_format": "JPEG",
+      "format": "JPEG",
+      "source_original_bytes": 6107979,
+      "downloaded_bytes": 483898,
+      "bytes": 387560,
+      "original_url": "https://upload.wikimedia.org/wikipedia/commons/6/67/JBL_Flip_3_bluetooth_speaker_%28DSCF2653%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "sha256": "79f50d1aa711541bc6164dfe448fe0ac2723f668af73574ea8f439a3b343131b",
+      "transformations": [
+        "EXIF orientation normalized where present",
+        "Downscaled without cropping",
+        "RGB JPEG re-encode; quality 91; progressive encoding",
+        "No background replacement, product retouching, generative alteration, or watermark removal"
+      ],
+      "identity_evidence": "Photographer title and description explicitly identify JBL Flip 3 bluetooth speaker (DSCF2653). Technical figures in the source description were not adopted as product specifications.",
+      "review_note": "Teal speaker on wood; visible carrying cord preserved; not Flip 4/5/6.",
+      "attribution_text": "JBL Flip 3 bluetooth speaker (DSCF2653).jpg — Trougnouf; CC BY 4.0; resized and JPEG re-encoded by Shopthie.",
+      "visual_review": "Inspected actual downloaded photo; depicted family, visible branding/design and form factor are consistent with source title/description. Exact model/generation comes from photographer metadata, not visual inference alone."
+    },
+    {
+      "filename": "sonos-play-1.jpg",
+      "public_path": "/images/products/sonos-play-1.jpg",
+      "local_path": "public/images/products/sonos-play-1.jpg",
+      "product_id": "sonos-play-1",
+      "brand": "Sonos",
+      "model": "PLAY:1",
+      "category": "speakers",
+      "source_title": "File:Sonos PLAY 1 wireless speaker (cropped).jpg",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Sonos_PLAY_1_wireless_speaker_(cropped).jpg",
+      "download_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9e/Sonos_PLAY_1_wireless_speaker_%28cropped%29.jpg/1920px-Sonos_PLAY_1_wireless_speaker_%28cropped%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "author": "Robert Wetzlmayr",
+      "author_html_as_reported": "<a href=\"//commons.wikimedia.org/wiki/User:Robert_Wetzlmayr\" title=\"User:Robert Wetzlmayr\">Robert Wetzlmayr</a>",
+      "source_credit": "Own work",
+      "required_attribution_as_reported": "",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "attribution_required": true,
+      "share_alike": true,
+      "source_original_dimensions": [
+        2415,
+        2800
+      ],
+      "downloaded_dimensions": [
+        1920,
+        2226
+      ],
+      "local_dimensions": [
+        1380,
+        1600
+      ],
+      "downloaded_format": "JPEG",
+      "format": "JPEG",
+      "source_original_bytes": 1361870,
+      "downloaded_bytes": 1023893,
+      "bytes": 643531,
+      "original_url": "https://upload.wikimedia.org/wikipedia/commons/9/9e/Sonos_PLAY_1_wireless_speaker_%28cropped%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "sha256": "918e4323055b447ff6feefb0f1ae9295162e90463f39d331d457b8f807a84b8d",
+      "transformations": [
+        "EXIF orientation normalized where present",
+        "Downscaled without cropping",
+        "RGB JPEG re-encode; quality 91; progressive encoding",
+        "No background replacement, product retouching, generative alteration, or watermark removal"
+      ],
+      "identity_evidence": "PLAY:1 is a speaker component for the wireless music system  by the manufacturer \"Sonos\".",
+      "review_note": "Silver-and-black speaker on wood with neutral wall; not Sonos One or Era 100.",
+      "attribution_text": "Sonos PLAY 1 wireless speaker (cropped).jpg — Robert Wetzlmayr; CC BY-SA 4.0; resized and JPEG re-encoded by Shopthie.",
+      "visual_review": "Inspected actual downloaded photo; depicted family, visible branding/design and form factor are consistent with source title/description. Exact model/generation comes from photographer metadata, not visual inference alone."
+    }
+  ]
+}
