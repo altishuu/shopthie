@@ -1,0 +1,19 @@
+.profile-help {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.6;
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+.profile-privacy {
+  margin-block: 24px 10px;
+}
+.profile-saved {
+  color: var(--ink);
+  background: var(--accent);
+  border-radius: 8px;
+  padding: 12px 14px;
+  font-size: 14px;
+  line-height: 1.6;
+  margin-block: 0 22px;
+}

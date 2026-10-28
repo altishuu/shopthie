@@ -4,7 +4,7 @@ A light editorial storefront for a multi-brand premium technology retailer. Next
 
 ## Current milestone
 
-**Backend implementation has started, area-by-area.** Area 1's modular access/configuration and SQL authority foundation are implemented and locally verified; focused security review passed. See `docs/backend-progress.md`. The authority schema is applied to a dedicated free Supabase project. The current Area 2 login/session slice is implemented and verified with a real controlled Supabase user: Customer authority, full-reload persistence, anonymous isolation and logout/denial passed. Work stopped here as requested; this is not completion of the broader B2 profile/address/MFA roadmap. Public signup and recovery remain explicitly gated. Existing commerce remains frontend/demo behavior. See `docs/backend-area-2.md`.
+**Backend Areas 1–3 implemented within their bounded contracts; stopped after profiles as requested.** Modular authority/configuration, real login/session handling and private customer profiles are applied to a dedicated free Supabase backend. The controlled Customer flow verified profile save/reload/edit/phone removal, stale-save rejection, anonymous isolation and logout denial. Current acceptance: 119 unit tests, 60 overlapping backend checks, 18 targeted desktop/mobile browser checks, build/static gates and focused review PASS. Public signup/recovery remain gated; addresses, MFA UI, staff tooling and public-service readiness remain unfinished. Commerce is still frontend/demo behavior. See `docs/backend-progress.md` and `docs/backend-area-3.md`.
 
 **Phases 1–4 implemented: design foundation, frontend commerce, cinematic motion, and editorial/responsive refinement.**
 
@@ -28,9 +28,9 @@ A light editorial storefront for a multi-brand premium technology retailer. Next
 - First-paint correction: critical server-delivered CSS covers the storefront before app hydration, with no-JavaScript/reduced-motion bypass, stalled-startup release, and no late intro replay after fallback. See `docs/first-paint-fix.md`.
 - Entrance continuity: independent page/overlay scopes, prepared-but-paused entrances released after the loader or route bridge, and gallery reveals using the same surface handoff. Later scroll reveals survive loader cleanup. See `docs/animation-continuity-fix.md`.
 
-**Phase 5 local handoff ready under the user's focused verification scope:** production build, lint/types/formatting, 89 unit tests, and 16 affected desktop/mobile shopping/focus checks pass on the latest code. An earlier complete run passed 138 browser tests before the final small focus correction. Extended browser/performance cycles were deliberately not repeated. Cross-tab transactions, native listener cleanup, stable catalog hydration, and delayed focus/announcement behavior are corrected. See `docs/phase-5-report.md`, `docs/phase-5-acceptance-results.json`, and `docs/HANDOFF.md`. The catalog remains seven source-verified models, not the proposed sixteen.
+**Phase 5 local handoff ready under the user's focused verification scope:** production build, lint/types/formatting, 89 unit tests, and 16 affected desktop/mobile shopping/focus checks pass on that frontend-only handoff candidate. An earlier complete run passed 138 browser tests before the final small focus correction. Extended browser/performance cycles were deliberately not repeated. Cross-tab transactions, native listener cleanup, stable catalog hydration, and delayed focus/announcement behavior are corrected. See `docs/phase-5-report.md`, `docs/phase-5-acceptance-results.json`, and `docs/HANDOFF.md`. The catalog remains seven source-verified models, not the proposed sixteen.
 
-No authentication server, commerce backend, database, payment gateway, dashboard, remote repository, or deployment has been added.
+Supabase now backs identity/session and self-only profiles. Real orders/inventory/payments, an administrative dashboard and a production frontend deployment are not implemented by this bounded work. No commit, push or frontend deployment was performed in Area 3.
 
 ## Install and run
 
@@ -55,7 +55,7 @@ Stop running development/preview servers before rebuilding the same project; the
 ## Verification
 
 ```bash
-npm test                         # 89 unit tests
+npm test                         # 119 current unit tests
 npm run lint
 npm run typecheck
 npm run format:check

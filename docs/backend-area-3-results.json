@@ -1,0 +1,87 @@
+{
+  "status": "accepted-bounded-profile-area-stopped",
+  "scope": "Customer-owned username and optional unverified phone only",
+  "supabase_project_id": "sjqpfsjgfzmcsshkdrmc",
+  "migration": {
+    "version": "20261028181746",
+    "name": "profiles",
+    "local_path": "supabase/migrations/20261028181746_profiles.sql",
+    "applied": true,
+    "history_schema_grants_rls_module_readback": true,
+    "sql_unchanged_after_filename_alignment": true
+  },
+  "automated": {
+    "unit_tests": 119,
+    "backend_checks": 60,
+    "counts_overlap": true,
+    "embedded_sql_tests": 30,
+    "profiles_sql_tests": 14,
+    "foundation_sql_tests": 16,
+    "failed": 0,
+    "skipped": 0,
+    "targeted_desktop_mobile_browser_checks": 18,
+    "build": true,
+    "typecheck": true,
+    "lint": true,
+    "format_check": true,
+    "whitespace_check": true
+  },
+  "review": {
+    "delegation_id": "deleg_3656e022",
+    "passed": true,
+    "findings": [],
+    "source_only": true
+  },
+  "native_controlled_account": {
+    "initial_null_profile": true,
+    "save_with_synthetic_details": true,
+    "full_reload_persistence": true,
+    "edit": true,
+    "clear_optional_phone": true,
+    "phone_null_confirmed_in_database": true,
+    "stale_revision_rejected": true,
+    "typed_draft_retained_on_conflict": true,
+    "conflict_disables_editor_and_offers_reload": true,
+    "conflict_does_not_overwrite_committed_profile": true,
+    "simultaneous_cookie_free_request_isolated_no_store": true,
+    "logout_app_cookie_count": 0,
+    "post_logout_profile_denied": true,
+    "browser_left_signed_out": true,
+    "remaining_synthetic_profile_count": 1,
+    "remaining_revision": 2
+  },
+  "layout": {
+    "desktop": [1280, 577],
+    "mobile": [390, 844],
+    "visual_inspection_passed": true,
+    "horizontal_overflow": false,
+    "primary_button_height_px": 49,
+    "mobile_username_height_px": 50
+  },
+  "native_auth_settings": {
+    "signup_disabled": true,
+    "anonymous_signin_disabled": true,
+    "email_enabled": true,
+    "email_confirmation_required": true,
+    "registration_hook_attached": false
+  },
+  "limitations": [
+    "Embedded auth claims are TEST fixtures, not native JWT/MFA certification.",
+    "Native profile flow used one controlled account plus anonymous isolation; A/B and metadata denials were tested in SQL fixtures.",
+    "No true multi-session concurrent lock-wait certification; native stale-save rejection and SQL atomic conflict/lock ordering were checked.",
+    "No full app-wide/three-engine/motion-retention rerun, forced-expiry refresh or production HTTPS certification.",
+    "Initial automation timing/controlled-input false failures were diagnosed; trusted input and complete-state assertions passed without app changes.",
+    "Public privacy/age/email readiness remains deferred; phone is not verified."
+  ],
+  "not_performed": [
+    "Age/DOB collection",
+    "Addresses/geography",
+    "MFA enrollment/challenge UI",
+    "Staff/support tooling",
+    "Public signup activation or email delivery",
+    "Payments",
+    "Commit/push",
+    "Frontend production deployment",
+    "Any later area"
+  ]
+}

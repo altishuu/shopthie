@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
+import Link from "next/link";
 import { redirect } from "next/navigation";
 import { IdentityShell } from "@/modules/identity/components/identity-shell";
 import { getIdentity } from "@/modules/identity/server";
@@ -43,7 +44,11 @@ async function AccountContent() {
             </div>
           </dl>
           <p className="identity-description">
-            Profile and address management are not available yet.
+            <Link className="identity-text-link" href="/account/profile" prefetch={false}>
+              Edit your profile
+            </Link>
+            <br />
+            Address management is not available yet.
           </p>
         </>
       ) : (

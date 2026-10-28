@@ -36,17 +36,25 @@ The user saved native Auth settings in their dashboard. The real project `/setti
 
 No Docker/PostgreSQL/Supabase CLI was installed locally; the tests do not claim a full local Supabase stack.
 
-## Current Area 2 — identity/session slice complete; stopped
+## Area 2 — identity/session slice complete; earlier stopping point
 
 Real controlled-account login displayed the verified test identity with the current database Customer role. A full reload retained the session. A simultaneous cookie-free request did not inherit that session or receive private identity data, and its response was no-store. HttpOnly/SameSite=Lax cookies were invisible to page JavaScript. Logout removed the app auth cookie; a subsequent protected-route request returned to login. The browser was left signed out.
 
 Current acceptance: 110 unit tests, 37 backend checks (overlapping unit subset plus 16 embedded PostgreSQL checks), 16 desktop/mobile browser checks, build/static gates, a focused independent source-review PASS, and the separately recorded live-provider checks. No extra app-wide frontend QA cycle was added.
 
-**The user directed stopping after this current login/session area. Work has stopped; no later implementation is implicitly authorized.** This is not completion of the whole B2 roadmap in `backend-blueprint.md`.
+At its handoff the user-directed Area 2 stop was honored. The subsequent explicit authorization below reopened only one next profiles area; it did not authorize the entire B2 roadmap in `backend-blueprint.md`.
+
+## Area 3 — customer profiles complete; stopped
+
+After the Area 2 handoff, the user explicitly authorized one next bounded area and stopping afterward. The selected scope is customer-owned username/optional-phone profiles only, with no age collection. See `backend-profile-contract.md` and `backend-area-3.md`.
+
+Implemented and accepted: self-only profile UI/services/RPCs, unique username, optional unverified phone/clearing, strict inputs/DTOs, current authority guards, revision conflicts and stale-editor identity assertions. Integrated acceptance: **119 unit tests, 60 overlapping backend checks including 30 real embedded SQL tests, 18 targeted desktop/mobile browser checks**, build/static gates and focused independent review PASS. Hosted migration `20261028181746_profiles` applied/read back; only optional profiles enabled. Real controlled-account save/reload/edit/phone-clear/conflict/draft/isolation/logout checks and desktop/mobile layout inspection passed. One synthetic profile remains, phone cleared; browser signed out. See `backend-area-3-results.json` for evidence and limits.
+
+**Stopped after Area 3 as requested. No subsequent area is implicitly authorized.**
 
 ## Remaining roadmap — not implemented
 
-- Remaining B2 controlled-account work: profiles, addresses, geography/reference data and optional customer MFA enrollment/challenge UI.
+- Remaining B2 controlled-account work: addresses, geography/reference data and optional customer MFA enrollment/challenge UI. Profiles are complete within the bounded Area 3 contract.
 - B3: staff MFA/tooling, Owner-only staff management and audited support-data operations.
 - B4: email delivery, age/teen safeguards, privacy/retention and public-account readiness.
 

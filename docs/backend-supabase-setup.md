@@ -1,4 +1,4 @@
-# Shopthie — hosted foundation setup
+# Shopthie — hosted backend setup
 
 ## Verified external state
 
@@ -17,7 +17,7 @@ Hosted migration history: version `20261028145618`, name `authority_foundation`.
 Readback confirmed:
 
 - `owner`, `admin`, `customer` application roles.
-- Required identity/access/audit modules enabled; profiles/geography/addresses/staff/support disabled.
+- At foundation verification, required identity/access/audit modules were enabled and all optional modules disabled. Area 3 subsequently enabled profiles only; see the readback below.
 - Every authority table has RLS enabled and no raw SELECT/INSERT/UPDATE/DELETE/TRUNCATE privileges for anon/authenticated clients.
 - Fixed Customer-provisioning trigger installed.
 - Anonymous execution of the public actor-context RPC denied.
@@ -42,3 +42,13 @@ Only the modern public/publishable key and project URL were written to the app's
 The browser automation session is still separate from the user's dashboard login. Native `/settings` verification did not require extracting any browser or MCP secrets. No SMTP setup, email-delivery test or public-age approval is implied.
 
 The subsequent native count read returned one Auth user and one automatically provisioned application account. Real browser sign-in, current Customer authority, reload persistence, concurrent anonymous isolation, logout and post-logout denial passed using that controlled identity. The browser was left signed out. See `backend-area-2-results.json`; fixture/negative-test results remain separate from this real-provider proof.
+
+## Area 3 — profiles migration and native application checks
+
+Applied `supabase/migrations/20261028181746_profiles.sql`; hosted history version/name read back exactly. The local draft filename was aligned to the server-generated version without changing SQL. Post-alignment checks passed again.
+
+Catalog readback confirmed profiles RLS, no raw client SELECT/INSERT/UPDATE/DELETE/TRUNCATE grants, anon RPC denial, authenticated RPC execution, fixed search paths and public invoker/private definer boundaries. Required identity/access/audit remain enabled; only optional profiles was enabled. Geography/addresses/staff/support remain disabled.
+
+A real controlled Customer saved, reloaded and edited a synthetic profile, cleared the phone, and received a stale-revision conflict without overwrite. A trusted typed draft was retained; cookie-free private-cache isolation and logout denial passed. Database readback confirmed one synthetic profile at revision 2 with SQL NULL phone. The browser was left signed out. Native Auth settings were also rechecked unchanged: signup/anonymous OFF, email/confirmation ON.
+
+This is native one-account application proof, not two-user native isolation or true concurrent lock-wait certification. Those broader fixture/structural distinctions are explicit in `backend-area-3.md` and `backend-area-3-results.json`. No later area, plan upgrade, provider-hook attachment, email setup, commit/push or frontend production deployment followed.
