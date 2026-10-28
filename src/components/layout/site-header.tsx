@@ -2,11 +2,12 @@
 
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
-import { ArrowUpRight, Heart, Menu, ShoppingBag, X } from "lucide-react";
+import { ArrowUpRight, Heart, Menu, ShoppingBag, UserRound, X } from "lucide-react";
 import { gsap, useGSAP, motion } from "@/lib/gsap";
 import { cartCount } from "@/lib/cart";
 import { useCommerce } from "@/providers/commerce-provider";
 import { useMotionReady } from "@/providers/motion-ready";
+import "@/app/identity.css";
 
 const navigation = [
   { href: "/shop", label: "Shop" },
@@ -97,6 +98,9 @@ export function SiteHeader() {
           ))}
         </nav>
         <div className="nav-tools">
+          <Link className="icon-button header-account" href="/account" aria-label="Account">
+            <UserRound size={18} aria-hidden="true" />
+          </Link>
           <Link className="icon-button header-wishlist" href="/wishlist" aria-label="Wishlist">
             <Heart size={18} aria-hidden="true" />
             <span className="visually-hidden">{state.wishlist.length} saved products</span>
@@ -144,6 +148,10 @@ export function SiteHeader() {
             <ArrowUpRight size={22} aria-hidden="true" />
           </Link>
         ))}
+        <Link href="/account" onClick={() => setOpen(false)}>
+          Account
+          <UserRound size={20} aria-hidden="true" />
+        </Link>
         <Link href="/wishlist" onClick={() => setOpen(false)}>
           Wishlist
           <Heart size={20} aria-hidden="true" />

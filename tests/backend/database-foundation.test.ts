@@ -8,7 +8,7 @@ import { backendModuleDependencies, resolveBackendModules } from "../../src/modu
 import { permissionDefinitions, rolePermissions } from "../../src/modules/access/permissions.ts";
 
 const migration = new URL(
-  "../../supabase/migrations/202610280001_authority_foundation.sql",
+  "../../supabase/migrations/20261028145618_authority_foundation.sql",
   import.meta.url,
 );
 let db: PGlite;

@@ -1,10 +1,10 @@
 # B1 / Area 1 — local database authority foundation
 
-**Implemented locally, not deployed or public-account ready.** This is one foundation area, not completion of the backend blueprint. No hosted project, provider configuration, credentials, email sender, payments or public age policy is installed by this work.
+**Authority schema applied to the dedicated hosted Shopthie project and read back; NOT public-account ready.** Local PostgreSQL tests remain separate from hosted catalog/grant verification. This is one foundation area, not completion of the backend blueprint. Provider Auth settings/hook attachment, SDK sessions, credentials, email sender, payments and public age policy are not configured by this migration. See `backend-supabase-setup.md`.
 
 ## What the migration provides
 
-`supabase/migrations/202610280001_authority_foundation.sql` is a transactional, one-time migration. It assumes Supabase-managed `auth.users`, `auth.mfa_factors`, `auth.uid()`, `auth.jwt()` and the `anon`, `authenticated`, `supabase_auth_admin` roles already exist. It does not create or replace provider-owned auth objects.
+`supabase/migrations/20261028145618_authority_foundation.sql` is a transactional, one-time migration. It assumes Supabase-managed `auth.users`, `auth.mfa_factors`, `auth.uid()`, `auth.jwt()` and the `anon`, `authenticated`, `supabase_auth_admin` roles already exist. It does not create or replace provider-owned auth objects.
 
 All eight authority/storage tables live in `shopthie_private`: `app_modules`, `app_module_dependencies`, `app_roles`, `app_permissions`, `app_role_permissions`, `app_accounts`, `app_user_roles`, `audit_events`. Raw client privileges are revoked; every table has default-deny RLS and no client-access policies. There is no client audit writer or reader, even for a caller with the `audit.read` capability. No global/public default privileges or unrelated objects are changed.
 
@@ -19,16 +19,16 @@ New `auth.users` inserts provision an active `customer` account and one applicat
 - Module dependencies match `src/modules/registry.ts`; permission ownership and complete role grants match `src/modules/access/permissions.ts`. A live-SQL-to-imported-TypeScript assertion checks these seeds, not SQL source strings.
 - Roles are lowercase `owner`, `admin`, `customer`; Manager/Cashier are not seeded.
 
-| Permission | Owning module | Customer | Admin | Owner |
-| --- | --- | --- | --- | --- |
-| `profile.read_own` | profiles | yes | yes | yes |
-| `profile.update_own` | profiles | yes | yes | yes |
-| `address.manage_own` | addresses | yes | yes | yes |
-| `customer.lookup` | staff | no | yes | yes |
-| `customer.status.manage` | staff | no | yes | yes |
-| `support.private.read` | support | no | yes | yes |
-| `audit.read` | audit | no | yes | yes |
-| `staff.manage` | staff | no | no | yes |
+| Permission               | Owning module | Customer | Admin | Owner |
+| ------------------------ | ------------- | -------- | ----- | ----- |
+| `profile.read_own`       | profiles      | yes      | yes   | yes   |
+| `profile.update_own`     | profiles      | yes      | yes   | yes   |
+| `address.manage_own`     | addresses     | yes      | yes   | yes   |
+| `customer.lookup`        | staff         | no       | yes   | yes   |
+| `customer.status.manage` | staff         | no       | yes   | yes   |
+| `support.private.read`   | support       | no       | yes   | yes   |
+| `audit.read`             | audit         | no       | yes   | yes   |
+| `staff.manage`           | staff         | no       | no    | yes   |
 
 A seeded grant is a capability definition, not an implemented feature or a data-access grant. Optional feature services/data tables do not exist.
 
@@ -64,6 +64,6 @@ RLS does not protect against trusted database owners, bypass-RLS service credent
 - Profiles, usernames, phone/age/address schemas, geography data, customer CRUD and resource-specific ownership/target policies.
 - Staff lookup/status/assignment mutation RPCs, Owner bootstrap/transfer/recovery and transactional last-Owner safeguards.
 - Actual scoped support-data reads coupled transactionally to audit writes; audit review APIs, retention/redaction and deletion/export flows.
-- Hosted migrations/deployment and payments/Stripe.
+- Frontend deployment and payments/Stripe. The authority migration itself has now been applied to the dedicated hosted project and its metadata/grants read back; full hosted Auth/RLS flows with real sessions remain later work.
 
 No protection or audited access to customer data is claimed: those tables and operations are absent.

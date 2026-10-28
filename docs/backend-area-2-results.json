@@ -1,0 +1,47 @@
+{
+  "status": "accepted-local-identity-session-slice",
+  "completed_at_utc": "2026-10-28T17:44:22.582774+00:00",
+  "scope": "Current Area 2 login/session/protected-account slice; not the full broader B2 roadmap",
+  "observed_native_counts": {
+    "auth_users": 1,
+    "application_accounts": 1
+  },
+  "live_provider_checks": {
+    "real_password_login": true,
+    "database_customer_role_rendered": true,
+    "verified_test_identity_matched": true,
+    "full_reload_retained_session": true,
+    "cookie_http_only": true,
+    "cookie_same_site_lax": true,
+    "cookie_invisible_to_document_cookie": true,
+    "simultaneous_anonymous_request_denied": true,
+    "anonymous_response_no_store": true,
+    "anonymous_response_no_private_identity": true,
+    "logout_returned_to_login": true,
+    "logout_removed_app_auth_cookies": true,
+    "private_route_denied_after_logout": true
+  },
+  "local_cookie_transport": "Non-Secure on explicitly configured loopback HTTP only; production Secure default covered by unit tests/source review, not a deployed HTTPS test.",
+  "automated_checks": {
+    "unit_tests_passed": 110,
+    "backend_tests_passed": 37,
+    "embedded_postgresql_tests_in_backend_count": 16,
+    "desktop_mobile_browser_tests_passed": 16,
+    "counts_overlap": true,
+    "production_build": "passed",
+    "lint": "passed",
+    "types": "passed",
+    "format": "passed"
+  },
+  "independent_source_review": {
+    "delegation_id": "deleg_4bc5af17",
+    "passed": true
+  },
+  "limitations": [
+    "Controlled test identity was administratively confirmed; email delivery was not tested.",
+    "Forced token-expiration/refresh was not separately exercised.",
+    "Public signup/recovery, customer MFA UI, profiles/addresses/reference data and staff tools remain outside this completed slice.",
+    "No production deployment or public-readiness certification."
+  ],
+  "handoff": "Stopped after the requested Area 2 identity/session slice; no later-area implementation authorized by this handoff."
+}

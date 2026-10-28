@@ -4,7 +4,7 @@ A light editorial storefront for a multi-brand premium technology retailer. Next
 
 ## Current milestone
 
-**Backend implementation has started, area-by-area.** Area 1's modular access/configuration and SQL authority foundation are implemented and locally verified; focused security review passed. See `docs/backend-progress.md`. This does not yet add login/signup pages or connect a live backend, and the existing storefront is unchanged.
+**Backend implementation has started, area-by-area.** Area 1's modular access/configuration and SQL authority foundation are implemented and locally verified; focused security review passed. See `docs/backend-progress.md`. The authority schema is applied to a dedicated free Supabase project. The current Area 2 login/session slice is implemented and verified with a real controlled Supabase user: Customer authority, full-reload persistence, anonymous isolation and logout/denial passed. Work stopped here as requested; this is not completion of the broader B2 profile/address/MFA roadmap. Public signup and recovery remain explicitly gated. Existing commerce remains frontend/demo behavior. See `docs/backend-area-2.md`.
 
 **Phases 1–4 implemented: design foundation, frontend commerce, cinematic motion, and editorial/responsive refinement.**
 
