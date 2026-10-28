@@ -22,6 +22,7 @@
 Required: Home, Shop/Collections, Product Details, Cart, and About, with search, filters, sorting, galleries, variants, quantity selection, and persistent cart management.
 
 Confirmed additions:
+
 - Persistent wishlist with its own page and product toggles.
 - Accessible quick-view dialog with product options, add-to-cart, and link to full details.
 - Clearly labeled checkout demonstration: order summary and simulated completion only. No payment details, real delivery information, or real order submission.
@@ -54,7 +55,10 @@ Changing a symbol is not currency conversion. Future currency changes must provi
 - Phase 1 visual direction was accepted through the user's instruction to proceed to the next phase.
 - Phase 2 is implemented and verified: working catalog/search/filter/sort, all seeded product/collection routes, galleries/options, cart drawer/page, persisted wishlist, quick view, About, and explicitly non-transactional demo checkout.
 - The catalog currently contains seven real products, ten valid demo variants, and eight licensed photographs. Sixteen products remains a sourcing target, not an achieved count.
-- Production build, lint, TypeScript, formatting, 40 unit tests, and 26 desktop/mobile browser tests pass. The visual verifier checked 45 scenes across five viewport widths without overflow or runtime page errors.
-- Catalog specs, stock/price simulation boundaries, persistence behavior, and verification scope are documented in `specification-sources.md`, `phase-2-report.md`, and the README.
-- Phase 3 GSAP/Lenis motion, preloader, route choreography, and later full-homepage refinement/final QA remain unimplemented.
-- No new user decisions block beginning the planned motion phase; review the current functional checkpoint before advancing.
+- Production build, lint, TypeScript, formatting, 43 unit tests, and 64 desktop/mobile browser tests pass. The Phase 4 visual verifier checked 49 full-motion scenes across eight viewport sizes, with no overflow/runtime/console errors and no reported violations in its nine additional accessibility scans.
+- Catalog specs and stock/price simulation boundaries remain in `specification-sources.md`; historical Phase 2 results remain in `phase-2-report.md`.
+- Phase 3 is implemented: first-session intro, shared GSAP/Lenis driver, hydration-safe route bridge, native history restoration, floating navigation, scoped interaction effects, and three editorial home chapters. See `phase-3-report.md`.
+- Native touch/reduced-motion scrolling is retained; CSS smooth scrolling is not a second driver. ScrollTrigger refresh is limited to active scenes with fresh scroll memory.
+- Phase 4 is implemented and verified: nine-chapter homepage, new featured/editorial photo treatments, expanded About principles, canonical product-story chapters with return-to-purchase anchors, short-landscape menu scrolling, and adaptive mobile galleries. See `phase-4-report.md`.
+- The storyboard's best-seller/new-arrival roles use honest curated/fresh-perspective language, not unsupported sales rankings, current-release claims, or fabricated discounts.
+- Phase 5 final profiling/broader browser-device sign-off and consolidated handoff remain. No new foundational design question blocks the planned final checks.

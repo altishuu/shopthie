@@ -1,10 +1,11 @@
 "use client";
 
-import { useState, useTransition, type FormEvent } from "react";
+import { useRef, useState, useTransition, type FormEvent } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { Search, SlidersHorizontal, X } from "lucide-react";
 import { categoryDefinitions, products } from "@/data/products";
 import { filterProducts } from "@/lib/catalog";
+import { Flip, useGSAP, motion } from "@/lib/gsap";
 import { ProductCard } from "@/components/catalog/product-card";
 
 function SearchForm({
@@ -39,6 +40,15 @@ export function Catalog({ initialCategory = "all" }: { initialCategory?: string 
   const pathname = usePathname();
   const router = useRouter();
   const [pending, startTransition] = useTransition();
+  const scope = useRef<HTMLDivElement>(null);
+  const layout = useRef<ReturnType<typeof Flip.from> | null>(null);
+  const snapshot = useRef<{
+    state: ReturnType<typeof Flip.getState>;
+    cards: HTMLElement[];
+    query: string;
+  } | null>(null);
+  const motionAllowed = useRef(false);
+  const queryKey = searchParams.toString();
   const query = searchParams.get("q") || "";
   const category = searchParams.get("category") || initialCategory;
   const brand = searchParams.get("brand") || "all";
@@ -47,24 +57,79 @@ export function Catalog({ initialCategory = "all" }: { initialCategory?: string 
   const brands = [...new Set(products.map((product) => product.brand))].sort();
   const active = query || category !== "all" || brand !== "all" || sort !== "featured";
 
+  useGSAP(
+    () => {
+      const media = window.matchMedia("(prefers-reduced-motion: reduce)");
+      const reset = () => {
+        motionAllowed.current = !media.matches;
+        snapshot.current = null;
+        // Completing Flip restores its measured inline styles, including dimensions.
+        layout.current?.progress(1).kill();
+        layout.current = null;
+      };
+      reset();
+      media.addEventListener("change", reset);
+      return () => {
+        media.removeEventListener("change", reset);
+        reset();
+      };
+    },
+    { scope },
+  );
+
+  useGSAP(
+    () => {
+      const previous = snapshot.current;
+      if (!previous || previous.query !== queryKey) return;
+      snapshot.current = null;
+      if (!motionAllowed.current) return;
+      const cards = [
+        ...(scope.current?.querySelectorAll<HTMLElement>("[data-product-card]") || []),
+      ];
+      // Only animate the same DOM cards retained by React, never entering/removed cards.
+      const retained = cards.filter((card) => previous.cards.includes(card));
+      if (!retained.length) return;
+      layout.current?.progress(1).kill();
+      layout.current = Flip.from(previous.state, {
+        targets: retained,
+        duration: motion.duration.layout,
+        ease: motion.ease.control,
+        prune: true,
+        scale: false,
+      });
+    },
+    { scope, dependencies: [queryKey, pathname, initialCategory], revertOnUpdate: true },
+  );
+
+  const captureLayout = (nextQuery: string) => {
+    snapshot.current = null;
+    layout.current?.progress(1).kill();
+    layout.current = null;
+    if (!motionAllowed.current || nextQuery === queryKey) return;
+    const cards = [...(scope.current?.querySelectorAll<HTMLElement>("[data-product-card]") || [])];
+    if (cards.length) snapshot.current = { state: Flip.getState(cards), cards, query: nextQuery };
+  };
+
   const update = (changes: Record<string, string>) => {
     const params = new URLSearchParams(searchParams.toString());
     for (const [key, value] of Object.entries(changes)) {
       if (value) params.set(key, value);
       else params.delete(key);
     }
+    captureLayout(params.toString());
     startTransition(() =>
       router.push(`${pathname}${params.size ? `?${params}` : ""}`, { scroll: false }),
     );
   };
   const clear = () => {
+    captureLayout(pathname === "/shop" ? "" : "category=all");
     startTransition(() =>
       router.push(pathname === "/shop" ? "/shop" : `${pathname}?category=all`, { scroll: false }),
     );
   };
 
   return (
-    <div className="catalog" aria-busy={pending}>
+    <div ref={scope} className="catalog" aria-busy={pending}>
       <SearchForm key={query} initialValue={query} onSearch={(value) => update({ q: value })} />
       <div className="category-chips" aria-label="Product categories">
         {[{ slug: "all", label: "All products" }, ...categoryDefinitions].map((item) => (

@@ -1,4 +1,5 @@
 import { Suspense } from "react";
+import { RouteMotionReady } from "@/components/motion/route-motion-ready";
 import Link from "next/link";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
@@ -7,7 +8,9 @@ import { products } from "@/data/products";
 import { getProduct } from "@/lib/catalog";
 import { ProductGallery } from "@/components/product/product-gallery";
 import { ProductOptions } from "@/components/product/product-options";
+import { ProductStory } from "@/components/product/product-story";
 import { ProductCard } from "@/components/catalog/product-card";
+import RouteLoading from "@/components/ui/route-loading";
 
 export function generateStaticParams() {
   return products.map((product) => ({ slug: product.slug }));
@@ -32,13 +35,7 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
         <ArrowLeft size={15} aria-hidden="true" />
         Back to the collection
       </Link>
-      <Suspense
-        fallback={
-          <p className="loading-state" role="status">
-            Preparing a closer look…
-          </p>
-        }
-      >
+      <Suspense fallback={<RouteLoading>Preparing a closer look…</RouteLoading>}>
         <ProductContent params={params} />
       </Suspense>
     </main>
@@ -61,14 +58,14 @@ async function ProductContent({ params }: { params: Promise<{ slug: string }> })
     <>
       <div className="product-detail-grid">
         <ProductGallery product={product} />
-        <div className="product-detail-copy">
+        <div id="product-purchase" className="product-detail-copy" tabIndex={-1}>
           <p className="eyebrow">
             {product.brand} / {product.category}
           </p>
           <h1 className="product-title">{product.name}</h1>
           <p className="product-description">{product.description}</p>
           <ProductOptions product={product} />
-          <details className="specifications">
+          <details id="product-details" className="specifications">
             <summary>Details &amp; specification sources</summary>
             <dl>
               {product.specifications.map((specification) => (
@@ -92,6 +89,7 @@ async function ProductContent({ params }: { params: Promise<{ slug: string }> })
           </details>
         </div>
       </div>
+      <ProductStory product={product} />
       <section className="related-products" aria-labelledby="related-title">
         <div className="section-heading">
           <div>
@@ -106,6 +104,7 @@ async function ProductContent({ params }: { params: Promise<{ slug: string }> })
           ))}
         </div>
       </section>
+      <RouteMotionReady />
     </>
   );
 }

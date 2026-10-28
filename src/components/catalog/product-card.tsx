@@ -6,6 +6,7 @@ import { ArrowUpRight, Heart } from "lucide-react";
 import type { Product } from "@/types/product";
 import { formatMoney } from "@/lib/money";
 import { useCommerce } from "@/providers/commerce-provider";
+import { useMotionReady } from "@/providers/motion-ready";
 
 export function ProductCard({
   product,
@@ -14,7 +15,9 @@ export function ProductCard({
   product: Product;
   onWishlistRemoved?: () => void;
 }) {
-  const { state, ready, send, notify, openQuickView } = useCommerce();
+  const { state, ready: storeReady, send, notify, openQuickView } = useCommerce();
+  const motionReady = useMotionReady();
+  const ready = storeReady && motionReady;
   const saved = state.wishlist.includes(product.id);
   const image = product.images[0];
   return (

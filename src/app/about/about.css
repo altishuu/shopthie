@@ -1,0 +1,289 @@
+/* About is a reading spread, not another product grid. All rules stay route-scoped. */
+.about-page .about-editorial-heading {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(0, 0.65fr);
+  column-gap: clamp(32px, 6vw, 100px);
+  align-items: end;
+  padding-bottom: clamp(38px, 5vw, 72px);
+}
+
+.about-page .about-editorial-heading > .eyebrow {
+  grid-column: 1 / -1;
+}
+
+.about-page .about-editorial-heading h1 {
+  font-size: clamp(46px, 7.8vw, 112px);
+  line-height: 1.02;
+  margin-block: 28px 0;
+}
+
+.about-page .about-editorial-heading h1 span {
+  color: var(--muted);
+}
+
+.about-page .about-editorial-intro {
+  max-width: 330px;
+  padding-bottom: 5px;
+}
+
+.about-page .about-editorial-intro > p {
+  margin: 0 0 22px;
+  font-size: 16px;
+  line-height: 1.8;
+  color: var(--muted);
+  text-wrap: pretty;
+}
+
+.about-page .about-editorial-spread {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.9fr);
+  align-items: center;
+  gap: clamp(32px, 5.5vw, 88px);
+}
+
+.about-page .about-editorial-figure {
+  min-width: 0;
+  margin: 0;
+}
+
+.about-page .about-editorial-photo {
+  position: relative;
+  aspect-ratio: 1.12;
+  background: #000;
+}
+
+.about-page .about-editorial-photo img {
+  object-fit: contain;
+}
+
+.about-page .about-editorial-caption {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  column-gap: 20px;
+  padding-top: 14px;
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.8;
+}
+
+.about-page .about-editorial-caption a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: var(--ink);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.about-page .about-editorial-essay {
+  padding-block: 22px 38px;
+}
+
+.about-page .about-editorial-essay h2,
+.about-page .about-editorial-principles-intro h2,
+.about-page .about-editorial-boundary h2 {
+  font-family: var(--font-display), sans-serif;
+  font-size: clamp(36px, 4vw, 60px);
+  font-weight: 450;
+  letter-spacing: -0.055em;
+  line-height: 1.13;
+  margin-block: 26px;
+  text-wrap: pretty;
+}
+
+.about-page .about-editorial-essay > p:not(.eyebrow) {
+  max-width: 440px;
+  margin-block: 0 18px;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.85;
+}
+
+.about-page .about-editorial-cta {
+  max-width: 100%;
+  min-height: 52px;
+  margin-top: 14px;
+  background: var(--accent);
+  color: var(--ink);
+}
+
+.about-page .about-editorial-cta:hover {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.about-page .about-editorial-principles {
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+  gap: clamp(36px, 8vw, 130px);
+  border-top: 1px solid var(--line);
+  margin-top: clamp(64px, 8vw, 120px);
+  padding-block: clamp(54px, 6vw, 90px) clamp(64px, 8vw, 120px);
+}
+
+.about-page .about-editorial-principles-intro h2 {
+  max-width: 410px;
+  margin-bottom: 22px;
+}
+
+.about-page .about-editorial-principles-intro > p:not(.eyebrow) {
+  max-width: 310px;
+  margin: 0;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.85;
+}
+
+.about-page .about-editorial-principle-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.about-page .about-editorial-principle-list > li {
+  display: grid;
+  grid-template-columns: 32px minmax(0, 1fr);
+  gap: 20px;
+  padding-block: 28px;
+  border-top: 1px solid var(--line);
+}
+
+.about-page .about-editorial-principle-list > li:first-child {
+  padding-top: 0;
+  border-top: 0;
+}
+
+.about-page .about-editorial-principle-list > li:last-child {
+  padding-bottom: 0;
+}
+
+.about-page .about-editorial-index {
+  padding-top: 5px;
+  color: var(--muted);
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+}
+
+.about-page .about-editorial-principle-list h3 {
+  font-family: var(--font-display), sans-serif;
+  font-size: clamp(23px, 2.2vw, 32px);
+  font-weight: 500;
+  line-height: 1.25;
+  letter-spacing: -0.04em;
+  margin: 0 0 14px;
+}
+
+.about-page .about-editorial-principle-list p {
+  max-width: 480px;
+  margin: 0;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.85;
+}
+
+.about-page .about-editorial-boundary {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(32px, 7vw, 112px);
+  padding: clamp(26px, 4.5vw, 68px);
+  background: var(--stage);
+  color: var(--paper);
+}
+
+.about-page .about-editorial-boundary .eyebrow {
+  color: var(--accent);
+}
+
+.about-page .about-editorial-boundary h2 {
+  font-size: clamp(32px, 3.2vw, 48px);
+  margin-bottom: 0;
+}
+
+.about-page .about-editorial-boundary-copy p {
+  margin: 0 0 20px;
+  color: var(--stage-muted);
+  font-size: 14px;
+  line-height: 1.85;
+}
+
+.about-page .about-editorial-boundary-copy .about-editorial-boundary-lead {
+  color: var(--paper);
+  font-size: 17px;
+  line-height: 1.6;
+}
+
+.about-page .about-editorial-boundary-copy p:last-child {
+  margin-bottom: 0;
+}
+
+@media (max-width: 900px) {
+  .about-page .about-editorial-spread {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 32px;
+  }
+
+  .about-page .about-editorial-photo {
+    aspect-ratio: 1.5;
+  }
+
+  .about-page .about-editorial-essay {
+    max-width: 600px;
+    padding-block: 0;
+  }
+
+  .about-page .about-editorial-essay > p:not(.eyebrow) {
+    max-width: 550px;
+  }
+
+  .about-page .about-editorial-principles {
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+    gap: 32px;
+  }
+
+  .about-page .about-editorial-principle-list > li {
+    grid-template-columns: 24px minmax(0, 1fr);
+    gap: 12px;
+  }
+}
+
+@media (max-width: 640px) {
+  .about-page .about-editorial-heading,
+  .about-page .about-editorial-principles,
+  .about-page .about-editorial-boundary {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .about-page .about-editorial-heading h1 {
+    font-size: clamp(46px, 10vw, 64px);
+  }
+
+  .about-page .about-editorial-intro {
+    max-width: 380px;
+    margin-top: 26px;
+    padding: 0;
+  }
+
+  .about-page .about-editorial-intro > p {
+    margin-bottom: 15px;
+    font-size: 15px;
+  }
+
+  .about-page .about-editorial-principles {
+    gap: 38px;
+  }
+
+  .about-page .about-editorial-principles-intro h2 {
+    max-width: 320px;
+  }
+
+  .about-page .about-editorial-principle-list > li {
+    padding-block: 25px;
+  }
+
+  .about-page .about-editorial-boundary {
+    padding: 26px;
+    gap: 28px;
+  }
+}

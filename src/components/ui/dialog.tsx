@@ -2,6 +2,7 @@
 
 import { useEffect, useId, useRef } from "react";
 import { X } from "lucide-react";
+import { gsap, motion } from "@/lib/gsap";
 
 export function Dialog({
   title,
@@ -24,13 +25,33 @@ export function Dialog({
     const previousOverflow = document.body.style.overflow;
     dialog.showModal();
     document.body.style.overflow = "hidden";
+    const media = window.matchMedia("(prefers-reduced-motion: reduce)");
+    let entrance: gsap.core.Tween | undefined;
+    const reset = () => {
+      entrance?.kill();
+      gsap.set(dialog, { clearProps: "transform" });
+    };
+    if (!media.matches) {
+      entrance = gsap.fromTo(dialog, drawer ? { x: 20 } : { y: 10, scale: 0.99 }, {
+        x: 0,
+        y: 0,
+        scale: 1,
+        duration: motion.duration.surface,
+        ease: motion.ease.control,
+        overwrite: true,
+        clearProps: "transform",
+      });
+    }
+    media.addEventListener("change", reset);
     return () => {
+      media.removeEventListener("change", reset);
+      reset();
       dialog.close();
       document.body.style.overflow = previousOverflow;
       if (opener instanceof HTMLElement && opener.isConnected)
         opener.focus({ preventScroll: true });
     };
-  }, []);
+  }, [drawer]);
 
   return (
     <dialog

@@ -209,6 +209,10 @@ svg {
 }
 .mobile-nav {
   padding: 22px 26px;
+  max-block-size: calc(100dvh - 104px - env(safe-area-inset-bottom, 0px));
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
   background: var(--surface);
   border: 1px solid var(--line);
   border-radius: 22px;
@@ -823,14 +827,14 @@ h1 .soft {
 }
 @media (max-width: 760px) {
   html {
-    scroll-padding-top: 28px;
+    scroll-padding-top: 100px;
   }
   .site-header {
     top: 16px;
   }
   .nav-shell {
     min-height: 60px;
-    padding: 7px 10px 7px 21px;
+    padding: 7px 8px 7px 16px;
   }
   .wordmark {
     font-size: 26px;

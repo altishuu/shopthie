@@ -4,8 +4,11 @@ import { SiteHeader } from "@/components/layout/site-header";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { CommerceProvider } from "@/providers/commerce-provider";
 import { CommerceOverlays } from "@/components/cart/commerce-overlays";
+import { MotionExperience } from "@/providers/motion-experience";
+import "lenis/dist/lenis.css";
 import "./globals.css";
 import "./commerce.css";
+import "./motion.css";
 
 const display = localFont({
   src: "../../public/fonts/manrope-latin.woff2",
@@ -29,19 +32,17 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html
-      lang="en"
-      data-scroll-behavior="smooth"
-      className={`${display.variable} ${body.variable}`}
-    >
+    <html lang="en" className={`${display.variable} ${body.variable}`}>
       <body>
         <a className="skip-link" href="#main">
           Skip to content
         </a>
         <CommerceProvider>
-          <SiteHeader />
-          {children}
-          <SiteFooter />
+          <MotionExperience>
+            <SiteHeader />
+            {children}
+            <SiteFooter />
+          </MotionExperience>
           <CommerceOverlays />
         </CommerceProvider>
       </body>

@@ -1,6 +1,6 @@
 # Shopthie — implementation plan
 
-Status: PHASE 2 VERIFIED — the user approved advancing from the Phase 1 visual direction. The frontend shopping flow is implemented and production-tested: 40 unit tests and 26 browser tests pass, with 45 responsive scenes checked. Phase 3 cinematic motion has not started. The working catalog has seven verified models and ten variants, not the proposed sixteen-product target. See `docs/phase-2-report.md`.
+Status: PHASE 4 VERIFIED — full editorial reading order, About/product storytelling, and responsive refinements are integrated with the working shopping/motion flow. Production build, 43 unit tests, 64 desktop/mobile browser tests, lint, TypeScript, and formatting pass; 49 full-motion scenes across eight sizes and nine additional accessibility scans pass. Catalog remains seven verified models and ten variants, not the proposed sixteen-product target. Phase 5 final profiling/broader browser-device review/handoff remains. See `docs/phase-4-report.md`.
 
 ## 1. Locked requirements
 
@@ -81,15 +81,16 @@ Use Apple's restraint and clarity as principles, not a copied brand identity. Ph
 - Do not depend on private Next.js router APIs or freeze routing internals to preserve an exiting page. Prototype the transition boundary first; use a persistent overlay bridge when outgoing DOM cannot safely be retained.
 - Manage cart/menu scroll locking, dialog focus trapping/restoration, announcements, and page-focus handoff.
 
-**Gate:** no trapped overlays, duplicated scroll loops, stale timelines, or broken history after repeated navigation.
+**Gate passed:** bounded/skippable intro, interruptible route bridge, native back/forward with nonzero scroll restoration, route-local hydration guards, one ticker adapter, scoped pin teardown/recreation, live reduced-motion changes, and the original commerce flows are verified. See `docs/phase-3-report.md`; final performance/heap and broader real-device sign-off remains Phase 5.
 
 ### Phase 4 — full storytelling and responsive refinement
 
 Homepage sequence:
+
 1. Full-viewport flagship hero.
 2. Featured product story.
-3. Best sellers.
-4. New arrivals.
+3. The considered edit — curated, not an unsupported sales ranking.
+4. A fresh perspective — photographed existing models, not a new-release claim.
 5. Immersive showcase.
 6. Craftsmanship/brand philosophy.
 7. Editorial promotion.
@@ -99,6 +100,8 @@ Homepage sequence:
 Each section has its own compositional purpose. Vary scale, alignment, color rhythm, and motion rather than rendering nine identical full-screen sections.
 
 Complete About, product storytelling, navigation behavior, gallery transitions, and responsive art direction. Keep purchase actions and product information readily accessible without finishing scroll sequences.
+
+**Gate passed:** nine semantic homepage chapters in the intended reading order, distinct light/warm/dark photographic treatments, expanded About principles/demo disclosure, canonical SSR product stories with direct purchase anchors, short-landscape internal navigation, and compact mobile gallery behavior. The original commerce/motion suite remains green. See `docs/phase-4-report.md` for 64 browser tests and 49 checked scenes across eight viewport sizes. No unsupported sales/newness/discount claims were added to fill the original storyboard labels.
 
 ### Phase 5 — verification and handoff
 
@@ -163,13 +166,13 @@ Keep routes/content server-rendered where possible and scope client boundaries t
 - [x] All visible controls perform a real frontend action or clearly indicate an unavailable action.
 - [x] Cart calculations, variants, quantity edits, removal, and reload persistence work.
 - [x] Wishlist persistence, quick-view focus behavior, and clearly labeled non-transactional checkout demo work.
-- [ ] Preloader fails open; route and overlay transitions cannot trap users.
-- [ ] Scroll and animation lifecycle cleanup survives remounts and repeated navigation.
-- [ ] Mobile and reduced-motion experiences remain fully usable.
-- [ ] Production app passes build, lint, type checking, interaction tests, and visual review.
+- [x] Preloader releases on pending/failed assets; skip and route/overlay cancellation work in checked flows.
+- [x] Scoped scroll/animation lifecycle cleanup passes remount, preference-change, and repeated-navigation checks.
+- [x] Current mobile and reduced-motion shopping flows remain usable in Chromium emulation.
+- [ ] Final all-phase production sign-off after Phase 5 profiling/broader device review. Current Phase 4 build, lint, types, interaction tests, and responsive visual checks pass.
 - [x] Run instructions and mock/demo boundaries are documented.
 
-## 6. Design and sourcing decisions delegated for the next phase
+## 6. Established content direction and remaining sourcing
 
 - Select the exact hero headphone model and catalog products after checking product-image usage rights and specification sources. Publicly downloadable manufacturer imagery does not automatically establish commercial-use permission. If suitable assets cannot be verified, flag the blocker and request permitted assets or approval for a different imagery approach; do not substitute a mismatched image for a named product.
 - Develop the original Shopthie wordmark, type pairing, and restrained accent. Keep the selected off-white/graphite direction; the user did not request an Apple or Shopify clone.
@@ -177,4 +180,4 @@ Keep routes/content server-rendered where possible and scope client boundaries t
 - Source enough permitted images for coherent galleries and real variant presentation. Do not imply a photo depicts an unsupported colorway.
 - Treat premium pricing as simulated USD catalog content, with an explicit demo notice rather than live market-price claims.
 
-No further foundational questionnaire is required. Phase 2 is ready for review; Phase 3 adds cinematic motion while retaining the shopping suite as a regression gate. Final responsive, accessibility, motion-lifecycle, performance, and browser sign-off remains in later phases. No GitHub push, dashboard, backend, or remote deployment is authorized.
+No further foundational questionnaire is required. Phases 1–4 are implemented and verified; Phase 4 is ready for review. Phase 5 handles final profiling, broader browser/device coverage, and handoff. The sixteen-product sourcing target remains open. No GitHub push, dashboard, backend, or remote deployment is authorized.

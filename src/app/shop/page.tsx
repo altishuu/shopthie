@@ -1,5 +1,6 @@
 import { Suspense } from "react";
 import type { Metadata } from "next";
+import { RouteMotionReady } from "@/components/motion/route-motion-ready";
 import { Catalog } from "@/components/catalog/catalog";
 
 export const metadata: Metadata = {
@@ -32,6 +33,7 @@ export default function ShopPage() {
       >
         <Catalog />
       </Suspense>
+      <RouteMotionReady />
     </main>
   );
 }

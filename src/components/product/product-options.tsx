@@ -1,22 +1,61 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { ArrowRight, Heart } from "lucide-react";
 import type { Product } from "@/types/product";
 import { formatMoney } from "@/lib/money";
+import { gsap, useGSAP, motion } from "@/lib/gsap";
 import { QuantityControl } from "@/components/ui/quantity-control";
 import { useCommerce } from "@/providers/commerce-provider";
+import { useMotionReady } from "@/providers/motion-ready";
 
 export function ProductOptions({ product }: { product: Product }) {
-  const { state, ready, send, notify, addItem } = useCommerce();
+  const { state, ready: storeReady, send, notify, addItem } = useCommerce();
+  const motionReady = useMotionReady();
+  const ready = storeReady && motionReady;
   const [variantId, setVariantId] = useState(product.variants[0].id);
   const [quantity, setQuantity] = useState(1);
+  const feedback = useRef<gsap.core.Tween | null>(null);
+  const feedbackTarget = useRef<HTMLElement | null>(null);
   const variant = product.variants.find((item) => item.id === variantId)!;
   const inBag =
     state.cart.find((line) => line.productId === product.id && line.variantId === variantId)
       ?.quantity || 0;
   const remaining = Math.max(0, variant.demoStock - inBag);
   const saved = state.wishlist.includes(product.id);
+
+  const resetFeedback = () => {
+    feedback.current?.kill();
+    feedback.current = null;
+    if (feedbackTarget.current) gsap.set(feedbackTarget.current, { clearProps: "transform" });
+    feedbackTarget.current = null;
+  };
+
+  useGSAP(() => {
+    const media = window.matchMedia("(prefers-reduced-motion: reduce)");
+    media.addEventListener("change", resetFeedback);
+    return () => {
+      media.removeEventListener("change", resetFeedback);
+      resetFeedback();
+    };
+  });
+
+  const acknowledge = (target: HTMLElement) => {
+    resetFeedback();
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    feedbackTarget.current = target;
+    feedback.current = gsap.fromTo(
+      target,
+      { scale: 0.985 },
+      {
+        scale: 1,
+        duration: motion.duration.feedback,
+        ease: motion.ease.control,
+        overwrite: true,
+        clearProps: "transform",
+      },
+    );
+  };
 
   return (
     <div className="product-options" aria-busy={!ready}>
@@ -30,10 +69,12 @@ export function ProductOptions({ product }: { product: Product }) {
       <select
         id={`option-${product.id}`}
         aria-label="Product option"
+        disabled={!ready}
         value={variantId}
         onChange={(event) => {
           setVariantId(event.currentTarget.value);
           setQuantity(1);
+          acknowledge(event.currentTarget);
         }}
       >
         {product.variants.map((item) => (
@@ -57,7 +98,10 @@ export function ProductOptions({ product }: { product: Product }) {
         <button
           className="pill-link add-button"
           disabled={!ready || remaining === 0}
-          onClick={() => addItem(product.id, variant.id, Math.min(quantity, remaining))}
+          onClick={(event) => {
+            acknowledge(event.currentTarget);
+            addItem(product.id, variant.id, Math.min(quantity, remaining));
+          }}
         >
           {" "}
           {remaining === 0 ? "Demo limit reached" : "Add to bag"}

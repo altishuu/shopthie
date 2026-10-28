@@ -1,6 +1,13 @@
 import Image from "next/image";
+import { RouteMotionReady } from "@/components/motion/route-motion-ready";
 import Link from "next/link";
 import { ArrowDown, ArrowRight, ArrowUpRight } from "lucide-react";
+import {
+  ConsideredEdit,
+  ListeningInterlude,
+  NewPerspective,
+} from "@/components/motion/home-scenes";
+import "./storytelling.css";
 
 const categories = [
   {
@@ -48,7 +55,12 @@ const categories = [
 export default function Home() {
   return (
     <main id="main" tabIndex={-1}>
-      <section className="hero container" aria-labelledby="hero-title">
+      <section
+        id="flagship"
+        data-home-chapter
+        className="hero container"
+        aria-labelledby="hero-title"
+      >
         <div className="hero-topline">
           <p className="eyebrow">Technology, thoughtfully chosen.</p>
           <span className="hero-edition">THE SHOPTHIE EDIT — 01</span>
@@ -69,9 +81,9 @@ export default function Home() {
             <a className="pill-link" href="#collection">
               Explore the edit <ArrowRight size={17} aria-hidden="true" />
             </a>
-            <a className="hero-secondary" href="#sound">
-              A closer look <ArrowUpRight size={14} aria-hidden="true" />
-            </a>
+            <Link className="hero-secondary" href="/products/apple-airpods-max">
+              Shop AirPods Max <ArrowUpRight size={14} aria-hidden="true" />
+            </Link>
           </div>
           <div className="hero-visual">
             <span className="photo-label">IN FOCUS / APPLE AIRPODS MAX</span>
@@ -103,18 +115,132 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="introduction" className="introduction container" aria-labelledby="intro-title">
-        <p className="eyebrow">Less noise. More meaning.</p>
-        <h2 id="intro-title">
-          Not more technology.
-          <br />
-          The right technology.
-          <br />
-          <span>Objects that earn their place in your everyday.</span>
-        </h2>
+      <section
+        id="introduction"
+        data-home-chapter
+        className="introduction featured-story container"
+        aria-labelledby="intro-title"
+      >
+        <header className="feature-heading">
+          <p className="eyebrow">01 / Less noise. More meaning.</p>
+          <h2 id="intro-title">
+            Not more technology.
+            <br />
+            The right technology.
+            <br />
+            <span>Objects that earn their place in your everyday.</span>
+          </h2>
+        </header>
+        <div id="sound" className="story-grid featured-ritual">
+          <figure className="story-image featured-photo">
+            <Image
+              src="/images/products/apple-airpods-pro-2nd-gen.jpg"
+              alt="Second-generation AirPods Pro earbuds and their charging case, photographed together"
+              fill
+              sizes="(max-width: 760px) 90vw, 48vw"
+            />
+          </figure>
+          <div className="story-copy">
+            <p className="eyebrow">Apple / AirPods Pro · 2nd generation</p>
+            <h3>
+              Small things.
+              <br />
+              Familiar rituals.
+            </h3>
+            <p>
+              A favourite track. A pause between places. A little room for yourself. Begin with the
+              objects that already belong in your day.
+            </p>
+            <Link className="pill-link" href="/products/apple-airpods-pro-2nd-gen">
+              Explore AirPods Pro <ArrowUpRight size={17} aria-hidden="true" />
+            </Link>
+            <p className="feature-note">
+              The photographed second-generation model. No charging-connector version is inferred.{" "}
+              <a href="#credit-airpods-pro">Photography credits</a>
+            </p>
+          </div>
+        </div>
       </section>
 
-      <section id="collection" className="collection container" aria-labelledby="collection-title">
+      <ConsideredEdit />
+
+      <NewPerspective />
+
+      <ListeningInterlude />
+
+      <section
+        id="story"
+        data-home-chapter
+        className="philosophy container"
+        aria-labelledby="story-title"
+      >
+        <p className="eyebrow">The Shopthie perspective</p>
+        <div>
+          <h2 id="story-title">
+            Considered.
+            <br />
+            Not complicated.
+          </h2>
+          <p>
+            We’re building a quieter way to explore technology. A space for familiar names,
+            thoughtful details, and the things that make a difference to your day.
+          </p>
+          <p>
+            No endless wall of specifications. No shouting for your attention. Just room to look a
+            little closer—and find what matters to you.
+          </p>
+          <Link className="text-link" href="/about">
+            Our perspective
+            <ArrowUpRight size={15} aria-hidden="true" />
+          </Link>
+        </div>
+      </section>
+
+      <section
+        id="weekend-edit"
+        data-home-chapter
+        className="editorial-feature container"
+        aria-labelledby="weekend-title"
+      >
+        <div className="editorial-feature-copy">
+          <p className="eyebrow">06 / Notes from the edit</p>
+          <h2 id="weekend-title">A change of scene.</h2>
+          <p>
+            Same favourite record. A different corner of the day. Take a look beyond the headphones,
+            starting with the photographed JBL Flip 3.
+          </p>
+          <Link className="pill-link" href="/products/jbl-flip-3">
+            Explore JBL Flip 3 <ArrowUpRight size={17} aria-hidden="true" />
+          </Link>
+          <Link className="text-link" href="/collections/speakers">
+            The speaker edit <ArrowRight size={16} aria-hidden="true" />
+          </Link>
+          <span className="demo-label">An earlier-model editorial selection. No live offer.</span>
+        </div>
+        <figure className="editorial-feature-figure">
+          <div className="editorial-feature-photo">
+            <Image
+              src="/images/products/jbl-flip-3.jpg"
+              alt="Teal JBL Flip 3 and carrying cord on a warm wooden surface"
+              fill
+              sizes="(max-width: 760px) 90vw, 55vw"
+            />
+          </div>
+          <figcaption>
+            <span>JBL Flip 3 / A photographic study</span>
+            <a href="#credit-jbl-flip-3">
+              Image credits <ArrowUpRight size={12} aria-hidden="true" />
+            </a>
+          </figcaption>
+        </figure>
+      </section>
+
+      <section
+        id="collection"
+        data-home-chapter
+        className="collection container"
+        aria-labelledby="collection-title"
+      >
         <div className="section-heading">
           <div>
             <p className="eyebrow">Four ways to find your better</p>
@@ -162,61 +288,12 @@ export default function Home() {
         </p>
       </section>
 
-      <section id="sound" className="sound-story" aria-labelledby="sound-title">
-        <div className="story-grid container">
-          <div className="story-image dark-photo">
-            <Image
-              src="/images/products/apple-airpods-max-detail.jpg"
-              alt="A detailed photographic view of the AirPods Max headband and earcups against black"
-              fill
-              sizes="(max-width: 760px) 90vw, 50vw"
-            />
-          </div>
-          <div className="story-copy">
-            <p className="eyebrow">The listening chapter</p>
-            <h2 id="sound-title">
-              Some things
-              <br />
-              deserve your
-              <br />
-              full attention.
-            </h2>
-            <p>
-              An album from start to finish. A familiar voice. A moment that’s only yours. Make a
-              little room for the things worth listening to.
-            </p>
-            <Link className="pill-link accent" href="/collections/headphones">
-              Find your listening edit
-              <ArrowRight size={17} aria-hidden="true" />
-            </Link>
-            <div className="story-footnote">Featured photography / Apple AirPods Max</div>
-          </div>
-        </div>
-      </section>
-
-      <section id="story" className="philosophy container" aria-labelledby="story-title">
-        <p className="eyebrow">The Shopthie perspective</p>
-        <div>
-          <h2 id="story-title">
-            Considered.
-            <br />
-            Not complicated.
-          </h2>
-          <p>
-            We’re building a quieter way to explore technology. A space for familiar names,
-            thoughtful details, and the things that make a difference to your day.
-          </p>
-          <p>
-            No endless wall of specifications. No shouting for your attention. Just room to look a
-            little closer—and find what matters to you.
-          </p>
-          <Link className="text-link" href="/about">
-            Our perspective
-            <ArrowUpRight size={15} aria-hidden="true" />
-          </Link>
-        </div>
-      </section>
-      <section className="closing container" aria-labelledby="closing-title">
+      <section
+        id="closing"
+        data-home-chapter
+        className="closing container"
+        aria-labelledby="closing-title"
+      >
         <h2 id="closing-title">
           Find your kind
           <br />
@@ -227,6 +304,7 @@ export default function Home() {
           <ArrowUpRight size={17} aria-hidden="true" />
         </Link>
       </section>
+      <RouteMotionReady />
     </main>
   );
 }

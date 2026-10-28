@@ -1,0 +1,552 @@
+{
+  "baseURL": "http://127.0.0.1:3100",
+  "results": [
+    {
+      "scene": "hero",
+      "width": 320,
+      "height": 740,
+      "screenshot": "docs/screenshots/phase-4/narrow-hero.png",
+      "overflow": false,
+      "motion": "full",
+      "scrollY": 0,
+      "errors": []
+    },
+    {
+      "scene": "featured-story",
+      "width": 320,
+      "height": 740,
+      "screenshot": "docs/screenshots/phase-4/narrow-featured-story.png",
+      "overflow": false,
+      "motion": "full",
+      "scrollY": 1003,
+      "errors": []
+    },
+    {
+      "scene": "editorial-feature",
+      "width": 320,
+      "height": 740,
+      "screenshot": "docs/screenshots/phase-4/narrow-editorial-feature.png",
+      "overflow": false,
+      "motion": "full",
+      "scrollY": 6737,
+      "errors": []
+    },
+    {
+      "scene": "about-principles",
+      "width": 320,
+      "height": 740,
+      "screenshot": "docs/screenshots/phase-4/narrow-about-principles.png",
+      "overflow": false,
+      "motion": "full",
+      "scrollY": 1277,
+      "errors": []
+    },
+    {
+      "scene": "product-purchase",
+      "width": 320,
+      "height": 740,
+      "screenshot": "docs/screenshots/phase-4/narrow-product-purchase.png",
+      "overflow": false,
+      "motion": "full",
+      "scrollY": 409,
+      "errors": []
+    },
+    {
+      "scene": "product-story",
+      "width": 320,
+      "height": 740,
+      "screenshot": "docs/screenshots/phase-4/narrow-product-story.png",
+      "overflow": false,
+      "motion": "full",
+      "scrollY": 1247,
+      "errors": []
+    },
+    {
+      "scene": "hero",
+      "width": 360,
+      "height": 800,
+      "screenshot": "docs/screenshots/phase-4/small-phone-hero.png",
+      "overflow": false,
+      "motion": "full",
+      "scrollY": 0,
+      "errors": []
+    },
+    {
+      "scene": "featured-story",
+      "width": 360,
+      "height": 800,
+      "screenshot": "docs/screenshots/phase-4/small-phone-featured-story.png",
+      "overflow": false,
+      "motion": "full",
+      "scrollY": 1003,
+      "errors": []
+    },
+    {
+      "scene": "editorial-feature",
+      "width": 360,
+      "height": 800,
+      "screenshot": "docs/screenshots/phase-4/small-phone-editorial-feature.png",
+      "overflow": false,
+      "motion": "full",
+      "scrollY": 6855,
+      "errors": []
+    },
+    {
+      "scene": "about-principles",
+      "width": 360,
+      "height": 800,
+      "screenshot": "docs/screenshots/phase-4/small-phone-about-principles.png",
+      "overflow": false,
+      "motion": "full",
+      "scrollY": 1208,
+      "errors": []
+    },
+    {
+      "scene": "product-purchase",
+      "width": 360,
+      "height": 800,
+      "screenshot": "docs/screenshots/phase-4/small-phone-product-purchase.png",
+      "overflow": false,
+      "motion": "full",
+      "scrollY": 439,
+      "errors": []
+    },
+    {
+      "scene": "product-story",
+      "width": 360,
+      "height": 800,
+      "screenshot": "docs/screenshots/phase-4/small-phone-product-story.png",
+      "overflow": false,
+      "motion": "full",
+      "scrollY": 1258,
+      "errors": []
+    },
+    {
+      "scene": "hero",
+      "width": 390,
+      "height": 844,
+      "screenshot": "docs/screenshots/phase-4/phone-hero.png",
+      "overflow": false,
+      "motion": "full",
+      "scrollY": 0,
+      "errors": []
+    },
+    {
+      "scene": "featured-story",
+      "width": 390,
+      "height": 844,
+      "screenshot": "docs/screenshots/phase-4/phone-featured-story.png",
+      "overflow": false,
+      "motion": "full",
+      "scrollY": 876,
+      "errors": []
+    },
+    {
+      "scene": "editorial-feature",
+      "width": 390,
+      "height": 844,
+      "screenshot": "docs/screenshots/phase-4/phone-editorial-feature.png",
+      "overflow": false,
+      "motion": "full",
+      "scrollY": 6800,
+      "errors": []
+    },
+    {
+      "scene": "about-principles",
+      "width": 390,
+      "height": 844,
+      "screenshot": "docs/screenshots/phase-4/phone-about-principles.png",
+      "overflow": false,
+      "motion": "full",
+      "scrollY": 1200,
+      "errors": []
+    },
+    {
+      "scene": "product-purchase",
+      "width": 390,
+      "height": 844,
+      "screenshot": "docs/screenshots/phase-4/phone-product-purchase.png",
+      "overflow": false,
+      "motion": "full",
+      "scrollY": 462,
+      "errors": []
+    },
+    {
+      "scene": "product-story",
+      "width": 390,
+      "height": 844,
+      "screenshot": "docs/screenshots/phase-4/phone-product-story.png",
+      "overflow": false,
+      "motion": "full",
+      "scrollY": 1239,
+      "errors": []
+    },
+    {
+      "scene": "hero",
+      "width": 568,
+      "height": 320,
+      "screenshot": "docs/screenshots/phase-4/landscape-hero.png",
+      "overflow": false,
+      "motion": "full",
+      "scrollY": 0,
+      "errors": []
+    },
+    {
+      "scene": "featured-story",
+      "width": 568,
+      "height": 320,
+      "screenshot": "docs/screenshots/phase-4/landscape-featured-story.png",
+      "overflow": false,
+      "motion": "full",
+      "scrollY": 895,
+      "errors": []
+    },
+    {
+      "scene": "editorial-feature",
+      "width": 568,
+      "height": 320,
+      "screenshot": "docs/screenshots/phase-4/landscape-editorial-feature.png",
+      "overflow": false,
+      "motion": "full",
+      "scrollY": 7885,
+      "errors": []
+    },
+    {
+      "scene": "scrollable-navigation",
+      "width": 568,
+      "height": 320,
+      "screenshot": "docs/screenshots/phase-4/landscape-scrollable-navigation.png",
+      "overflow": false,
+      "motion": "full",
+      "scrollY": 0,
+      "errors": []
+    },
+    {
+      "scene": "about-principles",
+      "width": 568,
+      "height": 320,
+      "screenshot": "docs/screenshots/phase-4/landscape-about-principles.png",
+      "overflow": false,
+      "motion": "full",
+      "scrollY": 1242,
+      "errors": []
+    },
+    {
+      "scene": "product-purchase",
+      "width": 568,
+      "height": 320,
+      "screenshot": "docs/screenshots/phase-4/landscape-product-purchase.png",
+      "overflow": false,
+      "motion": "full",
+      "scrollY": 389,
+      "errors": []
+    },
+    {
+      "scene": "product-story",
+      "width": 568,
+      "height": 320,
+      "screenshot": "docs/screenshots/phase-4/landscape-product-story.png",
+      "overflow": false,
+      "motion": "full",
+      "scrollY": 1124,
+      "errors": []
+    },
+    {
+      "scene": "hero",
+      "width": 834,
+      "height": 1112,
+      "screenshot": "docs/screenshots/phase-4/tablet-hero.png",
+      "overflow": false,
+      "motion": "full",
+      "scrollY": 0,
+      "errors": []
+    },
+    {
+      "scene": "featured-story",
+      "width": 834,
+      "height": 1112,
+      "screenshot": "docs/screenshots/phase-4/tablet-featured-story.png",
+      "overflow": false,
+      "motion": "full",
+      "scrollY": 920,
+      "errors": []
+    },
+    {
+      "scene": "editorial-feature",
+      "width": 834,
+      "height": 1112,
+      "screenshot": "docs/screenshots/phase-4/tablet-editorial-feature.png",
+      "overflow": false,
+      "motion": "full",
+      "scrollY": 4685,
+      "errors": []
+    },
+    {
+      "scene": "about-principles",
+      "width": 834,
+      "height": 1112,
+      "screenshot": "docs/screenshots/phase-4/tablet-about-principles.png",
+      "overflow": false,
+      "motion": "full",
+      "scrollY": 1279,
+      "errors": []
+    },
+    {
+      "scene": "product-purchase",
+      "width": 834,
+      "height": 1112,
+      "screenshot": "docs/screenshots/phase-4/tablet-product-purchase.png",
+      "overflow": false,
+      "motion": "full",
+      "scrollY": 815,
+      "errors": []
+    },
+    {
+      "scene": "product-story",
+      "width": 834,
+      "height": 1112,
+      "screenshot": "docs/screenshots/phase-4/tablet-product-story.png",
+      "overflow": false,
+      "motion": "full",
+      "scrollY": 1544,
+      "errors": []
+    },
+    {
+      "scene": "hero",
+      "width": 1024,
+      "height": 768,
+      "screenshot": "docs/screenshots/phase-4/compact-desktop-hero.png",
+      "overflow": false,
+      "motion": "full",
+      "scrollY": 0,
+      "errors": []
+    },
+    {
+      "scene": "featured-story",
+      "width": 1024,
+      "height": 768,
+      "screenshot": "docs/screenshots/phase-4/compact-desktop-featured-story.png",
+      "overflow": false,
+      "motion": "full",
+      "scrollY": 717,
+      "errors": []
+    },
+    {
+      "scene": "editorial-feature",
+      "width": 1024,
+      "height": 768,
+      "screenshot": "docs/screenshots/phase-4/compact-desktop-editorial-feature.png",
+      "overflow": false,
+      "motion": "full",
+      "scrollY": 5591,
+      "errors": []
+    },
+    {
+      "scene": "about-principles",
+      "width": 1024,
+      "height": 768,
+      "screenshot": "docs/screenshots/phase-4/compact-desktop-about-principles.png",
+      "overflow": false,
+      "motion": "full",
+      "scrollY": 914,
+      "errors": []
+    },
+    {
+      "scene": "product-purchase",
+      "width": 1024,
+      "height": 768,
+      "screenshot": "docs/screenshots/phase-4/compact-desktop-product-purchase.png",
+      "overflow": false,
+      "motion": "full",
+      "scrollY": 124,
+      "errors": []
+    },
+    {
+      "scene": "product-story",
+      "width": 1024,
+      "height": 768,
+      "screenshot": "docs/screenshots/phase-4/compact-desktop-product-story.png",
+      "overflow": false,
+      "motion": "full",
+      "scrollY": 930,
+      "errors": []
+    },
+    {
+      "scene": "hero",
+      "width": 1440,
+      "height": 1000,
+      "screenshot": "docs/screenshots/phase-4/desktop-hero.png",
+      "overflow": false,
+      "motion": "full",
+      "scrollY": 0,
+      "errors": []
+    },
+    {
+      "scene": "featured-story",
+      "width": 1440,
+      "height": 1000,
+      "screenshot": "docs/screenshots/phase-4/desktop-featured-story.png",
+      "overflow": false,
+      "motion": "full",
+      "scrollY": 890,
+      "errors": []
+    },
+    {
+      "scene": "editorial-feature",
+      "width": 1440,
+      "height": 1000,
+      "screenshot": "docs/screenshots/phase-4/desktop-editorial-feature.png",
+      "overflow": false,
+      "motion": "full",
+      "scrollY": 6886,
+      "errors": []
+    },
+    {
+      "scene": "about-principles",
+      "width": 1440,
+      "height": 1000,
+      "screenshot": "docs/screenshots/phase-4/desktop-about-principles.png",
+      "overflow": false,
+      "motion": "full",
+      "scrollY": 1186,
+      "errors": []
+    },
+    {
+      "scene": "product-purchase",
+      "width": 1440,
+      "height": 1000,
+      "screenshot": "docs/screenshots/phase-4/desktop-product-purchase.png",
+      "overflow": false,
+      "motion": "full",
+      "scrollY": 124,
+      "errors": []
+    },
+    {
+      "scene": "product-story",
+      "width": 1440,
+      "height": 1000,
+      "screenshot": "docs/screenshots/phase-4/desktop-product-story.png",
+      "overflow": false,
+      "motion": "full",
+      "scrollY": 967,
+      "errors": []
+    },
+    {
+      "scene": "hero",
+      "width": 1920,
+      "height": 1080,
+      "screenshot": "docs/screenshots/phase-4/wide-hero.png",
+      "overflow": false,
+      "motion": "full",
+      "scrollY": 0,
+      "errors": []
+    },
+    {
+      "scene": "featured-story",
+      "width": 1920,
+      "height": 1080,
+      "screenshot": "docs/screenshots/phase-4/wide-featured-story.png",
+      "overflow": false,
+      "motion": "full",
+      "scrollY": 920,
+      "errors": []
+    },
+    {
+      "scene": "editorial-feature",
+      "width": 1920,
+      "height": 1080,
+      "screenshot": "docs/screenshots/phase-4/wide-editorial-feature.png",
+      "overflow": false,
+      "motion": "full",
+      "scrollY": 7364,
+      "errors": []
+    },
+    {
+      "scene": "about-principles",
+      "width": 1920,
+      "height": 1080,
+      "screenshot": "docs/screenshots/phase-4/wide-about-principles.png",
+      "overflow": false,
+      "motion": "full",
+      "scrollY": 1268,
+      "errors": []
+    },
+    {
+      "scene": "product-purchase",
+      "width": 1920,
+      "height": 1080,
+      "screenshot": "docs/screenshots/phase-4/wide-product-purchase.png",
+      "overflow": false,
+      "motion": "full",
+      "scrollY": 124,
+      "errors": []
+    },
+    {
+      "scene": "product-story",
+      "width": 1920,
+      "height": 1080,
+      "screenshot": "docs/screenshots/phase-4/wide-product-story.png",
+      "overflow": false,
+      "motion": "full",
+      "scrollY": 993,
+      "errors": []
+    }
+  ],
+  "accessibility": [
+    {
+      "scene": "home",
+      "width": 320,
+      "height": 740,
+      "violations": []
+    },
+    {
+      "scene": "about",
+      "width": 320,
+      "height": 740,
+      "violations": []
+    },
+    {
+      "scene": "product",
+      "width": 320,
+      "height": 740,
+      "violations": []
+    },
+    {
+      "scene": "home",
+      "width": 834,
+      "height": 1112,
+      "violations": []
+    },
+    {
+      "scene": "about",
+      "width": 834,
+      "height": 1112,
+      "violations": []
+    },
+    {
+      "scene": "product",
+      "width": 834,
+      "height": 1112,
+      "violations": []
+    },
+    {
+      "scene": "home",
+      "width": 1440,
+      "height": 1000,
+      "violations": []
+    },
+    {
+      "scene": "about",
+      "width": 1440,
+      "height": 1000,
+      "violations": []
+    },
+    {
+      "scene": "product",
+      "width": 1440,
+      "height": 1000,
+      "violations": []
+    }
+  ],
+  "errors": []
+}

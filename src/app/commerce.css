@@ -1164,7 +1164,7 @@ select:focus-visible {
     font-size: 12px;
   }
   .gallery-stage {
-    height: 430px;
+    height: clamp(220px, min(75vw, 52svh), 400px);
   }
   .product-title {
     font-size: 43px;
@@ -1275,9 +1275,6 @@ select:focus-visible {
 @media (max-width: 390px) {
   .product-card-visual {
     height: 335px;
-  }
-  .gallery-stage {
-    height: 370px;
   }
   .gallery-credit {
     font-size: 9px;

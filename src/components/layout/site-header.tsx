@@ -3,8 +3,10 @@
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { ArrowUpRight, Heart, Menu, ShoppingBag, X } from "lucide-react";
+import { gsap, useGSAP, motion } from "@/lib/gsap";
 import { cartCount } from "@/lib/cart";
 import { useCommerce } from "@/providers/commerce-provider";
+import { useMotionReady } from "@/providers/motion-ready";
 
 const navigation = [
   { href: "/shop", label: "Shop" },
@@ -15,7 +17,42 @@ const navigation = [
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
   const toggle = useRef<HTMLButtonElement>(null);
-  const { state, ready, openCart } = useCommerce();
+  const mobileNav = useRef<HTMLElement>(null);
+  const { state, ready: storeReady, openCart } = useCommerce();
+  const motionReady = useMotionReady();
+  const ready = storeReady && motionReady;
+
+  useGSAP(
+    () => {
+      if (!open || !mobileNav.current) return;
+      const media = gsap.matchMedia();
+      media.add("(prefers-reduced-motion: no-preference)", () => {
+        gsap.fromTo(
+          mobileNav.current,
+          { y: -10, clipPath: "inset(0 0 100% 0)" },
+          {
+            y: 0,
+            clipPath: "inset(0 0 0% 0)",
+            duration: motion.duration.menu,
+            ease: motion.ease.enter,
+          },
+        );
+        gsap.fromTo(
+          mobileNav.current!.querySelectorAll("a"),
+          { x: -12, opacity: 0 },
+          {
+            x: 0,
+            opacity: 1,
+            stagger: 0.035,
+            duration: motion.duration.menu,
+            ease: motion.ease.enter,
+          },
+        );
+      });
+      return () => media.revert();
+    },
+    { dependencies: [open], revertOnUpdate: true },
+  );
 
   useEffect(() => {
     if (!open) return;
@@ -52,6 +89,7 @@ export function SiteHeader() {
           shopthie<span aria-hidden="true">.</span>
         </Link>
         <nav className="desktop-nav" aria-label="Main navigation">
+          <span className="nav-active-indicator" aria-hidden="true" />
           {navigation.map((item) => (
             <Link href={item.href} key={item.href}>
               {item.label}
@@ -93,9 +131,11 @@ export function SiteHeader() {
         </div>
       </div>
       <nav
+        ref={mobileNav}
         id="mobile-navigation"
         aria-label="Mobile navigation"
         className="mobile-nav"
+        data-lenis-prevent
         hidden={!open}
       >
         {navigation.map((item) => (

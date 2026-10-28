@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { RouteMotionReady } from "@/components/motion/route-motion-ready";
 import { CartContents } from "@/components/cart/cart-contents";
 
 export const metadata: Metadata = { title: "Your bag" };
@@ -13,6 +14,7 @@ export default function CartPage() {
         <p>Good things, all in one place.</p>
       </header>
       <CartContents />
+      <RouteMotionReady />
     </main>
   );
 }
