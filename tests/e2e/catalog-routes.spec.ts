@@ -2,6 +2,9 @@ import { test, expect } from "@playwright/test";
 import { categoryDefinitions, products } from "../../src/data/products";
 
 test("every seeded product and collection resolves through its own deep link", async ({ page }) => {
+  // Eleven document loads intentionally replay the readable intro. Keep each
+  // assertion's normal timeout; only budget this multi-route sweep accordingly.
+  test.setTimeout(60_000);
   for (const product of products) {
     await page.goto(`/products/${product.slug}`);
     await expect(page.getByRole("heading", { level: 1 })).toHaveText(product.name);

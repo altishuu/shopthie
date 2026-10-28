@@ -1,4 +1,4 @@
-/* Base content stays visible without JavaScript; overlays activate after hydration only. */
+/* Critical head CSS covers first paint; noscript/reduced-motion paths remain visible. */
 html {
   /* Lenis is the only smoothing driver; native history must restore instantly. */
   scroll-behavior: auto;

@@ -18,6 +18,7 @@ export const motion = {
     quick: 0.25,
     menu: 0.3,
     layout: 0.32,
+    catalogEnter: 0.45,
     image: 0.34,
     route: 0.42,
     type: 0.5,
@@ -26,5 +27,9 @@ export const motion = {
   },
   stagger: { letters: 0.035, details: 0.055, lines: 0.11 },
   intensity: { magnet: 0.035, heroParallaxPercent: 9 },
-  limits: { introMs: 3000, routeMs: 2200 },
+  intro: {
+    first: { reveal: 0.8, stagger: 0.035, hold: 1.4, exit: 0.65 },
+    repeat: { reveal: 0.55, stagger: 0.025, hold: 1.1, exit: 0.55 },
+  },
+  limits: { introMs: 4000, routeMs: 2200 },
 } as const;

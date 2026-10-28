@@ -16,7 +16,7 @@
     "test:visual:motion": "node scripts/verify-phase3.mjs",
     "test:storytelling": "playwright test tests/e2e/storytelling.spec.ts",
     "test:visual:commerce": "node scripts/verify-phase2.mjs",
-    "test:motion": "playwright test tests/e2e/motion.spec.ts",
+    "test:motion": "playwright test tests/e2e/motion.spec.ts tests/e2e/motion-regressions.spec.ts tests/e2e/first-paint.spec.ts",
     "test:dev:motion": "node scripts/verify-phase3-dev.mjs",
     "format": "prettier --write \"src/**/*.{ts,tsx,css}\" \"tests/**/*.ts\" \"scripts/*.mjs\" playwright.config.ts",
     "format:check": "prettier --check \"src/**/*.{ts,tsx,css}\" \"tests/**/*.ts\" \"scripts/*.mjs\" playwright.config.ts"

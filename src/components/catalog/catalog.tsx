@@ -5,7 +5,7 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { Search, SlidersHorizontal, X } from "lucide-react";
 import { categoryDefinitions, products } from "@/data/products";
 import { filterProducts } from "@/lib/catalog";
-import { Flip, useGSAP, motion } from "@/lib/gsap";
+import { gsap, Flip, useGSAP, motion } from "@/lib/gsap";
 import { ProductCard } from "@/components/catalog/product-card";
 
 function SearchForm({
@@ -43,7 +43,7 @@ export function Catalog({ initialCategory = "all" }: { initialCategory?: string 
   const scope = useRef<HTMLDivElement>(null);
   const layout = useRef<ReturnType<typeof Flip.from> | null>(null);
   const snapshot = useRef<{
-    state: ReturnType<typeof Flip.getState>;
+    state: ReturnType<typeof Flip.getState> | null;
     cards: HTMLElement[];
     query: string;
   } | null>(null);
@@ -86,17 +86,56 @@ export function Catalog({ initialCategory = "all" }: { initialCategory?: string 
       const cards = [
         ...(scope.current?.querySelectorAll<HTMLElement>("[data-product-card]") || []),
       ];
-      // Only animate the same DOM cards retained by React, never entering/removed cards.
+      // Flip explains moves of retained cards; new categories also need an entrance.
       const retained = cards.filter((card) => previous.cards.includes(card));
-      if (!retained.length) return;
+      const entering = cards.filter((card) => !previous.cards.includes(card));
       layout.current?.progress(1).kill();
-      layout.current = Flip.from(previous.state, {
-        targets: retained,
-        duration: motion.duration.layout,
-        ease: motion.ease.control,
-        prune: true,
-        scale: false,
-      });
+      const transition = gsap.timeline();
+      layout.current = transition;
+      if (retained.length && previous.state) {
+        transition.add(
+          Flip.from(previous.state, {
+            targets: retained,
+            duration: motion.duration.layout,
+            ease: motion.ease.control,
+            prune: true,
+            scale: false,
+          }),
+          0,
+        );
+      }
+      if (entering.length) {
+        transition.fromTo(
+          entering,
+          { y: 24, scale: 0.985, transformOrigin: "50% 0%" },
+          {
+            y: 0,
+            scale: 1,
+            duration: motion.duration.catalogEnter,
+            stagger: motion.stagger.details,
+            ease: motion.ease.enter,
+            clearProps: "transform,transformOrigin",
+          },
+          0,
+        );
+        // Mask images only: labels and interactive overlays retain their contrast.
+        const images = entering.flatMap((card) => [
+          ...card.querySelectorAll(".product-card-visual img"),
+        ]);
+        if (images.length)
+          transition.fromTo(
+            images,
+            { clipPath: "inset(0 0 8% 0)" },
+            {
+              clipPath: "inset(0 0 0% 0)",
+              duration: motion.duration.catalogEnter,
+              stagger: motion.stagger.details,
+              ease: motion.ease.enter,
+              clearProps: "clipPath",
+            },
+            0,
+          );
+      }
     },
     { scope, dependencies: [queryKey, pathname, initialCategory], revertOnUpdate: true },
   );
@@ -107,7 +146,11 @@ export function Catalog({ initialCategory = "all" }: { initialCategory?: string 
     layout.current = null;
     if (!motionAllowed.current || nextQuery === queryKey) return;
     const cards = [...(scope.current?.querySelectorAll<HTMLElement>("[data-product-card]") || [])];
-    if (cards.length) snapshot.current = { state: Flip.getState(cards), cards, query: nextQuery };
+    snapshot.current = {
+      state: cards.length ? Flip.getState(cards) : null,
+      cards,
+      query: nextQuery,
+    };
   };
 
   const update = (changes: Record<string, string>) => {

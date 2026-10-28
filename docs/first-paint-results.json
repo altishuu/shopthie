@@ -1,0 +1,56 @@
+{
+  "browserTests": {
+    "total": 76,
+    "expected": 76,
+    "unexpected": 0,
+    "flaky": 0,
+    "skipped": 0,
+    "ok": true
+  },
+  "firstPaintTests": [
+    {
+      "project": "desktop",
+      "title": "cold first paint stays covered while app scripts are delayed, then hands off without a gap",
+      "passed": true
+    },
+    {
+      "project": "desktop",
+      "title": "a stalled app fails open and a late hydration never covers the content again",
+      "passed": true
+    },
+    {
+      "project": "desktop",
+      "title": "reduced motion does not hide the server-rendered page before hydration",
+      "passed": true
+    },
+    {
+      "project": "mobile",
+      "title": "cold first paint stays covered while app scripts are delayed, then hands off without a gap",
+      "passed": true
+    },
+    {
+      "project": "mobile",
+      "title": "a stalled app fails open and a late hydration never covers the content again",
+      "passed": true
+    },
+    {
+      "project": "mobile",
+      "title": "reduced motion does not hide the server-rendered page before hydration",
+      "passed": true
+    }
+  ],
+  "screenshots": {
+    "desktop": "docs/screenshots/first-paint/desktop-before-hydration.png",
+    "mobile": "docs/screenshots/first-paint/mobile-before-hydration.png"
+  },
+  "developmentSmoke": {
+    "base": "http://127.0.0.1:3102",
+    "developmentStrictMode": "pass",
+    "routes": ["/", "/shop", "/products/google-pixel-8"],
+    "pinSetupCleanup": "pass",
+    "quantity": 2,
+    "liveReducedMotion": "pass",
+    "runtimeOrConsoleErrors": []
+  },
+  "criticalStyleBeforeBody": true
+}

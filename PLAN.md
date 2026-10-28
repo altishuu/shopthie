@@ -1,6 +1,6 @@
 # Shopthie — implementation plan
 
-Status: PHASE 4 VERIFIED — full editorial reading order, About/product storytelling, and responsive refinements are integrated with the working shopping/motion flow. Production build, 43 unit tests, 64 desktop/mobile browser tests, lint, TypeScript, and formatting pass; 49 full-motion scenes across eight sizes and nine additional accessibility scans pass. Catalog remains seven verified models and ten variants, not the proposed sixteen-product target. Phase 5 final profiling/broader browser-device review/handoff remains. See `docs/phase-4-report.md`.
+Status: PHASE 4 VERIFIED — full editorial reading order, About/product storytelling, and responsive refinements are integrated with the working shopping/motion flow. Production build, 43 unit tests, 76 desktop/mobile browser tests, lint, TypeScript, and formatting pass; 49 full-motion scenes across eight sizes and nine additional accessibility scans pass. Catalog remains seven verified models and ten variants, not the proposed sixteen-product target. Phase 5 final profiling/broader browser-device review/handoff remains. See `docs/phase-4-report.md`.
 
 ## 1. Locked requirements
 
@@ -73,7 +73,7 @@ Use Apple's restraint and clarity as principles, not a copied brand identity. Ph
 - Centralize motion tokens, plugin registration, reduced-motion handling, and scoped animation lifecycle cleanup.
 - Use one GSAP ticker to drive Lenis; disable a separate automatic RAF loop. Feed scroll updates to ScrollTrigger and remove ticker/listener subscriptions on teardown.
 - Use native touch scrolling by default; simplify pinned storytelling and omit magnetic effects on coarse pointers.
-- Build a first-visit/session preloader tied only to critical hero-image/font readiness, with asset-error handling, a bounded escape path, and no artificial minimum delay.
+- Build a first-visit/session preloader tied to critical hero-image/font readiness. Per the user's post-review correction, include readable first/repeat brand holds without fabricating loading progress; retain skip, reduced motion, asset-error handling, and a four-second safety timer.
 - Choreograph logo → mask transition → hero typography/product/navigation reveal as one sequence; keep content accessible if animation initialization fails.
 - Add at most one major pinned desktop story initially; use an unpinned mobile equivalent.
 - Use Flip where it helps explain catalog layout changes, with a stable focus strategy and a reduced-motion fallback.

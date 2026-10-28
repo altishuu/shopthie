@@ -3,6 +3,7 @@
 import Lenis from "lenis";
 import { gsap, ScrollTrigger, motion } from "@/lib/gsap";
 import { attachScrollDriver } from "@/lib/motion-driver";
+import { BOOT_VEIL_ANIMATION } from "@/lib/boot-veil";
 
 const INTRO_KEY = "shopthie-intro-v1";
 
@@ -299,8 +300,17 @@ export function createExperience(
     } catch {
       /* Use full intro with bounded skip. */
     }
-    html.dataset.introKind = preference.matches ? "reduced" : seen ? "abbreviated" : "full";
-    if (preference.matches) {
+    // If the CSS watchdog already exposed the page, late JS must not cover it again.
+    const boot = getComputedStyle(document.body, "::before");
+    const bootExpired = boot.animationName === BOOT_VEIL_ANIMATION && boot.visibility === "hidden";
+    html.dataset.introKind = preference.matches
+      ? "reduced"
+      : bootExpired
+        ? "bypassed"
+        : seen
+          ? "abbreviated"
+          : "full";
+    if (preference.matches || bootExpired) {
       finishIntro(false);
       return;
     }
@@ -312,7 +322,8 @@ export function createExperience(
     root.inert = true;
     root.setAttribute("aria-hidden", "true");
     pause();
-    let brandReady = seen;
+    const pacing = seen ? motion.intro.repeat : motion.intro.first;
+    let brandReady = false;
     let assetsReady = seen;
     let releasing = false;
     const release = () => {
@@ -323,7 +334,7 @@ export function createExperience(
           .timeline({ onComplete: () => finishIntro() })
           .to(intro, {
             clipPath: "inset(0 0 100% 0)",
-            duration: seen ? 0.3 : 0.6,
+            duration: pacing.exit,
             ease: motion.ease.bridge,
           })
           .call(entrance, [], seen ? 0.08 : 0.22);
@@ -331,21 +342,28 @@ export function createExperience(
     };
     introContext = gsap.context(() => {
       gsap.set(intro, { clipPath: "inset(0 0 0% 0)" });
-      if (!seen)
-        gsap.fromTo(
+      // A readable brand beat is intentional, not fabricated asset progress.
+      // Repeats are shorter, but still reveal and hold instead of flashing away.
+      gsap
+        .timeline()
+        .fromTo(
           intro.querySelectorAll(".intro-letter"),
           { yPercent: 110, rotate: 4 },
           {
             yPercent: 0,
             rotate: 0,
-            duration: 0.48,
-            stagger: motion.stagger.letters,
+            duration: pacing.reveal,
+            stagger: pacing.stagger,
             ease: motion.ease.enter,
-            onComplete: () => {
-              brandReady = true;
-              release();
-            },
           },
+        )
+        .call(
+          () => {
+            brandReady = true;
+            release();
+          },
+          [],
+          `+=${pacing.hold}`,
         );
     }, intro);
     introTimer = setTimeout(() => finishIntro(), motion.limits.introMs);

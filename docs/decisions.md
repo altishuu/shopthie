@@ -14,6 +14,7 @@
 - Hero category: over-ear headphones.
 - Assistant selects coherent, appropriately licensed assets. Phase 1 now includes eight photographs covering seven verified models, with linked public credits. See `asset-manifest.md` for license conditions and provenance.
 - Full cinematic introduction on first visit per session; abbreviated repeat visits.
+- Post-review user correction: give both intro versions time to read rather than an immediate repeat wipe. Checked pacing is about 3.1 seconds first visit / 2.4 seconds reload, with real asset readiness, Skip, reduced motion, and a four-second safety timer. Category changes also animate incoming cards even when result sets are disjoint or previously empty. See `motion-fixes.md`.
 - Reduced-motion users receive a simplified experience regardless of preloader replay preference.
 - Proposed visual system implemented for review: self-hosted Manrope display and DM Sans body, off-white/graphite, muted citron interaction accent, and Apple AirPods Max photographic hero. These are the assistant's design choices, not a claim of new user approvals.
 
@@ -55,7 +56,7 @@ Changing a symbol is not currency conversion. Future currency changes must provi
 - Phase 1 visual direction was accepted through the user's instruction to proceed to the next phase.
 - Phase 2 is implemented and verified: working catalog/search/filter/sort, all seeded product/collection routes, galleries/options, cart drawer/page, persisted wishlist, quick view, About, and explicitly non-transactional demo checkout.
 - The catalog currently contains seven real products, ten valid demo variants, and eight licensed photographs. Sixteen products remains a sourcing target, not an achieved count.
-- Production build, lint, TypeScript, formatting, 43 unit tests, and 64 desktop/mobile browser tests pass. The Phase 4 visual verifier checked 49 full-motion scenes across eight viewport sizes, with no overflow/runtime/console errors and no reported violations in its nine additional accessibility scans.
+- Production build, lint, TypeScript, formatting, 43 unit tests, and 76 desktop/mobile browser tests pass. The Phase 4 visual verifier checked 49 full-motion scenes across eight viewport sizes, with no overflow/runtime/console errors and no reported violations in its nine additional accessibility scans.
 - Catalog specs and stock/price simulation boundaries remain in `specification-sources.md`; historical Phase 2 results remain in `phase-2-report.md`.
 - Phase 3 is implemented: first-session intro, shared GSAP/Lenis driver, hydration-safe route bridge, native history restoration, floating navigation, scoped interaction effects, and three editorial home chapters. See `phase-3-report.md`.
 - Native touch/reduced-motion scrolling is retained; CSS smooth scrolling is not a second driver. ScrollTrigger refresh is limited to active scenes with fresh scroll memory.

@@ -5,6 +5,7 @@ import { SiteFooter } from "@/components/layout/site-footer";
 import { CommerceProvider } from "@/providers/commerce-provider";
 import { CommerceOverlays } from "@/components/cart/commerce-overlays";
 import { MotionExperience } from "@/providers/motion-experience";
+import { bootVeilCss, noScriptBootFallback } from "@/lib/boot-veil";
 import "lenis/dist/lenis.css";
 import "./globals.css";
 import "./commerce.css";
@@ -33,6 +34,10 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${display.variable} ${body.variable}`}>
+      <head>
+        <style id="shopthie-boot-style">{bootVeilCss}</style>
+        <noscript dangerouslySetInnerHTML={noScriptBootFallback} />
+      </head>
       <body>
         <a className="skip-link" href="#main">
           Skip to content

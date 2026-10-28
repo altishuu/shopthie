@@ -1,0 +1,33 @@
+{
+  "browserTests": {
+    "total": 70,
+    "expected": 70,
+    "unexpected": 0,
+    "flaky": 0,
+    "skipped": 0,
+    "ok": true
+  },
+  "introTimings": {
+    "desktop": {
+      "first": {
+        "readableMs": 1665.1000000014901,
+        "totalMs": 3113.5
+      },
+      "repeat": {
+        "readableMs": 1298,
+        "totalMs": 2342.60000000149
+      }
+    },
+    "mobile": {
+      "first": {
+        "readableMs": 1733.1000000014901,
+        "totalMs": 3130.2000000029802
+      },
+      "repeat": {
+        "readableMs": 1350.2000000029802,
+        "totalMs": 2408.2999999970198
+      }
+    }
+  },
+  "verification": "Actual Playwright report attachments; milliseconds measured from animation frames."
+}
