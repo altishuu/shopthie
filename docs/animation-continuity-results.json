@@ -1,0 +1,507 @@
+{
+  "browserStats": {
+    "total": 86,
+    "expected": 86,
+    "unexpected": 0,
+    "flaky": 0,
+    "skipped": 0,
+    "ok": true
+  },
+  "configuredWorkers": 2,
+  "continuityTests": [
+    {
+      "title": "first visit and reload hero entrances run fully after the loader",
+      "project": "desktop",
+      "passed": true,
+      "measurements": [
+        {
+          "name": "hero-continuity",
+          "data": {
+            "first": {
+              "completeAt": 3867.300000011921,
+              "firstMotionAt": 3958.6000000089407,
+              "lastMotionAt": 4747.100000008941
+            },
+            "repeat": {
+              "completeAt": 2534.7999999970198,
+              "firstMotionAt": 2613.5,
+              "lastMotionAt": 3433.199999988079
+            }
+          }
+        }
+      ]
+    },
+    {
+      "title": "global heading entrances wait for both loader and route bridge completion",
+      "project": "desktop",
+      "passed": true,
+      "measurements": [
+        {
+          "name": "route-heading-continuity",
+          "data": {
+            "idleAt": 6597.300000011921,
+            "moving": [
+              {
+                "time": 6628.9000000059605,
+                "path": "/about",
+                "intro": "complete",
+                "route": "idle",
+                "hasHero": false,
+                "mask": 0,
+                "galleryMask": 0,
+                "titleY": 9.2895
+              },
+              {
+                "time": 6656.600000008941,
+                "path": "/about",
+                "intro": "complete",
+                "route": "idle",
+                "hasHero": false,
+                "mask": 0,
+                "galleryMask": 0,
+                "titleY": 7.0021
+              },
+              {
+                "time": 6684.4000000059605,
+                "path": "/about",
+                "intro": "complete",
+                "route": "idle",
+                "hasHero": false,
+                "mask": 0,
+                "galleryMask": 0,
+                "titleY": 5.4255
+              },
+              {
+                "time": 6716.4000000059605,
+                "path": "/about",
+                "intro": "complete",
+                "route": "idle",
+                "hasHero": false,
+                "mask": 0,
+                "galleryMask": 0,
+                "titleY": 4.0884
+              },
+              {
+                "time": 6743.300000011921,
+                "path": "/about",
+                "intro": "complete",
+                "route": "idle",
+                "hasHero": false,
+                "mask": 0,
+                "galleryMask": 0,
+                "titleY": 2.8812
+              },
+              {
+                "time": 6771.800000011921,
+                "path": "/about",
+                "intro": "complete",
+                "route": "idle",
+                "hasHero": false,
+                "mask": 0,
+                "galleryMask": 0,
+                "titleY": 2.0898
+              },
+              {
+                "time": 6796.600000008941,
+                "path": "/about",
+                "intro": "complete",
+                "route": "idle",
+                "hasHero": false,
+                "mask": 0,
+                "galleryMask": 0,
+                "titleY": 1.4345
+              },
+              {
+                "time": 6823.9000000059605,
+                "path": "/about",
+                "intro": "complete",
+                "route": "idle",
+                "hasHero": false,
+                "mask": 0,
+                "galleryMask": 0,
+                "titleY": 1.0204
+              },
+              {
+                "time": 6850.20000000298,
+                "path": "/about",
+                "intro": "complete",
+                "route": "idle",
+                "hasHero": false,
+                "mask": 0,
+                "galleryMask": 0,
+                "titleY": 0.6585
+              },
+              {
+                "time": 6876.100000008941,
+                "path": "/about",
+                "intro": "complete",
+                "route": "idle",
+                "hasHero": false,
+                "mask": 0,
+                "galleryMask": 0,
+                "titleY": 0.4179
+              },
+              {
+                "time": 6899.4000000059605,
+                "path": "/about",
+                "intro": "complete",
+                "route": "idle",
+                "hasHero": false,
+                "mask": 0,
+                "galleryMask": 0,
+                "titleY": 0.2502
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "title": "finishing the intro does not discard the page's later scroll reveals",
+      "project": "desktop",
+      "passed": true
+    },
+    {
+      "title": "decoded product gallery entrances wait for the same global surface handoff",
+      "project": "desktop",
+      "passed": true
+    },
+    {
+      "title": "skipping the loader still runs an uninterrupted entrance",
+      "project": "desktop",
+      "passed": true
+    },
+    {
+      "title": "first visit and reload hero entrances run fully after the loader",
+      "project": "mobile",
+      "passed": true,
+      "measurements": [
+        {
+          "name": "hero-continuity",
+          "data": {
+            "first": {
+              "completeAt": 3619.5999999940395,
+              "firstMotionAt": 3677.5999999940395,
+              "lastMotionAt": 4514.70000000298
+            },
+            "repeat": {
+              "completeAt": 2605.0999999940395,
+              "firstMotionAt": 2665.7000000029802,
+              "lastMotionAt": 3499.2000000029802
+            }
+          }
+        }
+      ]
+    },
+    {
+      "title": "global heading entrances wait for both loader and route bridge completion",
+      "project": "mobile",
+      "passed": true,
+      "measurements": [
+        {
+          "name": "route-heading-continuity",
+          "data": {
+            "idleAt": 6172.9000000059605,
+            "moving": [
+              {
+                "time": 6188.600000008941,
+                "path": "/about",
+                "intro": "complete",
+                "route": "idle",
+                "hasHero": false,
+                "mask": 0,
+                "galleryMask": 0,
+                "titleY": 10.2774
+              },
+              {
+                "time": 6205.100000008941,
+                "path": "/about",
+                "intro": "complete",
+                "route": "idle",
+                "hasHero": false,
+                "mask": 0,
+                "galleryMask": 0,
+                "titleY": 9.0541
+              },
+              {
+                "time": 6221.4000000059605,
+                "path": "/about",
+                "intro": "complete",
+                "route": "idle",
+                "hasHero": false,
+                "mask": 0,
+                "galleryMask": 0,
+                "titleY": 7.8034
+              },
+              {
+                "time": 6237.79999999702,
+                "path": "/about",
+                "intro": "complete",
+                "route": "idle",
+                "hasHero": false,
+                "mask": 0,
+                "galleryMask": 0,
+                "titleY": 6.7492
+              },
+              {
+                "time": 6257.20000000298,
+                "path": "/about",
+                "intro": "complete",
+                "route": "idle",
+                "hasHero": false,
+                "mask": 0,
+                "galleryMask": 0,
+                "titleY": 5.7501
+              },
+              {
+                "time": 6270.9000000059605,
+                "path": "/about",
+                "intro": "complete",
+                "route": "idle",
+                "hasHero": false,
+                "mask": 0,
+                "galleryMask": 0,
+                "titleY": 4.7694
+              },
+              {
+                "time": 6288.29999999702,
+                "path": "/about",
+                "intro": "complete",
+                "route": "idle",
+                "hasHero": false,
+                "mask": 0,
+                "galleryMask": 0,
+                "titleY": 4.1314
+              },
+              {
+                "time": 6304.100000008941,
+                "path": "/about",
+                "intro": "complete",
+                "route": "idle",
+                "hasHero": false,
+                "mask": 0,
+                "galleryMask": 0,
+                "titleY": 3.4078
+              },
+              {
+                "time": 6320.9000000059605,
+                "path": "/about",
+                "intro": "complete",
+                "route": "idle",
+                "hasHero": false,
+                "mask": 0,
+                "galleryMask": 0,
+                "titleY": 2.8812
+              },
+              {
+                "time": 6338.9000000059605,
+                "path": "/about",
+                "intro": "complete",
+                "route": "idle",
+                "hasHero": false,
+                "mask": 0,
+                "galleryMask": 0,
+                "titleY": 2.3609
+              },
+              {
+                "time": 6359.9000000059605,
+                "path": "/about",
+                "intro": "complete",
+                "route": "idle",
+                "hasHero": false,
+                "mask": 0,
+                "galleryMask": 0,
+                "titleY": 1.8904
+              },
+              {
+                "time": 6380.20000000298,
+                "path": "/about",
+                "intro": "complete",
+                "route": "idle",
+                "hasHero": false,
+                "mask": 0,
+                "galleryMask": 0,
+                "titleY": 1.4345
+              },
+              {
+                "time": 6400.70000000298,
+                "path": "/about",
+                "intro": "complete",
+                "route": "idle",
+                "hasHero": false,
+                "mask": 0,
+                "galleryMask": 0,
+                "titleY": 1.0665
+              },
+              {
+                "time": 6405.29999999702,
+                "path": "/about",
+                "intro": "complete",
+                "route": "idle",
+                "hasHero": false,
+                "mask": 0,
+                "galleryMask": 0,
+                "titleY": 0.7743
+              },
+              {
+                "time": 6421.9000000059605,
+                "path": "/about",
+                "intro": "complete",
+                "route": "idle",
+                "hasHero": false,
+                "mask": 0,
+                "galleryMask": 0,
+                "titleY": 0.7743
+              },
+              {
+                "time": 6437.79999999702,
+                "path": "/about",
+                "intro": "complete",
+                "route": "idle",
+                "hasHero": false,
+                "mask": 0,
+                "galleryMask": 0,
+                "titleY": 0.5562
+              },
+              {
+                "time": 6455.29999999702,
+                "path": "/about",
+                "intro": "complete",
+                "route": "idle",
+                "hasHero": false,
+                "mask": 0,
+                "galleryMask": 0,
+                "titleY": 0.4179
+              },
+              {
+                "time": 6472.4000000059605,
+                "path": "/about",
+                "intro": "complete",
+                "route": "idle",
+                "hasHero": false,
+                "mask": 0,
+                "galleryMask": 0,
+                "titleY": 0.2951
+              },
+              {
+                "time": 6488.100000008941,
+                "path": "/about",
+                "intro": "complete",
+                "route": "idle",
+                "hasHero": false,
+                "mask": 0,
+                "galleryMask": 0,
+                "titleY": 0.2107
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "title": "finishing the intro does not discard the page's later scroll reveals",
+      "project": "mobile",
+      "passed": true
+    },
+    {
+      "title": "decoded product gallery entrances wait for the same global surface handoff",
+      "project": "mobile",
+      "passed": true
+    },
+    {
+      "title": "skipping the loader still runs an uninterrupted entrance",
+      "project": "mobile",
+      "passed": true
+    }
+  ],
+  "unitTests": {
+    "passed": 46,
+    "failed": 0
+  },
+  "productionBuild": "passed",
+  "lint": "passed",
+  "typecheck": "passed",
+  "formatCheck": "passed",
+  "diffWhitespaceCheck": "passed",
+  "developmentSmoke": {
+    "base": "http://127.0.0.1:3102",
+    "developmentStrictMode": "pass",
+    "routes": ["/", "/shop", "/products/google-pixel-8"],
+    "pinSetupCleanup": "pass",
+    "quantity": 2,
+    "liveReducedMotion": "pass",
+    "runtimeOrConsoleErrors": []
+  },
+  "visualReview": [
+    {
+      "name": "desktop",
+      "width": 1440,
+      "height": 1000,
+      "stages": [
+        {
+          "stage": "start",
+          "path": "/home/ivanadcan35/Projects/Ishuu/shopthie/docs/screenshots/animation-continuity/desktop-start.png",
+          "elapsedMs": 5.699999988079071,
+          "heroMask": "inset(8% 0px 8% 100%)",
+          "heading": ["matrix(1, 0, 0, 1, 0, 75.9789)", "matrix(1, 0, 0, 1, 0, 75.9789)"],
+          "details": "inset(0px 0px 100%)",
+          "overflow": false
+        },
+        {
+          "stage": "middle",
+          "path": "/home/ivanadcan35/Projects/Ishuu/shopthie/docs/screenshots/animation-continuity/desktop-middle.png",
+          "elapsedMs": 354.79999999701977,
+          "heroMask": "inset(2.0825% 0px 2.0825% 26.0308%)",
+          "heading": ["matrix(1, 0, 0, 1, 0, 7.60642)", "matrix(1, 0, 0, 1, 0, 18.2425)"],
+          "details": "inset(0px 0px 100%)",
+          "overflow": false
+        },
+        {
+          "stage": "complete",
+          "path": "/home/ivanadcan35/Projects/Ishuu/shopthie/docs/screenshots/animation-continuity/desktop-complete.png",
+          "elapsedMs": 1514.5,
+          "heroMask": "inset(0% 0px 0% 0%)",
+          "heading": ["matrix(1, 0, 0, 1, 0, 0)", "matrix(1, 0, 0, 1, 0, 0)"],
+          "details": "inset(0px 0px 0%)",
+          "overflow": false
+        }
+      ],
+      "errors": []
+    },
+    {
+      "name": "mobile",
+      "width": 390,
+      "height": 844,
+      "stages": [
+        {
+          "stage": "start",
+          "path": "/home/ivanadcan35/Projects/Ishuu/shopthie/docs/screenshots/animation-continuity/mobile-start.png",
+          "elapsedMs": 4.600000008940697,
+          "heroMask": "inset(8% 0px 8% 100%)",
+          "heading": ["matrix(1, 0, 0, 1, 0, 41.1836)", "matrix(1, 0, 0, 1, 0, 41.1836)"],
+          "details": "inset(0px 0px 100%)",
+          "overflow": false
+        },
+        {
+          "stage": "middle",
+          "path": "/home/ivanadcan35/Projects/Ishuu/shopthie/docs/screenshots/animation-continuity/mobile-middle.png",
+          "elapsedMs": 297.6000000089407,
+          "heroMask": "inset(2.6824% 0px 2.6824% 33.5297%)",
+          "heading": ["matrix(1, 0, 0, 1, 0, 6.23399)", "matrix(1, 0, 0, 1, 0, 13.8303)"],
+          "details": "inset(0px 0px 100%)",
+          "overflow": false
+        },
+        {
+          "stage": "complete",
+          "path": "/home/ivanadcan35/Projects/Ishuu/shopthie/docs/screenshots/animation-continuity/mobile-complete.png",
+          "elapsedMs": 1395.2000000029802,
+          "heroMask": "inset(0% 0px 0% 0%)",
+          "heading": ["matrix(1, 0, 0, 1, 0, 0)", "matrix(1, 0, 0, 1, 0, 0)"],
+          "details": "inset(0px 0px 0%)",
+          "overflow": false
+        }
+      ],
+      "errors": []
+    }
+  ]
+}

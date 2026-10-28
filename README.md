@@ -24,6 +24,7 @@ A light editorial storefront for a multi-brand premium technology retailer. Next
 - Internally scrollable short-landscape navigation, header-aware anchors, and width/height-adaptive mobile galleries.
 - Post-review motion corrections: readable first/repeat intros (about 3.1s / 2.4s in checked runs), plus incoming-card entrances for category-to-category and empty-to-populated filtering. See `docs/motion-fixes.md`.
 - First-paint correction: critical server-delivered CSS covers the storefront before app hydration, with no-JavaScript/reduced-motion bypass, stalled-startup release, and no late intro replay after fallback. See `docs/first-paint-fix.md`.
+- Entrance continuity: independent page/overlay scopes, prepared-but-paused entrances released after the loader or route bridge, and gallery reveals using the same surface handoff. Later scroll reveals survive loader cleanup. See `docs/animation-continuity-fix.md`.
 
 **Still to complete:** Phase 5 final performance/heap profiling, broader browser/device checks, and consolidated handoff. The catalog remains seven source-verified models, not the proposed sixteen.
 
@@ -52,12 +53,12 @@ Stop running development/preview servers before rebuilding the same project; the
 ## Verification
 
 ```bash
-npm test                         # 43 unit tests
+npm test                         # 46 unit tests
 npm run lint
 npm run typecheck
 npm run format:check
 npx playwright install chromium --only-shell
-npm run test:e2e                 # build + 76 production-server browser tests on 3101
+npm run test:e2e                 # build + 86 production-server browser tests on 3101
 npm run test:report
 ```
 

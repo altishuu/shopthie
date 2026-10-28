@@ -4,6 +4,7 @@ import Lenis from "lenis";
 import { gsap, ScrollTrigger, motion } from "@/lib/gsap";
 import { attachScrollDriver } from "@/lib/motion-driver";
 import { BOOT_VEIL_ANIMATION } from "@/lib/boot-veil";
+import { independentMotion } from "@/lib/motion-context";
 
 const INTRO_KEY = "shopthie-intro-v1";
 
@@ -32,6 +33,7 @@ export function createExperience(
   let lenis: Lenis | null = null;
   let detachDriver: (() => void) | undefined;
   let pageContext: gsap.Context | undefined;
+  let pageEntrance: gsap.core.Timeline | undefined;
   let introContext: gsap.Context | undefined;
   let routeTimeline: gsap.core.Timeline | undefined;
   let navTween: gsap.core.Tween | undefined;
@@ -40,6 +42,7 @@ export function createExperience(
   let pointerTarget: HTMLElement | null = null;
   let lastMain: HTMLElement | null = null;
   let enteredMain: HTMLElement | null = null;
+  let skipEntranceMain: HTMLElement | null = null;
   let shouldFocus = false;
   let previousY = scrollY;
 
@@ -48,6 +51,13 @@ export function createExperience(
       (element) => element.getClientRects().length > 0,
     ) ?? null;
   html.dataset.routeState = "idle";
+  const notifySurfaceReady = () => {
+    if (introDone && !introRunning && phase === "idle") {
+      html.dataset.surfaceEntrance = skipEntranceMain === mainElement() ? "bypassed" : "full";
+      // Listeners must not inherit the callback context of the departing overlay.
+      independentMotion(() => window.dispatchEvent(new Event("shopthie:surface-ready")));
+    }
+  };
   const pause = () => {
     if (introRunning || modalOpen || phase !== "idle") lenis?.stop();
     else lenis?.start();
@@ -93,7 +103,8 @@ export function createExperience(
       overwrite: true,
     });
   };
-  const entrance = () => {
+  // Prepare behind an opaque surface, but spend no entrance time under it.
+  const prepareEntrance = () => {
     const main = mainElement();
     if (
       !main ||
@@ -101,52 +112,72 @@ export function createExperience(
       main.dataset.motionReady !== "true" ||
       !main.querySelector("h1") ||
       enteredMain === main ||
+      skipEntranceMain === main ||
       preference.matches
     )
       return;
     enteredMain = main;
-    pageContext?.add(() => {
-      if (main.querySelector(".hero")) {
-        gsap
-          .timeline({ defaults: { ease: motion.ease.enter } })
-          .fromTo(
-            main.querySelectorAll(".hero h1 > span"),
-            { yPercent: 65, clipPath: "inset(0 0 100% 0)" },
+    // An intro/bridge callback must not adopt the page's lifecycle scope.
+    independentMotion(() =>
+      pageContext?.add(() => {
+        pageEntrance = gsap.timeline({ paused: true, defaults: { ease: motion.ease.enter } });
+        if (main.querySelector(".hero")) {
+          pageEntrance
+            .fromTo(
+              main.querySelectorAll(".hero h1 > span"),
+              { yPercent: 65, clipPath: "inset(0 0 100% 0)" },
+              {
+                yPercent: 0,
+                clipPath: "inset(0 0 0% 0)",
+                stagger: motion.stagger.lines,
+                duration: motion.duration.hero,
+              },
+              0,
+            )
+            .fromTo(
+              main.querySelector(".hero-visual"),
+              { clipPath: "inset(8% 0 8% 100%)", scale: 1.025 },
+              { clipPath: "inset(0% 0 0% 0%)", scale: 1, duration: 1.05 },
+              0.05,
+            )
+            .fromTo(
+              main.querySelectorAll(
+                ".hero-description, .hero-copy .pill-link, .hero-secondary, .hero-topline, .product-note, .hero-bottom",
+              ),
+              { y: 10, clipPath: "inset(0 0 100% 0)" },
+              {
+                y: 0,
+                clipPath: "inset(0 0 0% 0)",
+                stagger: motion.stagger.details,
+                duration: 0.55,
+              },
+              0.32,
+            );
+        } else if (main.dataset.motionHeading !== "false") {
+          pageEntrance.fromTo(
+            main.querySelector("h1"),
+            { y: 12, clipPath: "inset(0 0 100% 0)" },
             {
-              yPercent: 0,
+              y: 0,
               clipPath: "inset(0 0 0% 0)",
-              stagger: motion.stagger.lines,
-              duration: motion.duration.hero,
+              duration: motion.duration.type,
+              ease: motion.ease.enter,
             },
-            0,
-          )
-          .fromTo(
-            main.querySelector(".hero-visual"),
-            { clipPath: "inset(8% 0 8% 100%)", scale: 1.025 },
-            { clipPath: "inset(0% 0 0% 0%)", scale: 1, duration: 1.05 },
-            0.05,
-          )
-          .fromTo(
-            main.querySelectorAll(
-              ".hero-description, .hero-copy .pill-link, .hero-secondary, .hero-topline, .product-note, .hero-bottom",
-            ),
-            { opacity: 0 },
-            { opacity: 1, stagger: motion.stagger.details, duration: 0.55 },
-            0.32,
           );
-      } else if (main.dataset.motionHeading !== "false") {
-        gsap.fromTo(
-          main.querySelector("h1"),
-          { y: 12, clipPath: "inset(0 0 100% 0)" },
-          {
-            y: 0,
-            clipPath: "inset(0 0 0% 0)",
-            duration: motion.duration.type,
-            ease: motion.ease.enter,
-          },
-        );
-      }
-    });
+        }
+      }),
+    );
+  };
+  const entrance = () => {
+    prepareEntrance();
+    if (
+      introDone &&
+      !introRunning &&
+      phase === "idle" &&
+      location.pathname === lastCommittedPath &&
+      mainElement() === enteredMain
+    )
+      pageEntrance?.play();
   };
   const setupPage = () => {
     const main = mainElement();
@@ -158,91 +189,95 @@ export function createExperience(
     )
       return;
     pageContext?.revert();
+    pageEntrance = undefined;
     lastMain = main;
     enteredMain = null;
     if (!preference.matches) {
-      pageContext = gsap.context(() => {
-        const hero = main.querySelector(".hero-product");
-        if (hero && matchMedia("(min-width: 761px)").matches) {
-          gsap.to(hero, {
-            yPercent: motion.intensity.heroParallaxPercent,
-            ease: "none",
-            scrollTrigger: {
-              trigger: main.querySelector(".hero"),
-              start: "top top",
-              end: "bottom top",
-              scrub: 0.6,
-            },
-          });
-        }
-        main.querySelectorAll<HTMLElement>(".collection-card").forEach((card, index) => {
-          gsap.fromTo(
-            card.querySelector(".collection-image"),
-            { clipPath: "inset(8% 0 8% 0)", scale: 0.97 },
-            {
-              clipPath: "inset(0% 0 0% 0)",
-              scale: 1,
-              duration: 0.75,
-              delay: (index % 2) * 0.09,
-              ease: motion.ease.enter,
-              scrollTrigger: { trigger: card, start: "top 92%", once: true },
-            },
-          );
-        });
-        const introHeading = main.querySelector(".introduction h2");
-        if (introHeading)
-          gsap.fromTo(
-            introHeading,
-            { clipPath: "inset(0 90% 0 0)" },
-            {
-              clipPath: "inset(0 0% 0 0)",
-              duration: 1.1,
-              ease: motion.ease.enter,
-              scrollTrigger: { trigger: introHeading, start: "top 90%", once: true },
-            },
-          );
-        const story = main.querySelector(".story-grid");
-        if (story) {
-          gsap.fromTo(
-            story.querySelector(".story-image"),
-            { xPercent: -5, scale: 0.96 },
-            {
-              xPercent: 0,
-              scale: 1,
+      pageContext = independentMotion(() =>
+        gsap.context(() => {
+          const hero = main.querySelector(".hero-product");
+          if (hero && matchMedia("(min-width: 761px)").matches) {
+            gsap.to(hero, {
+              yPercent: motion.intensity.heroParallaxPercent,
               ease: "none",
               scrollTrigger: {
-                trigger: story,
-                start: "top 90%",
-                end: "center center",
-                scrub: 0.5,
+                trigger: main.querySelector(".hero"),
+                start: "top top",
+                end: "bottom top",
+                scrub: 0.6,
               },
-            },
-          );
-          gsap.fromTo(
-            story.querySelector(".story-copy"),
-            { x: 22 },
-            {
-              x: 0,
-              duration: 0.9,
-              ease: motion.ease.enter,
-              scrollTrigger: { trigger: story, start: "top 75%", once: true },
-            },
-          );
-        }
-        main.querySelectorAll(".philosophy h2, .closing h2").forEach((heading) => {
-          gsap.fromTo(
-            heading,
-            { scale: 1.04, transformOrigin: "left center" },
-            {
-              scale: 1,
-              duration: 1,
-              ease: motion.ease.enter,
-              scrollTrigger: { trigger: heading, start: "top 90%", once: true },
-            },
-          );
-        });
-      }, main);
-      if (!introRunning) entrance();
+            });
+          }
+          main.querySelectorAll<HTMLElement>(".collection-card").forEach((card, index) => {
+            gsap.fromTo(
+              card.querySelector(".collection-image"),
+              { clipPath: "inset(8% 0 8% 0)", scale: 0.97 },
+              {
+                clipPath: "inset(0% 0 0% 0)",
+                scale: 1,
+                duration: 0.75,
+                delay: (index % 2) * 0.09,
+                ease: motion.ease.enter,
+                scrollTrigger: { trigger: card, start: "top 92%", once: true },
+              },
+            );
+          });
+          const introHeading = main.querySelector(".introduction h2");
+          if (introHeading)
+            gsap.fromTo(
+              introHeading,
+              { clipPath: "inset(0 90% 0 0)" },
+              {
+                clipPath: "inset(0 0% 0 0)",
+                duration: 1.1,
+                ease: motion.ease.enter,
+                scrollTrigger: { trigger: introHeading, start: "top 90%", once: true },
+              },
+            );
+          const story = main.querySelector(".story-grid");
+          if (story) {
+            gsap.fromTo(
+              story.querySelector(".story-image"),
+              { xPercent: -5, scale: 0.96 },
+              {
+                xPercent: 0,
+                scale: 1,
+                ease: "none",
+                scrollTrigger: {
+                  trigger: story,
+                  start: "top 90%",
+                  end: "center center",
+                  scrub: 0.5,
+                },
+              },
+            );
+            gsap.fromTo(
+              story.querySelector(".story-copy"),
+              { x: 22 },
+              {
+                x: 0,
+                duration: 0.9,
+                ease: motion.ease.enter,
+                scrollTrigger: { trigger: story, start: "top 75%", once: true },
+              },
+            );
+          }
+          main.querySelectorAll(".philosophy h2, .closing h2").forEach((heading) => {
+            gsap.fromTo(
+              heading,
+              { scale: 1.04, transformOrigin: "left center" },
+              {
+                scale: 1,
+                duration: 1,
+                ease: motion.ease.enter,
+                scrollTrigger: { trigger: heading, start: "top 90%", once: true },
+              },
+            );
+          });
+        }, main),
+      );
+      prepareEntrance();
+      entrance();
     }
     if (shouldFocus && phase === "idle") {
       main.focus({ preventScroll: true });
@@ -268,9 +303,13 @@ export function createExperience(
     previousY = scrollY;
     html.dataset.routeState = phase;
     pause();
+    // Cancellation/watchdog recovery must not strand a prepared entrance.
+    entrance();
+    notifySurfaceReady();
   };
   const finishIntro = (enter = true) => {
     clearTimeout(introTimer);
+    if (!enter || mainElement()?.dataset.motionReady !== "true") skipEntranceMain = mainElement();
     introContext?.revert();
     intro.hidden = true;
     intro.setAttribute("aria-hidden", "true");
@@ -287,6 +326,7 @@ export function createExperience(
     }
     pause();
     if (enter) entrance();
+    notifySurfaceReady();
     refresh();
   };
   const startIntro = () => {
@@ -330,42 +370,41 @@ export function createExperience(
       if (!brandReady || !assetsReady || releasing || disposed || !introRunning) return;
       releasing = true;
       introContext?.add(() => {
-        gsap
-          .timeline({ onComplete: () => finishIntro() })
-          .to(intro, {
-            clipPath: "inset(0 0 100% 0)",
-            duration: pacing.exit,
-            ease: motion.ease.bridge,
-          })
-          .call(entrance, [], seen ? 0.08 : 0.22);
+        gsap.timeline({ onComplete: () => finishIntro() }).to(intro, {
+          clipPath: "inset(0 0 100% 0)",
+          duration: pacing.exit,
+          ease: motion.ease.bridge,
+        });
       });
     };
-    introContext = gsap.context(() => {
-      gsap.set(intro, { clipPath: "inset(0 0 0% 0)" });
-      // A readable brand beat is intentional, not fabricated asset progress.
-      // Repeats are shorter, but still reveal and hold instead of flashing away.
-      gsap
-        .timeline()
-        .fromTo(
-          intro.querySelectorAll(".intro-letter"),
-          { yPercent: 110, rotate: 4 },
-          {
-            yPercent: 0,
-            rotate: 0,
-            duration: pacing.reveal,
-            stagger: pacing.stagger,
-            ease: motion.ease.enter,
-          },
-        )
-        .call(
-          () => {
-            brandReady = true;
-            release();
-          },
-          [],
-          `+=${pacing.hold}`,
-        );
-    }, intro);
+    introContext = independentMotion(() =>
+      gsap.context(() => {
+        gsap.set(intro, { clipPath: "inset(0 0 0% 0)" });
+        // A readable brand beat is intentional, not fabricated asset progress.
+        // Repeats are shorter, but still reveal and hold instead of flashing away.
+        gsap
+          .timeline()
+          .fromTo(
+            intro.querySelectorAll(".intro-letter"),
+            { yPercent: 110, rotate: 4 },
+            {
+              yPercent: 0,
+              rotate: 0,
+              duration: pacing.reveal,
+              stagger: pacing.stagger,
+              ease: motion.ease.enter,
+            },
+          )
+          .call(
+            () => {
+              brandReady = true;
+              release();
+            },
+            [],
+            `+=${pacing.hold}`,
+          );
+      }, intro),
+    );
     introTimer = setTimeout(() => finishIntro(), motion.limits.introMs);
     if (seen) {
       release();
@@ -409,11 +448,14 @@ export function createExperience(
     pointerTarget = null;
   };
   const configureMotion = () => {
+    // Do not replay an entrance on content already presented before a preference change.
+    if (introDone) skipEntranceMain = mainElement();
     detachDriver?.();
     detachDriver = undefined;
     lenis = null;
     pageContext?.revert();
     pageContext = undefined;
+    pageEntrance = undefined;
     lastMain = null;
     enteredMain = null;
     resetRoute();
@@ -455,6 +497,8 @@ export function createExperience(
     lastCommittedPath = location.pathname;
     clearTimeout(routeTimer);
     const wasNavigation = phase === "waiting" || phase === "exiting";
+    phase = "entering";
+    html.dataset.routeState = phase;
     if (wasNavigation && !new URL(destination || location.href, location.origin).hash) {
       // Native mobile scroll-to-top may be skipped with persistent layout wrappers.
       // This applies only to an explicit link push, never popstate restoration.
@@ -471,8 +515,6 @@ export function createExperience(
       return;
     }
     routeTimeline?.kill();
-    phase = "entering";
-    html.dataset.routeState = phase;
     if (wasNavigation) {
       veil.hidden = false;
       gsap.set(veil, { yPercent: 0 });
@@ -601,6 +643,8 @@ export function createExperience(
         ? event.target.closest<HTMLElement>(".pill-link, .bag-button, .product-card-visual")
         : null;
     if (!target || target.closest("dialog")) return;
+    // Hover must not overwrite an in-flight entrance's transform/mask.
+    if (pageEntrance?.isActive() && mainElement()?.contains(target)) return;
     const rect = target.getBoundingClientRect();
     if (pointerTarget && pointerTarget !== target)
       gsap.set(pointerTarget, { clearProps: "transform" });
@@ -649,14 +693,7 @@ export function createExperience(
   window.addEventListener("scroll", onScroll, { passive: true, signal: abort.signal });
   window.addEventListener("resize", updateIndicator, { passive: true, signal: abort.signal });
   window.addEventListener("shopthie:route-ready", routeReady, { signal: abort.signal });
-  window.addEventListener(
-    "shopthie:page-hydrated",
-    () => {
-      setupPage();
-      routeReady();
-    },
-    { signal: abort.signal },
-  );
+  window.addEventListener("shopthie:page-hydrated", routeReady, { signal: abort.signal });
   preference.addEventListener("change", configureMotion);
   const observer = new MutationObserver(setupPage);
   observer.observe(root, { childList: true, subtree: true });

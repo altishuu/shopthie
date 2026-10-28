@@ -1,0 +1,72 @@
+[
+  {
+    "name": "desktop",
+    "width": 1440,
+    "height": 1000,
+    "stages": [
+      {
+        "stage": "start",
+        "path": "/home/ivanadcan35/Projects/Ishuu/shopthie/docs/screenshots/animation-continuity/desktop-start.png",
+        "elapsedMs": 5.699999988079071,
+        "heroMask": "inset(8% 0px 8% 100%)",
+        "heading": ["matrix(1, 0, 0, 1, 0, 75.9789)", "matrix(1, 0, 0, 1, 0, 75.9789)"],
+        "details": "inset(0px 0px 100%)",
+        "overflow": false
+      },
+      {
+        "stage": "middle",
+        "path": "/home/ivanadcan35/Projects/Ishuu/shopthie/docs/screenshots/animation-continuity/desktop-middle.png",
+        "elapsedMs": 354.79999999701977,
+        "heroMask": "inset(2.0825% 0px 2.0825% 26.0308%)",
+        "heading": ["matrix(1, 0, 0, 1, 0, 7.60642)", "matrix(1, 0, 0, 1, 0, 18.2425)"],
+        "details": "inset(0px 0px 100%)",
+        "overflow": false
+      },
+      {
+        "stage": "complete",
+        "path": "/home/ivanadcan35/Projects/Ishuu/shopthie/docs/screenshots/animation-continuity/desktop-complete.png",
+        "elapsedMs": 1514.5,
+        "heroMask": "inset(0% 0px 0% 0%)",
+        "heading": ["matrix(1, 0, 0, 1, 0, 0)", "matrix(1, 0, 0, 1, 0, 0)"],
+        "details": "inset(0px 0px 0%)",
+        "overflow": false
+      }
+    ],
+    "errors": []
+  },
+  {
+    "name": "mobile",
+    "width": 390,
+    "height": 844,
+    "stages": [
+      {
+        "stage": "start",
+        "path": "/home/ivanadcan35/Projects/Ishuu/shopthie/docs/screenshots/animation-continuity/mobile-start.png",
+        "elapsedMs": 4.600000008940697,
+        "heroMask": "inset(8% 0px 8% 100%)",
+        "heading": ["matrix(1, 0, 0, 1, 0, 41.1836)", "matrix(1, 0, 0, 1, 0, 41.1836)"],
+        "details": "inset(0px 0px 100%)",
+        "overflow": false
+      },
+      {
+        "stage": "middle",
+        "path": "/home/ivanadcan35/Projects/Ishuu/shopthie/docs/screenshots/animation-continuity/mobile-middle.png",
+        "elapsedMs": 297.6000000089407,
+        "heroMask": "inset(2.6824% 0px 2.6824% 33.5297%)",
+        "heading": ["matrix(1, 0, 0, 1, 0, 6.23399)", "matrix(1, 0, 0, 1, 0, 13.8303)"],
+        "details": "inset(0px 0px 100%)",
+        "overflow": false
+      },
+      {
+        "stage": "complete",
+        "path": "/home/ivanadcan35/Projects/Ishuu/shopthie/docs/screenshots/animation-continuity/mobile-complete.png",
+        "elapsedMs": 1395.2000000029802,
+        "heroMask": "inset(0% 0px 0% 0%)",
+        "heading": ["matrix(1, 0, 0, 1, 0, 0)", "matrix(1, 0, 0, 1, 0, 0)"],
+        "details": "inset(0px 0px 0%)",
+        "overflow": false
+      }
+    ],
+    "errors": []
+  }
+]

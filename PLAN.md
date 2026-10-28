@@ -1,6 +1,6 @@
 # Shopthie — implementation plan
 
-Status: PHASE 4 VERIFIED — full editorial reading order, About/product storytelling, and responsive refinements are integrated with the working shopping/motion flow. Production build, 43 unit tests, 76 desktop/mobile browser tests, lint, TypeScript, and formatting pass; 49 full-motion scenes across eight sizes and nine additional accessibility scans pass. Catalog remains seven verified models and ten variants, not the proposed sixteen-product target. Phase 5 final profiling/broader browser-device review/handoff remains. See `docs/phase-4-report.md`.
+Status: PHASE 4 VERIFIED — full editorial reading order, About/product storytelling, and responsive refinements are integrated with the working shopping/motion flow. Production build, 46 unit tests, 86 desktop/mobile browser tests, lint, TypeScript, and formatting pass. The Phase 4 checkpoint covered 49 full-motion scenes across eight sizes and nine additional accessibility scans. Subsequent startup and entrance-continuity corrections are documented in `docs/first-paint-fix.md` and `docs/animation-continuity-fix.md`. Catalog remains seven verified models and ten variants, not the proposed sixteen-product target. Phase 5 final profiling/broader browser-device review/handoff remains. See `docs/phase-4-report.md`.
 
 ## 1. Locked requirements
 

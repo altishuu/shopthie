@@ -15,6 +15,7 @@ export function ProductGallery({
 }) {
   const [index, setIndex] = useState(0);
   const imageRef = useRef<HTMLImageElement>(null);
+  const hasPresented = useRef(false);
   const image = product.images[index];
   const multiple = product.images.length > 1;
 
@@ -25,15 +26,31 @@ export function ProductGallery({
       const media = window.matchMedia("(prefers-reduced-motion: reduce)");
       let active = true;
       let ready = false;
+      let decoded = false;
       let transition: gsap.core.Tween | undefined;
       const reset = () => {
         transition?.kill();
         gsap.set(element, { clearProps: "transform,clipPath" });
       };
       const reveal = () => {
-        if (!active || ready || imageRef.current !== element || !element.naturalWidth) return;
+        if (!active || ready || !decoded || imageRef.current !== element || !element.naturalWidth)
+          return;
+        const html = document.documentElement;
+        const main = element.closest("main");
+        const inPage = Boolean(element.closest("#experience"));
+        if (
+          inPage &&
+          (html.dataset.introState !== "complete" ||
+            html.dataset.routeState !== "idle" ||
+            (main && !main.getClientRects().length))
+        )
+          return;
         ready = true;
-        if (media.matches) return;
+        // Fail-open startup content was already visible: never replay over it.
+        const bypass =
+          inPage && !hasPresented.current && html.dataset.surfaceEntrance === "bypassed";
+        hasPresented.current = true;
+        if (media.matches || bypass) return;
         transition = gsap.fromTo(
           element,
           {
@@ -52,14 +69,23 @@ export function ProductGallery({
       };
       const onReady = () => {
         // Network completion alone does not guarantee decoded pixels are ready.
-        if (element.naturalWidth) void element.decode().then(reveal, () => {});
+        if (element.naturalWidth)
+          void element.decode().then(
+            () => {
+              decoded = true;
+              reveal();
+            },
+            () => {},
+          );
       };
       element.addEventListener("load", onReady);
+      window.addEventListener("shopthie:surface-ready", reveal);
       media.addEventListener("change", reset);
       if (element.complete) onReady();
       return () => {
         active = false;
         element.removeEventListener("load", onReady);
+        window.removeEventListener("shopthie:surface-ready", reveal);
         media.removeEventListener("change", reset);
         reset();
       };
