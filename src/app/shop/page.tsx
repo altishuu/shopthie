@@ -1,6 +1,4 @@
-import { Suspense } from "react";
 import type { Metadata } from "next";
-import { RouteMotionReady } from "@/components/motion/route-motion-ready";
 import { Catalog } from "@/components/catalog/catalog";
 
 export const metadata: Metadata = {
@@ -24,16 +22,7 @@ export default function ShopPage() {
           <span className="demo-label">Demo catalog · Prices &amp; stock simulated</span>
         </div>
       </header>
-      <Suspense
-        fallback={
-          <p className="loading-state" role="status">
-            Preparing the collection…
-          </p>
-        }
-      >
-        <Catalog />
-      </Suspense>
-      <RouteMotionReady />
+      <Catalog />
     </main>
   );
 }

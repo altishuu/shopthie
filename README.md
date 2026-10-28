@@ -4,6 +4,8 @@ A light editorial storefront for a multi-brand premium technology retailer. Next
 
 ## Current milestone
 
+**Backend implementation has started, area-by-area.** Area 1's modular access/configuration and SQL authority foundation are implemented and locally verified; focused security review passed. See `docs/backend-progress.md`. This does not yet add login/signup pages or connect a live backend, and the existing storefront is unchanged.
+
 **Phases 1–4 implemented: design foundation, frontend commerce, cinematic motion, and editorial/responsive refinement.**
 
 - Home, Shop, four Collection routes, seven Product Detail routes, About, Cart, Wishlist, and Checkout Demo.
@@ -26,7 +28,7 @@ A light editorial storefront for a multi-brand premium technology retailer. Next
 - First-paint correction: critical server-delivered CSS covers the storefront before app hydration, with no-JavaScript/reduced-motion bypass, stalled-startup release, and no late intro replay after fallback. See `docs/first-paint-fix.md`.
 - Entrance continuity: independent page/overlay scopes, prepared-but-paused entrances released after the loader or route bridge, and gallery reveals using the same surface handoff. Later scroll reveals survive loader cleanup. See `docs/animation-continuity-fix.md`.
 
-**Still to complete:** Phase 5 final performance/heap profiling, broader browser/device checks, and consolidated handoff. The catalog remains seven source-verified models, not the proposed sixteen.
+**Phase 5 local handoff ready under the user's focused verification scope:** production build, lint/types/formatting, 89 unit tests, and 16 affected desktop/mobile shopping/focus checks pass on the latest code. An earlier complete run passed 138 browser tests before the final small focus correction. Extended browser/performance cycles were deliberately not repeated. Cross-tab transactions, native listener cleanup, stable catalog hydration, and delayed focus/announcement behavior are corrected. See `docs/phase-5-report.md`, `docs/phase-5-acceptance-results.json`, and `docs/HANDOFF.md`. The catalog remains seven source-verified models, not the proposed sixteen.
 
 No authentication server, commerce backend, database, payment gateway, dashboard, remote repository, or deployment has been added.
 
@@ -53,12 +55,12 @@ Stop running development/preview servers before rebuilding the same project; the
 ## Verification
 
 ```bash
-npm test                         # 46 unit tests
+npm test                         # 89 unit tests
 npm run lint
 npm run typecheck
 npm run format:check
 npx playwright install chromium --only-shell
-npm run test:e2e                 # build + 86 production-server browser tests on 3101
+npm run test:e2e                 # build + complete browser suite on 3101 (optional extended rerun)
 npm run test:report
 ```
 
@@ -68,9 +70,11 @@ With a production preview running on port 3100:
 
 ```bash
 npm run test:visual
+npm run test:performance          # run sequentially, on an otherwise idle machine
+npm run test:browsers             # requires Chromium, Firefox, WebKit runtimes
 ```
 
-This checks 49 full-motion scenes across 320, 360, 390, 568, 834, 1024, 1440, and 1920px widths, including 568×320 landscape navigation. It waits for visible image pixels, checks overflow/runtime and console errors, performs nine additional accessibility scans, and exercises product-story → option → bag → close at every size. Screenshots are in `docs/screenshots/phase-4/`; incremental structured results are in `docs/phase-4-browser-results.json`. Set `SHOPTHIE_URL` to test another address. Earlier focused verifiers remain as `npm run test:visual:motion` and `npm run test:visual:commerce`; earlier phase reports/media are historical checkpoints.
+The `test:visual` command checks 49 full-motion scenes across 320, 360, 390, 568, 834, 1024, 1440, and 1920px widths, including 568×320 landscape navigation. It waits for visible image pixels, checks overflow/runtime and console errors, performs nine additional accessibility scans, and exercises product-story → option → bag → close at every size. Screenshots are in `docs/screenshots/phase-4/`; incremental structured results are in `docs/phase-4-browser-results.json`. Set `SHOPTHIE_URL` to test another address. Earlier focused verifiers remain as `npm run test:visual:motion` and `npm run test:visual:commerce`; earlier phase reports/media are historical checkpoints.
 
 The new 12-execution desktop/mobile storytelling suite checks chapter order and honest copy, About principles, canonical product details and return-to-purchase anchors, narrow/short accessibility, compact gallery geometry/photo switching, and internally scrolling mobile navigation. Run it separately with `npm run test:storytelling` after a production build.
 
@@ -78,7 +82,7 @@ The motion regression suite additionally checks first/repeat visits, pending/fai
 
 For a separate development/Strict Mode check, stop the production server, run `npm run dev -- --hostname 127.0.0.1 --port 3102`, then run `npm run test:dev:motion` in another terminal. It checks hydration/runtime console errors and the Home → Shop → Pixel 8 → bag flow, saving `docs/phase-3-dev-results.json`. Stop development before rebuilding the shared `.next` output.
 
-Browser coverage is Chromium desktop/mobile emulation, not real-device Safari/Firefox certification. See `docs/phase-4-report.md` for current scope and remaining work; Phase 1–3 reports remain historical checkpoints.
+The primary regression suite uses Chromium desktop/mobile emulation. The separate Phase 5 verifier adds Firefox/WebKit coverage with explicit engine availability, axe results, and limitations in `docs/phase-5-browser-results.json`; it is not real-device Safari/Android or assistive-technology certification. This host's WebKit needs the verified isolated compatibility launcher selected with `SHOPTHIE_WEBKIT_EXECUTABLE`; see `docs/HANDOFF.md`. Phase 1–4 reports remain historical checkpoints.
 
 ## Architecture
 
@@ -92,6 +96,8 @@ Browser coverage is Chromium desktop/mobile emulation, not real-device Safari/Fi
 - `src/components/motion/`: editorial scenes and route-local hydration signals.
 - `src/lib/gsap.ts`: plugin registration and shared motion tokens; `experience.ts`: scoped intro/route/scroll orchestration; `motion-driver.ts`: tested ticker lifecycle adapter.
 - `src/lib/cart.ts`: pure validated reducer, persistence parser, canonical-price totals, stock limits, safe-integer guards.
+- `src/lib/commerce-persistence.ts`: FIFO local-intent read/reduce/write transactions, cooperative Web Locks, remote current-read/no-echo synchronization, and bounded best-effort fallback.
+- `src/lib/media-lifecycle.ts`: explicit native media subscriptions and idempotent scene teardown; `motion-context.ts`: independent GSAP ownership across callbacks.
 - `src/lib/catalog.ts`: nonmutating filtering/sorting and product/collection lookup.
 - `src/lib/money.ts`: centralized currency configuration and minor-unit formatting, not currency conversion.
 - `src/data/products.ts`: seven real model identities and ten valid demo variants.
@@ -100,7 +106,7 @@ Browser coverage is Chromium desktop/mobile emulation, not real-device Safari/Fi
 - `public/fonts/`: self-hosted Manrope and DM Sans with license files.
 - `docs/`: plan, decisions, sources, phase reports, and screenshots.
 
-Product and Collection URL promises are consumed inside scoped Suspense boundaries, leaving useful static navigation outside them. Route-local client leaves signal hydration before global motion touches route DOM. Lenis is the only smoothing driver; CSS native scrolling remains automatic so history is not animated or interrupted by a second smoothing system. ScrollTrigger refreshes only active scenes with fresh scroll memory.
+Known Product and Collection URL parameters resolve before their main server content, preserving no-script headings/details instead of hiding them behind a script-dependent streaming reveal. Those segments explicitly use `instant = false` for this scoped navigation trade-off. The catalog keeps one server/client ProductCard tree, with native links preserved through hydration; a client-only null observer synchronizes URL queries/history before JS-only controls enable. Route-local client leaves signal hydration before global motion touches route DOM. Lenis is the only smoothing driver; CSS native scrolling remains automatic so history is not animated or interrupted by a second smoothing system. ScrollTrigger refreshes only active scenes with fresh scroll memory.
 
 ## Content, currency, and licensing
 

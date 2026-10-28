@@ -1,19 +1,46 @@
 "use client";
 
-import { useRef, useState, useTransition, type FormEvent } from "react";
+import {
+  Suspense,
+  useLayoutEffect,
+  useRef,
+  useState,
+  useSyncExternalStore,
+  useTransition,
+  type FormEvent,
+} from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { Search, SlidersHorizontal, X } from "lucide-react";
 import { categoryDefinitions, products } from "@/data/products";
 import { filterProducts } from "@/lib/catalog";
 import { gsap, Flip, useGSAP, motion } from "@/lib/gsap";
 import { ProductCard } from "@/components/catalog/product-card";
+import { RouteMotionReady } from "@/components/motion/route-motion-ready";
+
+type CatalogURL = { pathname: string; query: string };
+const subscribeToHydration = () => () => {};
+const clientReady = () => true;
+const serverReady = () => false;
+
+// Request-only route reads must never abort the boundary owning native links.
+// Mount this null observer only after the matching server/first-client render.
+function CatalogURLObserver({ onChange }: { onChange: (url: CatalogURL) => void }) {
+  const pathname = usePathname();
+  const query = useSearchParams().toString();
+  useLayoutEffect(() => {
+    onChange({ pathname, query });
+  }, [pathname, query, onChange]);
+  return null;
+}
 
 function SearchForm({
   initialValue,
   onSearch,
+  ready,
 }: {
   initialValue: string;
   onSearch: (query: string) => void;
+  ready: boolean;
 }) {
   const [value, setValue] = useState(initialValue);
   const submit = (event: FormEvent) => {
@@ -28,16 +55,21 @@ function SearchForm({
         aria-label="Search products"
         placeholder="Find your next everyday favorite"
         value={value}
+        disabled={!ready}
         onChange={(event) => setValue(event.currentTarget.value)}
       />
-      <button type="submit">Search</button>
+      <button type="submit" disabled={!ready}>
+        Search
+      </button>
     </form>
   );
 }
 
 export function Catalog({ initialCategory = "all" }: { initialCategory?: string }) {
-  const searchParams = useSearchParams();
-  const pathname = usePathname();
+  const hydrated = useSyncExternalStore(subscribeToHydration, clientReady, serverReady);
+  const [url, setURL] = useState<CatalogURL | null>(null);
+  const ready = url !== null;
+  const pathname = url?.pathname || "";
   const router = useRouter();
   const [pending, startTransition] = useTransition();
   const scope = useRef<HTMLDivElement>(null);
@@ -48,7 +80,8 @@ export function Catalog({ initialCategory = "all" }: { initialCategory?: string 
     query: string;
   } | null>(null);
   const motionAllowed = useRef(false);
-  const queryKey = searchParams.toString();
+  const queryKey = url?.query || "";
+  const searchParams = new URLSearchParams(queryKey);
   const query = searchParams.get("q") || "";
   const category = searchParams.get("category") || initialCategory;
   const brand = searchParams.get("brand") || "all";
@@ -154,7 +187,8 @@ export function Catalog({ initialCategory = "all" }: { initialCategory?: string 
   };
 
   const update = (changes: Record<string, string>) => {
-    const params = new URLSearchParams(searchParams.toString());
+    if (!ready) return;
+    const params = new URLSearchParams(queryKey);
     for (const [key, value] of Object.entries(changes)) {
       if (value) params.set(key, value);
       else params.delete(key);
@@ -165,6 +199,7 @@ export function Catalog({ initialCategory = "all" }: { initialCategory?: string 
     );
   };
   const clear = () => {
+    if (!ready) return;
     captureLayout(pathname === "/shop" ? "" : "category=all");
     startTransition(() =>
       router.push(pathname === "/shop" ? "/shop" : `${pathname}?category=all`, { scroll: false }),
@@ -173,12 +208,29 @@ export function Catalog({ initialCategory = "all" }: { initialCategory?: string 
 
   return (
     <div ref={scope} className="catalog" aria-busy={pending}>
-      <SearchForm key={query} initialValue={query} onSearch={(value) => update({ q: value })} />
+      {hydrated && (
+        <Suspense fallback={null}>
+          <CatalogURLObserver onChange={setURL} />
+        </Suspense>
+      )}
+      <noscript>
+        <p className="option-note">
+          Browse the documented demo models below. Interactive filters and shopping require
+          JavaScript.
+        </p>
+      </noscript>
+      <SearchForm
+        key={query}
+        initialValue={query}
+        ready={ready}
+        onSearch={(value) => update({ q: value })}
+      />
       <div className="category-chips" aria-label="Product categories">
         {[{ slug: "all", label: "All products" }, ...categoryDefinitions].map((item) => (
           <button
             type="button"
             key={item.slug}
+            disabled={!ready}
             aria-pressed={category === item.slug}
             onClick={() => update({ category: item.slug })}
           >
@@ -197,6 +249,7 @@ export function Catalog({ initialCategory = "all" }: { initialCategory?: string 
             <span className="visually-hidden">Filter by brand</span>
             <select
               aria-label="Filter by brand"
+              disabled={!ready}
               value={brand}
               onChange={(event) => update({ brand: event.currentTarget.value })}
             >
@@ -210,6 +263,7 @@ export function Catalog({ initialCategory = "all" }: { initialCategory?: string 
             <span className="visually-hidden">Sort products</span>
             <select
               aria-label="Sort products"
+              disabled={!ready}
               value={sort}
               onChange={(event) => update({ sort: event.currentTarget.value })}
             >
@@ -222,7 +276,7 @@ export function Catalog({ initialCategory = "all" }: { initialCategory?: string 
         </div>
       </div>
       {active && result.length > 0 && (
-        <button className="clear-filters" onClick={clear}>
+        <button className="clear-filters" disabled={!ready} onClick={clear}>
           <X size={14} aria-hidden="true" />
           Clear filters
         </button>
@@ -237,11 +291,12 @@ export function Catalog({ initialCategory = "all" }: { initialCategory?: string 
         <div className="empty-state">
           <h2>Nothing here. Yet.</h2>
           <p>Try another search or let the whole collection back in.</p>
-          <button className="pill-link" onClick={clear}>
+          <button className="pill-link" disabled={!ready} onClick={clear}>
             Clear filters
           </button>
         </div>
       )}
+      {ready && <RouteMotionReady />}
     </div>
   );
 }

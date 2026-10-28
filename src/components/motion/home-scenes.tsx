@@ -7,6 +7,8 @@ import { ArrowDown, ArrowUpRight } from "lucide-react";
 import { products } from "@/data/products";
 import { gsap, ScrollTrigger, useGSAP, motion } from "@/lib/gsap";
 import { formatMoney } from "@/lib/money";
+import { watchMedia } from "@/lib/media-lifecycle";
+import { independentMotion } from "@/lib/motion-context";
 import type { Product } from "@/types/product";
 import "./home-scenes.css";
 
@@ -34,37 +36,40 @@ const listeningImage = listeningProduct?.images[1] ?? listeningProduct?.images[0
 function useEditorialReveals(scope: RefObject<HTMLElement | null>) {
   useGSAP(
     () => {
-      if (!scope.current) return;
-      const media = gsap.matchMedia(scope);
-      media.add(
+      const section = scope.current;
+      if (!section) return;
+      return watchMedia(
         {
           desktop: "(min-width: 1024px)",
           mobile: "(max-width: 1023px)",
           reduceMotion: "(prefers-reduced-motion: reduce)",
         },
-        (context) => {
-          if (context.conditions?.reduceMotion || !scope.current) return;
-          const distance = context.conditions?.desktop ? 28 : 14;
-
-          scope.current.querySelectorAll<HTMLElement>("[data-scene-reveal]").forEach((item) => {
-            gsap.fromTo(
-              item,
-              { y: distance },
-              {
-                y: 0,
-                duration: motion.duration.reveal,
-                ease: motion.ease.control,
-                scrollTrigger: {
-                  trigger: item,
-                  start: "top 94%",
-                  once: true,
-                },
-              },
-            );
-          });
+        (conditions) => {
+          if (conditions.reduceMotion) return;
+          const distance = conditions.desktop ? 28 : 14;
+          const scene = independentMotion(() =>
+            gsap.context(() => {
+              section.querySelectorAll<HTMLElement>("[data-scene-reveal]").forEach((item) => {
+                gsap.fromTo(
+                  item,
+                  { y: distance },
+                  {
+                    y: 0,
+                    duration: motion.duration.reveal,
+                    ease: motion.ease.control,
+                    scrollTrigger: {
+                      trigger: item,
+                      start: "top 94%",
+                      once: true,
+                    },
+                  },
+                );
+              });
+            }, scope),
+          );
+          return () => scene.revert();
         },
       );
-      return () => media.revert();
     },
     { scope, dependencies: [], revertOnUpdate: true },
   );
@@ -159,58 +164,58 @@ export function ListeningInterlude() {
     () => {
       const section = listeningRef.current;
       if (!section) return;
-      const media = gsap.matchMedia(listeningRef);
-      media.add(
+      return watchMedia(
         {
           // Short desktop windows also get the natural, unpinned document.
           desktop: "(min-width: 1024px) and (min-height: 700px)",
           mobile: "(max-width: 1023px), (max-height: 699px)",
           reduceMotion: "(prefers-reduced-motion: reduce)",
         },
-        (context) => {
-          if (!context.conditions?.desktop || context.conditions?.reduceMotion) return;
-          const lines = section.querySelectorAll<HTMLElement>("[data-listening-line]");
-          const image = section.querySelector<HTMLElement>("[data-listening-image]");
-          const progress = section.querySelector<HTMLElement>("[data-listening-progress]");
-          const timeline = gsap.timeline({ defaults: { ease: "none" } });
+        (conditions) => {
+          if (!conditions.desktop || conditions.reduceMotion) return;
+          const scene = independentMotion(() =>
+            gsap.context(() => {
+              const lines = section.querySelectorAll<HTMLElement>("[data-listening-line]");
+              const image = section.querySelector<HTMLElement>("[data-listening-image]");
+              const progress = section.querySelector<HTMLElement>("[data-listening-progress]");
+              const timeline = gsap.timeline({ defaults: { ease: "none" } });
 
-          // Text remains legible throughout; the photograph never covers the copy or links.
-          timeline.fromTo(
-            lines,
-            { opacity: 0.48, y: 18 },
-            { opacity: 1, y: 0, duration: 0.7, stagger: 0.45 },
-            0,
+              // Text remains legible throughout; the photograph never covers the copy or links.
+              timeline.fromTo(
+                lines,
+                { opacity: 0.48, y: 18 },
+                { opacity: 1, y: 0, duration: 0.7, stagger: 0.45 },
+                0,
+              );
+              if (image) {
+                timeline.fromTo(
+                  image,
+                  { scale: 0.95, yPercent: 3 },
+                  { scale: 1, yPercent: -3, duration: 1.8 },
+                  0,
+                );
+              }
+              if (progress) {
+                timeline.fromTo(progress, { scaleX: 0 }, { scaleX: 1, duration: 1.8 }, 0);
+              }
+
+              ScrollTrigger.create({
+                id: "home-listening-scene",
+                trigger: section,
+                animation: timeline,
+                start: "top top",
+                end: () => `+=${Math.round(window.innerHeight * 0.85)}`,
+                pin: true,
+                pinSpacing: true,
+                scrub: 0.65,
+                anticipatePin: 1,
+                invalidateOnRefresh: true,
+              });
+            }, listeningRef),
           );
-          if (image) {
-            timeline.fromTo(
-              image,
-              { scale: 0.95, yPercent: 3 },
-              { scale: 1, yPercent: -3, duration: 1.8 },
-              0,
-            );
-          }
-          if (progress) {
-            timeline.fromTo(progress, { scaleX: 0 }, { scaleX: 1, duration: 1.8 }, 0);
-          }
-
-          ScrollTrigger.create({
-            id: "home-listening-scene",
-            trigger: section,
-            animation: timeline,
-            start: "top top",
-            end: () => `+=${Math.round(window.innerHeight * 0.85)}`,
-            pin: true,
-            pinSpacing: true,
-            scrub: 0.65,
-            anticipatePin: 1,
-            invalidateOnRefresh: true,
-          });
+          return () => scene.revert();
         },
       );
-
-      // Reverts only this scene's triggers, pin spacer, tweens, and inline styles.
-      // No global killAll, document listeners, scroll interception, or separate RAF.
-      return () => media.revert();
     },
     { scope: listeningRef, dependencies: [], revertOnUpdate: true },
   );

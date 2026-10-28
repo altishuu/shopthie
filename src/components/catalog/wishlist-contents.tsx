@@ -33,9 +33,19 @@ export function WishlistContents() {
               <ProductCard
                 key={product.id}
                 product={product}
-                onWishlistRemoved={() =>
-                  queueMicrotask(() => heading.current?.focus({ preventScroll: true }))
-                }
+                onWishlistRemoved={() => {
+                  const target = heading.current;
+                  if (
+                    !target?.isConnected ||
+                    target.closest('[hidden], [inert], [aria-hidden="true"], dialog:not([open])') ||
+                    !target.getClientRects().length ||
+                    document.querySelector("dialog[open]")
+                  )
+                    return;
+                  const visibility = getComputedStyle(target).visibility;
+                  if (visibility !== "hidden" && visibility !== "collapse")
+                    target.focus({ preventScroll: true });
+                }}
               />
             ))}
           </div>

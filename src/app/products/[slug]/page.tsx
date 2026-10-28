@@ -1,4 +1,3 @@
-import { Suspense } from "react";
 import { RouteMotionReady } from "@/components/motion/route-motion-ready";
 import Link from "next/link";
 import type { Metadata } from "next";
@@ -10,7 +9,6 @@ import { ProductGallery } from "@/components/product/product-gallery";
 import { ProductOptions } from "@/components/product/product-options";
 import { ProductStory } from "@/components/product/product-story";
 import { ProductCard } from "@/components/catalog/product-card";
-import RouteLoading from "@/components/ui/route-loading";
 
 export function generateStaticParams() {
   return products.map((product) => ({ slug: product.slug }));
@@ -28,16 +26,18 @@ export async function generateMetadata({
   };
 }
 
-export default function ProductPage({ params }: { params: Promise<{ slug: string }> }) {
+// Keep URL-specific essential content readable without a streaming reveal script.
+export const instant = false;
+
+export default async function ProductPage({ params }: { params: Promise<{ slug: string }> }) {
+  const content = await ProductContent({ params });
   return (
     <main id="main" className="interior-page container" tabIndex={-1}>
       <Link className="back-link" href="/shop">
         <ArrowLeft size={15} aria-hidden="true" />
         Back to the collection
       </Link>
-      <Suspense fallback={<RouteLoading>Preparing a closer look…</RouteLoading>}>
-        <ProductContent params={params} />
-      </Suspense>
+      {content}
     </main>
   );
 }

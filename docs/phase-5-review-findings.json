@@ -1,0 +1,56 @@
+{
+  "reviewedSnapshot": "/home/ivanadcan35/.hermes/cache/scratch/shopthie-phase5-final-review.txt",
+  "delegationId": "deleg_31e1b929",
+  "passed": false,
+  "recordType": "Historical reviewer findings; original verdicts preserved, not the latest handoff status",
+  "currentResolution": "Known findings corrected. Latest production build, static checks, 89 units and 16 affected desktop/mobile checks passed. The final native-focus finding was reproduced RED for both bag and wishlist, then verified GREEN after two consumer guards. No additional broad review/test cycle was run under the user's focused scope. See phase-5-acceptance-results.json.",
+  "security_concerns": [],
+  "logic_errors": [
+    {
+      "severity": "medium",
+      "location": "src/providers/commerce-provider.tsx:101-103; src/lib/commerce-persistence.ts:123-131",
+      "issue": "Repeated quantity-button clicks during a held persistence lock queue the same absolute target from a stale rendered quantity, silently losing increments/decrements.",
+      "requiredCorrection": "Preserve relative button intents against canonical transaction state while retaining absolute numeric-input semantics.",
+      "parentValidation": "RED on compiled original: three increases expected 4/received 2, three decreases expected 1/received 3, mixed relative/absolute expected 3/received 2. Parent rebuilt and verified all three cases GREEN on desktop/mobile; canonical minimum, stock and removed-line boundaries passed unit checks."
+    },
+    {
+      "severity": "medium",
+      "location": "src/providers/commerce-provider.tsx:113-125",
+      "issue": "A delayed add completion opens the bag after explicit dismissal or client navigation because only controller identity is checked.",
+      "requiredCorrection": "Invalidate stale overlay-opening callbacks on dismissal/navigation without canceling the accepted cart mutation.",
+      "parentValidation": "RED on compiled original for Escape, close button, newer quick view, Back, Forward and client-link navigation. Parent rebuilt and verified all six cases GREEN on desktop/mobile with mutation persistence and focus assertions."
+    }
+  ],
+  "suggestions": [
+    "Extend real-held-lock browser coverage to repeated quantity changes and dismissal/Back before add settlement."
+  ],
+  "scope": "Read-only production source review; no runtime verification claimed by reviewer.",
+  "frozenReviewBeforeSharedUiContract": {
+    "delegationId": "deleg_452da6cb",
+    "passed": false,
+    "security_concerns": [],
+    "hashVerification": { "allMatch": true, "checkedFiles": 19 },
+    "logic_errors": [
+      {
+        "severity": "medium",
+        "location": "src/components/cart/cart-contents.tsx:53-59; src/providers/commerce-provider.tsx:131-143",
+        "issue": "Bag removal still announces and moves focus before its asynchronous transaction commits.",
+        "status": "Shared post-commit continuation contract and complete consumer audit assigned, including canonical wishlist-removal callbacks and cancellation/teardown tests."
+      }
+    ]
+  },
+  "subsequentReview": {
+    "delegationId": "deleg_2259ab34",
+    "passed": false,
+    "security_concerns": [],
+    "logic_errors": [
+      {
+        "severity": "medium",
+        "location": "src/providers/commerce-provider.tsx:131-133; src/components/product/product-options.tsx:111-122; src/components/catalog/product-card.tsx:42-54",
+        "issue": "Wishlist notices use captured rendered state before queued canonical transactions commit, so repeated toggles can announce saved while the final wishlist is empty.",
+        "status": "Dedicated TDD correction and held-lock regressions assigned; final verification pending."
+      }
+    ],
+    "snapshotNote": "Reviewer observed and read two route instant=false additions after its initial snapshot. Next final review must use a refreshed immutable manifest and source-hash verification."
+  }
+}

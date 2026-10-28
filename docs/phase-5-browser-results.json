@@ -1,0 +1,4483 @@
+{
+  "schemaVersion": 1,
+  "startedAt": "2026-10-28T05:25:49.604Z",
+  "finishedAt": "2026-10-28T05:29:51.012Z",
+  "baseURL": "http://127.0.0.1:3100",
+  "status": "passed",
+  "execution": "Sequential engines and scenarios; isolated contexts; no retries.",
+  "limitations": [
+    "Target must already be serving a production build; this script does not prove build provenance.",
+    "Viewport/touch emulation is not a real mobile device, Safari application, or assistive-technology test.",
+    "Intro completion and repeat mode are checked; precise readability/frame timing belongs to motion-regressions.spec.ts.",
+    "Screenshots are evidence, not pixel-baseline comparisons. Axe scans do not establish complete accessibility conformance.",
+    "No checkout, real order, backend, payment, or deployment is exercised. Non-read requests and cross-origin network requests are blocked and fail the scenario.",
+    "No intentional 404 navigation is performed; runtime and console errors have no blanket 404 exclusions.",
+    "A new invocation replaces the JSON report; filenames are deterministic and only screenshots listed in this run are current evidence."
+  ],
+  "engines": [
+    {
+      "name": "chromium",
+      "status": "available",
+      "version": "156.0.8078.4",
+      "executablePath": "/home/ivanadcan35/.cache/ms-playwright/chromium-1248/chrome-linux64/chrome"
+    },
+    {
+      "name": "firefox",
+      "status": "available",
+      "version": "157.0",
+      "executablePath": "/home/ivanadcan35/.cache/ms-playwright/firefox-1555/firefox/firefox"
+    },
+    {
+      "name": "webkit",
+      "status": "available",
+      "version": "27.2",
+      "executablePath": "/home/ivanadcan35/.hermes/cache/scratch/shopthie-webkit-launcher.sh"
+    }
+  ],
+  "results": [
+    {
+      "id": "chromium:desktop-home-intro",
+      "engine": "chromium",
+      "scenario": "desktop-home-intro",
+      "status": "passed",
+      "screenshots": [
+        "docs/screenshots/phase-5/chromium-desktop-home-intro-first-visit.png",
+        "docs/screenshots/phase-5/chromium-desktop-home-intro-repeat-visit.png"
+      ],
+      "errors": [],
+      "observations": {
+        "geometry": {
+          "width": 1440,
+          "height": 1000,
+          "documentWidth": 1425
+        },
+        "intro": {
+          "first": "full",
+          "repeat": "abbreviated",
+          "preciseTiming": "not duplicated; see existing motion-regressions tests"
+        }
+      },
+      "startedAt": "2026-10-28T05:25:50.549Z",
+      "durationMs": 10739,
+      "finishedAt": "2026-10-28T05:26:01.288Z"
+    },
+    {
+      "id": "chromium:desktop-shop-filters",
+      "engine": "chromium",
+      "scenario": "desktop-shop-filters",
+      "status": "passed",
+      "screenshots": [
+        "docs/screenshots/phase-5/chromium-desktop-shop-filters-all-products.png",
+        "docs/screenshots/phase-5/chromium-desktop-shop-filters-brand-and-sort.png"
+      ],
+      "errors": [],
+      "observations": {
+        "categories": [
+          {
+            "category": "headphones",
+            "ids": [
+              "apple-airpods-max",
+              "bose-quietcomfort-25"
+            ]
+          },
+          {
+            "category": "earbuds",
+            "ids": [
+              "apple-airpods-pro-2nd-gen"
+            ]
+          },
+          {
+            "category": "speakers",
+            "ids": [
+              "sonos-play-1",
+              "jbl-flip-3"
+            ]
+          },
+          {
+            "category": "smartphones",
+            "ids": [
+              "google-pixel-8",
+              "apple-iphone-15"
+            ]
+          }
+        ],
+        "ascendingPrices": [
+          7900,
+          14900,
+          15900,
+          19900,
+          44900,
+          54900,
+          64900
+        ]
+      },
+      "startedAt": "2026-10-28T05:26:01.289Z",
+      "durationMs": 8670,
+      "finishedAt": "2026-10-28T05:26:09.960Z"
+    },
+    {
+      "id": "chromium:desktop-product-bag-keyboard",
+      "engine": "chromium",
+      "scenario": "desktop-product-bag-keyboard",
+      "status": "passed",
+      "screenshots": [
+        "docs/screenshots/phase-5/chromium-desktop-product-bag-keyboard-gallery.png",
+        "docs/screenshots/phase-5/chromium-desktop-product-bag-keyboard-bag-quantity-two.png"
+      ],
+      "errors": [],
+      "observations": {
+        "purchase": {
+          "option": "256 GB",
+          "quantity": 2,
+          "dialogFocusTrap": "both directions",
+          "closedBy": [
+            "Escape",
+            "Close your bag"
+          ]
+        }
+      },
+      "startedAt": "2026-10-28T05:26:09.961Z",
+      "durationMs": 9888,
+      "finishedAt": "2026-10-28T05:26:19.849Z"
+    },
+    {
+      "id": "chromium:desktop-about-history-skip",
+      "engine": "chromium",
+      "scenario": "desktop-about-history-skip",
+      "status": "passed",
+      "screenshots": [
+        "docs/screenshots/phase-5/chromium-desktop-about-history-skip-about.png",
+        "docs/screenshots/phase-5/chromium-desktop-about-history-skip-forward-restored.png"
+      ],
+      "errors": [],
+      "observations": {
+        "history": [
+          "about",
+          "shop",
+          "product",
+          "back:shop",
+          "forward:product"
+        ]
+      },
+      "startedAt": "2026-10-28T05:26:19.854Z",
+      "durationMs": 10573,
+      "finishedAt": "2026-10-28T05:26:30.427Z"
+    },
+    {
+      "id": "chromium:mobile-navigation",
+      "engine": "chromium",
+      "scenario": "mobile-navigation",
+      "status": "passed",
+      "screenshots": [
+        "docs/screenshots/phase-5/chromium-mobile-navigation-390-last-link.png",
+        "docs/screenshots/phase-5/chromium-mobile-navigation-568-last-link.png"
+      ],
+      "errors": [],
+      "observations": {
+        "views": [
+          {
+            "width": 390,
+            "height": 844,
+            "documentWidth": 375,
+            "navigation": {
+              "top": 86,
+              "bottom": 484.5,
+              "left": 22,
+              "right": 353,
+              "scrollHeight": 397,
+              "clientHeight": 397,
+              "overflowY": "auto",
+              "lenisPrevent": true
+            }
+          },
+          {
+            "width": 568,
+            "height": 320,
+            "documentWidth": 553,
+            "navigation": {
+              "top": 86,
+              "bottom": 302,
+              "left": 24.984375,
+              "right": 528.015625,
+              "scrollHeight": 397,
+              "clientHeight": 214,
+              "overflowY": "auto",
+              "lenisPrevent": true
+            }
+          }
+        ]
+      },
+      "startedAt": "2026-10-28T05:26:30.428Z",
+      "durationMs": 14243,
+      "finishedAt": "2026-10-28T05:26:44.671Z"
+    },
+    {
+      "id": "chromium:reduced-motion",
+      "engine": "chromium",
+      "scenario": "reduced-motion",
+      "status": "passed",
+      "screenshots": [
+        "docs/screenshots/phase-5/chromium-reduced-motion-home.png",
+        "docs/screenshots/phase-5/chromium-reduced-motion-product.png"
+      ],
+      "errors": [],
+      "observations": {},
+      "startedAt": "2026-10-28T05:26:44.673Z",
+      "durationMs": 1597,
+      "finishedAt": "2026-10-28T05:26:46.270Z"
+    },
+    {
+      "id": "chromium:no-javascript",
+      "engine": "chromium",
+      "scenario": "no-javascript",
+      "status": "passed",
+      "screenshots": [
+        "docs/screenshots/phase-5/chromium-no-javascript-home.png"
+      ],
+      "errors": [],
+      "observations": {
+        "javaScriptEnabled": false
+      },
+      "startedAt": "2026-10-28T05:26:46.273Z",
+      "durationMs": 622,
+      "finishedAt": "2026-10-28T05:26:46.895Z"
+    },
+    {
+      "id": "chromium:responsive-spotchecks",
+      "engine": "chromium",
+      "scenario": "responsive-spotchecks",
+      "status": "passed",
+      "screenshots": [
+        "docs/screenshots/phase-5/chromium-responsive-spotchecks-320-home.png",
+        "docs/screenshots/phase-5/chromium-responsive-spotchecks-320-product.png",
+        "docs/screenshots/phase-5/chromium-responsive-spotchecks-390-home.png",
+        "docs/screenshots/phase-5/chromium-responsive-spotchecks-390-product.png",
+        "docs/screenshots/phase-5/chromium-responsive-spotchecks-834-home.png",
+        "docs/screenshots/phase-5/chromium-responsive-spotchecks-834-product.png",
+        "docs/screenshots/phase-5/chromium-responsive-spotchecks-1440-home.png",
+        "docs/screenshots/phase-5/chromium-responsive-spotchecks-1440-product.png",
+        "docs/screenshots/phase-5/chromium-responsive-spotchecks-1920-home.png",
+        "docs/screenshots/phase-5/chromium-responsive-spotchecks-1920-product.png"
+      ],
+      "errors": [],
+      "observations": {
+        "views": [
+          {
+            "scene": "home",
+            "width": 320,
+            "height": 740,
+            "documentWidth": 305
+          },
+          {
+            "scene": "product",
+            "width": 320,
+            "height": 740,
+            "documentWidth": 305,
+            "gallery": {
+              "x": 22,
+              "y": 188,
+              "width": 261,
+              "height": 240
+            }
+          },
+          {
+            "scene": "home",
+            "width": 390,
+            "height": 844,
+            "documentWidth": 375
+          },
+          {
+            "scene": "product",
+            "width": 390,
+            "height": 844,
+            "documentWidth": 375,
+            "gallery": {
+              "x": 22,
+              "y": 188,
+              "width": 331,
+              "height": 292.5
+            }
+          },
+          {
+            "scene": "home",
+            "width": 834,
+            "height": 1112,
+            "documentWidth": 819
+          },
+          {
+            "scene": "product",
+            "width": 834,
+            "height": 1112,
+            "documentWidth": 819,
+            "gallery": {
+              "x": 36.703125,
+              "y": 234,
+              "width": 745.59375,
+              "height": 600
+            }
+          },
+          {
+            "scene": "home",
+            "width": 1440,
+            "height": 1000,
+            "documentWidth": 1425
+          },
+          {
+            "scene": "product",
+            "width": 1440,
+            "height": 1000,
+            "documentWidth": 1425,
+            "gallery": {
+              "x": 72.5,
+              "y": 234,
+              "width": 646.078125,
+              "height": 676.796875
+            }
+          },
+          {
+            "scene": "home",
+            "width": 1920,
+            "height": 1080,
+            "documentWidth": 1905
+          },
+          {
+            "scene": "product",
+            "width": 1920,
+            "height": 1080,
+            "documentWidth": 1905,
+            "gallery": {
+              "x": 232.5,
+              "y": 234,
+              "width": 725.3125,
+              "height": 690
+            }
+          }
+        ]
+      },
+      "startedAt": "2026-10-28T05:26:46.898Z",
+      "durationMs": 39907,
+      "finishedAt": "2026-10-28T05:27:26.804Z"
+    },
+    {
+      "id": "firefox:desktop-home-intro",
+      "engine": "firefox",
+      "scenario": "desktop-home-intro",
+      "status": "passed",
+      "screenshots": [
+        "docs/screenshots/phase-5/firefox-desktop-home-intro-first-visit.png",
+        "docs/screenshots/phase-5/firefox-desktop-home-intro-repeat-visit.png"
+      ],
+      "errors": [],
+      "observations": {
+        "geometry": {
+          "width": 1440,
+          "height": 1000,
+          "documentWidth": 1440
+        },
+        "intro": {
+          "first": "full",
+          "repeat": "abbreviated",
+          "preciseTiming": "not duplicated; see existing motion-regressions tests"
+        }
+      },
+      "startedAt": "2026-10-28T05:27:27.961Z",
+      "durationMs": 14104,
+      "finishedAt": "2026-10-28T05:27:42.065Z"
+    },
+    {
+      "id": "firefox:desktop-shop-filters",
+      "engine": "firefox",
+      "scenario": "desktop-shop-filters",
+      "status": "passed",
+      "screenshots": [
+        "docs/screenshots/phase-5/firefox-desktop-shop-filters-all-products.png",
+        "docs/screenshots/phase-5/firefox-desktop-shop-filters-brand-and-sort.png"
+      ],
+      "errors": [],
+      "observations": {
+        "categories": [
+          {
+            "category": "headphones",
+            "ids": [
+              "apple-airpods-max",
+              "bose-quietcomfort-25"
+            ]
+          },
+          {
+            "category": "earbuds",
+            "ids": [
+              "apple-airpods-pro-2nd-gen"
+            ]
+          },
+          {
+            "category": "speakers",
+            "ids": [
+              "sonos-play-1",
+              "jbl-flip-3"
+            ]
+          },
+          {
+            "category": "smartphones",
+            "ids": [
+              "google-pixel-8",
+              "apple-iphone-15"
+            ]
+          }
+        ],
+        "ascendingPrices": [
+          7900,
+          14900,
+          15900,
+          19900,
+          44900,
+          54900,
+          64900
+        ]
+      },
+      "startedAt": "2026-10-28T05:27:42.068Z",
+      "durationMs": 9921,
+      "finishedAt": "2026-10-28T05:27:51.989Z"
+    },
+    {
+      "id": "firefox:desktop-product-bag-keyboard",
+      "engine": "firefox",
+      "scenario": "desktop-product-bag-keyboard",
+      "status": "passed",
+      "screenshots": [
+        "docs/screenshots/phase-5/firefox-desktop-product-bag-keyboard-gallery.png",
+        "docs/screenshots/phase-5/firefox-desktop-product-bag-keyboard-bag-quantity-two.png"
+      ],
+      "errors": [],
+      "observations": {
+        "purchase": {
+          "option": "256 GB",
+          "quantity": 2,
+          "dialogFocusTrap": "both directions",
+          "closedBy": [
+            "Escape",
+            "Close your bag"
+          ]
+        }
+      },
+      "startedAt": "2026-10-28T05:27:51.996Z",
+      "durationMs": 14434,
+      "finishedAt": "2026-10-28T05:28:06.430Z"
+    },
+    {
+      "id": "firefox:desktop-about-history-skip",
+      "engine": "firefox",
+      "scenario": "desktop-about-history-skip",
+      "status": "passed",
+      "screenshots": [
+        "docs/screenshots/phase-5/firefox-desktop-about-history-skip-about.png",
+        "docs/screenshots/phase-5/firefox-desktop-about-history-skip-forward-restored.png"
+      ],
+      "errors": [],
+      "observations": {
+        "history": [
+          "about",
+          "shop",
+          "product",
+          "back:shop",
+          "forward:product"
+        ]
+      },
+      "startedAt": "2026-10-28T05:28:06.433Z",
+      "durationMs": 12457,
+      "finishedAt": "2026-10-28T05:28:18.891Z"
+    },
+    {
+      "id": "firefox:mobile-navigation",
+      "engine": "firefox",
+      "scenario": "mobile-navigation",
+      "status": "passed",
+      "screenshots": [
+        "docs/screenshots/phase-5/firefox-mobile-navigation-390-last-link.png",
+        "docs/screenshots/phase-5/firefox-mobile-navigation-568-last-link.png"
+      ],
+      "errors": [],
+      "observations": {
+        "views": [
+          {
+            "width": 390,
+            "height": 844,
+            "documentWidth": 390,
+            "navigation": {
+              "top": 86,
+              "bottom": 484.5,
+              "left": 22,
+              "right": 368,
+              "scrollHeight": 397,
+              "clientHeight": 397,
+              "overflowY": "auto",
+              "lenisPrevent": true
+            }
+          },
+          {
+            "width": 568,
+            "height": 320,
+            "documentWidth": 568,
+            "navigation": {
+              "top": 86,
+              "bottom": 302,
+              "left": 24.98333740234375,
+              "right": 543.0166625976562,
+              "scrollHeight": 397,
+              "clientHeight": 214,
+              "overflowY": "auto",
+              "lenisPrevent": true
+            }
+          }
+        ]
+      },
+      "startedAt": "2026-10-28T05:28:18.895Z",
+      "durationMs": 16726,
+      "finishedAt": "2026-10-28T05:28:35.622Z"
+    },
+    {
+      "id": "firefox:reduced-motion",
+      "engine": "firefox",
+      "scenario": "reduced-motion",
+      "status": "passed",
+      "screenshots": [
+        "docs/screenshots/phase-5/firefox-reduced-motion-home.png",
+        "docs/screenshots/phase-5/firefox-reduced-motion-product.png"
+      ],
+      "errors": [],
+      "observations": {},
+      "startedAt": "2026-10-28T05:28:35.626Z",
+      "durationMs": 3466,
+      "finishedAt": "2026-10-28T05:28:39.092Z"
+    },
+    {
+      "id": "firefox:no-javascript",
+      "engine": "firefox",
+      "scenario": "no-javascript",
+      "status": "passed",
+      "screenshots": [
+        "docs/screenshots/phase-5/firefox-no-javascript-home.png"
+      ],
+      "errors": [],
+      "observations": {
+        "javaScriptEnabled": false
+      },
+      "startedAt": "2026-10-28T05:28:39.095Z",
+      "durationMs": 2148,
+      "finishedAt": "2026-10-28T05:28:41.243Z"
+    },
+    {
+      "id": "webkit:desktop-home-intro",
+      "engine": "webkit",
+      "scenario": "desktop-home-intro",
+      "status": "passed",
+      "screenshots": [
+        "docs/screenshots/phase-5/webkit-desktop-home-intro-first-visit.png",
+        "docs/screenshots/phase-5/webkit-desktop-home-intro-repeat-visit.png"
+      ],
+      "errors": [],
+      "observations": {
+        "geometry": {
+          "width": 1440,
+          "height": 1000,
+          "documentWidth": 1440
+        },
+        "intro": {
+          "first": "full",
+          "repeat": "abbreviated",
+          "preciseTiming": "not duplicated; see existing motion-regressions tests"
+        }
+      },
+      "startedAt": "2026-10-28T05:28:41.914Z",
+      "durationMs": 12230,
+      "finishedAt": "2026-10-28T05:28:54.144Z"
+    },
+    {
+      "id": "webkit:desktop-shop-filters",
+      "engine": "webkit",
+      "scenario": "desktop-shop-filters",
+      "status": "passed",
+      "screenshots": [
+        "docs/screenshots/phase-5/webkit-desktop-shop-filters-all-products.png",
+        "docs/screenshots/phase-5/webkit-desktop-shop-filters-brand-and-sort.png"
+      ],
+      "errors": [],
+      "observations": {
+        "categories": [
+          {
+            "category": "headphones",
+            "ids": [
+              "apple-airpods-max",
+              "bose-quietcomfort-25"
+            ]
+          },
+          {
+            "category": "earbuds",
+            "ids": [
+              "apple-airpods-pro-2nd-gen"
+            ]
+          },
+          {
+            "category": "speakers",
+            "ids": [
+              "sonos-play-1",
+              "jbl-flip-3"
+            ]
+          },
+          {
+            "category": "smartphones",
+            "ids": [
+              "google-pixel-8",
+              "apple-iphone-15"
+            ]
+          }
+        ],
+        "ascendingPrices": [
+          7900,
+          14900,
+          15900,
+          19900,
+          44900,
+          54900,
+          64900
+        ]
+      },
+      "startedAt": "2026-10-28T05:28:54.146Z",
+      "durationMs": 10005,
+      "finishedAt": "2026-10-28T05:29:04.151Z"
+    },
+    {
+      "id": "webkit:desktop-product-bag-keyboard",
+      "engine": "webkit",
+      "scenario": "desktop-product-bag-keyboard",
+      "status": "passed",
+      "screenshots": [
+        "docs/screenshots/phase-5/webkit-desktop-product-bag-keyboard-gallery.png",
+        "docs/screenshots/phase-5/webkit-desktop-product-bag-keyboard-bag-quantity-two.png"
+      ],
+      "errors": [],
+      "observations": {
+        "purchase": {
+          "option": "256 GB",
+          "quantity": 2,
+          "dialogFocusTrap": "both directions",
+          "closedBy": [
+            "Escape",
+            "Close your bag"
+          ]
+        }
+      },
+      "startedAt": "2026-10-28T05:29:04.159Z",
+      "durationMs": 12913,
+      "finishedAt": "2026-10-28T05:29:17.073Z"
+    },
+    {
+      "id": "webkit:desktop-about-history-skip",
+      "engine": "webkit",
+      "scenario": "desktop-about-history-skip",
+      "status": "passed",
+      "screenshots": [
+        "docs/screenshots/phase-5/webkit-desktop-about-history-skip-about.png",
+        "docs/screenshots/phase-5/webkit-desktop-about-history-skip-forward-restored.png"
+      ],
+      "errors": [],
+      "observations": {
+        "history": [
+          "about",
+          "shop",
+          "product",
+          "back:shop",
+          "forward:product"
+        ]
+      },
+      "startedAt": "2026-10-28T05:29:17.075Z",
+      "durationMs": 11782,
+      "finishedAt": "2026-10-28T05:29:28.858Z"
+    },
+    {
+      "id": "webkit:mobile-navigation",
+      "engine": "webkit",
+      "scenario": "mobile-navigation",
+      "status": "passed",
+      "screenshots": [
+        "docs/screenshots/phase-5/webkit-mobile-navigation-390-last-link.png",
+        "docs/screenshots/phase-5/webkit-mobile-navigation-568-last-link.png"
+      ],
+      "errors": [],
+      "observations": {
+        "views": [
+          {
+            "width": 390,
+            "height": 844,
+            "documentWidth": 390,
+            "navigation": {
+              "top": 86,
+              "bottom": 484.5,
+              "left": 22,
+              "right": 368,
+              "scrollHeight": 397,
+              "clientHeight": 397,
+              "overflowY": "auto",
+              "lenisPrevent": true
+            }
+          },
+          {
+            "width": 568,
+            "height": 320,
+            "documentWidth": 568,
+            "navigation": {
+              "top": 86,
+              "bottom": 302,
+              "left": 24.984375,
+              "right": 543.015625,
+              "scrollHeight": 397,
+              "clientHeight": 214,
+              "overflowY": "auto",
+              "lenisPrevent": true
+            }
+          }
+        ]
+      },
+      "startedAt": "2026-10-28T05:29:28.866Z",
+      "durationMs": 17527,
+      "finishedAt": "2026-10-28T05:29:46.392Z"
+    },
+    {
+      "id": "webkit:reduced-motion",
+      "engine": "webkit",
+      "scenario": "reduced-motion",
+      "status": "passed",
+      "screenshots": [
+        "docs/screenshots/phase-5/webkit-reduced-motion-home.png",
+        "docs/screenshots/phase-5/webkit-reduced-motion-product.png"
+      ],
+      "errors": [],
+      "observations": {},
+      "startedAt": "2026-10-28T05:29:46.398Z",
+      "durationMs": 2962,
+      "finishedAt": "2026-10-28T05:29:49.360Z"
+    },
+    {
+      "id": "webkit:no-javascript",
+      "engine": "webkit",
+      "scenario": "no-javascript",
+      "status": "passed",
+      "screenshots": [
+        "docs/screenshots/phase-5/webkit-no-javascript-home.png"
+      ],
+      "errors": [],
+      "observations": {
+        "javaScriptEnabled": false
+      },
+      "startedAt": "2026-10-28T05:29:49.364Z",
+      "durationMs": 1557,
+      "finishedAt": "2026-10-28T05:29:50.921Z"
+    }
+  ],
+  "accessibility": [
+    {
+      "id": "chromium:home",
+      "engine": "chromium",
+      "scene": "home",
+      "status": "passed",
+      "analyzed": true,
+      "url": "http://127.0.0.1:3100/",
+      "violations": [],
+      "passes": 24,
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "tags": [
+            "cat.color",
+            "wcag2aa",
+            "wcag143",
+            "TTv5",
+            "TT13.c",
+            "EN-301-549",
+            "EN-9.1.4.3",
+            "ACT",
+            "RGAAv4",
+            "RGAA-3.2.1"
+          ],
+          "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/color-contrast?application=playwright",
+          "nodes": [
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "contrastRatio": 0,
+                    "fontSize": "6.8pt (9px)",
+                    "fontWeight": "normal",
+                    "messageKey": "imgNode",
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<img alt=\"Apple AirPods Max he...\" decoding=\"async\" data-nimg=\"fill\" style=\"position:absolute;he...\" sizes=\"(max-width: 760px) 9...\" srcset=\"/_next/image?url=%2F...\" src=\"/_next/image?url=%2F...\">",
+                      "target": [
+                        ".hero-product > img[sizes=\"(max-width: 760px) 90vw, 48vw\"]"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element's background color could not be determined because element contains an image node"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<span class=\"photo-label\">IN FOCUS / APPLE AIRPODS MAX</span>",
+              "target": [
+                ".photo-label"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "contrastRatio": 0,
+                    "fontSize": "9.0pt (12px)",
+                    "fontWeight": "normal",
+                    "messageKey": "imgNode",
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<img alt=\"Apple AirPods Max he...\" decoding=\"async\" data-nimg=\"fill\" style=\"position:absolute;he...\" sizes=\"(max-width: 760px) 9...\" srcset=\"/_next/image?url=%2F...\" src=\"/_next/image?url=%2F...\">",
+                      "target": [
+                        ".hero-product > img[sizes=\"(max-width: 760px) 90vw, 48vw\"]"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element's background color could not be determined because element contains an image node"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<strong>Lose yourself in the listening.</strong>",
+              "target": [
+                "strong"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "contrastRatio": 0,
+                    "fontSize": "8.3pt (11px)",
+                    "fontWeight": "normal",
+                    "messageKey": "imgNode",
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<img alt=\"Apple AirPods Max he...\" decoding=\"async\" data-nimg=\"fill\" style=\"position:absolute;he...\" sizes=\"(max-width: 760px) 9...\" srcset=\"/_next/image?url=%2F...\" src=\"/_next/image?url=%2F...\">",
+                      "target": [
+                        ".hero-product > img[sizes=\"(max-width: 760px) 90vw, 48vw\"]"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element's background color could not be determined because element contains an image node"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<span>Explore Apple AirPods Max ↗</span>",
+              "target": [
+                "a[href$=\"apple-airpods-max\"] > span"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "contrastRatio": 0,
+                    "fontSize": "6.8pt (9px)",
+                    "fontWeight": "normal",
+                    "messageKey": "imgNode",
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<img alt=\"Apple AirPods Max he...\" decoding=\"async\" data-nimg=\"fill\" style=\"position:absolute;he...\" sizes=\"(max-width: 760px) 9...\" srcset=\"/_next/image?url=%2F...\" src=\"/_next/image?url=%2F...\">",
+                      "target": [
+                        ".hero-product > img[sizes=\"(max-width: 760px) 90vw, 48vw\"]"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element's background color could not be determined because element contains an image node"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<a class=\"photo-credit-link\" href=\"#credits\">",
+              "target": [
+                ".photo-credit-link"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "contrastRatio": 0,
+                    "fontSize": "7.5pt (10px)",
+                    "fontWeight": "normal",
+                    "messageKey": "imgNode",
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<img alt=\"A close photograph o...\" loading=\"lazy\" decoding=\"async\" data-nimg=\"fill\" style=\"position:absolute;he...\" sizes=\"(max-width: 390px) 9...\" srcset=\"/_next/image?url=%2F...\" src=\"/_next/image?url=%2F...\">",
+                      "target": [
+                        "a[aria-label=\"Explore headphones\"] > img[loading=\"lazy\"]"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element's background color could not be determined because element contains an image node"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<span class=\"card-index\">0<!-- -->1<!-- --> / THE EDIT</span>",
+              "target": [
+                "a[aria-label=\"Explore headphones\"] > .card-index"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "contrastRatio": 0,
+                    "fontSize": "7.5pt (10px)",
+                    "fontWeight": "normal",
+                    "messageKey": "imgNode",
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<img alt=\"Apple AirPods Pro se...\" loading=\"lazy\" decoding=\"async\" data-nimg=\"fill\" style=\"position:absolute;he...\" sizes=\"(max-width: 390px) 9...\" srcset=\"/_next/image?url=%2F...\" src=\"/_next/image?url=%2F...\">",
+                      "target": [
+                        "a[aria-label=\"Explore earbuds\"] > img[loading=\"lazy\"]"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element's background color could not be determined because element contains an image node"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<span class=\"card-index\">0<!-- -->2<!-- --> / THE EDIT</span>",
+              "target": [
+                "a[aria-label=\"Explore earbuds\"] > .card-index"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "contrastRatio": 0,
+                    "fontSize": "7.5pt (10px)",
+                    "fontWeight": "normal",
+                    "messageKey": "imgNode",
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<img alt=\"The Rose Google Pixe...\" loading=\"lazy\" decoding=\"async\" data-nimg=\"fill\" style=\"position:absolute;he...\" sizes=\"(max-width: 390px) 9...\" srcset=\"/_next/image?url=%2F...\" src=\"/_next/image?url=%2F...\">",
+                      "target": [
+                        "a[aria-label=\"Explore smartphones\"] > img[loading=\"lazy\"]"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element's background color could not be determined because element contains an image node"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<span class=\"card-index\">0<!-- -->3<!-- --> / THE EDIT</span>",
+              "target": [
+                "a[aria-label=\"Explore smartphones\"] > .card-index"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "contrastRatio": 0,
+                    "fontSize": "7.5pt (10px)",
+                    "fontWeight": "normal",
+                    "messageKey": "imgNode",
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<img alt=\"A teal JBL Flip 3 sp...\" loading=\"lazy\" decoding=\"async\" data-nimg=\"fill\" style=\"position:absolute;he...\" sizes=\"(max-width: 390px) 9...\" srcset=\"/_next/image?url=%2F...\" src=\"/_next/image?url=%2F...\">",
+                      "target": [
+                        "a[aria-label=\"Explore speakers\"] > img[loading=\"lazy\"]"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element's background color could not be determined because element contains an image node"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<span class=\"card-index\">0<!-- -->4<!-- --> / THE EDIT</span>",
+              "target": [
+                "a[aria-label=\"Explore speakers\"] > .card-index"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "chromium:shop",
+      "engine": "chromium",
+      "scene": "shop",
+      "status": "passed",
+      "analyzed": true,
+      "url": "http://127.0.0.1:3100/shop",
+      "violations": [],
+      "passes": 27,
+      "incomplete": [
+        {
+          "id": "aria-prohibited-attr",
+          "impact": "serious",
+          "tags": [
+            "cat.aria",
+            "wcag2a",
+            "wcag412",
+            "EN-301-549",
+            "EN-9.4.1.2",
+            "RGAAv4",
+            "RGAA-7.1.1"
+          ],
+          "description": "Ensure ARIA attributes are not prohibited for an element's role",
+          "help": "Elements must only use permitted ARIA attributes",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/aria-prohibited-attr?application=playwright",
+          "nodes": [
+            {
+              "any": [],
+              "all": [],
+              "none": [
+                {
+                  "id": "aria-prohibited-attr",
+                  "data": {
+                    "role": null,
+                    "nodeName": "div",
+                    "messageKey": "noRoleSingular",
+                    "prohibited": [
+                      "aria-label"
+                    ]
+                  },
+                  "relatedNodes": [],
+                  "impact": "serious",
+                  "message": "aria-label attribute is not well supported on \"div\" elements with no valid role attribute."
+                }
+              ],
+              "impact": "serious",
+              "html": "<div class=\"category-chips\" aria-label=\"Product categories\">",
+              "target": [
+                ".category-chips"
+              ],
+              "failureSummary": "Fix all of the following:\n  aria-label attribute is not well supported on \"div\" elements with no valid role attribute."
+            }
+          ]
+        },
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "tags": [
+            "cat.color",
+            "wcag2aa",
+            "wcag143",
+            "TTv5",
+            "TT13.c",
+            "EN-301-549",
+            "EN-9.1.4.3",
+            "ACT",
+            "RGAAv4",
+            "RGAA-3.2.1"
+          ],
+          "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/color-contrast?application=playwright",
+          "nodes": [
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "contrastRatio": 0,
+                    "fontSize": "7.5pt (10px)",
+                    "fontWeight": "normal",
+                    "messageKey": "imgNode",
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<span class=\"product-brand\">Apple</span>",
+                      "target": [
+                        ".product-card-dark > .product-card-visual > .product-brand"
+                      ]
+                    },
+                    {
+                      "html": "<img alt=\"AirPods Max over-ear...\" loading=\"lazy\" decoding=\"async\" data-nimg=\"fill\" sizes=\"(max-width: 600px) 9...\" srcset=\"/_next/image?url=%2F...\" src=\"/_next/image?url=%2F...\" style=\"position: absolute; ...\">",
+                      "target": [
+                        "a[aria-label=\"View AirPods Max\"] > img"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element's background color could not be determined because element contains an image node"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<span class=\"product-brand\">Apple</span>",
+              "target": [
+                ".product-card-dark > .product-card-visual > .product-brand"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "contrastRatio": 0,
+                    "fontSize": "8.3pt (11px)",
+                    "fontWeight": "normal",
+                    "messageKey": "imgNode",
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<button class=\"quick-view-button\" aria-label=\"Quick view AirPods Max\">",
+                      "target": [
+                        "button[aria-label=\"Quick view AirPods Max\"]"
+                      ]
+                    },
+                    {
+                      "html": "<img alt=\"AirPods Max over-ear...\" loading=\"lazy\" decoding=\"async\" data-nimg=\"fill\" sizes=\"(max-width: 600px) 9...\" srcset=\"/_next/image?url=%2F...\" src=\"/_next/image?url=%2F...\" style=\"position: absolute; ...\">",
+                      "target": [
+                        "a[aria-label=\"View AirPods Max\"] > img"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element's background color could not be determined because element contains an image node"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<button class=\"quick-view-button\" aria-label=\"Quick view AirPods Max\">",
+              "target": [
+                "button[aria-label=\"Quick view AirPods Max\"]"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "contrastRatio": 0,
+                    "fontSize": "7.5pt (10px)",
+                    "fontWeight": "normal",
+                    "messageKey": "imgNode",
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<span class=\"product-brand\">Apple</span>",
+                      "target": [
+                        "article[data-product-card=\"apple-airpods-pro-2nd-gen\"] > .product-card-visual > .product-brand"
+                      ]
+                    },
+                    {
+                      "html": "<img alt=\"AirPods Pro (2nd gen...\" loading=\"lazy\" decoding=\"async\" data-nimg=\"fill\" sizes=\"(max-width: 600px) 9...\" srcset=\"/_next/image?url=%2F...\" src=\"/_next/image?url=%2F...\" style=\"position: absolute; ...\">",
+                      "target": [
+                        "article[data-product-card=\"apple-airpods-pro-2nd-gen\"] > .product-card-visual > .product-image-link > img"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element's background color could not be determined because element contains an image node"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<span class=\"product-brand\">Apple</span>",
+              "target": [
+                "article[data-product-card=\"apple-airpods-pro-2nd-gen\"] > .product-card-visual > .product-brand"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "contrastRatio": 0,
+                    "fontSize": "8.3pt (11px)",
+                    "fontWeight": "normal",
+                    "messageKey": "imgNode",
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<button class=\"quick-view-button\" aria-label=\"Quick view AirPods Pro (2nd generation)\">",
+                      "target": [
+                        "article[data-product-card=\"apple-airpods-pro-2nd-gen\"] > .product-card-visual > .quick-view-button"
+                      ]
+                    },
+                    {
+                      "html": "<img alt=\"AirPods Pro (2nd gen...\" loading=\"lazy\" decoding=\"async\" data-nimg=\"fill\" sizes=\"(max-width: 600px) 9...\" srcset=\"/_next/image?url=%2F...\" src=\"/_next/image?url=%2F...\" style=\"position: absolute; ...\">",
+                      "target": [
+                        "article[data-product-card=\"apple-airpods-pro-2nd-gen\"] > .product-card-visual > .product-image-link > img"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element's background color could not be determined because element contains an image node"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<button class=\"quick-view-button\" aria-label=\"Quick view AirPods Pro (2nd generation)\">",
+              "target": [
+                "article[data-product-card=\"apple-airpods-pro-2nd-gen\"] > .product-card-visual > .quick-view-button"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "contrastRatio": 0,
+                    "fontSize": "7.5pt (10px)",
+                    "fontWeight": "normal",
+                    "messageKey": "imgNode",
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<span class=\"product-brand\">Google</span>",
+                      "target": [
+                        "article[data-product-card=\"google-pixel-8\"] > .product-card-visual > .product-brand"
+                      ]
+                    },
+                    {
+                      "html": "<img alt=\"Google Pixel 8 in Ro...\" loading=\"lazy\" decoding=\"async\" data-nimg=\"fill\" sizes=\"(max-width: 600px) 9...\" srcset=\"/_next/image?url=%2F...\" src=\"/_next/image?url=%2F...\" style=\"position: absolute; ...\">",
+                      "target": [
+                        "a[aria-label=\"View Pixel 8\"] > img"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element's background color could not be determined because element contains an image node"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<span class=\"product-brand\">Google</span>",
+              "target": [
+                "article[data-product-card=\"google-pixel-8\"] > .product-card-visual > .product-brand"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "contrastRatio": 0,
+                    "fontSize": "8.3pt (11px)",
+                    "fontWeight": "normal",
+                    "messageKey": "imgNode",
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<button class=\"quick-view-button\" aria-label=\"Quick view Pixel 8\">",
+                      "target": [
+                        "button[aria-label=\"Quick view Pixel 8\"]"
+                      ]
+                    },
+                    {
+                      "html": "<img alt=\"Google Pixel 8 in Ro...\" loading=\"lazy\" decoding=\"async\" data-nimg=\"fill\" sizes=\"(max-width: 600px) 9...\" srcset=\"/_next/image?url=%2F...\" src=\"/_next/image?url=%2F...\" style=\"position: absolute; ...\">",
+                      "target": [
+                        "a[aria-label=\"View Pixel 8\"] > img"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element's background color could not be determined because element contains an image node"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<button class=\"quick-view-button\" aria-label=\"Quick view Pixel 8\">",
+              "target": [
+                "button[aria-label=\"Quick view Pixel 8\"]"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "contrastRatio": 0,
+                    "fontSize": "7.5pt (10px)",
+                    "fontWeight": "normal",
+                    "messageKey": "imgNode",
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<span class=\"product-brand\">Sonos</span>",
+                      "target": [
+                        "article[data-product-card=\"sonos-play-1\"] > .product-card-visual > .product-brand"
+                      ]
+                    },
+                    {
+                      "html": "<img alt=\"Sonos PLAY:1 speaker...\" loading=\"lazy\" decoding=\"async\" data-nimg=\"fill\" sizes=\"(max-width: 600px) 9...\" srcset=\"/_next/image?url=%2F...\" src=\"/_next/image?url=%2F...\" style=\"position: absolute; ...\">",
+                      "target": [
+                        "a[aria-label=\"View PLAY:1\"] > img"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element's background color could not be determined because element contains an image node"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<span class=\"product-brand\">Sonos</span>",
+              "target": [
+                "article[data-product-card=\"sonos-play-1\"] > .product-card-visual > .product-brand"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "contrastRatio": 0,
+                    "fontSize": "8.3pt (11px)",
+                    "fontWeight": "normal",
+                    "messageKey": "imgNode",
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<button class=\"quick-view-button\" aria-label=\"Quick view PLAY:1\">",
+                      "target": [
+                        "button[aria-label=\"Quick view PLAY:1\"]"
+                      ]
+                    },
+                    {
+                      "html": "<img alt=\"Sonos PLAY:1 speaker...\" loading=\"lazy\" decoding=\"async\" data-nimg=\"fill\" sizes=\"(max-width: 600px) 9...\" srcset=\"/_next/image?url=%2F...\" src=\"/_next/image?url=%2F...\" style=\"position: absolute; ...\">",
+                      "target": [
+                        "a[aria-label=\"View PLAY:1\"] > img"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element's background color could not be determined because element contains an image node"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<button class=\"quick-view-button\" aria-label=\"Quick view PLAY:1\">",
+              "target": [
+                "button[aria-label=\"Quick view PLAY:1\"]"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "contrastRatio": 0,
+                    "fontSize": "7.5pt (10px)",
+                    "fontWeight": "normal",
+                    "messageKey": "imgNode",
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<span class=\"product-brand\">Bose</span>",
+                      "target": [
+                        "article[data-product-card=\"bose-quietcomfort-25\"] > .product-card-visual > .product-brand"
+                      ]
+                    },
+                    {
+                      "html": "<img alt=\"Bose QuietComfort 25...\" loading=\"lazy\" decoding=\"async\" data-nimg=\"fill\" sizes=\"(max-width: 600px) 9...\" srcset=\"/_next/image?url=%2F...\" src=\"/_next/image?url=%2F...\" style=\"position: absolute; ...\">",
+                      "target": [
+                        "a[aria-label=\"View QuietComfort 25\"] > img"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element's background color could not be determined because element contains an image node"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<span class=\"product-brand\">Bose</span>",
+              "target": [
+                "article[data-product-card=\"bose-quietcomfort-25\"] > .product-card-visual > .product-brand"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "contrastRatio": 0,
+                    "fontSize": "8.3pt (11px)",
+                    "fontWeight": "normal",
+                    "messageKey": "imgNode",
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<button class=\"quick-view-button\" aria-label=\"Quick view QuietComfort 25\">",
+                      "target": [
+                        "button[aria-label=\"Quick view QuietComfort 25\"]"
+                      ]
+                    },
+                    {
+                      "html": "<img alt=\"Bose QuietComfort 25...\" loading=\"lazy\" decoding=\"async\" data-nimg=\"fill\" sizes=\"(max-width: 600px) 9...\" srcset=\"/_next/image?url=%2F...\" src=\"/_next/image?url=%2F...\" style=\"position: absolute; ...\">",
+                      "target": [
+                        "a[aria-label=\"View QuietComfort 25\"] > img"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element's background color could not be determined because element contains an image node"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<button class=\"quick-view-button\" aria-label=\"Quick view QuietComfort 25\">",
+              "target": [
+                "button[aria-label=\"Quick view QuietComfort 25\"]"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "contrastRatio": 0,
+                    "fontSize": "7.5pt (10px)",
+                    "fontWeight": "normal",
+                    "messageKey": "imgNode",
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<span class=\"product-brand\">Apple</span>",
+                      "target": [
+                        "article[data-product-card=\"apple-iphone-15\"] > .product-card-visual > .product-brand"
+                      ]
+                    },
+                    {
+                      "html": "<img alt=\"Apple iPhone 15, rea...\" loading=\"lazy\" decoding=\"async\" data-nimg=\"fill\" sizes=\"(max-width: 600px) 9...\" srcset=\"/_next/image?url=%2F...\" src=\"/_next/image?url=%2F...\" style=\"position: absolute; ...\">",
+                      "target": [
+                        "a[aria-label=\"View iPhone 15\"] > img"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element's background color could not be determined because element contains an image node"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<span class=\"product-brand\">Apple</span>",
+              "target": [
+                "article[data-product-card=\"apple-iphone-15\"] > .product-card-visual > .product-brand"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "contrastRatio": 0,
+                    "fontSize": "8.3pt (11px)",
+                    "fontWeight": "normal",
+                    "messageKey": "imgNode",
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<button class=\"quick-view-button\" aria-label=\"Quick view iPhone 15\">",
+                      "target": [
+                        "button[aria-label=\"Quick view iPhone 15\"]"
+                      ]
+                    },
+                    {
+                      "html": "<img alt=\"Apple iPhone 15, rea...\" loading=\"lazy\" decoding=\"async\" data-nimg=\"fill\" sizes=\"(max-width: 600px) 9...\" srcset=\"/_next/image?url=%2F...\" src=\"/_next/image?url=%2F...\" style=\"position: absolute; ...\">",
+                      "target": [
+                        "a[aria-label=\"View iPhone 15\"] > img"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element's background color could not be determined because element contains an image node"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<button class=\"quick-view-button\" aria-label=\"Quick view iPhone 15\">",
+              "target": [
+                "button[aria-label=\"Quick view iPhone 15\"]"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "contrastRatio": 0,
+                    "fontSize": "7.5pt (10px)",
+                    "fontWeight": "normal",
+                    "messageKey": "imgNode",
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<span class=\"product-brand\">JBL</span>",
+                      "target": [
+                        "article[data-product-card=\"jbl-flip-3\"] > .product-card-visual > .product-brand"
+                      ]
+                    },
+                    {
+                      "html": "<img alt=\"JBL Flip 3 speaker r...\" loading=\"lazy\" decoding=\"async\" data-nimg=\"fill\" sizes=\"(max-width: 600px) 9...\" srcset=\"/_next/image?url=%2F...\" src=\"/_next/image?url=%2F...\" style=\"position: absolute; ...\">",
+                      "target": [
+                        "a[aria-label=\"View Flip 3\"] > img"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element's background color could not be determined because element contains an image node"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<span class=\"product-brand\">JBL</span>",
+              "target": [
+                "article[data-product-card=\"jbl-flip-3\"] > .product-card-visual > .product-brand"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "contrastRatio": 0,
+                    "fontSize": "8.3pt (11px)",
+                    "fontWeight": "normal",
+                    "messageKey": "imgNode",
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<button class=\"quick-view-button\" aria-label=\"Quick view Flip 3\">",
+                      "target": [
+                        "button[aria-label=\"Quick view Flip 3\"]"
+                      ]
+                    },
+                    {
+                      "html": "<img alt=\"JBL Flip 3 speaker r...\" loading=\"lazy\" decoding=\"async\" data-nimg=\"fill\" sizes=\"(max-width: 600px) 9...\" srcset=\"/_next/image?url=%2F...\" src=\"/_next/image?url=%2F...\" style=\"position: absolute; ...\">",
+                      "target": [
+                        "a[aria-label=\"View Flip 3\"] > img"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element's background color could not be determined because element contains an image node"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<button class=\"quick-view-button\" aria-label=\"Quick view Flip 3\">",
+              "target": [
+                "button[aria-label=\"Quick view Flip 3\"]"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "chromium:product",
+      "engine": "chromium",
+      "scene": "product",
+      "status": "passed",
+      "analyzed": true,
+      "url": "http://127.0.0.1:3100/products/google-pixel-8",
+      "violations": [],
+      "passes": 29,
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "tags": [
+            "cat.color",
+            "wcag2aa",
+            "wcag143",
+            "TTv5",
+            "TT13.c",
+            "EN-301-549",
+            "EN-9.1.4.3",
+            "ACT",
+            "RGAAv4",
+            "RGAA-3.2.1"
+          ],
+          "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/color-contrast?application=playwright",
+          "nodes": [
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "contrastRatio": 0,
+                    "fontSize": "7.5pt (10px)",
+                    "fontWeight": "normal",
+                    "messageKey": "imgNode",
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<a class=\"gallery-credit\" href=\"#credit-pixel-8\">Photograph credits</a>",
+                      "target": [
+                        ".gallery-credit"
+                      ]
+                    },
+                    {
+                      "html": "<img alt=\"Google Pixel 8 in Ro...\" decoding=\"async\" data-nimg=\"fill\" style=\"position: absolute; ...\" sizes=\"(max-width: 900px) 9...\" srcset=\"/_next/image?url=%2F...\" src=\"/_next/image?url=%2F...\">",
+                      "target": [
+                        "img[sizes=\"(max-width: 900px) 90vw, 53vw\"]"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element's background color could not be determined because element contains an image node"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<a class=\"gallery-credit\" href=\"#credit-pixel-8\">Photograph credits</a>",
+              "target": [
+                ".gallery-credit"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "messageKey": "nonBmp"
+                  },
+                  "relatedNodes": [],
+                  "impact": "serious",
+                  "message": "Element content contains only non-text characters"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<span aria-hidden=\"true\">↑</span>",
+              "target": [
+                ".pd-story-purchase > span:nth-child(2)"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element content contains only non-text characters"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "contrastRatio": 0,
+                    "fontSize": "7.5pt (10px)",
+                    "fontWeight": "normal",
+                    "messageKey": "imgNode",
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<span class=\"product-brand\">Apple</span>",
+                      "target": [
+                        "article[data-product-card=\"apple-iphone-15\"] > .product-card-visual > .product-brand"
+                      ]
+                    },
+                    {
+                      "html": "<img alt=\"Apple iPhone 15, rea...\" loading=\"lazy\" decoding=\"async\" data-nimg=\"fill\" style=\"position:absolute;he...\" sizes=\"(max-width: 600px) 9...\" srcset=\"/_next/image?url=%2F...\" src=\"/_next/image?url=%2F...\">",
+                      "target": [
+                        "a[aria-label=\"View iPhone 15\"] > img[loading=\"lazy\"]"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element's background color could not be determined because element contains an image node"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<span class=\"product-brand\">Apple</span>",
+              "target": [
+                "article[data-product-card=\"apple-iphone-15\"] > .product-card-visual > .product-brand"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "contrastRatio": 0,
+                    "fontSize": "8.3pt (11px)",
+                    "fontWeight": "normal",
+                    "messageKey": "imgNode",
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<button class=\"quick-view-button\" aria-label=\"Quick view iPhone 15\">",
+                      "target": [
+                        "button[aria-label=\"Quick view iPhone 15\"]"
+                      ]
+                    },
+                    {
+                      "html": "<img alt=\"Apple iPhone 15, rea...\" loading=\"lazy\" decoding=\"async\" data-nimg=\"fill\" style=\"position:absolute;he...\" sizes=\"(max-width: 600px) 9...\" srcset=\"/_next/image?url=%2F...\" src=\"/_next/image?url=%2F...\">",
+                      "target": [
+                        "a[aria-label=\"View iPhone 15\"] > img[loading=\"lazy\"]"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element's background color could not be determined because element contains an image node"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<button class=\"quick-view-button\" aria-label=\"Quick view iPhone 15\">",
+              "target": [
+                "button[aria-label=\"Quick view iPhone 15\"]"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "contrastRatio": 0,
+                    "fontSize": "7.5pt (10px)",
+                    "fontWeight": "normal",
+                    "messageKey": "imgNode",
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<span class=\"product-brand\">Apple</span>",
+                      "target": [
+                        ".product-card-dark > .product-card-visual > .product-brand"
+                      ]
+                    },
+                    {
+                      "html": "<img alt=\"AirPods Max over-ear...\" loading=\"lazy\" decoding=\"async\" data-nimg=\"fill\" style=\"position:absolute;he...\" sizes=\"(max-width: 600px) 9...\" srcset=\"/_next/image?url=%2F...\" src=\"/_next/image?url=%2F...\">",
+                      "target": [
+                        "a[aria-label=\"View AirPods Max\"] > img[loading=\"lazy\"]"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element's background color could not be determined because element contains an image node"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<span class=\"product-brand\">Apple</span>",
+              "target": [
+                ".product-card-dark > .product-card-visual > .product-brand"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "contrastRatio": 0,
+                    "fontSize": "8.3pt (11px)",
+                    "fontWeight": "normal",
+                    "messageKey": "imgNode",
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<button class=\"quick-view-button\" aria-label=\"Quick view AirPods Max\">",
+                      "target": [
+                        "button[aria-label=\"Quick view AirPods Max\"]"
+                      ]
+                    },
+                    {
+                      "html": "<img alt=\"AirPods Max over-ear...\" loading=\"lazy\" decoding=\"async\" data-nimg=\"fill\" style=\"position:absolute;he...\" sizes=\"(max-width: 600px) 9...\" srcset=\"/_next/image?url=%2F...\" src=\"/_next/image?url=%2F...\">",
+                      "target": [
+                        "a[aria-label=\"View AirPods Max\"] > img[loading=\"lazy\"]"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element's background color could not be determined because element contains an image node"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<button class=\"quick-view-button\" aria-label=\"Quick view AirPods Max\">",
+              "target": [
+                "button[aria-label=\"Quick view AirPods Max\"]"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "contrastRatio": 0,
+                    "fontSize": "7.5pt (10px)",
+                    "fontWeight": "normal",
+                    "messageKey": "imgNode",
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<span class=\"product-brand\">Bose</span>",
+                      "target": [
+                        "article[data-product-card=\"bose-quietcomfort-25\"] > .product-card-visual > .product-brand"
+                      ]
+                    },
+                    {
+                      "html": "<img alt=\"Bose QuietComfort 25...\" loading=\"lazy\" decoding=\"async\" data-nimg=\"fill\" style=\"position:absolute;he...\" sizes=\"(max-width: 600px) 9...\" srcset=\"/_next/image?url=%2F...\" src=\"/_next/image?url=%2F...\">",
+                      "target": [
+                        "a[aria-label=\"View QuietComfort 25\"] > img[loading=\"lazy\"]"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element's background color could not be determined because element contains an image node"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<span class=\"product-brand\">Bose</span>",
+              "target": [
+                "article[data-product-card=\"bose-quietcomfort-25\"] > .product-card-visual > .product-brand"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "contrastRatio": 0,
+                    "fontSize": "8.3pt (11px)",
+                    "fontWeight": "normal",
+                    "messageKey": "imgNode",
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<button class=\"quick-view-button\" aria-label=\"Quick view QuietComfort 25\">",
+                      "target": [
+                        "button[aria-label=\"Quick view QuietComfort 25\"]"
+                      ]
+                    },
+                    {
+                      "html": "<img alt=\"Bose QuietComfort 25...\" loading=\"lazy\" decoding=\"async\" data-nimg=\"fill\" style=\"position:absolute;he...\" sizes=\"(max-width: 600px) 9...\" srcset=\"/_next/image?url=%2F...\" src=\"/_next/image?url=%2F...\">",
+                      "target": [
+                        "a[aria-label=\"View QuietComfort 25\"] > img[loading=\"lazy\"]"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element's background color could not be determined because element contains an image node"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<button class=\"quick-view-button\" aria-label=\"Quick view QuietComfort 25\">",
+              "target": [
+                "button[aria-label=\"Quick view QuietComfort 25\"]"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "chromium:about",
+      "engine": "chromium",
+      "scene": "about",
+      "status": "passed",
+      "analyzed": true,
+      "url": "http://127.0.0.1:3100/about",
+      "violations": [],
+      "passes": 26,
+      "incomplete": []
+    },
+    {
+      "id": "firefox:home",
+      "engine": "firefox",
+      "scene": "home",
+      "status": "passed",
+      "analyzed": true,
+      "url": "http://127.0.0.1:3100/",
+      "violations": [],
+      "passes": 24,
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "tags": [
+            "cat.color",
+            "wcag2aa",
+            "wcag143",
+            "TTv5",
+            "TT13.c",
+            "EN-301-549",
+            "EN-9.1.4.3",
+            "ACT",
+            "RGAAv4",
+            "RGAA-3.2.1"
+          ],
+          "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/color-contrast?application=playwright",
+          "nodes": [
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "contrastRatio": 0,
+                    "fontSize": "6.8pt (9px)",
+                    "fontWeight": "normal",
+                    "messageKey": "imgNode",
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<img alt=\"Apple AirPods Max he...\" decoding=\"async\" data-nimg=\"fill\" style=\"position:absolute;he...\" sizes=\"(max-width: 760px) 9...\" srcset=\"/_next/image?url=%2F...\" src=\"/_next/image?url=%2F...\">",
+                      "target": [
+                        ".hero-product > img[sizes=\"(max-width: 760px) 90vw, 48vw\"]"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element's background color could not be determined because element contains an image node"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<span class=\"photo-label\">IN FOCUS / APPLE AIRPODS MAX</span>",
+              "target": [
+                ".photo-label"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "contrastRatio": 0,
+                    "fontSize": "9.0pt (12px)",
+                    "fontWeight": "normal",
+                    "messageKey": "imgNode",
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<img alt=\"Apple AirPods Max he...\" decoding=\"async\" data-nimg=\"fill\" style=\"position:absolute;he...\" sizes=\"(max-width: 760px) 9...\" srcset=\"/_next/image?url=%2F...\" src=\"/_next/image?url=%2F...\">",
+                      "target": [
+                        ".hero-product > img[sizes=\"(max-width: 760px) 90vw, 48vw\"]"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element's background color could not be determined because element contains an image node"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<strong>Lose yourself in the listening.</strong>",
+              "target": [
+                "strong"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "contrastRatio": 0,
+                    "fontSize": "8.3pt (11px)",
+                    "fontWeight": "normal",
+                    "messageKey": "imgNode",
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<img alt=\"Apple AirPods Max he...\" decoding=\"async\" data-nimg=\"fill\" style=\"position:absolute;he...\" sizes=\"(max-width: 760px) 9...\" srcset=\"/_next/image?url=%2F...\" src=\"/_next/image?url=%2F...\">",
+                      "target": [
+                        ".hero-product > img[sizes=\"(max-width: 760px) 90vw, 48vw\"]"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element's background color could not be determined because element contains an image node"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<span>Explore Apple AirPods Max ↗</span>",
+              "target": [
+                "a[href$=\"apple-airpods-max\"] > span"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "contrastRatio": 0,
+                    "fontSize": "6.8pt (9px)",
+                    "fontWeight": "normal",
+                    "messageKey": "imgNode",
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<img alt=\"Apple AirPods Max he...\" decoding=\"async\" data-nimg=\"fill\" style=\"position:absolute;he...\" sizes=\"(max-width: 760px) 9...\" srcset=\"/_next/image?url=%2F...\" src=\"/_next/image?url=%2F...\">",
+                      "target": [
+                        ".hero-product > img[sizes=\"(max-width: 760px) 90vw, 48vw\"]"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element's background color could not be determined because element contains an image node"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<a class=\"photo-credit-link\" href=\"#credits\">",
+              "target": [
+                ".photo-credit-link"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "contrastRatio": 0,
+                    "fontSize": "7.5pt (10px)",
+                    "fontWeight": "normal",
+                    "messageKey": "imgNode",
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<img alt=\"A close photograph o...\" loading=\"lazy\" decoding=\"async\" data-nimg=\"fill\" style=\"position:absolute;he...\" sizes=\"(max-width: 390px) 9...\" srcset=\"/_next/image?url=%2F...\" src=\"/_next/image?url=%2F...\">",
+                      "target": [
+                        "a[aria-label=\"Explore headphones\"] > img[loading=\"lazy\"]"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element's background color could not be determined because element contains an image node"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<span class=\"card-index\">0<!-- -->1<!-- --> / THE EDIT</span>",
+              "target": [
+                "a[aria-label=\"Explore headphones\"] > .card-index"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "contrastRatio": 0,
+                    "fontSize": "7.5pt (10px)",
+                    "fontWeight": "normal",
+                    "messageKey": "imgNode",
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<img alt=\"Apple AirPods Pro se...\" loading=\"lazy\" decoding=\"async\" data-nimg=\"fill\" style=\"position:absolute;he...\" sizes=\"(max-width: 390px) 9...\" srcset=\"/_next/image?url=%2F...\" src=\"/_next/image?url=%2F...\">",
+                      "target": [
+                        "a[aria-label=\"Explore earbuds\"] > img[loading=\"lazy\"]"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element's background color could not be determined because element contains an image node"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<span class=\"card-index\">0<!-- -->2<!-- --> / THE EDIT</span>",
+              "target": [
+                "a[aria-label=\"Explore earbuds\"] > .card-index"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "contrastRatio": 0,
+                    "fontSize": "7.5pt (10px)",
+                    "fontWeight": "normal",
+                    "messageKey": "imgNode",
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<img alt=\"The Rose Google Pixe...\" loading=\"lazy\" decoding=\"async\" data-nimg=\"fill\" style=\"position:absolute;he...\" sizes=\"(max-width: 390px) 9...\" srcset=\"/_next/image?url=%2F...\" src=\"/_next/image?url=%2F...\">",
+                      "target": [
+                        "a[aria-label=\"Explore smartphones\"] > img[loading=\"lazy\"]"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element's background color could not be determined because element contains an image node"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<span class=\"card-index\">0<!-- -->3<!-- --> / THE EDIT</span>",
+              "target": [
+                "a[aria-label=\"Explore smartphones\"] > .card-index"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "contrastRatio": 0,
+                    "fontSize": "7.5pt (10px)",
+                    "fontWeight": "normal",
+                    "messageKey": "imgNode",
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<img alt=\"A teal JBL Flip 3 sp...\" loading=\"lazy\" decoding=\"async\" data-nimg=\"fill\" style=\"position:absolute;he...\" sizes=\"(max-width: 390px) 9...\" srcset=\"/_next/image?url=%2F...\" src=\"/_next/image?url=%2F...\">",
+                      "target": [
+                        "a[aria-label=\"Explore speakers\"] > img[loading=\"lazy\"]"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element's background color could not be determined because element contains an image node"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<span class=\"card-index\">0<!-- -->4<!-- --> / THE EDIT</span>",
+              "target": [
+                "a[aria-label=\"Explore speakers\"] > .card-index"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "firefox:shop",
+      "engine": "firefox",
+      "scene": "shop",
+      "status": "passed",
+      "analyzed": true,
+      "url": "http://127.0.0.1:3100/shop",
+      "violations": [],
+      "passes": 27,
+      "incomplete": [
+        {
+          "id": "aria-prohibited-attr",
+          "impact": "serious",
+          "tags": [
+            "cat.aria",
+            "wcag2a",
+            "wcag412",
+            "EN-301-549",
+            "EN-9.4.1.2",
+            "RGAAv4",
+            "RGAA-7.1.1"
+          ],
+          "description": "Ensure ARIA attributes are not prohibited for an element's role",
+          "help": "Elements must only use permitted ARIA attributes",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/aria-prohibited-attr?application=playwright",
+          "nodes": [
+            {
+              "any": [],
+              "all": [],
+              "none": [
+                {
+                  "id": "aria-prohibited-attr",
+                  "data": {
+                    "role": null,
+                    "nodeName": "div",
+                    "messageKey": "noRoleSingular",
+                    "prohibited": [
+                      "aria-label"
+                    ]
+                  },
+                  "relatedNodes": [],
+                  "impact": "serious",
+                  "message": "aria-label attribute is not well supported on \"div\" elements with no valid role attribute."
+                }
+              ],
+              "impact": "serious",
+              "html": "<div class=\"category-chips\" aria-label=\"Product categories\">",
+              "target": [
+                ".category-chips"
+              ],
+              "failureSummary": "Fix all of the following:\n  aria-label attribute is not well supported on \"div\" elements with no valid role attribute."
+            }
+          ]
+        },
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "tags": [
+            "cat.color",
+            "wcag2aa",
+            "wcag143",
+            "TTv5",
+            "TT13.c",
+            "EN-301-549",
+            "EN-9.1.4.3",
+            "ACT",
+            "RGAAv4",
+            "RGAA-3.2.1"
+          ],
+          "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/color-contrast?application=playwright",
+          "nodes": [
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "contrastRatio": 0,
+                    "fontSize": "7.5pt (10px)",
+                    "fontWeight": "normal",
+                    "messageKey": "imgNode",
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<span class=\"product-brand\">Apple</span>",
+                      "target": [
+                        ".product-card-dark > .product-card-visual > .product-brand"
+                      ]
+                    },
+                    {
+                      "html": "<img alt=\"AirPods Max over-ear...\" loading=\"lazy\" decoding=\"async\" data-nimg=\"fill\" style=\"position: absolute; ...\" sizes=\"(max-width: 600px) 9...\" srcset=\"/_next/image?url=%2F...\" src=\"/_next/image?url=%2F...\">",
+                      "target": [
+                        "a[aria-label=\"View AirPods Max\"] > img"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element's background color could not be determined because element contains an image node"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<span class=\"product-brand\">Apple</span>",
+              "target": [
+                ".product-card-dark > .product-card-visual > .product-brand"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "contrastRatio": 0,
+                    "fontSize": "8.3pt (11px)",
+                    "fontWeight": "normal",
+                    "messageKey": "imgNode",
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<button class=\"quick-view-button\" aria-label=\"Quick view AirPods Max\">",
+                      "target": [
+                        "button[aria-label=\"Quick view AirPods Max\"]"
+                      ]
+                    },
+                    {
+                      "html": "<img alt=\"AirPods Max over-ear...\" loading=\"lazy\" decoding=\"async\" data-nimg=\"fill\" style=\"position: absolute; ...\" sizes=\"(max-width: 600px) 9...\" srcset=\"/_next/image?url=%2F...\" src=\"/_next/image?url=%2F...\">",
+                      "target": [
+                        "a[aria-label=\"View AirPods Max\"] > img"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element's background color could not be determined because element contains an image node"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<button class=\"quick-view-button\" aria-label=\"Quick view AirPods Max\">",
+              "target": [
+                "button[aria-label=\"Quick view AirPods Max\"]"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "contrastRatio": 0,
+                    "fontSize": "7.5pt (10px)",
+                    "fontWeight": "normal",
+                    "messageKey": "imgNode",
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<span class=\"product-brand\">Apple</span>",
+                      "target": [
+                        "article[data-product-card=\"apple-airpods-pro-2nd-gen\"] > .product-card-visual > .product-brand"
+                      ]
+                    },
+                    {
+                      "html": "<img alt=\"AirPods Pro (2nd gen...\" loading=\"lazy\" decoding=\"async\" data-nimg=\"fill\" style=\"position: absolute; ...\" sizes=\"(max-width: 600px) 9...\" srcset=\"/_next/image?url=%2F...\" src=\"/_next/image?url=%2F...\">",
+                      "target": [
+                        "article[data-product-card=\"apple-airpods-pro-2nd-gen\"] > .product-card-visual > .product-image-link > img"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element's background color could not be determined because element contains an image node"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<span class=\"product-brand\">Apple</span>",
+              "target": [
+                "article[data-product-card=\"apple-airpods-pro-2nd-gen\"] > .product-card-visual > .product-brand"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "contrastRatio": 0,
+                    "fontSize": "8.3pt (11px)",
+                    "fontWeight": "normal",
+                    "messageKey": "imgNode",
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<button class=\"quick-view-button\" aria-label=\"Quick view AirPods Pro (2nd generation)\">",
+                      "target": [
+                        "article[data-product-card=\"apple-airpods-pro-2nd-gen\"] > .product-card-visual > .quick-view-button"
+                      ]
+                    },
+                    {
+                      "html": "<img alt=\"AirPods Pro (2nd gen...\" loading=\"lazy\" decoding=\"async\" data-nimg=\"fill\" style=\"position: absolute; ...\" sizes=\"(max-width: 600px) 9...\" srcset=\"/_next/image?url=%2F...\" src=\"/_next/image?url=%2F...\">",
+                      "target": [
+                        "article[data-product-card=\"apple-airpods-pro-2nd-gen\"] > .product-card-visual > .product-image-link > img"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element's background color could not be determined because element contains an image node"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<button class=\"quick-view-button\" aria-label=\"Quick view AirPods Pro (2nd generation)\">",
+              "target": [
+                "article[data-product-card=\"apple-airpods-pro-2nd-gen\"] > .product-card-visual > .quick-view-button"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "contrastRatio": 0,
+                    "fontSize": "7.5pt (10px)",
+                    "fontWeight": "normal",
+                    "messageKey": "imgNode",
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<span class=\"product-brand\">Google</span>",
+                      "target": [
+                        "article[data-product-card=\"google-pixel-8\"] > .product-card-visual > .product-brand"
+                      ]
+                    },
+                    {
+                      "html": "<img alt=\"Google Pixel 8 in Ro...\" loading=\"lazy\" decoding=\"async\" data-nimg=\"fill\" style=\"position: absolute; ...\" sizes=\"(max-width: 600px) 9...\" srcset=\"/_next/image?url=%2F...\" src=\"/_next/image?url=%2F...\">",
+                      "target": [
+                        "a[aria-label=\"View Pixel 8\"] > img"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element's background color could not be determined because element contains an image node"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<span class=\"product-brand\">Google</span>",
+              "target": [
+                "article[data-product-card=\"google-pixel-8\"] > .product-card-visual > .product-brand"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "contrastRatio": 0,
+                    "fontSize": "8.3pt (11px)",
+                    "fontWeight": "normal",
+                    "messageKey": "imgNode",
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<button class=\"quick-view-button\" aria-label=\"Quick view Pixel 8\">",
+                      "target": [
+                        "button[aria-label=\"Quick view Pixel 8\"]"
+                      ]
+                    },
+                    {
+                      "html": "<img alt=\"Google Pixel 8 in Ro...\" loading=\"lazy\" decoding=\"async\" data-nimg=\"fill\" style=\"position: absolute; ...\" sizes=\"(max-width: 600px) 9...\" srcset=\"/_next/image?url=%2F...\" src=\"/_next/image?url=%2F...\">",
+                      "target": [
+                        "a[aria-label=\"View Pixel 8\"] > img"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element's background color could not be determined because element contains an image node"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<button class=\"quick-view-button\" aria-label=\"Quick view Pixel 8\">",
+              "target": [
+                "button[aria-label=\"Quick view Pixel 8\"]"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "contrastRatio": 0,
+                    "fontSize": "7.5pt (10px)",
+                    "fontWeight": "normal",
+                    "messageKey": "imgNode",
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<span class=\"product-brand\">Sonos</span>",
+                      "target": [
+                        "article[data-product-card=\"sonos-play-1\"] > .product-card-visual > .product-brand"
+                      ]
+                    },
+                    {
+                      "html": "<img alt=\"Sonos PLAY:1 speaker...\" loading=\"lazy\" decoding=\"async\" data-nimg=\"fill\" style=\"position: absolute; ...\" sizes=\"(max-width: 600px) 9...\" srcset=\"/_next/image?url=%2F...\" src=\"/_next/image?url=%2F...\">",
+                      "target": [
+                        "a[aria-label=\"View PLAY:1\"] > img"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element's background color could not be determined because element contains an image node"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<span class=\"product-brand\">Sonos</span>",
+              "target": [
+                "article[data-product-card=\"sonos-play-1\"] > .product-card-visual > .product-brand"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "contrastRatio": 0,
+                    "fontSize": "8.3pt (11px)",
+                    "fontWeight": "normal",
+                    "messageKey": "imgNode",
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<button class=\"quick-view-button\" aria-label=\"Quick view PLAY:1\">",
+                      "target": [
+                        "button[aria-label=\"Quick view PLAY:1\"]"
+                      ]
+                    },
+                    {
+                      "html": "<img alt=\"Sonos PLAY:1 speaker...\" loading=\"lazy\" decoding=\"async\" data-nimg=\"fill\" style=\"position: absolute; ...\" sizes=\"(max-width: 600px) 9...\" srcset=\"/_next/image?url=%2F...\" src=\"/_next/image?url=%2F...\">",
+                      "target": [
+                        "a[aria-label=\"View PLAY:1\"] > img"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element's background color could not be determined because element contains an image node"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<button class=\"quick-view-button\" aria-label=\"Quick view PLAY:1\">",
+              "target": [
+                "button[aria-label=\"Quick view PLAY:1\"]"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "contrastRatio": 0,
+                    "fontSize": "7.5pt (10px)",
+                    "fontWeight": "normal",
+                    "messageKey": "imgNode",
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<span class=\"product-brand\">Bose</span>",
+                      "target": [
+                        "article[data-product-card=\"bose-quietcomfort-25\"] > .product-card-visual > .product-brand"
+                      ]
+                    },
+                    {
+                      "html": "<img alt=\"Bose QuietComfort 25...\" loading=\"lazy\" decoding=\"async\" data-nimg=\"fill\" style=\"position: absolute; ...\" sizes=\"(max-width: 600px) 9...\" srcset=\"/_next/image?url=%2F...\" src=\"/_next/image?url=%2F...\">",
+                      "target": [
+                        "a[aria-label=\"View QuietComfort 25\"] > img"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element's background color could not be determined because element contains an image node"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<span class=\"product-brand\">Bose</span>",
+              "target": [
+                "article[data-product-card=\"bose-quietcomfort-25\"] > .product-card-visual > .product-brand"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "contrastRatio": 0,
+                    "fontSize": "8.3pt (11px)",
+                    "fontWeight": "normal",
+                    "messageKey": "imgNode",
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<button class=\"quick-view-button\" aria-label=\"Quick view QuietComfort 25\">",
+                      "target": [
+                        "button[aria-label=\"Quick view QuietComfort 25\"]"
+                      ]
+                    },
+                    {
+                      "html": "<img alt=\"Bose QuietComfort 25...\" loading=\"lazy\" decoding=\"async\" data-nimg=\"fill\" style=\"position: absolute; ...\" sizes=\"(max-width: 600px) 9...\" srcset=\"/_next/image?url=%2F...\" src=\"/_next/image?url=%2F...\">",
+                      "target": [
+                        "a[aria-label=\"View QuietComfort 25\"] > img"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element's background color could not be determined because element contains an image node"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<button class=\"quick-view-button\" aria-label=\"Quick view QuietComfort 25\">",
+              "target": [
+                "button[aria-label=\"Quick view QuietComfort 25\"]"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "contrastRatio": 0,
+                    "fontSize": "7.5pt (10px)",
+                    "fontWeight": "normal",
+                    "messageKey": "imgNode",
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<span class=\"product-brand\">Apple</span>",
+                      "target": [
+                        "article[data-product-card=\"apple-iphone-15\"] > .product-card-visual > .product-brand"
+                      ]
+                    },
+                    {
+                      "html": "<img alt=\"Apple iPhone 15, rea...\" loading=\"lazy\" decoding=\"async\" data-nimg=\"fill\" style=\"position: absolute; ...\" sizes=\"(max-width: 600px) 9...\" srcset=\"/_next/image?url=%2F...\" src=\"/_next/image?url=%2F...\">",
+                      "target": [
+                        "a[aria-label=\"View iPhone 15\"] > img"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element's background color could not be determined because element contains an image node"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<span class=\"product-brand\">Apple</span>",
+              "target": [
+                "article[data-product-card=\"apple-iphone-15\"] > .product-card-visual > .product-brand"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "contrastRatio": 0,
+                    "fontSize": "8.3pt (11px)",
+                    "fontWeight": "normal",
+                    "messageKey": "imgNode",
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<button class=\"quick-view-button\" aria-label=\"Quick view iPhone 15\">",
+                      "target": [
+                        "button[aria-label=\"Quick view iPhone 15\"]"
+                      ]
+                    },
+                    {
+                      "html": "<img alt=\"Apple iPhone 15, rea...\" loading=\"lazy\" decoding=\"async\" data-nimg=\"fill\" style=\"position: absolute; ...\" sizes=\"(max-width: 600px) 9...\" srcset=\"/_next/image?url=%2F...\" src=\"/_next/image?url=%2F...\">",
+                      "target": [
+                        "a[aria-label=\"View iPhone 15\"] > img"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element's background color could not be determined because element contains an image node"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<button class=\"quick-view-button\" aria-label=\"Quick view iPhone 15\">",
+              "target": [
+                "button[aria-label=\"Quick view iPhone 15\"]"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "contrastRatio": 0,
+                    "fontSize": "7.5pt (10px)",
+                    "fontWeight": "normal",
+                    "messageKey": "imgNode",
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<span class=\"product-brand\">JBL</span>",
+                      "target": [
+                        "article[data-product-card=\"jbl-flip-3\"] > .product-card-visual > .product-brand"
+                      ]
+                    },
+                    {
+                      "html": "<img alt=\"JBL Flip 3 speaker r...\" loading=\"lazy\" decoding=\"async\" data-nimg=\"fill\" style=\"position: absolute; ...\" sizes=\"(max-width: 600px) 9...\" srcset=\"/_next/image?url=%2F...\" src=\"/_next/image?url=%2F...\">",
+                      "target": [
+                        "a[aria-label=\"View Flip 3\"] > img"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element's background color could not be determined because element contains an image node"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<span class=\"product-brand\">JBL</span>",
+              "target": [
+                "article[data-product-card=\"jbl-flip-3\"] > .product-card-visual > .product-brand"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "contrastRatio": 0,
+                    "fontSize": "8.3pt (11px)",
+                    "fontWeight": "normal",
+                    "messageKey": "imgNode",
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<button class=\"quick-view-button\" aria-label=\"Quick view Flip 3\">",
+                      "target": [
+                        "button[aria-label=\"Quick view Flip 3\"]"
+                      ]
+                    },
+                    {
+                      "html": "<img alt=\"JBL Flip 3 speaker r...\" loading=\"lazy\" decoding=\"async\" data-nimg=\"fill\" style=\"position: absolute; ...\" sizes=\"(max-width: 600px) 9...\" srcset=\"/_next/image?url=%2F...\" src=\"/_next/image?url=%2F...\">",
+                      "target": [
+                        "a[aria-label=\"View Flip 3\"] > img"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element's background color could not be determined because element contains an image node"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<button class=\"quick-view-button\" aria-label=\"Quick view Flip 3\">",
+              "target": [
+                "button[aria-label=\"Quick view Flip 3\"]"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "firefox:product",
+      "engine": "firefox",
+      "scene": "product",
+      "status": "passed",
+      "analyzed": true,
+      "url": "http://127.0.0.1:3100/products/google-pixel-8",
+      "violations": [],
+      "passes": 29,
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "tags": [
+            "cat.color",
+            "wcag2aa",
+            "wcag143",
+            "TTv5",
+            "TT13.c",
+            "EN-301-549",
+            "EN-9.1.4.3",
+            "ACT",
+            "RGAAv4",
+            "RGAA-3.2.1"
+          ],
+          "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/color-contrast?application=playwright",
+          "nodes": [
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "contrastRatio": 0,
+                    "fontSize": "7.5pt (10px)",
+                    "fontWeight": "normal",
+                    "messageKey": "imgNode",
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<a class=\"gallery-credit\" href=\"#credit-pixel-8\">Photograph credits</a>",
+                      "target": [
+                        ".gallery-credit"
+                      ]
+                    },
+                    {
+                      "html": "<img alt=\"Google Pixel 8 in Ro...\" decoding=\"async\" data-nimg=\"fill\" style=\"position: absolute; ...\" sizes=\"(max-width: 900px) 9...\" srcset=\"/_next/image?url=%2F...\" src=\"/_next/image?url=%2F...\">",
+                      "target": [
+                        "img[sizes=\"(max-width: 900px) 90vw, 53vw\"]"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element's background color could not be determined because element contains an image node"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<a class=\"gallery-credit\" href=\"#credit-pixel-8\">Photograph credits</a>",
+              "target": [
+                ".gallery-credit"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "messageKey": "nonBmp"
+                  },
+                  "relatedNodes": [],
+                  "impact": "serious",
+                  "message": "Element content contains only non-text characters"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<span aria-hidden=\"true\">↑</span>",
+              "target": [
+                ".pd-story-purchase > span:nth-child(2)"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element content contains only non-text characters"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "contrastRatio": 0,
+                    "fontSize": "7.5pt (10px)",
+                    "fontWeight": "normal",
+                    "messageKey": "imgNode",
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<span class=\"product-brand\">Apple</span>",
+                      "target": [
+                        "article[data-product-card=\"apple-iphone-15\"] > .product-card-visual > .product-brand"
+                      ]
+                    },
+                    {
+                      "html": "<img alt=\"Apple iPhone 15, rea...\" loading=\"lazy\" decoding=\"async\" data-nimg=\"fill\" style=\"position:absolute;he...\" sizes=\"(max-width: 600px) 9...\" srcset=\"/_next/image?url=%2F...\" src=\"/_next/image?url=%2F...\">",
+                      "target": [
+                        "a[aria-label=\"View iPhone 15\"] > img[loading=\"lazy\"]"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element's background color could not be determined because element contains an image node"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<span class=\"product-brand\">Apple</span>",
+              "target": [
+                "article[data-product-card=\"apple-iphone-15\"] > .product-card-visual > .product-brand"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "contrastRatio": 0,
+                    "fontSize": "8.3pt (11px)",
+                    "fontWeight": "normal",
+                    "messageKey": "imgNode",
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<button class=\"quick-view-button\" aria-label=\"Quick view iPhone 15\">",
+                      "target": [
+                        "button[aria-label=\"Quick view iPhone 15\"]"
+                      ]
+                    },
+                    {
+                      "html": "<img alt=\"Apple iPhone 15, rea...\" loading=\"lazy\" decoding=\"async\" data-nimg=\"fill\" style=\"position:absolute;he...\" sizes=\"(max-width: 600px) 9...\" srcset=\"/_next/image?url=%2F...\" src=\"/_next/image?url=%2F...\">",
+                      "target": [
+                        "a[aria-label=\"View iPhone 15\"] > img[loading=\"lazy\"]"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element's background color could not be determined because element contains an image node"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<button class=\"quick-view-button\" aria-label=\"Quick view iPhone 15\">",
+              "target": [
+                "button[aria-label=\"Quick view iPhone 15\"]"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "contrastRatio": 0,
+                    "fontSize": "7.5pt (10px)",
+                    "fontWeight": "normal",
+                    "messageKey": "imgNode",
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<span class=\"product-brand\">Apple</span>",
+                      "target": [
+                        ".product-card-dark > .product-card-visual > .product-brand"
+                      ]
+                    },
+                    {
+                      "html": "<img alt=\"AirPods Max over-ear...\" loading=\"lazy\" decoding=\"async\" data-nimg=\"fill\" style=\"position:absolute;he...\" sizes=\"(max-width: 600px) 9...\" srcset=\"/_next/image?url=%2F...\" src=\"/_next/image?url=%2F...\">",
+                      "target": [
+                        "a[aria-label=\"View AirPods Max\"] > img[loading=\"lazy\"]"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element's background color could not be determined because element contains an image node"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<span class=\"product-brand\">Apple</span>",
+              "target": [
+                ".product-card-dark > .product-card-visual > .product-brand"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "contrastRatio": 0,
+                    "fontSize": "8.3pt (11px)",
+                    "fontWeight": "normal",
+                    "messageKey": "imgNode",
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<button class=\"quick-view-button\" aria-label=\"Quick view AirPods Max\">",
+                      "target": [
+                        "button[aria-label=\"Quick view AirPods Max\"]"
+                      ]
+                    },
+                    {
+                      "html": "<img alt=\"AirPods Max over-ear...\" loading=\"lazy\" decoding=\"async\" data-nimg=\"fill\" style=\"position:absolute;he...\" sizes=\"(max-width: 600px) 9...\" srcset=\"/_next/image?url=%2F...\" src=\"/_next/image?url=%2F...\">",
+                      "target": [
+                        "a[aria-label=\"View AirPods Max\"] > img[loading=\"lazy\"]"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element's background color could not be determined because element contains an image node"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<button class=\"quick-view-button\" aria-label=\"Quick view AirPods Max\">",
+              "target": [
+                "button[aria-label=\"Quick view AirPods Max\"]"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "contrastRatio": 0,
+                    "fontSize": "7.5pt (10px)",
+                    "fontWeight": "normal",
+                    "messageKey": "imgNode",
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<span class=\"product-brand\">Bose</span>",
+                      "target": [
+                        "article[data-product-card=\"bose-quietcomfort-25\"] > .product-card-visual > .product-brand"
+                      ]
+                    },
+                    {
+                      "html": "<img alt=\"Bose QuietComfort 25...\" loading=\"lazy\" decoding=\"async\" data-nimg=\"fill\" style=\"position:absolute;he...\" sizes=\"(max-width: 600px) 9...\" srcset=\"/_next/image?url=%2F...\" src=\"/_next/image?url=%2F...\">",
+                      "target": [
+                        "a[aria-label=\"View QuietComfort 25\"] > img[loading=\"lazy\"]"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element's background color could not be determined because element contains an image node"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<span class=\"product-brand\">Bose</span>",
+              "target": [
+                "article[data-product-card=\"bose-quietcomfort-25\"] > .product-card-visual > .product-brand"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "contrastRatio": 0,
+                    "fontSize": "8.3pt (11px)",
+                    "fontWeight": "normal",
+                    "messageKey": "imgNode",
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<button class=\"quick-view-button\" aria-label=\"Quick view QuietComfort 25\">",
+                      "target": [
+                        "button[aria-label=\"Quick view QuietComfort 25\"]"
+                      ]
+                    },
+                    {
+                      "html": "<img alt=\"Bose QuietComfort 25...\" loading=\"lazy\" decoding=\"async\" data-nimg=\"fill\" style=\"position:absolute;he...\" sizes=\"(max-width: 600px) 9...\" srcset=\"/_next/image?url=%2F...\" src=\"/_next/image?url=%2F...\">",
+                      "target": [
+                        "a[aria-label=\"View QuietComfort 25\"] > img[loading=\"lazy\"]"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element's background color could not be determined because element contains an image node"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<button class=\"quick-view-button\" aria-label=\"Quick view QuietComfort 25\">",
+              "target": [
+                "button[aria-label=\"Quick view QuietComfort 25\"]"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "firefox:about",
+      "engine": "firefox",
+      "scene": "about",
+      "status": "passed",
+      "analyzed": true,
+      "url": "http://127.0.0.1:3100/about",
+      "violations": [],
+      "passes": 26,
+      "incomplete": []
+    },
+    {
+      "id": "webkit:home",
+      "engine": "webkit",
+      "scene": "home",
+      "status": "passed",
+      "analyzed": true,
+      "url": "http://127.0.0.1:3100/",
+      "violations": [],
+      "passes": 24,
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "tags": [
+            "cat.color",
+            "wcag2aa",
+            "wcag143",
+            "TTv5",
+            "TT13.c",
+            "EN-301-549",
+            "EN-9.1.4.3",
+            "ACT",
+            "RGAAv4",
+            "RGAA-3.2.1"
+          ],
+          "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/color-contrast?application=playwright",
+          "nodes": [
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "contrastRatio": 0,
+                    "fontSize": "6.8pt (9px)",
+                    "fontWeight": "normal",
+                    "messageKey": "imgNode",
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<img alt=\"Apple AirPods Max he...\" decoding=\"async\" data-nimg=\"fill\" style=\"position:absolute;he...\" sizes=\"(max-width: 760px) 9...\" srcset=\"/_next/image?url=%2F...\" src=\"/_next/image?url=%2F...\">",
+                      "target": [
+                        ".hero-product > img[sizes=\"(max-width: 760px) 90vw, 48vw\"]"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element's background color could not be determined because element contains an image node"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<span class=\"photo-label\">IN FOCUS / APPLE AIRPODS MAX</span>",
+              "target": [
+                ".photo-label"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "contrastRatio": 0,
+                    "fontSize": "9.0pt (12px)",
+                    "fontWeight": "normal",
+                    "messageKey": "imgNode",
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<img alt=\"Apple AirPods Max he...\" decoding=\"async\" data-nimg=\"fill\" style=\"position:absolute;he...\" sizes=\"(max-width: 760px) 9...\" srcset=\"/_next/image?url=%2F...\" src=\"/_next/image?url=%2F...\">",
+                      "target": [
+                        ".hero-product > img[sizes=\"(max-width: 760px) 90vw, 48vw\"]"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element's background color could not be determined because element contains an image node"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<strong>Lose yourself in the listening.</strong>",
+              "target": [
+                "strong"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "contrastRatio": 0,
+                    "fontSize": "8.3pt (11px)",
+                    "fontWeight": "normal",
+                    "messageKey": "imgNode",
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<img alt=\"Apple AirPods Max he...\" decoding=\"async\" data-nimg=\"fill\" style=\"position:absolute;he...\" sizes=\"(max-width: 760px) 9...\" srcset=\"/_next/image?url=%2F...\" src=\"/_next/image?url=%2F...\">",
+                      "target": [
+                        ".hero-product > img[sizes=\"(max-width: 760px) 90vw, 48vw\"]"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element's background color could not be determined because element contains an image node"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<span>Explore Apple AirPods Max ↗</span>",
+              "target": [
+                "a[href$=\"apple-airpods-max\"] > span"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "contrastRatio": 0,
+                    "fontSize": "6.8pt (9px)",
+                    "fontWeight": "normal",
+                    "messageKey": "imgNode",
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<img alt=\"Apple AirPods Max he...\" decoding=\"async\" data-nimg=\"fill\" style=\"position:absolute;he...\" sizes=\"(max-width: 760px) 9...\" srcset=\"/_next/image?url=%2F...\" src=\"/_next/image?url=%2F...\">",
+                      "target": [
+                        ".hero-product > img[sizes=\"(max-width: 760px) 90vw, 48vw\"]"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element's background color could not be determined because element contains an image node"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<a class=\"photo-credit-link\" href=\"#credits\">",
+              "target": [
+                ".photo-credit-link"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "contrastRatio": 0,
+                    "fontSize": "7.5pt (10px)",
+                    "fontWeight": "normal",
+                    "messageKey": "imgNode",
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<img alt=\"A close photograph o...\" loading=\"lazy\" decoding=\"async\" data-nimg=\"fill\" style=\"position:absolute;he...\" sizes=\"(max-width: 390px) 9...\" srcset=\"/_next/image?url=%2F...\" src=\"/_next/image?url=%2F...\">",
+                      "target": [
+                        "a[aria-label=\"Explore headphones\"] > img[loading=\"lazy\"]"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element's background color could not be determined because element contains an image node"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<span class=\"card-index\">0<!-- -->1<!-- --> / THE EDIT</span>",
+              "target": [
+                "a[aria-label=\"Explore headphones\"] > .card-index"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "contrastRatio": 0,
+                    "fontSize": "7.5pt (10px)",
+                    "fontWeight": "normal",
+                    "messageKey": "imgNode",
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<img alt=\"Apple AirPods Pro se...\" loading=\"lazy\" decoding=\"async\" data-nimg=\"fill\" style=\"position:absolute;he...\" sizes=\"(max-width: 390px) 9...\" srcset=\"/_next/image?url=%2F...\" src=\"/_next/image?url=%2F...\">",
+                      "target": [
+                        "a[aria-label=\"Explore earbuds\"] > img[loading=\"lazy\"]"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element's background color could not be determined because element contains an image node"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<span class=\"card-index\">0<!-- -->2<!-- --> / THE EDIT</span>",
+              "target": [
+                "a[aria-label=\"Explore earbuds\"] > .card-index"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "contrastRatio": 0,
+                    "fontSize": "7.5pt (10px)",
+                    "fontWeight": "normal",
+                    "messageKey": "imgNode",
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<img alt=\"The Rose Google Pixe...\" loading=\"lazy\" decoding=\"async\" data-nimg=\"fill\" style=\"position:absolute;he...\" sizes=\"(max-width: 390px) 9...\" srcset=\"/_next/image?url=%2F...\" src=\"/_next/image?url=%2F...\">",
+                      "target": [
+                        "a[aria-label=\"Explore smartphones\"] > img[loading=\"lazy\"]"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element's background color could not be determined because element contains an image node"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<span class=\"card-index\">0<!-- -->3<!-- --> / THE EDIT</span>",
+              "target": [
+                "a[aria-label=\"Explore smartphones\"] > .card-index"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "contrastRatio": 0,
+                    "fontSize": "7.5pt (10px)",
+                    "fontWeight": "normal",
+                    "messageKey": "imgNode",
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<img alt=\"A teal JBL Flip 3 sp...\" loading=\"lazy\" decoding=\"async\" data-nimg=\"fill\" style=\"position:absolute;he...\" sizes=\"(max-width: 390px) 9...\" srcset=\"/_next/image?url=%2F...\" src=\"/_next/image?url=%2F...\">",
+                      "target": [
+                        "a[aria-label=\"Explore speakers\"] > img[loading=\"lazy\"]"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element's background color could not be determined because element contains an image node"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<span class=\"card-index\">0<!-- -->4<!-- --> / THE EDIT</span>",
+              "target": [
+                "a[aria-label=\"Explore speakers\"] > .card-index"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "webkit:shop",
+      "engine": "webkit",
+      "scene": "shop",
+      "status": "passed",
+      "analyzed": true,
+      "url": "http://127.0.0.1:3100/shop",
+      "violations": [],
+      "passes": 27,
+      "incomplete": [
+        {
+          "id": "aria-prohibited-attr",
+          "impact": "serious",
+          "tags": [
+            "cat.aria",
+            "wcag2a",
+            "wcag412",
+            "EN-301-549",
+            "EN-9.4.1.2",
+            "RGAAv4",
+            "RGAA-7.1.1"
+          ],
+          "description": "Ensure ARIA attributes are not prohibited for an element's role",
+          "help": "Elements must only use permitted ARIA attributes",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/aria-prohibited-attr?application=playwright",
+          "nodes": [
+            {
+              "any": [],
+              "all": [],
+              "none": [
+                {
+                  "id": "aria-prohibited-attr",
+                  "data": {
+                    "role": null,
+                    "nodeName": "div",
+                    "messageKey": "noRoleSingular",
+                    "prohibited": [
+                      "aria-label"
+                    ]
+                  },
+                  "relatedNodes": [],
+                  "impact": "serious",
+                  "message": "aria-label attribute is not well supported on \"div\" elements with no valid role attribute."
+                }
+              ],
+              "impact": "serious",
+              "html": "<div class=\"category-chips\" aria-label=\"Product categories\">",
+              "target": [
+                ".category-chips"
+              ],
+              "failureSummary": "Fix all of the following:\n  aria-label attribute is not well supported on \"div\" elements with no valid role attribute."
+            }
+          ]
+        },
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "tags": [
+            "cat.color",
+            "wcag2aa",
+            "wcag143",
+            "TTv5",
+            "TT13.c",
+            "EN-301-549",
+            "EN-9.1.4.3",
+            "ACT",
+            "RGAAv4",
+            "RGAA-3.2.1"
+          ],
+          "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/color-contrast?application=playwright",
+          "nodes": [
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "contrastRatio": 0,
+                    "fontSize": "7.5pt (10px)",
+                    "fontWeight": "normal",
+                    "messageKey": "imgNode",
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<span class=\"product-brand\">Apple</span>",
+                      "target": [
+                        ".product-card-dark > .product-card-visual > .product-brand"
+                      ]
+                    },
+                    {
+                      "html": "<img alt=\"AirPods Max over-ear...\" loading=\"lazy\" decoding=\"async\" data-nimg=\"fill\" sizes=\"(max-width: 600px) 9...\" srcset=\"/_next/image?url=%2F...\" src=\"/_next/image?url=%2F...\" style=\"position: absolute; ...\">",
+                      "target": [
+                        "a[aria-label=\"View AirPods Max\"] > img"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element's background color could not be determined because element contains an image node"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<span class=\"product-brand\">Apple</span>",
+              "target": [
+                ".product-card-dark > .product-card-visual > .product-brand"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "contrastRatio": 0,
+                    "fontSize": "8.3pt (11px)",
+                    "fontWeight": "normal",
+                    "messageKey": "imgNode",
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<button class=\"quick-view-button\" aria-label=\"Quick view AirPods Max\">",
+                      "target": [
+                        "button[aria-label=\"Quick view AirPods Max\"]"
+                      ]
+                    },
+                    {
+                      "html": "<img alt=\"AirPods Max over-ear...\" loading=\"lazy\" decoding=\"async\" data-nimg=\"fill\" sizes=\"(max-width: 600px) 9...\" srcset=\"/_next/image?url=%2F...\" src=\"/_next/image?url=%2F...\" style=\"position: absolute; ...\">",
+                      "target": [
+                        "a[aria-label=\"View AirPods Max\"] > img"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element's background color could not be determined because element contains an image node"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<button class=\"quick-view-button\" aria-label=\"Quick view AirPods Max\">",
+              "target": [
+                "button[aria-label=\"Quick view AirPods Max\"]"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "contrastRatio": 0,
+                    "fontSize": "7.5pt (10px)",
+                    "fontWeight": "normal",
+                    "messageKey": "imgNode",
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<span class=\"product-brand\">Apple</span>",
+                      "target": [
+                        "article[data-product-card=\"apple-airpods-pro-2nd-gen\"] > .product-card-visual > .product-brand"
+                      ]
+                    },
+                    {
+                      "html": "<img alt=\"AirPods Pro (2nd gen...\" loading=\"lazy\" decoding=\"async\" data-nimg=\"fill\" sizes=\"(max-width: 600px) 9...\" srcset=\"/_next/image?url=%2F...\" src=\"/_next/image?url=%2F...\" style=\"position: absolute; ...\">",
+                      "target": [
+                        "article[data-product-card=\"apple-airpods-pro-2nd-gen\"] > .product-card-visual > .product-image-link > img"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element's background color could not be determined because element contains an image node"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<span class=\"product-brand\">Apple</span>",
+              "target": [
+                "article[data-product-card=\"apple-airpods-pro-2nd-gen\"] > .product-card-visual > .product-brand"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "contrastRatio": 0,
+                    "fontSize": "8.3pt (11px)",
+                    "fontWeight": "normal",
+                    "messageKey": "imgNode",
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<button class=\"quick-view-button\" aria-label=\"Quick view AirPods Pro (2nd generation)\">",
+                      "target": [
+                        "article[data-product-card=\"apple-airpods-pro-2nd-gen\"] > .product-card-visual > .quick-view-button"
+                      ]
+                    },
+                    {
+                      "html": "<img alt=\"AirPods Pro (2nd gen...\" loading=\"lazy\" decoding=\"async\" data-nimg=\"fill\" sizes=\"(max-width: 600px) 9...\" srcset=\"/_next/image?url=%2F...\" src=\"/_next/image?url=%2F...\" style=\"position: absolute; ...\">",
+                      "target": [
+                        "article[data-product-card=\"apple-airpods-pro-2nd-gen\"] > .product-card-visual > .product-image-link > img"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element's background color could not be determined because element contains an image node"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<button class=\"quick-view-button\" aria-label=\"Quick view AirPods Pro (2nd generation)\">",
+              "target": [
+                "article[data-product-card=\"apple-airpods-pro-2nd-gen\"] > .product-card-visual > .quick-view-button"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "contrastRatio": 0,
+                    "fontSize": "7.5pt (10px)",
+                    "fontWeight": "normal",
+                    "messageKey": "imgNode",
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<span class=\"product-brand\">Google</span>",
+                      "target": [
+                        "article[data-product-card=\"google-pixel-8\"] > .product-card-visual > .product-brand"
+                      ]
+                    },
+                    {
+                      "html": "<img alt=\"Google Pixel 8 in Ro...\" loading=\"lazy\" decoding=\"async\" data-nimg=\"fill\" sizes=\"(max-width: 600px) 9...\" srcset=\"/_next/image?url=%2F...\" src=\"/_next/image?url=%2F...\" style=\"position: absolute; ...\">",
+                      "target": [
+                        "a[aria-label=\"View Pixel 8\"] > img"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element's background color could not be determined because element contains an image node"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<span class=\"product-brand\">Google</span>",
+              "target": [
+                "article[data-product-card=\"google-pixel-8\"] > .product-card-visual > .product-brand"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "contrastRatio": 0,
+                    "fontSize": "8.3pt (11px)",
+                    "fontWeight": "normal",
+                    "messageKey": "imgNode",
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<button class=\"quick-view-button\" aria-label=\"Quick view Pixel 8\">",
+                      "target": [
+                        "button[aria-label=\"Quick view Pixel 8\"]"
+                      ]
+                    },
+                    {
+                      "html": "<img alt=\"Google Pixel 8 in Ro...\" loading=\"lazy\" decoding=\"async\" data-nimg=\"fill\" sizes=\"(max-width: 600px) 9...\" srcset=\"/_next/image?url=%2F...\" src=\"/_next/image?url=%2F...\" style=\"position: absolute; ...\">",
+                      "target": [
+                        "a[aria-label=\"View Pixel 8\"] > img"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element's background color could not be determined because element contains an image node"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<button class=\"quick-view-button\" aria-label=\"Quick view Pixel 8\">",
+              "target": [
+                "button[aria-label=\"Quick view Pixel 8\"]"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "contrastRatio": 0,
+                    "fontSize": "7.5pt (10px)",
+                    "fontWeight": "normal",
+                    "messageKey": "imgNode",
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<span class=\"product-brand\">Sonos</span>",
+                      "target": [
+                        "article[data-product-card=\"sonos-play-1\"] > .product-card-visual > .product-brand"
+                      ]
+                    },
+                    {
+                      "html": "<img alt=\"Sonos PLAY:1 speaker...\" loading=\"lazy\" decoding=\"async\" data-nimg=\"fill\" sizes=\"(max-width: 600px) 9...\" srcset=\"/_next/image?url=%2F...\" src=\"/_next/image?url=%2F...\" style=\"position: absolute; ...\">",
+                      "target": [
+                        "a[aria-label=\"View PLAY:1\"] > img"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element's background color could not be determined because element contains an image node"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<span class=\"product-brand\">Sonos</span>",
+              "target": [
+                "article[data-product-card=\"sonos-play-1\"] > .product-card-visual > .product-brand"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "contrastRatio": 0,
+                    "fontSize": "8.3pt (11px)",
+                    "fontWeight": "normal",
+                    "messageKey": "imgNode",
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<button class=\"quick-view-button\" aria-label=\"Quick view PLAY:1\">",
+                      "target": [
+                        "button[aria-label=\"Quick view PLAY:1\"]"
+                      ]
+                    },
+                    {
+                      "html": "<img alt=\"Sonos PLAY:1 speaker...\" loading=\"lazy\" decoding=\"async\" data-nimg=\"fill\" sizes=\"(max-width: 600px) 9...\" srcset=\"/_next/image?url=%2F...\" src=\"/_next/image?url=%2F...\" style=\"position: absolute; ...\">",
+                      "target": [
+                        "a[aria-label=\"View PLAY:1\"] > img"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element's background color could not be determined because element contains an image node"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<button class=\"quick-view-button\" aria-label=\"Quick view PLAY:1\">",
+              "target": [
+                "button[aria-label=\"Quick view PLAY:1\"]"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "contrastRatio": 0,
+                    "fontSize": "7.5pt (10px)",
+                    "fontWeight": "normal",
+                    "messageKey": "imgNode",
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<span class=\"product-brand\">Bose</span>",
+                      "target": [
+                        "article[data-product-card=\"bose-quietcomfort-25\"] > .product-card-visual > .product-brand"
+                      ]
+                    },
+                    {
+                      "html": "<img alt=\"Bose QuietComfort 25...\" loading=\"lazy\" decoding=\"async\" data-nimg=\"fill\" sizes=\"(max-width: 600px) 9...\" srcset=\"/_next/image?url=%2F...\" src=\"/_next/image?url=%2F...\" style=\"position: absolute; ...\">",
+                      "target": [
+                        "a[aria-label=\"View QuietComfort 25\"] > img"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element's background color could not be determined because element contains an image node"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<span class=\"product-brand\">Bose</span>",
+              "target": [
+                "article[data-product-card=\"bose-quietcomfort-25\"] > .product-card-visual > .product-brand"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "contrastRatio": 0,
+                    "fontSize": "8.3pt (11px)",
+                    "fontWeight": "normal",
+                    "messageKey": "imgNode",
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<button class=\"quick-view-button\" aria-label=\"Quick view QuietComfort 25\">",
+                      "target": [
+                        "button[aria-label=\"Quick view QuietComfort 25\"]"
+                      ]
+                    },
+                    {
+                      "html": "<img alt=\"Bose QuietComfort 25...\" loading=\"lazy\" decoding=\"async\" data-nimg=\"fill\" sizes=\"(max-width: 600px) 9...\" srcset=\"/_next/image?url=%2F...\" src=\"/_next/image?url=%2F...\" style=\"position: absolute; ...\">",
+                      "target": [
+                        "a[aria-label=\"View QuietComfort 25\"] > img"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element's background color could not be determined because element contains an image node"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<button class=\"quick-view-button\" aria-label=\"Quick view QuietComfort 25\">",
+              "target": [
+                "button[aria-label=\"Quick view QuietComfort 25\"]"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "contrastRatio": 0,
+                    "fontSize": "7.5pt (10px)",
+                    "fontWeight": "normal",
+                    "messageKey": "imgNode",
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<span class=\"product-brand\">Apple</span>",
+                      "target": [
+                        "article[data-product-card=\"apple-iphone-15\"] > .product-card-visual > .product-brand"
+                      ]
+                    },
+                    {
+                      "html": "<img alt=\"Apple iPhone 15, rea...\" loading=\"lazy\" decoding=\"async\" data-nimg=\"fill\" sizes=\"(max-width: 600px) 9...\" srcset=\"/_next/image?url=%2F...\" src=\"/_next/image?url=%2F...\" style=\"position: absolute; ...\">",
+                      "target": [
+                        "a[aria-label=\"View iPhone 15\"] > img"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element's background color could not be determined because element contains an image node"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<span class=\"product-brand\">Apple</span>",
+              "target": [
+                "article[data-product-card=\"apple-iphone-15\"] > .product-card-visual > .product-brand"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "contrastRatio": 0,
+                    "fontSize": "8.3pt (11px)",
+                    "fontWeight": "normal",
+                    "messageKey": "imgNode",
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<button class=\"quick-view-button\" aria-label=\"Quick view iPhone 15\">",
+                      "target": [
+                        "button[aria-label=\"Quick view iPhone 15\"]"
+                      ]
+                    },
+                    {
+                      "html": "<img alt=\"Apple iPhone 15, rea...\" loading=\"lazy\" decoding=\"async\" data-nimg=\"fill\" sizes=\"(max-width: 600px) 9...\" srcset=\"/_next/image?url=%2F...\" src=\"/_next/image?url=%2F...\" style=\"position: absolute; ...\">",
+                      "target": [
+                        "a[aria-label=\"View iPhone 15\"] > img"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element's background color could not be determined because element contains an image node"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<button class=\"quick-view-button\" aria-label=\"Quick view iPhone 15\">",
+              "target": [
+                "button[aria-label=\"Quick view iPhone 15\"]"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "contrastRatio": 0,
+                    "fontSize": "7.5pt (10px)",
+                    "fontWeight": "normal",
+                    "messageKey": "imgNode",
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<span class=\"product-brand\">JBL</span>",
+                      "target": [
+                        "article[data-product-card=\"jbl-flip-3\"] > .product-card-visual > .product-brand"
+                      ]
+                    },
+                    {
+                      "html": "<img alt=\"JBL Flip 3 speaker r...\" loading=\"lazy\" decoding=\"async\" data-nimg=\"fill\" sizes=\"(max-width: 600px) 9...\" srcset=\"/_next/image?url=%2F...\" src=\"/_next/image?url=%2F...\" style=\"position: absolute; ...\">",
+                      "target": [
+                        "a[aria-label=\"View Flip 3\"] > img"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element's background color could not be determined because element contains an image node"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<span class=\"product-brand\">JBL</span>",
+              "target": [
+                "article[data-product-card=\"jbl-flip-3\"] > .product-card-visual > .product-brand"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "contrastRatio": 0,
+                    "fontSize": "8.3pt (11px)",
+                    "fontWeight": "normal",
+                    "messageKey": "imgNode",
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<button class=\"quick-view-button\" aria-label=\"Quick view Flip 3\">",
+                      "target": [
+                        "button[aria-label=\"Quick view Flip 3\"]"
+                      ]
+                    },
+                    {
+                      "html": "<img alt=\"JBL Flip 3 speaker r...\" loading=\"lazy\" decoding=\"async\" data-nimg=\"fill\" sizes=\"(max-width: 600px) 9...\" srcset=\"/_next/image?url=%2F...\" src=\"/_next/image?url=%2F...\" style=\"position: absolute; ...\">",
+                      "target": [
+                        "a[aria-label=\"View Flip 3\"] > img"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element's background color could not be determined because element contains an image node"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<button class=\"quick-view-button\" aria-label=\"Quick view Flip 3\">",
+              "target": [
+                "button[aria-label=\"Quick view Flip 3\"]"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "webkit:product",
+      "engine": "webkit",
+      "scene": "product",
+      "status": "passed",
+      "analyzed": true,
+      "url": "http://127.0.0.1:3100/products/google-pixel-8",
+      "violations": [],
+      "passes": 29,
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "tags": [
+            "cat.color",
+            "wcag2aa",
+            "wcag143",
+            "TTv5",
+            "TT13.c",
+            "EN-301-549",
+            "EN-9.1.4.3",
+            "ACT",
+            "RGAAv4",
+            "RGAA-3.2.1"
+          ],
+          "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/color-contrast?application=playwright",
+          "nodes": [
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "contrastRatio": 0,
+                    "fontSize": "7.5pt (10px)",
+                    "fontWeight": "normal",
+                    "messageKey": "imgNode",
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<a class=\"gallery-credit\" href=\"#credit-pixel-8\">Photograph credits</a>",
+                      "target": [
+                        ".gallery-credit"
+                      ]
+                    },
+                    {
+                      "html": "<img alt=\"Google Pixel 8 in Ro...\" decoding=\"async\" data-nimg=\"fill\" style=\"position: absolute; ...\" sizes=\"(max-width: 900px) 9...\" srcset=\"/_next/image?url=%2F...\" src=\"/_next/image?url=%2F...\">",
+                      "target": [
+                        "img[sizes=\"(max-width: 900px) 90vw, 53vw\"]"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element's background color could not be determined because element contains an image node"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<a class=\"gallery-credit\" href=\"#credit-pixel-8\">Photograph credits</a>",
+              "target": [
+                ".gallery-credit"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "messageKey": "nonBmp"
+                  },
+                  "relatedNodes": [],
+                  "impact": "serious",
+                  "message": "Element content contains only non-text characters"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<span aria-hidden=\"true\">↑</span>",
+              "target": [
+                ".pd-story-purchase > span:nth-child(2)"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element content contains only non-text characters"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "contrastRatio": 0,
+                    "fontSize": "7.5pt (10px)",
+                    "fontWeight": "normal",
+                    "messageKey": "imgNode",
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<span class=\"product-brand\">Apple</span>",
+                      "target": [
+                        "article[data-product-card=\"apple-iphone-15\"] > .product-card-visual > .product-brand"
+                      ]
+                    },
+                    {
+                      "html": "<img alt=\"Apple iPhone 15, rea...\" loading=\"lazy\" decoding=\"async\" data-nimg=\"fill\" style=\"position:absolute;he...\" sizes=\"(max-width: 600px) 9...\" srcset=\"/_next/image?url=%2F...\" src=\"/_next/image?url=%2F...\">",
+                      "target": [
+                        "a[aria-label=\"View iPhone 15\"] > img[loading=\"lazy\"]"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element's background color could not be determined because element contains an image node"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<span class=\"product-brand\">Apple</span>",
+              "target": [
+                "article[data-product-card=\"apple-iphone-15\"] > .product-card-visual > .product-brand"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "contrastRatio": 0,
+                    "fontSize": "8.3pt (11px)",
+                    "fontWeight": "normal",
+                    "messageKey": "imgNode",
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<button class=\"quick-view-button\" aria-label=\"Quick view iPhone 15\">",
+                      "target": [
+                        "button[aria-label=\"Quick view iPhone 15\"]"
+                      ]
+                    },
+                    {
+                      "html": "<img alt=\"Apple iPhone 15, rea...\" loading=\"lazy\" decoding=\"async\" data-nimg=\"fill\" style=\"position:absolute;he...\" sizes=\"(max-width: 600px) 9...\" srcset=\"/_next/image?url=%2F...\" src=\"/_next/image?url=%2F...\">",
+                      "target": [
+                        "a[aria-label=\"View iPhone 15\"] > img[loading=\"lazy\"]"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element's background color could not be determined because element contains an image node"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<button class=\"quick-view-button\" aria-label=\"Quick view iPhone 15\">",
+              "target": [
+                "button[aria-label=\"Quick view iPhone 15\"]"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "contrastRatio": 0,
+                    "fontSize": "7.5pt (10px)",
+                    "fontWeight": "normal",
+                    "messageKey": "imgNode",
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<span class=\"product-brand\">Apple</span>",
+                      "target": [
+                        ".product-card-dark > .product-card-visual > .product-brand"
+                      ]
+                    },
+                    {
+                      "html": "<img alt=\"AirPods Max over-ear...\" loading=\"lazy\" decoding=\"async\" data-nimg=\"fill\" style=\"position:absolute;he...\" sizes=\"(max-width: 600px) 9...\" srcset=\"/_next/image?url=%2F...\" src=\"/_next/image?url=%2F...\">",
+                      "target": [
+                        "a[aria-label=\"View AirPods Max\"] > img[loading=\"lazy\"]"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element's background color could not be determined because element contains an image node"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<span class=\"product-brand\">Apple</span>",
+              "target": [
+                ".product-card-dark > .product-card-visual > .product-brand"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "contrastRatio": 0,
+                    "fontSize": "8.3pt (11px)",
+                    "fontWeight": "normal",
+                    "messageKey": "imgNode",
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<button class=\"quick-view-button\" aria-label=\"Quick view AirPods Max\">",
+                      "target": [
+                        "button[aria-label=\"Quick view AirPods Max\"]"
+                      ]
+                    },
+                    {
+                      "html": "<img alt=\"AirPods Max over-ear...\" loading=\"lazy\" decoding=\"async\" data-nimg=\"fill\" style=\"position:absolute;he...\" sizes=\"(max-width: 600px) 9...\" srcset=\"/_next/image?url=%2F...\" src=\"/_next/image?url=%2F...\">",
+                      "target": [
+                        "a[aria-label=\"View AirPods Max\"] > img[loading=\"lazy\"]"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element's background color could not be determined because element contains an image node"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<button class=\"quick-view-button\" aria-label=\"Quick view AirPods Max\">",
+              "target": [
+                "button[aria-label=\"Quick view AirPods Max\"]"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "contrastRatio": 0,
+                    "fontSize": "7.5pt (10px)",
+                    "fontWeight": "normal",
+                    "messageKey": "imgNode",
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<span class=\"product-brand\">Bose</span>",
+                      "target": [
+                        "article[data-product-card=\"bose-quietcomfort-25\"] > .product-card-visual > .product-brand"
+                      ]
+                    },
+                    {
+                      "html": "<img alt=\"Bose QuietComfort 25...\" loading=\"lazy\" decoding=\"async\" data-nimg=\"fill\" style=\"position:absolute;he...\" sizes=\"(max-width: 600px) 9...\" srcset=\"/_next/image?url=%2F...\" src=\"/_next/image?url=%2F...\">",
+                      "target": [
+                        "a[aria-label=\"View QuietComfort 25\"] > img[loading=\"lazy\"]"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element's background color could not be determined because element contains an image node"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<span class=\"product-brand\">Bose</span>",
+              "target": [
+                "article[data-product-card=\"bose-quietcomfort-25\"] > .product-card-visual > .product-brand"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "contrastRatio": 0,
+                    "fontSize": "8.3pt (11px)",
+                    "fontWeight": "normal",
+                    "messageKey": "imgNode",
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<button class=\"quick-view-button\" aria-label=\"Quick view QuietComfort 25\">",
+                      "target": [
+                        "button[aria-label=\"Quick view QuietComfort 25\"]"
+                      ]
+                    },
+                    {
+                      "html": "<img alt=\"Bose QuietComfort 25...\" loading=\"lazy\" decoding=\"async\" data-nimg=\"fill\" style=\"position:absolute;he...\" sizes=\"(max-width: 600px) 9...\" srcset=\"/_next/image?url=%2F...\" src=\"/_next/image?url=%2F...\">",
+                      "target": [
+                        "a[aria-label=\"View QuietComfort 25\"] > img[loading=\"lazy\"]"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element's background color could not be determined because element contains an image node"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<button class=\"quick-view-button\" aria-label=\"Quick view QuietComfort 25\">",
+              "target": [
+                "button[aria-label=\"Quick view QuietComfort 25\"]"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "webkit:about",
+      "engine": "webkit",
+      "scene": "about",
+      "status": "passed",
+      "analyzed": true,
+      "url": "http://127.0.0.1:3100/about",
+      "violations": [],
+      "passes": 26,
+      "incomplete": []
+    }
+  ],
+  "harnessErrors": [],
+  "statistics": {
+    "expectedScenarios": 22,
+    "recordedScenarios": 22,
+    "scenarios": {
+      "passed": 22
+    },
+    "expectedAccessibilityScans": 12,
+    "completedAccessibilityScans": 12,
+    "accessibility": {
+      "passed": 12
+    },
+    "engines": {
+      "available": 3
+    },
+    "screenshots": 49,
+    "runtimeAndConsoleErrors": 0
+  }
+}

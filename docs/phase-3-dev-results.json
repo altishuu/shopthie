@@ -1,7 +1,12 @@
 {
   "base": "http://127.0.0.1:3102",
   "developmentStrictMode": "pass",
-  "routes": ["/", "/shop", "/products/google-pixel-8"],
+  "routes": [
+    "/",
+    "/collections/headphones",
+    "/shop",
+    "/products/google-pixel-8"
+  ],
   "pinSetupCleanup": "pass",
   "quantity": 2,
   "liveReducedMotion": "pass",

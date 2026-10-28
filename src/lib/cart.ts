@@ -5,6 +5,7 @@ export type CommerceState = { cart: CartLine[]; wishlist: string[] };
 export type CommerceAction =
   | ({ type: "add" } & CartLine)
   | ({ type: "quantity" } & CartLine)
+  | { type: "step-quantity"; productId: string; variantId: string; delta: number }
   | { type: "remove"; productId: string; variantId: string }
   | { type: "wishlist"; productId: string }
   | { type: "clear-cart" }
@@ -129,6 +130,37 @@ export function commerceReducer(
         (line) => line.productId !== action.productId || line.variantId !== action.variantId,
       ),
     };
+  }
+  if (action.type === "step-quantity") {
+    const existing = state.cart.find(
+      (line) => line.productId === action.productId && line.variantId === action.variantId,
+    );
+    const stock = products
+      .find((product) => product.id === action.productId)
+      ?.variants.find((variant) => variant.id === action.variantId)?.demoStock;
+    if (
+      !existing ||
+      !Number.isSafeInteger(existing.quantity) ||
+      existing.quantity < 1 ||
+      !Number.isSafeInteger(action.delta) ||
+      action.delta === 0 ||
+      stock === undefined ||
+      !Number.isSafeInteger(stock) ||
+      stock < 1
+    )
+      return state;
+    // Resolve against the committed line, not the render that queued the click.
+    // Bound the addition first so even MAX_SAFE_INTEGER deltas cannot overflow.
+    const current = Math.min(existing.quantity, stock);
+    const quantity =
+      action.delta > 0
+        ? current + Math.min(action.delta, stock - current)
+        : Math.max(1, current + action.delta);
+    return commerceReducer(
+      state,
+      { type: "quantity", productId: action.productId, variantId: action.variantId, quantity },
+      products,
+    );
   }
   if (action.type === "add" || action.type === "quantity") {
     const stock =

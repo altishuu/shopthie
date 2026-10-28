@@ -153,6 +153,74 @@ test("quantity replaces an existing line quantity and clamps to stock", () => {
   }
 });
 
+test("relative quantity intents reduce in order while numeric quantities remain absolute", () => {
+  let state = { cart: [line()], wishlist: ["speaker"] };
+  const step = (delta: number) => ({
+    type: "step-quantity" as const,
+    productId: "headphones",
+    variantId: "black",
+    delta,
+  });
+  for (let i = 0; i < 3; i++) state = commerce.commerceReducer(state, step(1), products);
+  assert.equal(state.cart[0].quantity, 4);
+  state = commerce.commerceReducer(state, { type: "quantity", ...line() }, products);
+  state = commerce.commerceReducer(state, step(1), products);
+  assert.equal(state.cart[0].quantity, 2);
+  for (let i = 0; i < 3; i++) state = commerce.commerceReducer(state, step(-1), products);
+  assert.deepEqual(state, { cart: [line()], wishlist: ["speaker"] });
+  // Only absolute zero/removal deletes; a decrement at the minimum does not.
+  state = commerce.commerceReducer(
+    state,
+    { type: "quantity", ...line("headphones", "black", 0) },
+    products,
+  );
+  assert.deepEqual(commerce.commerceReducer(state, step(1), products), state);
+});
+
+test("relative quantity intents respect canonical stock and safe integer boundaries", () => {
+  const state = { cart: [line("headphones", "black", 4)], wishlist: ["speaker"] };
+  const step = (delta: number) => ({
+    type: "step-quantity" as const,
+    productId: "headphones",
+    variantId: "black",
+    delta,
+  });
+  Object.freeze(state.cart[0]);
+  Object.freeze(state.cart);
+  const capped = commerce.commerceReducer(state, step(Number.MAX_SAFE_INTEGER), products);
+  assert.equal(capped.cart[0].quantity, 5);
+  assert.equal(
+    commerce.commerceReducer(state, step(-Number.MAX_SAFE_INTEGER), products).cart[0].quantity,
+    1,
+  );
+  assert.equal(state.cart[0].quantity, 4);
+  for (const delta of [0, 1.5, NaN, Infinity, -Infinity, Number.MAX_SAFE_INTEGER + 1]) {
+    assert.deepEqual(commerce.commerceReducer(state, step(delta), products), state);
+  }
+  for (const demoStock of [0, -1, 1.5, Infinity, Number.MAX_SAFE_INTEGER + 1]) {
+    const malformed = [{ ...products[0], variants: [{ ...products[0].variants[0], demoStock }] }];
+    assert.deepEqual(commerce.commerceReducer(state, step(1), malformed), state);
+  }
+  const hugeStock = [
+    {
+      ...products[0],
+      variants: [{ ...products[0].variants[0], demoStock: Number.MAX_SAFE_INTEGER }],
+    },
+  ];
+  const huge = { cart: [line("headphones", "black", Number.MAX_SAFE_INTEGER - 1)], wishlist: [] };
+  assert.equal(
+    commerce.commerceReducer(huge, step(Number.MAX_SAFE_INTEGER), hugeStock).cart[0].quantity,
+    Number.MAX_SAFE_INTEGER,
+  );
+  for (const variantId of ["missing", "sold-out"]) {
+    assert.deepEqual(commerce.commerceReducer(state, { ...step(1), variantId }, products), state);
+  }
+  assert.deepEqual(
+    commerce.commerceReducer(state, { ...step(1), productId: "unknown" }, products),
+    state,
+  );
+});
+
 test("remove and zero quantity remove only the matching variant", () => {
   const state = { cart: [line(), line("headphones", "white")], wishlist: ["speaker"] };
   for (const action of [

@@ -10,7 +10,7 @@ import { useCommerce } from "@/providers/commerce-provider";
 import { useMotionReady } from "@/providers/motion-ready";
 
 export function ProductOptions({ product }: { product: Product }) {
-  const { state, ready: storeReady, send, notify, addItem } = useCommerce();
+  const { state, ready: storeReady, send, addItem } = useCommerce();
   const motionReady = useMotionReady();
   const ready = storeReady && motionReady;
   const [variantId, setVariantId] = useState(product.variants[0].id);
@@ -115,11 +115,6 @@ export function ProductOptions({ product }: { product: Product }) {
         aria-label={saved ? `Remove ${product.name} from wishlist` : `Save ${product.name}`}
         onClick={() => {
           send({ type: "wishlist", productId: product.id });
-          notify(
-            saved
-              ? `${product.name} removed from your wishlist.`
-              : `${product.name} saved to your wishlist.`,
-          );
         }}
       >
         <Heart size={17} fill={saved ? "currentColor" : "none"} aria-hidden="true" />

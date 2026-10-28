@@ -1,10 +1,7 @@
-import { Suspense } from "react";
-import { RouteMotionReady } from "@/components/motion/route-motion-ready";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { categoryDefinitions } from "@/data/products";
 import { Catalog } from "@/components/catalog/catalog";
-import RouteLoading from "@/components/ui/route-loading";
 
 export function generateStaticParams() {
   return categoryDefinitions.map((category) => ({ slug: category.slug }));
@@ -18,13 +15,15 @@ export async function generateMetadata({
   const category = categoryDefinitions.find((item) => item.slug === slug);
   return { title: category?.label || "Collection not found" };
 }
-export default function CollectionPage({ params }: { params: Promise<{ slug: string }> }) {
+// Keep URL-specific essential content readable without a streaming reveal script.
+export const instant = false;
+
+export default async function CollectionPage({ params }: { params: Promise<{ slug: string }> }) {
+  const content = await CollectionContent({ params });
   return (
     <main id="main" className="interior-page container" tabIndex={-1}>
       <p className="eyebrow">The Shopthie collection</p>
-      <Suspense fallback={<RouteLoading>Preparing the collection…</RouteLoading>}>
-        <CollectionContent params={params} />
-      </Suspense>
+      {content}
     </main>
   );
 }
@@ -42,10 +41,7 @@ async function CollectionContent({ params }: { params: Promise<{ slug: string }>
           <span className="demo-label">Demo catalog · Not live inventory</span>
         </div>
       </header>
-      <Suspense fallback={<RouteLoading>Preparing the collection…</RouteLoading>}>
-        <Catalog initialCategory={category.slug} />
-      </Suspense>
-      <RouteMotionReady />
+      <Catalog initialCategory={category.slug} />
     </>
   );
 }

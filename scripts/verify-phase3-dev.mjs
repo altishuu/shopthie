@@ -15,6 +15,11 @@ try {
   await expect(page.locator("html")).toHaveAttribute("data-motion-mode", "full");
   await expect(page.locator(".pin-spacer")).toHaveCount(1);
   await expect(page.locator("body")).toHaveCSS("background-color", "rgb(245, 244, 240)");
+  await page.locator('a[href="/collections/headphones"]').first().click();
+  await expect(page).toHaveURL(/\/collections\/headphones$/);
+  await expect(page.getByRole("heading", { level: 1 })).toContainText(/headphones/i);
+  await expect(page.locator("html")).toHaveAttribute("data-route-state", "idle");
+  await expect(page.locator(".pin-spacer")).toHaveCount(0);
   await page
     .getByRole("navigation", { name: "Footer navigation" })
     .getByRole("link", { name: "Shop", exact: true })
@@ -38,7 +43,7 @@ try {
   const result = {
     base,
     developmentStrictMode: "pass",
-    routes: ["/", "/shop", "/products/google-pixel-8"],
+    routes: ["/", "/collections/headphones", "/shop", "/products/google-pixel-8"],
     pinSetupCleanup: "pass",
     quantity: 2,
     liveReducedMotion: "pass",
@@ -46,6 +51,11 @@ try {
   };
   await writeFile("docs/phase-3-dev-results.json", JSON.stringify(result, null, 2) + "\n");
   console.log(JSON.stringify(result, null, 2));
+} catch (error) {
+  const failure = { message: error.message, url: page.url(), runtimeOrConsoleErrors: errors };
+  await writeFile("docs/phase-5-dev-failure.json", JSON.stringify(failure, null, 2) + "\n");
+  console.error(JSON.stringify(failure, null, 2));
+  throw error;
 } finally {
   await browser.close();
 }

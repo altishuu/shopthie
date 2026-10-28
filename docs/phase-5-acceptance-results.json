@@ -1,0 +1,60 @@
+{
+  "status": "local-essential-handoff-verified",
+  "scopeDecision": "User requested essential verification only and no further extended test cycles. The final focus correction was verified with affected desktop/mobile flows and a production build.",
+  "productionBuild": "passed",
+  "unitTests": { "passed": 89, "failed": 0 },
+  "lint": "passed",
+  "typecheck": "passed",
+  "formatCheck": "passed",
+  "diffWhitespaceCheck": "passed",
+  "latestFocusedBrowserRun": {
+    "passed": 16,
+    "failed": 0,
+    "projects": ["desktop", "mobile"],
+    "coverage": [
+      "Search, filtering, sorting and browser history",
+      "Product options, quantities, wishlist, persistence and demo checkout",
+      "Committed cart removal and normal heading focus",
+      "Canonical wishlist removal and duplicate removal focus repair",
+      "Preserving a newer focus choice during delayed bag and wishlist removal"
+    ],
+    "report": "playwright-report/index.html",
+    "fullSuiteRerun": false
+  },
+  "earlierFullBrowserRun": {
+    "passed": 138,
+    "failed": 0,
+    "process": "proc_b75672d5fa6c",
+    "limitation": "Passed before the final two consumer focus guards; not rerun after that small correction."
+  },
+  "earlierExtendedBrowserRun": {
+    "scenariosPassed": 22,
+    "accessibilityScansPassed": 12,
+    "engines": ["chromium", "firefox", "webkit"],
+    "report": "docs/phase-5-browser-results.json",
+    "limitation": "Historical checkpoint, not a latest-source cross-engine certification. Repeat matrix deliberately deferred."
+  },
+  "profiling": {
+    "report": "docs/phase-5-performance-results.json",
+    "before": "docs/phase-5-performance-before.json",
+    "checkpointListenerGrowthBefore": 54,
+    "checkpointListenerGrowthAfter": 0,
+    "limitation": "Earlier bounded local lab result; profiling was not repeated after all later UI changes."
+  },
+  "review": {
+    "broadStaticReview": "passed before final focus guards",
+    "reviewId": "deleg_268104de",
+    "specificFocusFinding": "Corrected; both new regressions demonstrated RED then passed after rebuild on desktop and mobile.",
+    "additionalReviewCycle": "not requested; stopped under focused verification scope"
+  },
+  "preview": {
+    "url": "http://127.0.0.1:3100",
+    "homeHTTP": 200,
+    "shopHTTP": 200
+  },
+  "remainingScope": [
+    "Seven sourced models, not proposed sixteen-model expansion",
+    "No physical-device or assistive-technology certification",
+    "No deployment, push, backend, real orders or payments"
+  ]
+}

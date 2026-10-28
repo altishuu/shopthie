@@ -1,0 +1,2934 @@
+{
+  "base": "http://127.0.0.1:3100",
+  "measuredAt": "2026-10-28T05:13:25.317Z",
+  "environment": {
+    "node": "v26.12.1",
+    "platform": "linux",
+    "cpus": 12,
+    "browser": "156.0.8078.4"
+  },
+  "methodology": "Local production Chromium lab; fresh contexts for startup. Not field Web Vitals or real-device certification. Intentional readable intro retained. Heap sampled at the same home route after two fixed-route warmup cycles and forced GC.",
+  "startup": [
+    {
+      "name": "desktop-cold-1",
+      "width": 1440,
+      "height": 1000,
+      "observedLcpMs": 400,
+      "lcpCandidates": [
+        {
+          "at": 400,
+          "size": 317386,
+          "element": "IMG"
+        }
+      ],
+      "cls": 0,
+      "shifts": [],
+      "fcpMs": 400,
+      "ttfbMs": 45.5,
+      "surfaceReadyMs": 3501.4000000059605,
+      "introKind": "full",
+      "longTasks": [
+        {
+          "at": 125.70000000298023,
+          "duration": 69
+        },
+        {
+          "at": 369.20000000298023,
+          "duration": 66
+        }
+      ],
+      "resourceTransferBytes": 487873,
+      "resourceEncodedBytes": 476173,
+      "resources": [
+        {
+          "path": "/_next/static/media/dm_sans_latin-s.p.0tm8u-h63rec8.woff2",
+          "type": "link",
+          "transferBytes": 37232,
+          "encodedBytes": 36932,
+          "durationMs": 12.699999988079071
+        },
+        {
+          "path": "/_next/static/media/manrope_latin-s.p.1p_a2k8qd5zhp.woff2",
+          "type": "link",
+          "transferBytes": 25136,
+          "encodedBytes": 24836,
+          "durationMs": 18.700000002980232
+        },
+        {
+          "path": "/_next/image",
+          "type": "link",
+          "transferBytes": 8974,
+          "encodedBytes": 8674,
+          "durationMs": 163.30000001192093
+        },
+        {
+          "path": "/_next/static/chunks/0w_ea7dbsn2ik.css",
+          "type": "link",
+          "transferBytes": 10562,
+          "encodedBytes": 10262,
+          "durationMs": 58.8999999910593
+        },
+        {
+          "path": "/_next/static/chunks/2d5-ljwvq-8es.css",
+          "type": "link",
+          "transferBytes": 2966,
+          "encodedBytes": 2666,
+          "durationMs": 57.70000000298023
+        },
+        {
+          "path": "/_next/static/chunks/1ckvzn7sfprko.js",
+          "type": "link",
+          "transferBytes": 2335,
+          "encodedBytes": 2035,
+          "durationMs": 63.5
+        },
+        {
+          "path": "/_next/static/chunks/06bs-nf19b2js.js",
+          "type": "script",
+          "transferBytes": 8045,
+          "encodedBytes": 7745,
+          "durationMs": 83.70000000298023
+        },
+        {
+          "path": "/_next/static/chunks/20box33a0_n53.js",
+          "type": "script",
+          "transferBytes": 72990,
+          "encodedBytes": 72690,
+          "durationMs": 105.29999999701977
+        },
+        {
+          "path": "/_next/static/chunks/3l_qmp-61z4yc.js",
+          "type": "script",
+          "transferBytes": 47318,
+          "encodedBytes": 47018,
+          "durationMs": 106.8999999910593
+        },
+        {
+          "path": "/_next/static/chunks/turbopack-3-ry682tkyiqk.js",
+          "type": "script",
+          "transferBytes": 4259,
+          "encodedBytes": 3959,
+          "durationMs": 91.70000000298023
+        },
+        {
+          "path": "/_next/static/chunks/0_iph43yuv0gz.js",
+          "type": "script",
+          "transferBytes": 9597,
+          "encodedBytes": 9297,
+          "durationMs": 94.6000000089407
+        },
+        {
+          "path": "/_next/static/chunks/33qpf51mt6h3i.js",
+          "type": "script",
+          "transferBytes": 12424,
+          "encodedBytes": 12124,
+          "durationMs": 103.3999999910593
+        },
+        {
+          "path": "/_next/static/chunks/2t8bs78h291g7.js",
+          "type": "script",
+          "transferBytes": 12698,
+          "encodedBytes": 12398,
+          "durationMs": 113.8999999910593
+        },
+        {
+          "path": "/_next/static/chunks/3z7yrx6brgpja.js",
+          "type": "script",
+          "transferBytes": 1002,
+          "encodedBytes": 702,
+          "durationMs": 115.90000000596046
+        },
+        {
+          "path": "/_next/static/chunks/424yzo6zixvcs.js",
+          "type": "script",
+          "transferBytes": 54085,
+          "encodedBytes": 53785,
+          "durationMs": 120.79999999701977
+        },
+        {
+          "path": "/_next/static/chunks/1nts2h1c_epxp.js",
+          "type": "script",
+          "transferBytes": 3450,
+          "encodedBytes": 3150,
+          "durationMs": 118.79999999701977
+        },
+        {
+          "path": "/_next/image",
+          "type": "img",
+          "transferBytes": 5668,
+          "encodedBytes": 5368,
+          "durationMs": 33.5
+        },
+        {
+          "path": "/_next/image",
+          "type": "img",
+          "transferBytes": 4600,
+          "encodedBytes": 4300,
+          "durationMs": 33.599999994039536
+        },
+        {
+          "path": "/_next/image",
+          "type": "img",
+          "transferBytes": 11404,
+          "encodedBytes": 11104,
+          "durationMs": 33.6000000089407
+        },
+        {
+          "path": "/_next/image",
+          "type": "img",
+          "transferBytes": 69706,
+          "encodedBytes": 69406,
+          "durationMs": 35.400000005960464
+        },
+        {
+          "path": "/_next/image",
+          "type": "img",
+          "transferBytes": 6652,
+          "encodedBytes": 6352,
+          "durationMs": 35.1000000089407
+        },
+        {
+          "path": "/_next/image",
+          "type": "img",
+          "transferBytes": 49988,
+          "encodedBytes": 49688,
+          "durationMs": 37.30000001192093
+        },
+        {
+          "path": "/",
+          "type": "fetch",
+          "transferBytes": 574,
+          "encodedBytes": 274,
+          "durationMs": 57.20000000298023
+        },
+        {
+          "path": "/shop",
+          "type": "fetch",
+          "transferBytes": 573,
+          "encodedBytes": 273,
+          "durationMs": 80.09999999403954
+        },
+        {
+          "path": "/collections/headphones",
+          "type": "fetch",
+          "transferBytes": 611,
+          "encodedBytes": 311,
+          "durationMs": 83.29999999701977
+        },
+        {
+          "path": "/about",
+          "type": "fetch",
+          "transferBytes": 591,
+          "encodedBytes": 291,
+          "durationMs": 82
+        },
+        {
+          "path": "/wishlist",
+          "type": "fetch",
+          "transferBytes": 576,
+          "encodedBytes": 276,
+          "durationMs": 24.900000005960464
+        },
+        {
+          "path": "/shop",
+          "type": "fetch",
+          "transferBytes": 2588,
+          "encodedBytes": 2288,
+          "durationMs": 31.799999997019768
+        },
+        {
+          "path": "/_next/static/chunks/001oi4q9aa6mf.css",
+          "type": "link",
+          "transferBytes": 1526,
+          "encodedBytes": 1226,
+          "durationMs": 40.19999998807907
+        },
+        {
+          "path": "/about",
+          "type": "fetch",
+          "transferBytes": 3038,
+          "encodedBytes": 2738,
+          "durationMs": 36
+        },
+        {
+          "path": "/collections/headphones",
+          "type": "fetch",
+          "transferBytes": 2127,
+          "encodedBytes": 1827,
+          "durationMs": 32.79999999701977
+        },
+        {
+          "path": "/wishlist",
+          "type": "fetch",
+          "transferBytes": 1393,
+          "encodedBytes": 1093,
+          "durationMs": 30.299999997019768
+        },
+        {
+          "path": "/_next/static/chunks/1fv_l3j5--2-3.js",
+          "type": "script",
+          "transferBytes": 3542,
+          "encodedBytes": 3242,
+          "durationMs": 14.700000002980232
+        },
+        {
+          "path": "/_next/static/chunks/35jtlpc4_work.js",
+          "type": "script",
+          "transferBytes": 869,
+          "encodedBytes": 569,
+          "durationMs": 7.0999999940395355
+        },
+        {
+          "path": "/_next/static/chunks/2etsmn2ajeqda.js",
+          "type": "script",
+          "transferBytes": 1790,
+          "encodedBytes": 1490,
+          "durationMs": 11
+        },
+        {
+          "path": "/products/apple-airpods-max",
+          "type": "fetch",
+          "transferBytes": 625,
+          "encodedBytes": 325,
+          "durationMs": 13.5
+        },
+        {
+          "path": "/_next/static/chunks/2n8w29w60q3u2.css",
+          "type": "link",
+          "transferBytes": 1230,
+          "encodedBytes": 930,
+          "durationMs": 9.299999997019768
+        },
+        {
+          "path": "/products/apple-airpods-max",
+          "type": "fetch",
+          "transferBytes": 3752,
+          "encodedBytes": 3452,
+          "durationMs": 7.600000008940697
+        },
+        {
+          "path": "/_next/static/chunks/436ubwzqkhgx7.js",
+          "type": "script",
+          "transferBytes": 1377,
+          "encodedBytes": 1077,
+          "durationMs": 4.5
+        }
+      ],
+      "overflow": false,
+      "errors": [],
+      "cdpMetrics": [
+        {
+          "name": "Timestamp",
+          "value": 82235.528204
+        },
+        {
+          "name": "AudioHandlers",
+          "value": 0
+        },
+        {
+          "name": "AudioWorkletProcessors",
+          "value": 0
+        },
+        {
+          "name": "Documents",
+          "value": 4
+        },
+        {
+          "name": "Frames",
+          "value": 4
+        },
+        {
+          "name": "JSEventListeners",
+          "value": 505
+        },
+        {
+          "name": "LayoutObjects",
+          "value": 1108
+        },
+        {
+          "name": "MediaKeySessions",
+          "value": 0
+        },
+        {
+          "name": "MediaKeys",
+          "value": 0
+        },
+        {
+          "name": "Nodes",
+          "value": 1007
+        },
+        {
+          "name": "Resources",
+          "value": 43
+        },
+        {
+          "name": "ContextLifecycleStateObservers",
+          "value": 19
+        },
+        {
+          "name": "V8PerContextDatas",
+          "value": 4
+        },
+        {
+          "name": "WorkerGlobalScopes",
+          "value": 0
+        },
+        {
+          "name": "UACSSResources",
+          "value": 0
+        },
+        {
+          "name": "RTCPeerConnections",
+          "value": 0
+        },
+        {
+          "name": "ResourceFetchers",
+          "value": 4
+        },
+        {
+          "name": "AdSubframes",
+          "value": 0
+        },
+        {
+          "name": "DetachedScriptStates",
+          "value": 2
+        },
+        {
+          "name": "ArrayBufferContents",
+          "value": 48
+        },
+        {
+          "name": "LayoutCount",
+          "value": 98
+        },
+        {
+          "name": "RecalcStyleCount",
+          "value": 354
+        },
+        {
+          "name": "LayoutDuration",
+          "value": 0.075629
+        },
+        {
+          "name": "RecalcStyleDuration",
+          "value": 0.080859
+        },
+        {
+          "name": "DevToolsCommandDuration",
+          "value": 0.061284
+        },
+        {
+          "name": "ScriptDuration",
+          "value": 0.237216
+        },
+        {
+          "name": "V8CompileDuration",
+          "value": 0.001565
+        },
+        {
+          "name": "TaskDuration",
+          "value": 0.835943
+        },
+        {
+          "name": "TaskOtherDuration",
+          "value": 0.37939
+        },
+        {
+          "name": "ThreadTime",
+          "value": 0.809902
+        },
+        {
+          "name": "ProcessTime",
+          "value": 1.61
+        },
+        {
+          "name": "JSHeapUsedSize",
+          "value": 8282584
+        },
+        {
+          "name": "JSHeapTotalSize",
+          "value": 12128256
+        },
+        {
+          "name": "FirstMeaningfulPaint",
+          "value": 82230.88109
+        },
+        {
+          "name": "DomContentLoaded",
+          "value": 82230.686606
+        },
+        {
+          "name": "NavigationStart",
+          "value": 82230.484292
+        }
+      ]
+    },
+    {
+      "name": "desktop-cold-2",
+      "width": 1440,
+      "height": 1000,
+      "observedLcpMs": 284,
+      "lcpCandidates": [
+        {
+          "at": 284,
+          "size": 317386,
+          "element": "IMG"
+        }
+      ],
+      "cls": 0,
+      "shifts": [],
+      "fcpMs": 284,
+      "ttfbMs": 7.5,
+      "surfaceReadyMs": 3350.3999999910593,
+      "introKind": "full",
+      "longTasks": [
+        {
+          "at": 253.5,
+          "duration": 77
+        }
+      ],
+      "resourceTransferBytes": 487873,
+      "resourceEncodedBytes": 476173,
+      "resources": [
+        {
+          "path": "/_next/static/media/dm_sans_latin-s.p.0tm8u-h63rec8.woff2",
+          "type": "link",
+          "transferBytes": 37232,
+          "encodedBytes": 36932,
+          "durationMs": 9.5
+        },
+        {
+          "path": "/_next/static/media/manrope_latin-s.p.1p_a2k8qd5zhp.woff2",
+          "type": "link",
+          "transferBytes": 25136,
+          "encodedBytes": 24836,
+          "durationMs": 8.899999991059303
+        },
+        {
+          "path": "/_next/image",
+          "type": "link",
+          "transferBytes": 8974,
+          "encodedBytes": 8674,
+          "durationMs": 15.300000011920929
+        },
+        {
+          "path": "/_next/static/chunks/0w_ea7dbsn2ik.css",
+          "type": "link",
+          "transferBytes": 10562,
+          "encodedBytes": 10262,
+          "durationMs": 20.900000005960464
+        },
+        {
+          "path": "/_next/static/chunks/2d5-ljwvq-8es.css",
+          "type": "link",
+          "transferBytes": 2966,
+          "encodedBytes": 2666,
+          "durationMs": 21.69999998807907
+        },
+        {
+          "path": "/_next/static/chunks/1ckvzn7sfprko.js",
+          "type": "link",
+          "transferBytes": 2335,
+          "encodedBytes": 2035,
+          "durationMs": 26.799999997019768
+        },
+        {
+          "path": "/_next/static/chunks/06bs-nf19b2js.js",
+          "type": "script",
+          "transferBytes": 8045,
+          "encodedBytes": 7745,
+          "durationMs": 29.099999994039536
+        },
+        {
+          "path": "/_next/static/chunks/20box33a0_n53.js",
+          "type": "script",
+          "transferBytes": 72990,
+          "encodedBytes": 72690,
+          "durationMs": 54.70000000298023
+        },
+        {
+          "path": "/_next/static/chunks/3l_qmp-61z4yc.js",
+          "type": "script",
+          "transferBytes": 47318,
+          "encodedBytes": 47018,
+          "durationMs": 49.70000000298023
+        },
+        {
+          "path": "/_next/static/chunks/turbopack-3-ry682tkyiqk.js",
+          "type": "script",
+          "transferBytes": 4259,
+          "encodedBytes": 3959,
+          "durationMs": 35.79999999701977
+        },
+        {
+          "path": "/_next/static/chunks/0_iph43yuv0gz.js",
+          "type": "script",
+          "transferBytes": 9597,
+          "encodedBytes": 9297,
+          "durationMs": 39
+        },
+        {
+          "path": "/_next/static/chunks/33qpf51mt6h3i.js",
+          "type": "script",
+          "transferBytes": 12424,
+          "encodedBytes": 12124,
+          "durationMs": 42.29999999701977
+        },
+        {
+          "path": "/_next/static/chunks/2t8bs78h291g7.js",
+          "type": "script",
+          "transferBytes": 12698,
+          "encodedBytes": 12398,
+          "durationMs": 47.5
+        },
+        {
+          "path": "/_next/static/chunks/424yzo6zixvcs.js",
+          "type": "script",
+          "transferBytes": 54085,
+          "encodedBytes": 53785,
+          "durationMs": 59.5
+        },
+        {
+          "path": "/_next/static/chunks/3z7yrx6brgpja.js",
+          "type": "script",
+          "transferBytes": 1002,
+          "encodedBytes": 702,
+          "durationMs": 53.5
+        },
+        {
+          "path": "/_next/static/chunks/1nts2h1c_epxp.js",
+          "type": "script",
+          "transferBytes": 3450,
+          "encodedBytes": 3150,
+          "durationMs": 56.69999998807907
+        },
+        {
+          "path": "/_next/image",
+          "type": "img",
+          "transferBytes": 5668,
+          "encodedBytes": 5368,
+          "durationMs": 14.5
+        },
+        {
+          "path": "/_next/image",
+          "type": "img",
+          "transferBytes": 4600,
+          "encodedBytes": 4300,
+          "durationMs": 16.400000005960464
+        },
+        {
+          "path": "/_next/image",
+          "type": "img",
+          "transferBytes": 11404,
+          "encodedBytes": 11104,
+          "durationMs": 16.900000005960464
+        },
+        {
+          "path": "/_next/image",
+          "type": "img",
+          "transferBytes": 69706,
+          "encodedBytes": 69406,
+          "durationMs": 17.5
+        },
+        {
+          "path": "/_next/image",
+          "type": "img",
+          "transferBytes": 6652,
+          "encodedBytes": 6352,
+          "durationMs": 20.099999994039536
+        },
+        {
+          "path": "/_next/image",
+          "type": "img",
+          "transferBytes": 49988,
+          "encodedBytes": 49688,
+          "durationMs": 20.200000002980232
+        },
+        {
+          "path": "/",
+          "type": "fetch",
+          "transferBytes": 574,
+          "encodedBytes": 274,
+          "durationMs": 23.599999994039536
+        },
+        {
+          "path": "/shop",
+          "type": "fetch",
+          "transferBytes": 573,
+          "encodedBytes": 273,
+          "durationMs": 25.900000005960464
+        },
+        {
+          "path": "/collections/headphones",
+          "type": "fetch",
+          "transferBytes": 611,
+          "encodedBytes": 311,
+          "durationMs": 27.099999994039536
+        },
+        {
+          "path": "/about",
+          "type": "fetch",
+          "transferBytes": 591,
+          "encodedBytes": 291,
+          "durationMs": 28.100000008940697
+        },
+        {
+          "path": "/wishlist",
+          "type": "fetch",
+          "transferBytes": 576,
+          "encodedBytes": 276,
+          "durationMs": 11.799999997019768
+        },
+        {
+          "path": "/shop",
+          "type": "fetch",
+          "transferBytes": 2588,
+          "encodedBytes": 2288,
+          "durationMs": 25
+        },
+        {
+          "path": "/collections/headphones",
+          "type": "fetch",
+          "transferBytes": 2127,
+          "encodedBytes": 1827,
+          "durationMs": 34.099999994039536
+        },
+        {
+          "path": "/_next/static/chunks/001oi4q9aa6mf.css",
+          "type": "link",
+          "transferBytes": 1526,
+          "encodedBytes": 1226,
+          "durationMs": 55.20000000298023
+        },
+        {
+          "path": "/about",
+          "type": "fetch",
+          "transferBytes": 3038,
+          "encodedBytes": 2738,
+          "durationMs": 53.29999999701977
+        },
+        {
+          "path": "/wishlist",
+          "type": "fetch",
+          "transferBytes": 1393,
+          "encodedBytes": 1093,
+          "durationMs": 32.099999994039536
+        },
+        {
+          "path": "/_next/static/chunks/1fv_l3j5--2-3.js",
+          "type": "script",
+          "transferBytes": 3542,
+          "encodedBytes": 3242,
+          "durationMs": 26.900000005960464
+        },
+        {
+          "path": "/_next/static/chunks/35jtlpc4_work.js",
+          "type": "script",
+          "transferBytes": 869,
+          "encodedBytes": 569,
+          "durationMs": 5.200000002980232
+        },
+        {
+          "path": "/_next/static/chunks/2etsmn2ajeqda.js",
+          "type": "script",
+          "transferBytes": 1790,
+          "encodedBytes": 1490,
+          "durationMs": 6.5
+        },
+        {
+          "path": "/products/apple-airpods-max",
+          "type": "fetch",
+          "transferBytes": 625,
+          "encodedBytes": 325,
+          "durationMs": 6.399999991059303
+        },
+        {
+          "path": "/_next/static/chunks/2n8w29w60q3u2.css",
+          "type": "link",
+          "transferBytes": 1230,
+          "encodedBytes": 930,
+          "durationMs": 7
+        },
+        {
+          "path": "/products/apple-airpods-max",
+          "type": "fetch",
+          "transferBytes": 3752,
+          "encodedBytes": 3452,
+          "durationMs": 5.4000000059604645
+        },
+        {
+          "path": "/_next/static/chunks/436ubwzqkhgx7.js",
+          "type": "script",
+          "transferBytes": 1377,
+          "encodedBytes": 1077,
+          "durationMs": 5.300000011920929
+        }
+      ],
+      "overflow": false,
+      "errors": [],
+      "cdpMetrics": [
+        {
+          "name": "Timestamp",
+          "value": 82240.537783
+        },
+        {
+          "name": "AudioHandlers",
+          "value": 0
+        },
+        {
+          "name": "AudioWorkletProcessors",
+          "value": 0
+        },
+        {
+          "name": "Documents",
+          "value": 4
+        },
+        {
+          "name": "Frames",
+          "value": 4
+        },
+        {
+          "name": "JSEventListeners",
+          "value": 505
+        },
+        {
+          "name": "LayoutObjects",
+          "value": 1108
+        },
+        {
+          "name": "MediaKeySessions",
+          "value": 0
+        },
+        {
+          "name": "MediaKeys",
+          "value": 0
+        },
+        {
+          "name": "Nodes",
+          "value": 1007
+        },
+        {
+          "name": "Resources",
+          "value": 43
+        },
+        {
+          "name": "ContextLifecycleStateObservers",
+          "value": 19
+        },
+        {
+          "name": "V8PerContextDatas",
+          "value": 4
+        },
+        {
+          "name": "WorkerGlobalScopes",
+          "value": 0
+        },
+        {
+          "name": "UACSSResources",
+          "value": 0
+        },
+        {
+          "name": "RTCPeerConnections",
+          "value": 0
+        },
+        {
+          "name": "ResourceFetchers",
+          "value": 4
+        },
+        {
+          "name": "AdSubframes",
+          "value": 0
+        },
+        {
+          "name": "DetachedScriptStates",
+          "value": 2
+        },
+        {
+          "name": "ArrayBufferContents",
+          "value": 48
+        },
+        {
+          "name": "LayoutCount",
+          "value": 98
+        },
+        {
+          "name": "RecalcStyleCount",
+          "value": 359
+        },
+        {
+          "name": "LayoutDuration",
+          "value": 0.045192
+        },
+        {
+          "name": "RecalcStyleDuration",
+          "value": 0.087859
+        },
+        {
+          "name": "DevToolsCommandDuration",
+          "value": 0.056468
+        },
+        {
+          "name": "ScriptDuration",
+          "value": 0.232983
+        },
+        {
+          "name": "V8CompileDuration",
+          "value": 0.001385
+        },
+        {
+          "name": "TaskDuration",
+          "value": 0.832111
+        },
+        {
+          "name": "TaskOtherDuration",
+          "value": 0.408224
+        },
+        {
+          "name": "ThreadTime",
+          "value": 0.807422
+        },
+        {
+          "name": "ProcessTime",
+          "value": 1.64
+        },
+        {
+          "name": "JSHeapUsedSize",
+          "value": 8191720
+        },
+        {
+          "name": "JSHeapTotalSize",
+          "value": 11866112
+        },
+        {
+          "name": "FirstMeaningfulPaint",
+          "value": 82235.882765
+        },
+        {
+          "name": "DomContentLoaded",
+          "value": 82235.694284
+        },
+        {
+          "name": "NavigationStart",
+          "value": 82235.598848
+        }
+      ]
+    },
+    {
+      "name": "desktop-cold-3",
+      "width": 1440,
+      "height": 1000,
+      "observedLcpMs": 284,
+      "lcpCandidates": [
+        {
+          "at": 284,
+          "size": 317386,
+          "element": "IMG"
+        }
+      ],
+      "cls": 0,
+      "shifts": [],
+      "fcpMs": 284,
+      "ttfbMs": 10,
+      "surfaceReadyMs": 3369.300000011921,
+      "introKind": "full",
+      "longTasks": [
+        {
+          "at": 247.30000001192093,
+          "duration": 80
+        }
+      ],
+      "resourceTransferBytes": 487873,
+      "resourceEncodedBytes": 476173,
+      "resources": [
+        {
+          "path": "/_next/static/media/dm_sans_latin-s.p.0tm8u-h63rec8.woff2",
+          "type": "link",
+          "transferBytes": 37232,
+          "encodedBytes": 36932,
+          "durationMs": 11
+        },
+        {
+          "path": "/_next/static/media/manrope_latin-s.p.1p_a2k8qd5zhp.woff2",
+          "type": "link",
+          "transferBytes": 25136,
+          "encodedBytes": 24836,
+          "durationMs": 10.5
+        },
+        {
+          "path": "/_next/image",
+          "type": "link",
+          "transferBytes": 8974,
+          "encodedBytes": 8674,
+          "durationMs": 18.100000008940697
+        },
+        {
+          "path": "/_next/static/chunks/0w_ea7dbsn2ik.css",
+          "type": "link",
+          "transferBytes": 10562,
+          "encodedBytes": 10262,
+          "durationMs": 21.299999997019768
+        },
+        {
+          "path": "/_next/static/chunks/2d5-ljwvq-8es.css",
+          "type": "link",
+          "transferBytes": 2966,
+          "encodedBytes": 2666,
+          "durationMs": 22.200000002980232
+        },
+        {
+          "path": "/_next/static/chunks/1ckvzn7sfprko.js",
+          "type": "link",
+          "transferBytes": 2335,
+          "encodedBytes": 2035,
+          "durationMs": 25.900000005960464
+        },
+        {
+          "path": "/_next/static/chunks/06bs-nf19b2js.js",
+          "type": "script",
+          "transferBytes": 8045,
+          "encodedBytes": 7745,
+          "durationMs": 27.900000005960464
+        },
+        {
+          "path": "/_next/static/chunks/20box33a0_n53.js",
+          "type": "script",
+          "transferBytes": 72990,
+          "encodedBytes": 72690,
+          "durationMs": 50.6000000089407
+        },
+        {
+          "path": "/_next/static/chunks/turbopack-3-ry682tkyiqk.js",
+          "type": "script",
+          "transferBytes": 4259,
+          "encodedBytes": 3959,
+          "durationMs": 36.5
+        },
+        {
+          "path": "/_next/static/chunks/0_iph43yuv0gz.js",
+          "type": "script",
+          "transferBytes": 9597,
+          "encodedBytes": 9297,
+          "durationMs": 42.6000000089407
+        },
+        {
+          "path": "/_next/static/chunks/33qpf51mt6h3i.js",
+          "type": "script",
+          "transferBytes": 12424,
+          "encodedBytes": 12124,
+          "durationMs": 43.79999999701977
+        },
+        {
+          "path": "/_next/static/chunks/3l_qmp-61z4yc.js",
+          "type": "script",
+          "transferBytes": 47318,
+          "encodedBytes": 47018,
+          "durationMs": 51.400000005960464
+        },
+        {
+          "path": "/_next/static/chunks/2t8bs78h291g7.js",
+          "type": "script",
+          "transferBytes": 12698,
+          "encodedBytes": 12398,
+          "durationMs": 45.099999994039536
+        },
+        {
+          "path": "/_next/static/chunks/3z7yrx6brgpja.js",
+          "type": "script",
+          "transferBytes": 1002,
+          "encodedBytes": 702,
+          "durationMs": 54
+        },
+        {
+          "path": "/_next/static/chunks/1nts2h1c_epxp.js",
+          "type": "script",
+          "transferBytes": 3450,
+          "encodedBytes": 3150,
+          "durationMs": 56
+        },
+        {
+          "path": "/_next/static/chunks/424yzo6zixvcs.js",
+          "type": "script",
+          "transferBytes": 54085,
+          "encodedBytes": 53785,
+          "durationMs": 58.69999998807907
+        },
+        {
+          "path": "/_next/image",
+          "type": "img",
+          "transferBytes": 5668,
+          "encodedBytes": 5368,
+          "durationMs": 9.299999997019768
+        },
+        {
+          "path": "/_next/image",
+          "type": "img",
+          "transferBytes": 4600,
+          "encodedBytes": 4300,
+          "durationMs": 6.9000000059604645
+        },
+        {
+          "path": "/_next/image",
+          "type": "img",
+          "transferBytes": 11404,
+          "encodedBytes": 11104,
+          "durationMs": 9
+        },
+        {
+          "path": "/_next/image",
+          "type": "img",
+          "transferBytes": 6652,
+          "encodedBytes": 6352,
+          "durationMs": 8.799999997019768
+        },
+        {
+          "path": "/_next/image",
+          "type": "img",
+          "transferBytes": 69706,
+          "encodedBytes": 69406,
+          "durationMs": 9.099999994039536
+        },
+        {
+          "path": "/_next/image",
+          "type": "img",
+          "transferBytes": 49988,
+          "encodedBytes": 49688,
+          "durationMs": 8.900000005960464
+        },
+        {
+          "path": "/",
+          "type": "fetch",
+          "transferBytes": 574,
+          "encodedBytes": 274,
+          "durationMs": 24.700000002980232
+        },
+        {
+          "path": "/shop",
+          "type": "fetch",
+          "transferBytes": 573,
+          "encodedBytes": 273,
+          "durationMs": 25
+        },
+        {
+          "path": "/collections/headphones",
+          "type": "fetch",
+          "transferBytes": 611,
+          "encodedBytes": 311,
+          "durationMs": 24.900000005960464
+        },
+        {
+          "path": "/about",
+          "type": "fetch",
+          "transferBytes": 591,
+          "encodedBytes": 291,
+          "durationMs": 24.900000005960464
+        },
+        {
+          "path": "/wishlist",
+          "type": "fetch",
+          "transferBytes": 576,
+          "encodedBytes": 276,
+          "durationMs": 16
+        },
+        {
+          "path": "/shop",
+          "type": "fetch",
+          "transferBytes": 2588,
+          "encodedBytes": 2288,
+          "durationMs": 21.599999994039536
+        },
+        {
+          "path": "/collections/headphones",
+          "type": "fetch",
+          "transferBytes": 2127,
+          "encodedBytes": 1827,
+          "durationMs": 19.399999991059303
+        },
+        {
+          "path": "/_next/static/chunks/001oi4q9aa6mf.css",
+          "type": "link",
+          "transferBytes": 1526,
+          "encodedBytes": 1226,
+          "durationMs": 24.099999994039536
+        },
+        {
+          "path": "/about",
+          "type": "fetch",
+          "transferBytes": 3038,
+          "encodedBytes": 2738,
+          "durationMs": 21.5
+        },
+        {
+          "path": "/wishlist",
+          "type": "fetch",
+          "transferBytes": 1393,
+          "encodedBytes": 1093,
+          "durationMs": 15.599999994039536
+        },
+        {
+          "path": "/_next/static/chunks/1fv_l3j5--2-3.js",
+          "type": "script",
+          "transferBytes": 3542,
+          "encodedBytes": 3242,
+          "durationMs": 10.900000005960464
+        },
+        {
+          "path": "/_next/static/chunks/35jtlpc4_work.js",
+          "type": "script",
+          "transferBytes": 869,
+          "encodedBytes": 569,
+          "durationMs": 4.5999999940395355
+        },
+        {
+          "path": "/_next/static/chunks/2etsmn2ajeqda.js",
+          "type": "script",
+          "transferBytes": 1790,
+          "encodedBytes": 1490,
+          "durationMs": 5.4000000059604645
+        },
+        {
+          "path": "/products/apple-airpods-max",
+          "type": "fetch",
+          "transferBytes": 625,
+          "encodedBytes": 325,
+          "durationMs": 7.0999999940395355
+        },
+        {
+          "path": "/_next/static/chunks/2n8w29w60q3u2.css",
+          "type": "link",
+          "transferBytes": 1230,
+          "encodedBytes": 930,
+          "durationMs": 6.5999999940395355
+        },
+        {
+          "path": "/products/apple-airpods-max",
+          "type": "fetch",
+          "transferBytes": 3752,
+          "encodedBytes": 3452,
+          "durationMs": 5.9000000059604645
+        },
+        {
+          "path": "/_next/static/chunks/436ubwzqkhgx7.js",
+          "type": "script",
+          "transferBytes": 1377,
+          "encodedBytes": 1077,
+          "durationMs": 5.799999997019768
+        }
+      ],
+      "overflow": false,
+      "errors": [],
+      "cdpMetrics": [
+        {
+          "name": "Timestamp",
+          "value": 82245.523112
+        },
+        {
+          "name": "AudioHandlers",
+          "value": 0
+        },
+        {
+          "name": "AudioWorkletProcessors",
+          "value": 0
+        },
+        {
+          "name": "Documents",
+          "value": 4
+        },
+        {
+          "name": "Frames",
+          "value": 4
+        },
+        {
+          "name": "JSEventListeners",
+          "value": 505
+        },
+        {
+          "name": "LayoutObjects",
+          "value": 1108
+        },
+        {
+          "name": "MediaKeySessions",
+          "value": 0
+        },
+        {
+          "name": "MediaKeys",
+          "value": 0
+        },
+        {
+          "name": "Nodes",
+          "value": 1007
+        },
+        {
+          "name": "Resources",
+          "value": 43
+        },
+        {
+          "name": "ContextLifecycleStateObservers",
+          "value": 19
+        },
+        {
+          "name": "V8PerContextDatas",
+          "value": 4
+        },
+        {
+          "name": "WorkerGlobalScopes",
+          "value": 0
+        },
+        {
+          "name": "UACSSResources",
+          "value": 0
+        },
+        {
+          "name": "RTCPeerConnections",
+          "value": 0
+        },
+        {
+          "name": "ResourceFetchers",
+          "value": 4
+        },
+        {
+          "name": "AdSubframes",
+          "value": 0
+        },
+        {
+          "name": "DetachedScriptStates",
+          "value": 2
+        },
+        {
+          "name": "ArrayBufferContents",
+          "value": 48
+        },
+        {
+          "name": "LayoutCount",
+          "value": 98
+        },
+        {
+          "name": "RecalcStyleCount",
+          "value": 355
+        },
+        {
+          "name": "LayoutDuration",
+          "value": 0.050195
+        },
+        {
+          "name": "RecalcStyleDuration",
+          "value": 0.096033
+        },
+        {
+          "name": "DevToolsCommandDuration",
+          "value": 0.060079
+        },
+        {
+          "name": "ScriptDuration",
+          "value": 0.23712
+        },
+        {
+          "name": "V8CompileDuration",
+          "value": 0.001055
+        },
+        {
+          "name": "TaskDuration",
+          "value": 0.847262
+        },
+        {
+          "name": "TaskOtherDuration",
+          "value": 0.40278
+        },
+        {
+          "name": "ThreadTime",
+          "value": 0.832907
+        },
+        {
+          "name": "ProcessTime",
+          "value": 1.72
+        },
+        {
+          "name": "JSHeapUsedSize",
+          "value": 8207400
+        },
+        {
+          "name": "JSHeapTotalSize",
+          "value": 11866112
+        },
+        {
+          "name": "FirstMeaningfulPaint",
+          "value": 82240.88835
+        },
+        {
+          "name": "DomContentLoaded",
+          "value": 82240.652886
+        },
+        {
+          "name": "NavigationStart",
+          "value": 82240.605579
+        }
+      ]
+    },
+    {
+      "name": "phone-cold",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "observedLcpMs": 252,
+      "lcpCandidates": [
+        {
+          "at": 252,
+          "size": 101862,
+          "element": "IMG"
+        }
+      ],
+      "cls": 0,
+      "shifts": [],
+      "fcpMs": 252,
+      "ttfbMs": 7.5,
+      "surfaceReadyMs": 3346.2000000029802,
+      "introKind": "full",
+      "longTasks": [],
+      "resourceTransferBytes": 354696,
+      "resourceEncodedBytes": 346596,
+      "resources": [
+        {
+          "path": "/_next/static/media/dm_sans_latin-s.p.0tm8u-h63rec8.woff2",
+          "type": "link",
+          "transferBytes": 37232,
+          "encodedBytes": 36932,
+          "durationMs": 7.5
+        },
+        {
+          "path": "/_next/static/media/manrope_latin-s.p.1p_a2k8qd5zhp.woff2",
+          "type": "link",
+          "transferBytes": 25136,
+          "encodedBytes": 24836,
+          "durationMs": 8.600000008940697
+        },
+        {
+          "path": "/_next/image",
+          "type": "link",
+          "transferBytes": 3052,
+          "encodedBytes": 2752,
+          "durationMs": 13.799999997019768
+        },
+        {
+          "path": "/_next/static/chunks/0w_ea7dbsn2ik.css",
+          "type": "link",
+          "transferBytes": 10562,
+          "encodedBytes": 10262,
+          "durationMs": 16.200000002980232
+        },
+        {
+          "path": "/_next/static/chunks/2d5-ljwvq-8es.css",
+          "type": "link",
+          "transferBytes": 2966,
+          "encodedBytes": 2666,
+          "durationMs": 15.700000002980232
+        },
+        {
+          "path": "/_next/static/chunks/1ckvzn7sfprko.js",
+          "type": "link",
+          "transferBytes": 2335,
+          "encodedBytes": 2035,
+          "durationMs": 18.200000002980232
+        },
+        {
+          "path": "/_next/static/chunks/06bs-nf19b2js.js",
+          "type": "script",
+          "transferBytes": 8045,
+          "encodedBytes": 7745,
+          "durationMs": 19.299999997019768
+        },
+        {
+          "path": "/_next/static/chunks/3l_qmp-61z4yc.js",
+          "type": "script",
+          "transferBytes": 47318,
+          "encodedBytes": 47018,
+          "durationMs": 35.3999999910593
+        },
+        {
+          "path": "/_next/static/chunks/20box33a0_n53.js",
+          "type": "script",
+          "transferBytes": 72990,
+          "encodedBytes": 72690,
+          "durationMs": 38
+        },
+        {
+          "path": "/_next/static/chunks/turbopack-3-ry682tkyiqk.js",
+          "type": "script",
+          "transferBytes": 4259,
+          "encodedBytes": 3959,
+          "durationMs": 26.5
+        },
+        {
+          "path": "/_next/static/chunks/0_iph43yuv0gz.js",
+          "type": "script",
+          "transferBytes": 9597,
+          "encodedBytes": 9297,
+          "durationMs": 31.600000008940697
+        },
+        {
+          "path": "/_next/static/chunks/33qpf51mt6h3i.js",
+          "type": "script",
+          "transferBytes": 12424,
+          "encodedBytes": 12124,
+          "durationMs": 38.8999999910593
+        },
+        {
+          "path": "/_next/static/chunks/2t8bs78h291g7.js",
+          "type": "script",
+          "transferBytes": 12698,
+          "encodedBytes": 12398,
+          "durationMs": 41.29999999701977
+        },
+        {
+          "path": "/_next/static/chunks/424yzo6zixvcs.js",
+          "type": "script",
+          "transferBytes": 54085,
+          "encodedBytes": 53785,
+          "durationMs": 52.3999999910593
+        },
+        {
+          "path": "/_next/static/chunks/3z7yrx6brgpja.js",
+          "type": "script",
+          "transferBytes": 1002,
+          "encodedBytes": 702,
+          "durationMs": 49.099999994039536
+        },
+        {
+          "path": "/_next/static/chunks/1nts2h1c_epxp.js",
+          "type": "script",
+          "transferBytes": 3450,
+          "encodedBytes": 3150,
+          "durationMs": 50.5
+        },
+        {
+          "path": "/_next/image",
+          "type": "img",
+          "transferBytes": 2514,
+          "encodedBytes": 2214,
+          "durationMs": 5.299999997019768
+        },
+        {
+          "path": "/_next/image",
+          "type": "img",
+          "transferBytes": 5174,
+          "encodedBytes": 4874,
+          "durationMs": 7.199999988079071
+        },
+        {
+          "path": "/_next/image",
+          "type": "img",
+          "transferBytes": 28540,
+          "encodedBytes": 28240,
+          "durationMs": 7.200000002980232
+        },
+        {
+          "path": "/",
+          "type": "fetch",
+          "transferBytes": 574,
+          "encodedBytes": 274,
+          "durationMs": 13.299999997019768
+        },
+        {
+          "path": "/wishlist",
+          "type": "fetch",
+          "transferBytes": 576,
+          "encodedBytes": 276,
+          "durationMs": 13.599999994039536
+        },
+        {
+          "path": "/wishlist",
+          "type": "fetch",
+          "transferBytes": 1393,
+          "encodedBytes": 1093,
+          "durationMs": 6
+        },
+        {
+          "path": "/_next/static/chunks/2etsmn2ajeqda.js",
+          "type": "script",
+          "transferBytes": 1790,
+          "encodedBytes": 1490,
+          "durationMs": 5.100000008940697
+        },
+        {
+          "path": "/products/apple-airpods-max",
+          "type": "fetch",
+          "transferBytes": 625,
+          "encodedBytes": 325,
+          "durationMs": 5.4000000059604645
+        },
+        {
+          "path": "/_next/static/chunks/2n8w29w60q3u2.css",
+          "type": "link",
+          "transferBytes": 1230,
+          "encodedBytes": 930,
+          "durationMs": 6.0999999940395355
+        },
+        {
+          "path": "/products/apple-airpods-max",
+          "type": "fetch",
+          "transferBytes": 3752,
+          "encodedBytes": 3452,
+          "durationMs": 5.700000002980232
+        },
+        {
+          "path": "/_next/static/chunks/436ubwzqkhgx7.js",
+          "type": "script",
+          "transferBytes": 1377,
+          "encodedBytes": 1077,
+          "durationMs": 5.399999991059303
+        }
+      ],
+      "overflow": false,
+      "errors": [],
+      "cdpMetrics": [
+        {
+          "name": "Timestamp",
+          "value": 82250.434128
+        },
+        {
+          "name": "AudioHandlers",
+          "value": 0
+        },
+        {
+          "name": "AudioWorkletProcessors",
+          "value": 0
+        },
+        {
+          "name": "Documents",
+          "value": 4
+        },
+        {
+          "name": "Frames",
+          "value": 4
+        },
+        {
+          "name": "JSEventListeners",
+          "value": 489
+        },
+        {
+          "name": "LayoutObjects",
+          "value": 666
+        },
+        {
+          "name": "MediaKeySessions",
+          "value": 0
+        },
+        {
+          "name": "MediaKeys",
+          "value": 0
+        },
+        {
+          "name": "Nodes",
+          "value": 1000
+        },
+        {
+          "name": "Resources",
+          "value": 31
+        },
+        {
+          "name": "ContextLifecycleStateObservers",
+          "value": 19
+        },
+        {
+          "name": "V8PerContextDatas",
+          "value": 4
+        },
+        {
+          "name": "WorkerGlobalScopes",
+          "value": 0
+        },
+        {
+          "name": "UACSSResources",
+          "value": 0
+        },
+        {
+          "name": "RTCPeerConnections",
+          "value": 0
+        },
+        {
+          "name": "ResourceFetchers",
+          "value": 4
+        },
+        {
+          "name": "AdSubframes",
+          "value": 0
+        },
+        {
+          "name": "DetachedScriptStates",
+          "value": 2
+        },
+        {
+          "name": "ArrayBufferContents",
+          "value": 30
+        },
+        {
+          "name": "LayoutCount",
+          "value": 60
+        },
+        {
+          "name": "RecalcStyleCount",
+          "value": 291
+        },
+        {
+          "name": "LayoutDuration",
+          "value": 0.025211
+        },
+        {
+          "name": "RecalcStyleDuration",
+          "value": 0.082444
+        },
+        {
+          "name": "DevToolsCommandDuration",
+          "value": 0.053897
+        },
+        {
+          "name": "ScriptDuration",
+          "value": 0.171155
+        },
+        {
+          "name": "V8CompileDuration",
+          "value": 0.001695
+        },
+        {
+          "name": "TaskDuration",
+          "value": 0.660913
+        },
+        {
+          "name": "TaskOtherDuration",
+          "value": 0.326511
+        },
+        {
+          "name": "ThreadTime",
+          "value": 0.655127
+        },
+        {
+          "name": "ProcessTime",
+          "value": 1.17
+        },
+        {
+          "name": "JSHeapUsedSize",
+          "value": 7431116
+        },
+        {
+          "name": "JSHeapTotalSize",
+          "value": 11341824
+        },
+        {
+          "name": "FirstMeaningfulPaint",
+          "value": 82245.824028
+        },
+        {
+          "name": "DomContentLoaded",
+          "value": 82245.621111
+        },
+        {
+          "name": "NavigationStart",
+          "value": 82245.572228
+        }
+      ]
+    },
+    {
+      "name": "phone-cpu4-network",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "throttle": true,
+      "observedLcpMs": 2392,
+      "lcpCandidates": [
+        {
+          "at": 2392,
+          "size": 101862,
+          "element": "IMG"
+        }
+      ],
+      "cls": 0,
+      "shifts": [],
+      "fcpMs": 2392,
+      "ttfbMs": 5.4000000059604645,
+      "surfaceReadyMs": 5420.70000000298,
+      "introKind": "full",
+      "longTasks": [
+        {
+          "at": 602.0999999940395,
+          "duration": 56
+        },
+        {
+          "at": 703.0999999940395,
+          "duration": 123
+        },
+        {
+          "at": 1901.5,
+          "duration": 167
+        },
+        {
+          "at": 2142.2000000029802,
+          "duration": 62
+        },
+        {
+          "at": 2270.7000000029802,
+          "duration": 62
+        },
+        {
+          "at": 2375.2000000029802,
+          "duration": 179
+        }
+      ],
+      "resourceTransferBytes": 320982,
+      "resourceEncodedBytes": 313482,
+      "resources": [
+        {
+          "path": "/_next/static/media/dm_sans_latin-s.p.0tm8u-h63rec8.woff2",
+          "type": "link",
+          "transferBytes": 37232,
+          "encodedBytes": 36932,
+          "durationMs": 854.2999999970198
+        },
+        {
+          "path": "/_next/static/media/manrope_latin-s.p.1p_a2k8qd5zhp.woff2",
+          "type": "link",
+          "transferBytes": 25136,
+          "encodedBytes": 24836,
+          "durationMs": 658.3999999910593
+        },
+        {
+          "path": "/_next/image",
+          "type": "link",
+          "transferBytes": 3052,
+          "encodedBytes": 2752,
+          "durationMs": 261.29999999701977
+        },
+        {
+          "path": "/_next/static/chunks/0w_ea7dbsn2ik.css",
+          "type": "link",
+          "transferBytes": 10562,
+          "encodedBytes": 10262,
+          "durationMs": 396.30000001192093
+        },
+        {
+          "path": "/_next/static/chunks/2d5-ljwvq-8es.css",
+          "type": "link",
+          "transferBytes": 2966,
+          "encodedBytes": 2666,
+          "durationMs": 268.59999999403954
+        },
+        {
+          "path": "/_next/static/chunks/1ckvzn7sfprko.js",
+          "type": "link",
+          "transferBytes": 2335,
+          "encodedBytes": 2035,
+          "durationMs": 275.59999999403954
+        },
+        {
+          "path": "/_next/static/chunks/06bs-nf19b2js.js",
+          "type": "script",
+          "transferBytes": 8045,
+          "encodedBytes": 7745,
+          "durationMs": 628.2999999970198
+        },
+        {
+          "path": "/_next/static/chunks/3l_qmp-61z4yc.js",
+          "type": "script",
+          "transferBytes": 47318,
+          "encodedBytes": 47018,
+          "durationMs": 1461
+        },
+        {
+          "path": "/_next/static/chunks/20box33a0_n53.js",
+          "type": "script",
+          "transferBytes": 72990,
+          "encodedBytes": 72690,
+          "durationMs": 1707.4000000059605
+        },
+        {
+          "path": "/_next/static/chunks/turbopack-3-ry682tkyiqk.js",
+          "type": "script",
+          "transferBytes": 4259,
+          "encodedBytes": 3959,
+          "durationMs": 672.3999999910593
+        },
+        {
+          "path": "/_next/static/chunks/0_iph43yuv0gz.js",
+          "type": "script",
+          "transferBytes": 9597,
+          "encodedBytes": 9297,
+          "durationMs": 1039.7000000029802
+        },
+        {
+          "path": "/_next/static/chunks/33qpf51mt6h3i.js",
+          "type": "script",
+          "transferBytes": 12424,
+          "encodedBytes": 12124,
+          "durationMs": 1137.7999999970198
+        },
+        {
+          "path": "/_next/static/chunks/2t8bs78h291g7.js",
+          "type": "script",
+          "transferBytes": 12698,
+          "encodedBytes": 12398,
+          "durationMs": 1168.5999999940395
+        },
+        {
+          "path": "/_next/static/chunks/424yzo6zixvcs.js",
+          "type": "script",
+          "transferBytes": 54085,
+          "encodedBytes": 53785,
+          "durationMs": 1751.5999999940395
+        },
+        {
+          "path": "/_next/static/chunks/3z7yrx6brgpja.js",
+          "type": "script",
+          "transferBytes": 1002,
+          "encodedBytes": 702,
+          "durationMs": 1210.699999988079
+        },
+        {
+          "path": "/_next/static/chunks/1nts2h1c_epxp.js",
+          "type": "script",
+          "transferBytes": 3450,
+          "encodedBytes": 3150,
+          "durationMs": 1383.9000000059605
+        },
+        {
+          "path": "/_next/image",
+          "type": "img",
+          "transferBytes": 2514,
+          "encodedBytes": 2214,
+          "durationMs": 755.4000000059605
+        },
+        {
+          "path": "/",
+          "type": "fetch",
+          "transferBytes": 574,
+          "encodedBytes": 274,
+          "durationMs": 158.29999999701977
+        },
+        {
+          "path": "/wishlist",
+          "type": "fetch",
+          "transferBytes": 576,
+          "encodedBytes": 276,
+          "durationMs": 165.5
+        },
+        {
+          "path": "/wishlist",
+          "type": "fetch",
+          "transferBytes": 1393,
+          "encodedBytes": 1093,
+          "durationMs": 155.09999999403954
+        },
+        {
+          "path": "/_next/static/chunks/2etsmn2ajeqda.js",
+          "type": "script",
+          "transferBytes": 1790,
+          "encodedBytes": 1490,
+          "durationMs": 166.5
+        },
+        {
+          "path": "/products/apple-airpods-max",
+          "type": "fetch",
+          "transferBytes": 625,
+          "encodedBytes": 325,
+          "durationMs": 157.29999999701977
+        },
+        {
+          "path": "/_next/static/chunks/2n8w29w60q3u2.css",
+          "type": "link",
+          "transferBytes": 1230,
+          "encodedBytes": 930,
+          "durationMs": 153.80000001192093
+        },
+        {
+          "path": "/products/apple-airpods-max",
+          "type": "fetch",
+          "transferBytes": 3752,
+          "encodedBytes": 3452,
+          "durationMs": 170.29999999701977
+        },
+        {
+          "path": "/_next/static/chunks/436ubwzqkhgx7.js",
+          "type": "script",
+          "transferBytes": 1377,
+          "encodedBytes": 1077,
+          "durationMs": 159.1000000089407
+        }
+      ],
+      "overflow": false,
+      "errors": [],
+      "cdpMetrics": [
+        {
+          "name": "Timestamp",
+          "value": 82257.663998
+        },
+        {
+          "name": "AudioHandlers",
+          "value": 0
+        },
+        {
+          "name": "AudioWorkletProcessors",
+          "value": 0
+        },
+        {
+          "name": "Documents",
+          "value": 4
+        },
+        {
+          "name": "Frames",
+          "value": 4
+        },
+        {
+          "name": "JSEventListeners",
+          "value": 489
+        },
+        {
+          "name": "LayoutObjects",
+          "value": 666
+        },
+        {
+          "name": "MediaKeySessions",
+          "value": 0
+        },
+        {
+          "name": "MediaKeys",
+          "value": 0
+        },
+        {
+          "name": "Nodes",
+          "value": 1000
+        },
+        {
+          "name": "Resources",
+          "value": 31
+        },
+        {
+          "name": "ContextLifecycleStateObservers",
+          "value": 19
+        },
+        {
+          "name": "V8PerContextDatas",
+          "value": 4
+        },
+        {
+          "name": "WorkerGlobalScopes",
+          "value": 0
+        },
+        {
+          "name": "UACSSResources",
+          "value": 0
+        },
+        {
+          "name": "RTCPeerConnections",
+          "value": 0
+        },
+        {
+          "name": "ResourceFetchers",
+          "value": 4
+        },
+        {
+          "name": "AdSubframes",
+          "value": 0
+        },
+        {
+          "name": "DetachedScriptStates",
+          "value": 2
+        },
+        {
+          "name": "ArrayBufferContents",
+          "value": 32
+        },
+        {
+          "name": "LayoutCount",
+          "value": 63
+        },
+        {
+          "name": "RecalcStyleCount",
+          "value": 288
+        },
+        {
+          "name": "LayoutDuration",
+          "value": 0.175142
+        },
+        {
+          "name": "RecalcStyleDuration",
+          "value": 0.229615
+        },
+        {
+          "name": "DevToolsCommandDuration",
+          "value": 0.209442
+        },
+        {
+          "name": "ScriptDuration",
+          "value": 0.595984
+        },
+        {
+          "name": "V8CompileDuration",
+          "value": 0.007452
+        },
+        {
+          "name": "TaskDuration",
+          "value": 2.314949
+        },
+        {
+          "name": "TaskOtherDuration",
+          "value": 1.097314
+        },
+        {
+          "name": "ThreadTime",
+          "value": 5.854922
+        },
+        {
+          "name": "ProcessTime",
+          "value": 6.69
+        },
+        {
+          "name": "JSHeapUsedSize",
+          "value": 7377488
+        },
+        {
+          "name": "JSHeapTotalSize",
+          "value": 11341824
+        },
+        {
+          "name": "FirstMeaningfulPaint",
+          "value": 82252.880991
+        },
+        {
+          "name": "DomContentLoaded",
+          "value": 82251.094764
+        },
+        {
+          "name": "NavigationStart",
+          "value": 82250.492689
+        }
+      ]
+    },
+    {
+      "name": "reduced-motion-cold",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "reduce": true,
+      "observedLcpMs": 108,
+      "lcpCandidates": [
+        {
+          "at": 108,
+          "size": 101862,
+          "element": "IMG"
+        }
+      ],
+      "cls": 0,
+      "shifts": [],
+      "fcpMs": 108,
+      "ttfbMs": 6.299999997019768,
+      "surfaceReadyMs": 251.40000000596046,
+      "introKind": "reduced",
+      "longTasks": [],
+      "resourceTransferBytes": 354696,
+      "resourceEncodedBytes": 346596,
+      "resources": [
+        {
+          "path": "/_next/static/media/dm_sans_latin-s.p.0tm8u-h63rec8.woff2",
+          "type": "link",
+          "transferBytes": 37232,
+          "encodedBytes": 36932,
+          "durationMs": 5
+        },
+        {
+          "path": "/_next/static/media/manrope_latin-s.p.1p_a2k8qd5zhp.woff2",
+          "type": "link",
+          "transferBytes": 25136,
+          "encodedBytes": 24836,
+          "durationMs": 5.200000002980232
+        },
+        {
+          "path": "/_next/image",
+          "type": "link",
+          "transferBytes": 3052,
+          "encodedBytes": 2752,
+          "durationMs": 13.299999997019768
+        },
+        {
+          "path": "/_next/static/chunks/0w_ea7dbsn2ik.css",
+          "type": "link",
+          "transferBytes": 10562,
+          "encodedBytes": 10262,
+          "durationMs": 15.299999997019768
+        },
+        {
+          "path": "/_next/static/chunks/2d5-ljwvq-8es.css",
+          "type": "link",
+          "transferBytes": 2966,
+          "encodedBytes": 2666,
+          "durationMs": 15.799999997019768
+        },
+        {
+          "path": "/_next/static/chunks/1ckvzn7sfprko.js",
+          "type": "link",
+          "transferBytes": 2335,
+          "encodedBytes": 2035,
+          "durationMs": 17.200000002980232
+        },
+        {
+          "path": "/_next/static/chunks/06bs-nf19b2js.js",
+          "type": "script",
+          "transferBytes": 8045,
+          "encodedBytes": 7745,
+          "durationMs": 20.399999991059303
+        },
+        {
+          "path": "/_next/static/chunks/20box33a0_n53.js",
+          "type": "script",
+          "transferBytes": 72990,
+          "encodedBytes": 72690,
+          "durationMs": 46.599999994039536
+        },
+        {
+          "path": "/_next/static/chunks/turbopack-3-ry682tkyiqk.js",
+          "type": "script",
+          "transferBytes": 4259,
+          "encodedBytes": 3959,
+          "durationMs": 27.5
+        },
+        {
+          "path": "/_next/static/chunks/33qpf51mt6h3i.js",
+          "type": "script",
+          "transferBytes": 12424,
+          "encodedBytes": 12124,
+          "durationMs": 30.100000008940697
+        },
+        {
+          "path": "/_next/static/chunks/0_iph43yuv0gz.js",
+          "type": "script",
+          "transferBytes": 9597,
+          "encodedBytes": 9297,
+          "durationMs": 29.299999997019768
+        },
+        {
+          "path": "/_next/static/chunks/2t8bs78h291g7.js",
+          "type": "script",
+          "transferBytes": 12698,
+          "encodedBytes": 12398,
+          "durationMs": 40.400000005960464
+        },
+        {
+          "path": "/_next/static/chunks/3l_qmp-61z4yc.js",
+          "type": "script",
+          "transferBytes": 47318,
+          "encodedBytes": 47018,
+          "durationMs": 45
+        },
+        {
+          "path": "/_next/static/chunks/424yzo6zixvcs.js",
+          "type": "script",
+          "transferBytes": 54085,
+          "encodedBytes": 53785,
+          "durationMs": 48.70000000298023
+        },
+        {
+          "path": "/_next/static/chunks/3z7yrx6brgpja.js",
+          "type": "script",
+          "transferBytes": 1002,
+          "encodedBytes": 702,
+          "durationMs": 46.69999998807907
+        },
+        {
+          "path": "/_next/static/chunks/1nts2h1c_epxp.js",
+          "type": "script",
+          "transferBytes": 3450,
+          "encodedBytes": 3150,
+          "durationMs": 47
+        },
+        {
+          "path": "/_next/image",
+          "type": "img",
+          "transferBytes": 2514,
+          "encodedBytes": 2214,
+          "durationMs": 7.299999997019768
+        },
+        {
+          "path": "/_next/image",
+          "type": "img",
+          "transferBytes": 5174,
+          "encodedBytes": 4874,
+          "durationMs": 8.100000008940697
+        },
+        {
+          "path": "/_next/image",
+          "type": "img",
+          "transferBytes": 28540,
+          "encodedBytes": 28240,
+          "durationMs": 8.200000002980232
+        },
+        {
+          "path": "/",
+          "type": "fetch",
+          "transferBytes": 574,
+          "encodedBytes": 274,
+          "durationMs": 19.599999994039536
+        },
+        {
+          "path": "/wishlist",
+          "type": "fetch",
+          "transferBytes": 576,
+          "encodedBytes": 276,
+          "durationMs": 19.799999997019768
+        },
+        {
+          "path": "/products/apple-airpods-max",
+          "type": "fetch",
+          "transferBytes": 625,
+          "encodedBytes": 325,
+          "durationMs": 20
+        },
+        {
+          "path": "/wishlist",
+          "type": "fetch",
+          "transferBytes": 1393,
+          "encodedBytes": 1093,
+          "durationMs": 18.299999997019768
+        },
+        {
+          "path": "/_next/static/chunks/2n8w29w60q3u2.css",
+          "type": "link",
+          "transferBytes": 1230,
+          "encodedBytes": 930,
+          "durationMs": 16.099999994039536
+        },
+        {
+          "path": "/products/apple-airpods-max",
+          "type": "fetch",
+          "transferBytes": 3752,
+          "encodedBytes": 3452,
+          "durationMs": 12.800000011920929
+        },
+        {
+          "path": "/_next/static/chunks/2etsmn2ajeqda.js",
+          "type": "script",
+          "transferBytes": 1790,
+          "encodedBytes": 1490,
+          "durationMs": 6.199999988079071
+        },
+        {
+          "path": "/_next/static/chunks/436ubwzqkhgx7.js",
+          "type": "script",
+          "transferBytes": 1377,
+          "encodedBytes": 1077,
+          "durationMs": 6.200000002980232
+        }
+      ],
+      "overflow": false,
+      "errors": [],
+      "cdpMetrics": [
+        {
+          "name": "Timestamp",
+          "value": 82259.370676
+        },
+        {
+          "name": "AudioHandlers",
+          "value": 0
+        },
+        {
+          "name": "AudioWorkletProcessors",
+          "value": 0
+        },
+        {
+          "name": "Documents",
+          "value": 4
+        },
+        {
+          "name": "Frames",
+          "value": 4
+        },
+        {
+          "name": "JSEventListeners",
+          "value": 454
+        },
+        {
+          "name": "LayoutObjects",
+          "value": 778
+        },
+        {
+          "name": "MediaKeySessions",
+          "value": 0
+        },
+        {
+          "name": "MediaKeys",
+          "value": 0
+        },
+        {
+          "name": "Nodes",
+          "value": 997
+        },
+        {
+          "name": "Resources",
+          "value": 31
+        },
+        {
+          "name": "ContextLifecycleStateObservers",
+          "value": 19
+        },
+        {
+          "name": "V8PerContextDatas",
+          "value": 4
+        },
+        {
+          "name": "WorkerGlobalScopes",
+          "value": 0
+        },
+        {
+          "name": "UACSSResources",
+          "value": 0
+        },
+        {
+          "name": "RTCPeerConnections",
+          "value": 0
+        },
+        {
+          "name": "ResourceFetchers",
+          "value": 4
+        },
+        {
+          "name": "AdSubframes",
+          "value": 0
+        },
+        {
+          "name": "DetachedScriptStates",
+          "value": 2
+        },
+        {
+          "name": "ArrayBufferContents",
+          "value": 30
+        },
+        {
+          "name": "LayoutCount",
+          "value": 17
+        },
+        {
+          "name": "RecalcStyleCount",
+          "value": 32
+        },
+        {
+          "name": "LayoutDuration",
+          "value": 0.020889
+        },
+        {
+          "name": "RecalcStyleDuration",
+          "value": 0.025641
+        },
+        {
+          "name": "DevToolsCommandDuration",
+          "value": 0.077988
+        },
+        {
+          "name": "ScriptDuration",
+          "value": 0.10165
+        },
+        {
+          "name": "V8CompileDuration",
+          "value": 0.00142
+        },
+        {
+          "name": "TaskDuration",
+          "value": 0.377751
+        },
+        {
+          "name": "TaskOtherDuration",
+          "value": 0.150163
+        },
+        {
+          "name": "ThreadTime",
+          "value": 0.372531
+        },
+        {
+          "name": "ProcessTime",
+          "value": 0.58
+        },
+        {
+          "name": "JSHeapUsedSize",
+          "value": 6564456
+        },
+        {
+          "name": "JSHeapTotalSize",
+          "value": 11603968
+        },
+        {
+          "name": "FirstMeaningfulPaint",
+          "value": 82257.81815
+        },
+        {
+          "name": "DomContentLoaded",
+          "value": 82257.753129
+        },
+        {
+          "name": "NavigationStart",
+          "value": 82257.710776
+        }
+      ]
+    }
+  ],
+  "scroll": {
+    "intervalsMs": [
+      12.800000002980596,
+      16.699999999999818,
+      16.699999999999818,
+      16.699999999999818,
+      16.600000000000364,
+      16.699999999999818,
+      16.699999999999818,
+      16.600000000000364,
+      16.699999999999818,
+      16.699999999999818,
+      16.600000000000364,
+      16.699999999999818,
+      16.600000000000364,
+      16.699999999999818,
+      16.699999999999818,
+      16.600000000000364,
+      16.699999999999818,
+      16.599999999999454,
+      16.800000000000182,
+      16.5,
+      16.800000000000182,
+      16.699999999999818,
+      16.600000000000364,
+      16.699999999999818,
+      16.600000000000364,
+      16.699999999999818,
+      16.599999999999454,
+      16.700000000000728,
+      16.699999999999818,
+      16.599999999999454,
+      16.700000000000728,
+      16.699999999999818,
+      16.599999999999454,
+      16.700000000000728,
+      16.599999999999454,
+      16.699999999999818,
+      16.700000000000728,
+      16.699999999999818,
+      16.699999999999818,
+      16.600000000000364,
+      16.699999999999818,
+      16.599999999999454,
+      33.30000000000018,
+      16.699999999999818,
+      16.700000000000728,
+      16.699999999999818,
+      16.599999999999454,
+      16.700000000000728,
+      33.29999999999927,
+      33.400000000000546,
+      16.599999999999454,
+      16.700000000000728,
+      16.699999999999818,
+      16.599999999999454,
+      16.700000000000728,
+      16.599999999999454,
+      16.699999999999818,
+      16.700000000000728,
+      16.699999999999818,
+      16.599999999999454,
+      16.700000000000728,
+      16.599999999999454,
+      16.699999999999818,
+      16.700000000000728,
+      16.599999999999454,
+      16.699999999999818,
+      16.700000000000728,
+      16.699999999999818,
+      16.599999999999454,
+      16.700000000000728,
+      16.699999999999818,
+      16.599999999999454,
+      16.700000000000728,
+      16.599999999999454,
+      16.699999999999818,
+      16.700000000000728,
+      16.599999999999454,
+      16.699999999999818,
+      16.700000000000728,
+      16.699999999999818,
+      16.599999999999454,
+      16.700000000000728,
+      16.599999999999454,
+      16.699999999999818,
+      16.700000000000728,
+      16.599999999999454,
+      16.699999999999818,
+      16.700000000000728,
+      16.599999999999454,
+      16.699999999999818,
+      16.600000000000364,
+      16.699999999999818,
+      16.699999999999818,
+      16.600000000000364,
+      16.699999999999818,
+      16.699999999999818,
+      16.600000000000364,
+      16.699999999999818,
+      16.699999999999818,
+      16.700000000000728,
+      16.599999999999454,
+      16.699999999999818,
+      16.700000000000728,
+      16.699999999999818,
+      16.599999999999454,
+      16.700000000000728,
+      16.599999999999454,
+      16.699999999999818,
+      16.700000000000728,
+      16.599999999999454,
+      16.699999999999818,
+      16.600000000000364,
+      16.699999999999818,
+      16.699999999999818,
+      16.600000000000364,
+      16.699999999999818,
+      16.699999999999818,
+      16.700000000000728,
+      16.699999999999818,
+      16.599999999999454,
+      16.700000000000728,
+      16.699999999999818,
+      16.599999999999454,
+      16.600000000000364,
+      16.800000000000182,
+      16.599999999999454,
+      16.700000000000728,
+      16.599999999999454,
+      16.699999999999818,
+      16.600000000000364,
+      16.699999999999818,
+      16.600000000000364,
+      16.800000000000182,
+      16.599999999999454,
+      16.699999999999818,
+      16.700000000000728,
+      16.599999999999454,
+      16.699999999999818,
+      16.700000000000728,
+      16.599999999999454,
+      16.699999999999818,
+      16.600000000000364,
+      16.699999999999818,
+      16.600000000000364,
+      16.699999999999818,
+      16.699999999999818,
+      16.699999999999818,
+      16.600000000000364,
+      16.699999999999818,
+      16.600000000000364,
+      16.699999999999818,
+      16.699999999999818,
+      16.600000000000364,
+      16.699999999999818,
+      16.699999999999818,
+      16.600000000000364,
+      16.699999999999818,
+      16.699999999999818,
+      16.600000000000364,
+      16.699999999999818,
+      16.699999999999818,
+      16.699999999999818,
+      16.600000000000364,
+      16.699999999999818,
+      16.600000000000364,
+      16.699999999999818,
+      16.699999999999818,
+      16.699999999999818,
+      16.600000000000364,
+      16.699999999999818,
+      16.600000000000364,
+      16.699999999999818,
+      16.699999999999818,
+      16.699999999999818,
+      16.600000000000364,
+      16.699999999999818,
+      16.699999999999818,
+      16.600000000000364,
+      16.699999999999818,
+      16.600000000000364,
+      16.699999999999818,
+      16.700000000000728,
+      16.599999999998545,
+      16.700000000000728,
+      16.700000000000728,
+      16.69999999999891,
+      16.600000000000364,
+      16.700000000000728,
+      16.599999999998545,
+      16.700000000000728,
+      16.600000000000364,
+      16.799999999999272,
+      16.600000000000364,
+      16.700000000000728,
+      16.69999999999891,
+      16.600000000000364,
+      16.700000000000728,
+      16.599999999998545,
+      16.700000000000728,
+      16.700000000000728,
+      16.599999999998545,
+      16.600000000000364,
+      16.700000000000728,
+      16.69999999999891,
+      16.700000000000728,
+      16.600000000000364,
+      16.799999999999272,
+      16.5,
+      16.80000000000109,
+      16.599999999998545,
+      16.700000000000728,
+      16.600000000000364,
+      16.69999999999891,
+      16.700000000000728,
+      16.700000000000728,
+      16.69999999999891,
+      16.600000000000364,
+      16.700000000000728,
+      16.599999999998545,
+      16.600000000000364,
+      16.700000000000728,
+      16.69999999999891,
+      16.700000000000728,
+      16.700000000000728,
+      16.599999999998545,
+      16.600000000000364,
+      16.700000000000728,
+      16.69999999999891,
+      16.700000000000728,
+      16.700000000000728,
+      16.599999999998545,
+      16.700000000000728,
+      16.600000000000364,
+      16.69999999999891,
+      16.600000000000364,
+      16.700000000000728,
+      16.69999999999891,
+      16.700000000000728,
+      16.700000000000728,
+      16.599999999998545,
+      16.700000000000728,
+      16.600000000000364,
+      16.69999999999891,
+      16.700000000000728,
+      16.600000000000364,
+      16.69999999999891,
+      16.700000000000728,
+      16.700000000000728,
+      16.599999999998545,
+      16.700000000000728,
+      16.700000000000728,
+      16.599999999998545,
+      16.700000000000728,
+      16.600000000000364,
+      16.69999999999891,
+      16.700000000000728,
+      16.700000000000728,
+      16.599999999998545,
+      16.600000000000364,
+      16.700000000000728,
+      16.69999999999891,
+      16.700000000000728,
+      16.600000000000364,
+      16.69999999999891,
+      16.600000000000364,
+      16.700000000000728,
+      16.69999999999891,
+      16.600000000000364,
+      16.700000000000728,
+      16.69999999999891,
+      16.700000000000728,
+      16.600000000000364,
+      16.69999999999891,
+      16.700000000000728,
+      16.600000000000364,
+      16.69999999999891,
+      16.600000000000364,
+      16.80000000000109,
+      16.599999999998545,
+      16.700000000000728,
+      16.600000000000364,
+      16.69999999999891,
+      16.600000000000364
+    ],
+    "endY": 9044,
+    "maxY": 9085,
+    "medianFrameMs": 16.699999999999818,
+    "p95FrameMs": 16.700000000000728,
+    "p99FrameMs": 33.29999999999927,
+    "framesOver50Ms": 0,
+    "notes": "One sequential headless wheel-scroll sample; frame intervals describe this machine, not an FPS promise."
+  },
+  "retention": [
+    {
+      "cycle": 0,
+      "route": "/",
+      "heap": {
+        "usedSize": 7248384,
+        "totalSize": 8196096,
+        "embedderHeapUsedSize": 2920896,
+        "backingStorageSize": 743248
+      },
+      "dom": {
+        "documents": 1,
+        "nodes": 1102,
+        "jsEventListeners": 481
+      },
+      "pinSpacers": 1
+    },
+    {
+      "cycle": 1,
+      "route": "/",
+      "heap": {
+        "usedSize": 7461748,
+        "totalSize": 8196096,
+        "embedderHeapUsedSize": 2829736,
+        "backingStorageSize": 743248
+      },
+      "dom": {
+        "documents": 1,
+        "nodes": 1102,
+        "jsEventListeners": 481
+      },
+      "pinSpacers": 1
+    },
+    {
+      "cycle": 2,
+      "route": "/",
+      "heap": {
+        "usedSize": 7519556,
+        "totalSize": 8720384,
+        "embedderHeapUsedSize": 2853864,
+        "backingStorageSize": 743248
+      },
+      "dom": {
+        "documents": 1,
+        "nodes": 1102,
+        "jsEventListeners": 481
+      },
+      "pinSpacers": 1
+    },
+    {
+      "cycle": 3,
+      "route": "/",
+      "heap": {
+        "usedSize": 7624052,
+        "totalSize": 8720384,
+        "embedderHeapUsedSize": 2809688,
+        "backingStorageSize": 743248
+      },
+      "dom": {
+        "documents": 1,
+        "nodes": 1102,
+        "jsEventListeners": 481
+      },
+      "pinSpacers": 1
+    },
+    {
+      "cycle": 4,
+      "route": "/",
+      "heap": {
+        "usedSize": 7717240,
+        "totalSize": 8720384,
+        "embedderHeapUsedSize": 2832384,
+        "backingStorageSize": 743248
+      },
+      "dom": {
+        "documents": 1,
+        "nodes": 1102,
+        "jsEventListeners": 481
+      },
+      "pinSpacers": 1
+    },
+    {
+      "cycle": 5,
+      "route": "/",
+      "heap": {
+        "usedSize": 7764984,
+        "totalSize": 8720384,
+        "embedderHeapUsedSize": 2825368,
+        "backingStorageSize": 743248
+      },
+      "dom": {
+        "documents": 1,
+        "nodes": 1102,
+        "jsEventListeners": 481
+      },
+      "pinSpacers": 1
+    },
+    {
+      "cycle": 6,
+      "route": "/",
+      "heap": {
+        "usedSize": 7770616,
+        "totalSize": 8720384,
+        "embedderHeapUsedSize": 2658800,
+        "backingStorageSize": 743248
+      },
+      "dom": {
+        "documents": 1,
+        "nodes": 1102,
+        "jsEventListeners": 481
+      },
+      "pinSpacers": 1
+    }
+  ],
+  "warnings": [],
+  "largestLiveSampledAllocators": [
+    {
+      "bytes": 67068,
+      "function": "set",
+      "url": "",
+      "line": -1
+    },
+    {
+      "bytes": 65860,
+      "function": "evaluate",
+      "url": "",
+      "line": 363
+    },
+    {
+      "bytes": 65800,
+      "function": "K",
+      "url": "http://127.0.0.1:3100/_next/static/chunks/2t8bs78h291g7.js",
+      "line": 0
+    },
+    {
+      "bytes": 65624,
+      "function": "rC",
+      "url": "http://127.0.0.1:3100/_next/static/chunks/20box33a0_n53.js",
+      "line": 0
+    },
+    {
+      "bytes": 65580,
+      "function": "init",
+      "url": "http://127.0.0.1:3100/_next/static/chunks/424yzo6zixvcs.js",
+      "line": 0
+    },
+    {
+      "bytes": 65556,
+      "function": "C",
+      "url": "http://127.0.0.1:3100/_next/static/chunks/3l_qmp-61z4yc.js",
+      "line": 0
+    },
+    {
+      "bytes": 65544,
+      "function": "N",
+      "url": "http://127.0.0.1:3100/_next/static/chunks/1nts2h1c_epxp.js",
+      "line": 0
+    },
+    {
+      "bytes": 65540,
+      "function": "lc",
+      "url": "http://127.0.0.1:3100/_next/static/chunks/20box33a0_n53.js",
+      "line": 0
+    }
+  ],
+  "retentionSummary": {
+    "heapDeltaBytes": 522232,
+    "domNodeDelta": 0,
+    "listenerDelta": 0,
+    "cyclesAfterWarmup": 6,
+    "routesPerCycle": 5,
+    "retainedCacheWarmupCycles": 2
+  },
+  "runtimeOrConsoleErrors": []
+}

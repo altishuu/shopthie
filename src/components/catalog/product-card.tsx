@@ -15,7 +15,7 @@ export function ProductCard({
   product: Product;
   onWishlistRemoved?: () => void;
 }) {
-  const { state, ready: storeReady, send, notify, openQuickView } = useCommerce();
+  const { state, ready: storeReady, send, openQuickView } = useCommerce();
   const motionReady = useMotionReady();
   const ready = storeReady && motionReady;
   const saved = state.wishlist.includes(product.id);
@@ -45,13 +45,22 @@ export function ProductCard({
           aria-pressed={saved}
           aria-label={saved ? `Remove ${product.name} from wishlist` : `Save ${product.name}`}
           onClick={() => {
-            send({ type: "wishlist", productId: product.id });
-            notify(
-              saved
-                ? `${product.name} removed from your wishlist.`
-                : `${product.name} saved to your wishlist.`,
+            const focusBeforeRemove = document.activeElement;
+            send(
+              { type: "wishlist", productId: product.id },
+              onWishlistRemoved
+                ? ({ before, state }) => {
+                    const focused = document.activeElement;
+                    if (focused && focused !== document.body && focused !== focusBeforeRemove)
+                      return;
+                    if (
+                      before.wishlist.includes(product.id) &&
+                      !state.wishlist.includes(product.id)
+                    )
+                      onWishlistRemoved();
+                  }
+                : undefined,
             );
-            if (saved) onWishlistRemoved?.();
           }}
         >
           <Heart size={18} fill={saved ? "currentColor" : "none"} aria-hidden="true" />

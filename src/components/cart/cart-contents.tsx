@@ -11,7 +11,7 @@ import { QuantityControl } from "@/components/ui/quantity-control";
 import { EmptyState } from "@/components/ui/empty-state";
 
 function CartLineRow({ line }: { line: CartLine }) {
-  const { send, notify, closeOverlay } = useCommerce();
+  const { send, closeOverlay } = useCommerce();
   const product = products.find((item) => item.id === line.productId);
   const variant = product?.variants.find((item) => item.id === line.variantId);
   if (!product || !variant) return null;
@@ -37,6 +37,9 @@ function CartLineRow({ line }: { line: CartLine }) {
           label={`Quantity for ${product.name} (${variant.label})`}
           value={line.quantity}
           max={variant.demoStock}
+          onStep={(delta) =>
+            send({ type: "step-quantity", productId: product.id, variantId: variant.id, delta })
+          }
           onChange={(quantity) =>
             send({ type: "quantity", productId: product.id, variantId: variant.id, quantity })
           }
@@ -48,12 +51,36 @@ function CartLineRow({ line }: { line: CartLine }) {
           className="icon-button"
           aria-label={`Remove ${product.name} (${variant.label}) from bag`}
           onClick={(event) => {
-            const heading =
-              event.currentTarget.closest("dialog")?.querySelector<HTMLElement>("h2") ||
-              document.querySelector<HTMLElement>("[data-bag-heading]");
-            send({ type: "remove", productId: product.id, variantId: variant.id });
-            notify(`${product.name} removed from your bag.`);
-            queueMicrotask(() => heading?.focus({ preventScroll: true }));
+            const focusBeforeRemove = document.activeElement;
+            const dialog = event.currentTarget.closest("dialog");
+            const heading = dialog
+              ? dialog.querySelector<HTMLElement>("h2")
+              : event.currentTarget
+                  .closest("main")
+                  ?.querySelector<HTMLElement>("[data-bag-heading]");
+            send({ type: "remove", productId: product.id, variantId: variant.id }, ({ state }) => {
+              // Repair lost focus, but never override a newer keyboard choice.
+              const focused = document.activeElement;
+              if (focused && focused !== document.body && focused !== focusBeforeRemove) return;
+              // A duplicate queued remove is a no-op, but its latest completion
+              // still repairs focus once the intended row has disappeared.
+              if (
+                state.cart.some(
+                  (item) => item.productId === product.id && item.variantId === variant.id,
+                )
+              )
+                return;
+              if (
+                !heading?.isConnected ||
+                heading.closest('[hidden], [inert], [aria-hidden="true"], dialog:not([open])') ||
+                !heading.getClientRects().length ||
+                document.querySelector("dialog[open]") !== dialog
+              )
+                return;
+              const visibility = getComputedStyle(heading).visibility;
+              if (visibility !== "hidden" && visibility !== "collapse")
+                heading.focus({ preventScroll: true });
+            });
           }}
         >
           <Trash2 size={16} aria-hidden="true" />

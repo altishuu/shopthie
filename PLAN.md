@@ -1,6 +1,6 @@
 # Shopthie — implementation plan
 
-Status: PHASE 4 VERIFIED — full editorial reading order, About/product storytelling, and responsive refinements are integrated with the working shopping/motion flow. Production build, 46 unit tests, 86 desktop/mobile browser tests, lint, TypeScript, and formatting pass. The Phase 4 checkpoint covered 49 full-motion scenes across eight sizes and nine additional accessibility scans. Subsequent startup and entrance-continuity corrections are documented in `docs/first-paint-fix.md` and `docs/animation-continuity-fix.md`. Catalog remains seven verified models and ten variants, not the proposed sixteen-product target. Phase 5 final profiling/broader browser-device review/handoff remains. See `docs/phase-4-report.md`.
+Status: LOCAL FRONTEND HANDOFF READY — Phases 1–4 features and Phase 5 practical corrections are integrated. Per the user's request, final verification is focused rather than another extended QA cycle: latest production build, lint/types/formatting, 89 unit tests and 16 affected desktop/mobile checks pass. An earlier full browser run passed 138 tests before the final small focus guard. Historical cross-engine/profile results remain clearly labeled; latest-source extended/device certification is deferred. Seven verified models and ten variants remain, not the proposed sixteen. See `docs/HANDOFF.md` and `docs/phase-5-report.md`.
 
 ## 1. Locked requirements
 
@@ -169,7 +169,7 @@ Keep routes/content server-rendered where possible and scope client boundaries t
 - [x] Preloader releases on pending/failed assets; skip and route/overlay cancellation work in checked flows.
 - [x] Scoped scroll/animation lifecycle cleanup passes remount, preference-change, and repeated-navigation checks.
 - [x] Current mobile and reduced-motion shopping flows remain usable in Chromium emulation.
-- [ ] Final all-phase production sign-off after Phase 5 profiling/broader device review. Current Phase 4 build, lint, types, interaction tests, and responsive visual checks pass.
+- [x] Local frontend handoff under the user's focused verification scope: build/static checks, unit suite and affected desktop/mobile shopping checks pass. Extended latest-source browser/device/profile certification is not claimed.
 - [x] Run instructions and mock/demo boundaries are documented.
 
 ## 6. Established content direction and remaining sourcing
@@ -180,4 +180,4 @@ Keep routes/content server-rendered where possible and scope client boundaries t
 - Source enough permitted images for coherent galleries and real variant presentation. Do not imply a photo depicts an unsupported colorway.
 - Treat premium pricing as simulated USD catalog content, with an explicit demo notice rather than live market-price claims.
 
-No further foundational questionnaire is required. Phases 1–4 are implemented and verified; Phase 4 is ready for review. Phase 5 handles final profiling, broader browser/device coverage, and handoff. The sixteen-product sourcing target remains open. No GitHub push, dashboard, backend, or remote deployment is authorized.
+No further foundational questionnaire is required. The current seven-model frontend is ready for local review; extended QA repetitions were stopped at the user's request. The sixteen-product sourcing target remains open. No GitHub push, dashboard, backend, or remote deployment is authorized.

@@ -10,16 +10,20 @@
     "lint": "eslint",
     "typecheck": "tsc --noEmit",
     "test": "node --test tests/unit/*.test.ts",
+    "test:backend": "node --test tests/unit/backend-*.test.ts tests/backend/*.test.ts",
     "test:e2e": "npm run build && playwright test",
     "test:report": "playwright show-report",
     "test:visual": "node scripts/verify-phase4.mjs",
     "test:visual:motion": "node scripts/verify-phase3.mjs",
     "test:storytelling": "playwright test tests/e2e/storytelling.spec.ts",
     "test:visual:commerce": "node scripts/verify-phase2.mjs",
-    "test:motion": "playwright test tests/e2e/motion.spec.ts tests/e2e/motion-regressions.spec.ts tests/e2e/first-paint.spec.ts tests/e2e/animation-continuity.spec.ts",
+    "test:motion": "playwright test tests/e2e/motion.spec.ts tests/e2e/motion-regressions.spec.ts tests/e2e/first-paint.spec.ts tests/e2e/animation-continuity.spec.ts tests/e2e/motion-retention.spec.ts",
+    "test:performance": "node scripts/verify-phase5-performance.mjs",
+    "test:browsers": "node scripts/verify-phase5-browsers.mjs",
+    "test:commerce:browsers": "playwright test --config playwright.commerce.config.ts",
     "test:dev:motion": "node scripts/verify-phase3-dev.mjs",
-    "format": "prettier --write \"src/**/*.{ts,tsx,css}\" \"tests/**/*.ts\" \"scripts/*.mjs\" playwright.config.ts",
-    "format:check": "prettier --check \"src/**/*.{ts,tsx,css}\" \"tests/**/*.ts\" \"scripts/*.mjs\" playwright.config.ts"
+    "format": "prettier --write \"src/**/*.{ts,tsx,css}\" \"tests/**/*.ts\" \"scripts/*.mjs\" \"playwright*.config.ts\"",
+    "format:check": "prettier --check \"src/**/*.{ts,tsx,css}\" \"tests/**/*.ts\" \"scripts/*.mjs\" \"playwright*.config.ts\""
   },
   "dependencies": {
     "@fontsource-variable/dm-sans": "^5.3.0",
@@ -34,6 +38,7 @@
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.14.0",
+    "@electric-sql/pglite": "0.5.13",
     "@playwright/test": "^1.64.1",
     "@tailwindcss/turbopack": "^4",
     "@types/node": "^20",
