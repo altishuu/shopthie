@@ -18,7 +18,7 @@ export const permissionDefinitions = {
   "profile.update_own": { module: "profiles", scope: "self" },
   "address.manage_own": { module: "addresses", scope: "self" },
   "customer.lookup": { module: "customer_lookup", scope: "directory" },
-  "customer.status.manage": { module: "staff", scope: "customer" },
+  "customer.status.manage": { module: "customer_status", scope: "customer" },
   "support.private.read": { module: "support", scope: "support" },
   "staff.manage": { module: "staff", scope: "staff_assignment" },
   "audit.read": { module: "audit", scope: "audit" },
@@ -109,6 +109,15 @@ export function authorize(
         request.targetRole !== "customer"
       ) {
         return { allowed: false, reason: "target_restricted" };
+      }
+      if (definition.scope === "customer") {
+        if (
+          !["account_security", "customer_request", "account_review"].includes(
+            request.supportReason ?? "",
+          )
+        )
+          return { allowed: false, reason: "status_reason_required" };
+        return { allowed: true, requiresAudit: true };
       }
       if (definition.scope === "support") {
         if (

@@ -19,9 +19,16 @@ test("guest exact lookup redirects to login without customer controls or results
   await expect(page.locator('meta[name="robots"]')).toHaveAttribute("content", /noindex/);
   await expect(page.getByRole("heading", { name: "Customer lookup.", level: 1 })).toHaveCount(0);
   await expect(
-    page.locator('input[name="expected_subject"],select[name="reason"],.customer-lookup-result'),
+    page.locator(
+      'input[name="expected_subject"],input[name="target_subject"],select[name="reason"],.customer-lookup-result,.customer-status-manager,.customer-status-record',
+    ),
   ).toHaveCount(0);
   await expect(page.getByRole("button", { name: /look up customer/i })).toHaveCount(0);
+  await expect(
+    page.getByRole("button", {
+      name: /check current access|suspend application access|reactivate application access/i,
+    }),
+  ).toHaveCount(0);
   await expect(page.locator('a[href="/admin/customers"]')).toHaveCount(0);
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
 });

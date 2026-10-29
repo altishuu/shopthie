@@ -1,0 +1,29 @@
+{
+  "passed": true,
+  "initial_review": {
+    "id": "deleg_718703dc",
+    "passed": false,
+    "security_concerns": [],
+    "blocker": "Development StrictMode status lease failed to renew",
+    "sql_review": "No concrete authorization bypass; fixture/enum checks passed; true multi-session concurrency deferred"
+  },
+  "correction": {
+    "id": "deleg_ffc83ce4",
+    "observed_red_green": true,
+    "development_strict_mode": true,
+    "safe_same_subject_status_capability_renewal": true,
+    "no_automatic_customer_queries": true
+  },
+  "final_review": {
+    "id": "deleg_515bf0a4",
+    "passed": true,
+    "focused_checks": 25,
+    "security_concerns": [],
+    "logic_errors": [],
+    "suggestions": []
+  },
+  "concurrency_limit": "Trusted writers must prelock parent accounts in UUID order before child DML; triggers alone do not prove arbitrary direct-writer deadlock freedom.",
+  "native_privileged_write_mfa_acceptance": false,
+  "native_multi_session_concurrency_acceptance": false,
+  "migration_applied_only_after_pass": true
+}

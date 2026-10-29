@@ -1,0 +1,103 @@
+{
+  "status": "handed-off-native-privileged-write-mfa-and-concurrency-acceptance-deferred",
+  "automated": {
+    "unit_tests": 223,
+    "backend_checks": 214,
+    "counts_overlap": true,
+    "targeted_browser_checks": 26,
+    "build": true,
+    "types": true,
+    "lint": true,
+    "format": true,
+    "whitespace": true,
+    "failures": 0,
+    "embedded_sql_checks": 80
+  },
+  "initial_review": {
+    "id": "deleg_718703dc",
+    "passed": false,
+    "blocking_finding": "Development StrictMode status panel lease failed to renew"
+  },
+  "correction": {
+    "id": "deleg_ffc83ce4",
+    "observed_red_green": true,
+    "development_strict_mode": true,
+    "no_automatic_target_queries": true
+  },
+  "native_preflight": {
+    "healthy": true,
+    "staff_memberships": 0,
+    "verified_factors": 0,
+    "pending_factors": 1,
+    "suspended_accounts": 0,
+    "audit_rows": 0,
+    "status_migration_exists": false
+  },
+  "native_customer": {
+    "account_signin_verified": true,
+    "staff_link": false,
+    "lookup_status_controls": 0,
+    "denial_verified": true,
+    "mobile_width": 320,
+    "overflow": false,
+    "logout_target_px": 49,
+    "logout_verified": true,
+    "app_auth_cookies_after_logout": 0,
+    "browser_signed_out": true
+  },
+  "final_http": [
+    {
+      "path": "/",
+      "status": 200
+    },
+    {
+      "path": "/shop",
+      "status": 200
+    },
+    {
+      "path": "/login",
+      "status": 200
+    },
+    {
+      "path": "/admin/customers",
+      "status": 200,
+      "no_store": true,
+      "login_redirect": true,
+      "private_controls": false
+    }
+  ],
+  "migration": {
+    "path": "supabase/migrations/20261029165555_customer_status.sql",
+    "version": "20261029165555",
+    "name": "customer_status",
+    "applied": true,
+    "apply_calls": 1,
+    "history_schema_acl_trigger_module_readback": true,
+    "lookup_lock_and_post_audit_readback": true,
+    "post_alignment_sql_passed": 80
+  },
+  "native_privileged_write_mfa_acceptance": false,
+  "true_multi_session_concurrency_acceptance": false,
+  "no_real_status_role_mfa_changes": true,
+  "no_commit_push_frontend_deployment": true,
+  "review": {
+    "passed": true,
+    "id": "deleg_515bf0a4",
+    "focused_checks": 25,
+    "security_concerns": [],
+    "logic_errors": [],
+    "scope": "StrictMode correction; unchanged SQL covered in initial review/native readback"
+  },
+  "native_post_apply": {
+    "staff_memberships": 0,
+    "verified_factors": 0,
+    "pending_factors": 1,
+    "suspended_accounts": 0,
+    "nonzero_revisions": 0,
+    "audit_rows": 0,
+    "unidentified_readiness": false,
+    "unidentified_read_change_denied": true,
+    "claims_injected": false
+  },
+  "stopped_after_area": 8
+}

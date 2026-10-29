@@ -6,6 +6,7 @@ import { logoutAction } from "@/modules/identity/actions";
 import { IdentityShell } from "@/modules/identity/components/identity-shell";
 import { getCustomerLookupPageState } from "@/modules/customer-lookup/server";
 import { CustomerLookupManager } from "@/modules/customer-lookup/components/customer-lookup-manager";
+import { getCustomerStatusPageState } from "@/modules/customer-status/server";
 import "@/app/staff.css";
 
 export const metadata: Metadata = {
@@ -17,16 +18,27 @@ async function CustomerLookupContent() {
   const state = await getCustomerLookupPageState();
   if (state.status === "guest") redirect("/login");
   if (state.status === "mfa_required") redirect("/account/security");
+  const statusState =
+    state.status === "ready" ? await getCustomerStatusPageState().catch(() => null) : null;
+  const statusEnabled =
+    state.status === "ready" &&
+    statusState?.status === "ready" &&
+    statusState.subject === state.subject;
   return (
     <>
       <p className="eyebrow">Staff access</p>
       <h1 id="identity-heading">Customer lookup.</h1>
       <p className="identity-description">
-        Each submitted lookup is audited. Search only by exact username. Private support fields and
-        account management are not available here.
+        Each submitted lookup is audited. Search only by exact username. Authorized staff may also
+        check and change Customer application access. Private support fields, roles and MFA are not
+        available here.
       </p>
       {state.status === "ready" ? (
-        <CustomerLookupManager subject={state.subject} />
+        <CustomerLookupManager
+          key={state.subject}
+          subject={state.subject}
+          statusEnabled={statusEnabled}
+        />
       ) : (
         <p className="identity-description" role="alert">
           {state.message}

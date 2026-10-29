@@ -10,7 +10,15 @@ const customer = {
   aal: "aal1" as const,
   hasVerifiedMfa: false,
 };
-const enabled = ["profiles", "geography", "addresses", "customer_lookup", "staff", "support"];
+const enabled = [
+  "profiles",
+  "geography",
+  "addresses",
+  "customer_lookup",
+  "customer_status",
+  "staff",
+  "support",
+];
 
 test("own-profile access is bound to an active account and the actual owner", async () => {
   const { authorize } = await import("../../src/modules/access/permissions.ts");
@@ -79,6 +87,7 @@ test("staff permissions enforce target scope and audited support obligations", a
   assert.equal(authorize(customer, { permission: "customer.lookup" }, enabled).allowed, false);
   const status = {
     permission: "customer.status.manage",
+    supportReason: "account_security",
     resourceOwnerId: otherId,
     targetRole: "customer",
   };

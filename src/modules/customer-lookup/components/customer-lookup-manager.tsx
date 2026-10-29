@@ -1,8 +1,9 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import { lookupCustomerAction } from "../actions";
+import { useLayoutEffect, useRef, useState } from "react";
+import { checkCustomerLookupSessionAction, lookupCustomerAction } from "../actions";
 import type { LookupActionResult, LookupReason } from "../types";
+import { CustomerStatusManager } from "../../customer-status/components/customer-status-manager";
 
 const usernamePattern = /^[A-Za-z0-9][A-Za-z0-9_-]{2,31}$/;
 const reasons: LookupReason[] = ["account_access", "profile_help", "address_help"];
@@ -51,29 +52,92 @@ function validatedResult(value: unknown, submittedUsername: string): LookupActio
   };
 }
 
-export function CustomerLookupManager({ subject }: { subject: string }) {
+export function CustomerLookupManager({
+  subject,
+  statusEnabled = false,
+}: {
+  subject: string;
+  statusEnabled?: boolean;
+}) {
   const [username, setUsername] = useState("");
   const [reason, setReason] = useState("");
   const [pending, setPending] = useState(false);
   const [result, setResult] = useState<LookupActionResult | null>(null);
   const inFlight = useRef(false);
   const revision = useRef(0);
-  const mounted = useRef(true);
-  useEffect(() => {
+  const mounted = useRef(false);
+  const activated = useRef(false);
+  const lease = useRef(true);
+  const [readySubject, setReadySubject] = useState<string | null>(subject);
+  useLayoutEffect(() => {
     mounted.current = true;
+    function invalidate() {
+      revision.current++;
+      lease.current = false;
+      inFlight.current = false;
+      setReadySubject(null);
+      setResult(null);
+      setPending(false);
+      setUsername("");
+      setReason("");
+    }
+    async function revalidate() {
+      invalidate();
+      const request = revision.current;
+      try {
+        const state: unknown = await checkCustomerLookupSessionAction();
+        if (
+          mounted.current &&
+          request === revision.current &&
+          exactObject(state, ["status", "subject"]) &&
+          state.status === "ready" &&
+          state.subject === subject
+        ) {
+          lease.current = true;
+          setReadySubject(subject);
+        }
+      } catch {
+        // A restored form stays closed unless current readiness is positively confirmed.
+      }
+    }
+    function visibility() {
+      if (document.visibilityState === "hidden") invalidate();
+      else void revalidate();
+    }
+    const check = () => {
+      void revalidate();
+    };
+    // SSR grants only the initial lease. Activity restoration and actor changes
+    // require a fresh identity-only check; never repeat a Customer read.
+    if (activated.current) void revalidate();
+    activated.current = true;
+    window.addEventListener("pagehide", invalidate);
+    window.addEventListener("pageshow", check);
+    window.addEventListener("focus", check);
+    window.addEventListener("storage", check);
+    document.addEventListener("visibilitychange", visibility);
     return () => {
       mounted.current = false;
+      invalidate();
+      window.removeEventListener("pagehide", invalidate);
+      window.removeEventListener("pageshow", check);
+      window.removeEventListener("focus", check);
+      window.removeEventListener("storage", check);
+      document.removeEventListener("visibilitychange", visibility);
     };
-  }, []);
+  }, [subject]);
+  const ready = readySubject === subject;
 
   function edit() {
     revision.current++;
+    inFlight.current = false;
+    setPending(false);
     setResult(null);
   }
 
   async function submit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    if (inFlight.current) return;
+    if (!mounted.current || !lease.current || !ready || inFlight.current) return;
     setResult(null);
     if (!usernamePattern.test(username) || !reasons.includes(reason as LookupReason)) return;
     inFlight.current = true;
@@ -92,8 +156,10 @@ export function CustomerLookupManager({ subject }: { subject: string }) {
         setResult(unavailable);
       }
     } finally {
-      inFlight.current = false;
-      if (mounted.current) setPending(false);
+      if (mounted.current && submittedRevision === revision.current) {
+        inFlight.current = false;
+        setPending(false);
+      }
     }
   }
 
@@ -123,6 +189,7 @@ export function CustomerLookupManager({ subject }: { subject: string }) {
             autoComplete="off"
             autoCapitalize="none"
             spellCheck={false}
+            disabled={!ready}
             aria-describedby="lookup-hint"
           />
           <p id="lookup-hint" className="identity-form-status">
@@ -137,6 +204,7 @@ export function CustomerLookupManager({ subject }: { subject: string }) {
             name="reason"
             required
             value={reason}
+            disabled={!ready}
             onChange={(event) => {
               edit();
               setReason(event.target.value);
@@ -148,28 +216,44 @@ export function CustomerLookupManager({ subject }: { subject: string }) {
             <option value="address_help">Address help</option>
           </select>
         </div>
-        <button className="identity-button" type="submit" disabled={pending}>
+        <button className="identity-button" type="submit" disabled={pending || !ready}>
           {pending ? "Looking up…" : "Look up customer"}
         </button>
       </form>
       <p className="identity-form-status" role="status" aria-live="polite">
-        {pending ? "Looking up customer…" : result?.message}
+        {!ready
+          ? "Checking your current session. Reload this page if access cannot be confirmed."
+          : pending
+            ? "Looking up customer…"
+            : result?.message}
       </p>
-      {result?.status === "found" && result.customer && (
-        <dl className="identity-details customer-lookup-result" aria-label="Customer lookup result">
-          <div>
-            <dt>Username</dt>
-            <dd>{result.customer.username}</dd>
-          </div>
-          <div>
-            <dt>Customer ID</dt>
-            <dd>{result.customer.subject}</dd>
-          </div>
-          <div>
-            <dt>Status</dt>
-            <dd>{result.customer.status}</dd>
-          </div>
-        </dl>
+      {ready && result?.status === "found" && result.customer && (
+        <>
+          <dl
+            className="identity-details customer-lookup-result"
+            aria-label="Customer lookup result"
+          >
+            <div>
+              <dt>Username</dt>
+              <dd>{result.customer.username}</dd>
+            </div>
+            <div>
+              <dt>Customer ID</dt>
+              <dd>{result.customer.subject}</dd>
+            </div>
+            <div>
+              <dt>Status at lookup</dt>
+              <dd>{result.customer.status}</dd>
+            </div>
+          </dl>
+          {statusEnabled && (
+            <CustomerStatusManager
+              key={`${subject}:${result.customer.subject}`}
+              actorSubject={subject}
+              customerSubject={result.customer.subject}
+            />
+          )}
+        </>
       )}
     </>
   );

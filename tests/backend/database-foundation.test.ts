@@ -512,7 +512,9 @@ test("historical foundation defaults/dependencies/grants match the pre-lookup Ty
   // This fixture intentionally loads only foundation + staff_entry. Current complete
   // registry/SQL parity is separately asserted in database-customer-lookup.test.ts.
   const historicalModules = Object.fromEntries(
-    Object.entries(backendModuleDependencies).filter(([id]) => id !== "customer_lookup"),
+    Object.entries(backendModuleDependencies).filter(
+      ([id]) => !["customer_lookup", "customer_status"].includes(id),
+    ),
   );
   const required = resolveBackendModules();
   assert.deepEqual(
@@ -539,7 +541,12 @@ test("historical foundation defaults/dependencies/grants match the pre-lookup Ty
   assert.deepEqual(
     (await db.query("select id, module_id from shopthie_private.app_permissions order by id")).rows,
     Object.entries(permissionDefinitions)
-      .map(([id, spec]) => ({ id, module_id: id === "customer.lookup" ? "staff" : spec.module }))
+      .map(([id, spec]) => ({
+        id,
+        module_id: ["customer.lookup", "customer.status.manage"].includes(id)
+          ? "staff"
+          : spec.module,
+      }))
       .sort((a, b) => a.id.localeCompare(b.id)),
   );
   const grants = await db.query<{ role_id: string; permissions: string[] }>(`

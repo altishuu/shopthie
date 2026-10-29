@@ -92,12 +92,26 @@ Hosted **`20261029121812_customer_lookup`** applied once and read back: four exa
 
 Post-apply native counts unchanged: zero staff memberships, zero verified, one pre-existing pending factor and zero audits. No account role/MFA changes or Owner bootstrap. Browser left signed out. No staging/commit/push, paid service, signup/email activation, frontend deployment or later area. See `backend-area-7.md`, `backend-area-7-results.json`, `backend-area-7-review.json` and `backend-customer-lookup-database.md`.
 
-**Stopped after Area 7. Privileged native lookup/MFA acceptance remains deferred; no next area is implicitly authorized.**
+**At Area7 handoff work stopped; the user subsequently authorized Area8 below. Privileged native lookup/MFA acceptance remains deferred.**
+
+## Area 8 — Customer application access handed off; native privileged writes/concurrency deferred
+
+The user authorized this next bounded area and resume after interruptions. Verified active Owner/Admin may explicitly review and suspend/reactivate a current Customer's **application access** only: required reason/confirmation, native-loaded target facts, revision CAS and transactional audit. Never self/staff targets, role/MFA/provider ban/session changes. Current active-account guards deny suspended accounts' protected application data; public browsing remains public.
+
+Only isolated customer_status module enabled, dependencies lookup/access/audit and preserved Owner/Admin grants; broader staff/support off. Integer status_revision auto-bumps on real transitions and rejects tampering/overflow. Lookup/target serialization uses ordered parent locks, writer participation and post-audit actor/Customer rechecks. Trusted admin writers MUST prelock parents before child DML; arbitrary child-first writers can deadlock. True multi-session acceptance remains deferred, not inferred from single-connection cascade/hook tests.
+
+React Activity/browser/account changes discard old records and late responses. A development StrictMode replay bug found in initial review was reproduced/fixed using current same-subject status capability before enabling an empty panel. No automatic target queries/mutations/retries. Independent correction re-review `deleg_515bf0a4` PASS; no remaining blocking findings.
+
+**223 unit tests, 214 overlapping backend checks including 80 SQL tests, 26 targeted desktop/mobile browser checks**, corrected production build and static gates passed. All 80 SQL tests passed after native filename alignment. Actual unchanged-Customer denial/no controls, 320px reachability, no-store isolation, logout/zero cookies passed. Privileged UI/SDK/SQL fixtures are not native JWT/OTP/write acceptance.
+
+Hosted **`20261029165555_customer_status`** applied once after review, then signatures/ACLs/paths/volatility, revision/trigger metadata, module/dependency/grants and lookup lock/recheck read back. Raw anon/authenticated private-table DML denied. Unidentified native read/change correctly denied without claims or writes. Native postcounts unchanged: zero staff memberships, zero verified, one pre-existing pending factor, zero suspended accounts/audits and all revisions0. No actual account status/role/MFA changes or Owner bootstrap for testing; browser signed out. See `backend-area-8.md`, `backend-area-8-results.json`, `backend-area-8-review.json`, `backend-customer-status-database.md`.
+
+**Stopped after Area8. Native privileged writes/MFA and true multi-session concurrency remain explicitly unverified. No next area implicitly authorized.** No staging/commit/push/frontend deployment, paid services or signup/email activation.
 
 ## Remaining roadmap — not accepted / not implemented
 
 - Remaining B2 acceptance: native customer MFA enrollment/challenge/removal with secure user participation; implementation candidate exists but this acceptance is not yet claimed. Profiles and addresses remain accepted within their bounded contracts; public launch remains gated.
-- Remaining B3: native privileged lookup/MFA acceptance, staff pending-setup cleanup/recovery, Owner bootstrap/transfer/last-owner safeguards, staff management, customer-status changes and audited private support-data tools. Minimal self-entry and exact audited metadata lookup exist; those broader capabilities do not.
+- Remaining B3: native privileged read/write/MFA and multi-session acceptance, staff pending-setup cleanup/recovery, Owner bootstrap/transfer/last-owner safeguards, staff management and audited private support-data tools. Minimal self-entry, exact audited lookup and Customer application-status controls exist; broader privileged tools do not.
 - B4: email delivery, age/teen safeguards, privacy/retention and public-account readiness.
 
-Public signup and recovery remain gated. No SMTP sender, provider-hook attachment, payments, account role promotion, account-management/private-support tools, commits, pushes or production frontend deployment were added. The core public storefront and local cart/wishlist behavior remain intact; navigation now includes a stable Account link.
+Public signup and recovery remain gated. No SMTP sender, provider-hook attachment, payments, account role promotion, staff-role/Owner/private-support tools, commits, pushes or production frontend deployment were added. The core public storefront and local cart/wishlist behavior remain intact; navigation now includes a stable Account link.
