@@ -121,9 +121,11 @@ test("verified-input resolver requires aal2 for staff and MFA-enrolled customers
     "unavailable",
   );
   assert.equal(
-    resolve(providerUser, { ...claims, aal: "aal2" }, [
-      { ...row, aal: "aal2", role: "owner", mfa_required: true },
-    ]).status,
+    resolve(
+      { ...providerUser, factors: [{ id: subject, factor_type: "totp", status: "verified" }] },
+      { ...claims, aal: "aal2" },
+      [{ ...row, aal: "aal2", role: "owner", mfa_required: true }],
+    ).status,
     "active",
   );
 });

@@ -1,0 +1,30 @@
+{
+  "passed": true,
+  "initial_review": {
+    "id": "deleg_fddd71a0",
+    "passed": false,
+    "findings": [
+      "Staff pending cancellation raced verification before unconditional unenroll.",
+      "Mixed factor evidence accepted empty factor_type."
+    ],
+    "sql_scope": "Self-only RPC, narrow ACLs, live app/SQL MFA gates and disabled optional-tool boundaries otherwise matched contract; enum-backed embedded probe executed. Native proof not claimed."
+  },
+  "correction": {
+    "id": "deleg_2ed66b79",
+    "strategy": "No staff unenroll paths at all, including pending cancellation; strict empty factor_type rejection; Customer behavior unchanged.",
+    "observed_red_green": true,
+    "affected_tests_passed": 34,
+    "expanded_focused_tests_passed": 60
+  },
+  "final_review": {
+    "id": "deleg_bfd708a7",
+    "passed": true,
+    "security_concerns": [],
+    "logic_errors": [],
+    "suggestions": [],
+    "tests_passed": 34,
+    "scope": "Prior blockers and regressions only; unchanged SQL not repeated; no remote operations or Git changes."
+  },
+  "native_migration_applied_after_pass": true,
+  "native_privileged_mfa_acceptance": false
+}

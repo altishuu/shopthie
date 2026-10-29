@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { existsSync } from "node:fs";
-import { readFile } from "node:fs/promises";
+import { readFile, readdir } from "node:fs/promises";
 import { after, before, test } from "node:test";
 import type { PGlite } from "@electric-sql/pglite";
 import { asActor, createAuthFixture, customerId, otherId, provision } from "./auth-fixture.ts";
@@ -16,6 +16,12 @@ before(async () => {
   assert.ok(existsSync(migration), "Area 1 authority migration must exist");
   db = await createAuthFixture();
   await db.exec(await readFile(migration, "utf8"));
+  // Latest authority extension, without activating optional data modules in this foundation fixture.
+  const directory = new URL("../../supabase/migrations/", import.meta.url);
+  for (const name of (await readdir(directory))
+    .filter((name) => /^\d+_staff_entry\.sql$/.test(name))
+    .sort())
+    await db.exec(await readFile(new URL(name, directory), "utf8"));
 });
 after(async () => {
   await db?.close();
@@ -63,7 +69,12 @@ test("permission helper enforces the full role grant matrix, current membership,
     await provision(db);
     const permissionIds = roleGrants.owner;
     for (const [roleId, grants] of Object.entries(roleGrants)) {
-      await db.exec("reset role");
+      await db.exec("reset role; delete from auth.mfa_factors");
+      if (roleId !== "customer")
+        await db.query(
+          "insert into auth.mfa_factors(user_id,status,factor_type) values ($1,'verified','totp')",
+          [customerId],
+        );
       await db.query("update shopthie_private.app_user_roles set role_id = $1 where user_id = $2", [
         roleId,
         customerId,
@@ -78,7 +89,7 @@ test("permission helper enforces the full role grant matrix, current membership,
         for (const id of permissionIds) {
           assert.equal(
             await permission(id),
-            id === "audit.read" && grants.includes(id) && aal === "aal2",
+            ["audit.read", "staff.enter"].includes(id) && grants.includes(id) && aal === "aal2",
             `${roleId}/${aal}/${id}: optional modules start disabled`,
           );
         }
@@ -394,6 +405,9 @@ test("current membership removal and stale Owner JWT metadata never authorize an
       app_metadata: { role: "owner" },
     };
     await db.exec("update shopthie_private.app_user_roles set role_id = 'owner'");
+    await db.query("insert into auth.mfa_factors(user_id,status) values ($1,'verified')", [
+      customerId,
+    ]);
     await asActor(db, "authenticated", claims);
     assert.equal(await permission("audit.read"), true);
     await db.exec("reset role; update shopthie_private.app_user_roles set role_id = 'customer'");
@@ -485,10 +499,12 @@ test("installed function security is locked down with no privileged public RPC",
   `);
   assert.deepEqual(installed.rows, [
     { name: "public.shopthie_actor_context", definer: false, settings: ['search_path=""'] },
+    { name: "public.shopthie_staff_entry", definer: false, settings: ['search_path=""'] },
     { name: "shopthie_private.actor_context", definer: true, settings: ['search_path=""'] },
     { name: "shopthie_private.before_user_created", definer: false, settings: ['search_path=""'] },
     { name: "shopthie_private.has_permission", definer: true, settings: ['search_path=""'] },
     { name: "shopthie_private.provision_customer", definer: true, settings: ['search_path=""'] },
+    { name: "shopthie_private.staff_entry", definer: true, settings: ['search_path=""'] },
   ]);
 });
 
@@ -539,6 +555,9 @@ test("enabled capabilities still deny when a direct or transitive module depende
     await db.exec(
       "update shopthie_private.app_user_roles set role_id = 'owner'; update shopthie_private.app_modules set enabled = true",
     );
+    await db.query("insert into auth.mfa_factors(user_id,status) values ($1,'verified')", [
+      customerId,
+    ]);
     const cases = [
       {
         disabled: "profiles",
@@ -587,6 +606,7 @@ const roleGrants = {
     "customer.status.manage",
     "profile.read_own",
     "profile.update_own",
+    "staff.enter",
     "support.private.read",
   ],
   owner: [
@@ -596,6 +616,7 @@ const roleGrants = {
     "customer.status.manage",
     "profile.read_own",
     "profile.update_own",
+    "staff.enter",
     "staff.manage",
     "support.private.read",
   ],
@@ -635,6 +656,7 @@ test("migration applies and seeds the complete reviewed role grants and module d
     { id: "customer.status.manage", module_id: "staff" },
     { id: "profile.read_own", module_id: "profiles" },
     { id: "profile.update_own", module_id: "profiles" },
+    { id: "staff.enter", module_id: "identity" },
     { id: "staff.manage", module_id: "staff" },
     { id: "support.private.read", module_id: "support" },
   ]);

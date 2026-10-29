@@ -13,6 +13,7 @@ export type AuthorizationActor = {
 
 type Scope = "self" | "directory" | "customer" | "staff_assignment" | "support" | "audit";
 export const permissionDefinitions = {
+  "staff.enter": { module: "identity", scope: "self" },
   "profile.read_own": { module: "profiles", scope: "self" },
   "profile.update_own": { module: "profiles", scope: "self" },
   "address.manage_own": { module: "addresses", scope: "self" },
@@ -27,6 +28,7 @@ export type ApplicationPermission = keyof typeof permissionDefinitions;
 const ownPermissions = ["profile.read_own", "profile.update_own", "address.manage_own"] as const;
 const staffPermissions = [
   ...ownPermissions,
+  "staff.enter",
   "customer.lookup",
   "customer.status.manage",
   "support.private.read",
@@ -68,7 +70,10 @@ export function authorize(
   if (!["aal1", "aal2"].includes(actor.aal)) {
     return { allowed: false, reason: "invalid_assurance" };
   }
-  if ((actor.role !== "customer" || actor.hasVerifiedMfa) && actor.aal !== "aal2") {
+  if (
+    (actor.role !== "customer" && actor.hasVerifiedMfa !== true) ||
+    ((actor.role !== "customer" || actor.hasVerifiedMfa) && actor.aal !== "aal2")
+  ) {
     return { allowed: false, reason: "mfa_required" };
   }
   if (!Object.hasOwn(permissionDefinitions, request.permission)) {

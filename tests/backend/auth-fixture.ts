@@ -17,6 +17,8 @@ export async function createAuthFixture() {
     create table auth.mfa_factors (
       id uuid primary key default gen_random_uuid(),
       user_id uuid not null references auth.users(id) on delete cascade,
+      -- TEST schema: native Supabase uses enums; this synthetic text field is not GoTrue.
+      factor_type text not null default 'totp',
       status text not null check (status in ('unverified', 'verified'))
     );
     create function auth.jwt() returns jsonb language sql stable

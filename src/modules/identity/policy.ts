@@ -1,4 +1,5 @@
 import type { IdentityState, ProviderUser, VerifiedIdentityClaims } from "./types.ts";
+import { hasVerifiedTotpFactor } from "./mfa/factors.ts";
 
 /** Never redirect to a supplied origin, encoded path, query or fragment after login. */
 export function safeAccountReturnPath(value: unknown): string {
@@ -62,7 +63,9 @@ export function identityFromVerifiedData(
   )
     return unavailable;
   if (status === "suspended") return { status: "suspended" };
-  if (mfa_required && aal !== "aal2") return { status: "mfa_required" };
+  const hasVerifiedMfa = role === "customer" ? mfa_required : hasVerifiedTotpFactor(user.factors);
+  if ((mfa_required && aal !== "aal2") || (role !== "customer" && !hasVerifiedMfa))
+    return { status: "mfa_required" };
   return {
     status: "active",
     email: user.email,
@@ -71,8 +74,14 @@ export function identityFromVerifiedData(
       role,
       status,
       aal,
-      // RPC combines staff policy and enrollment. It proves enrollment specifically for Customers.
-      hasVerifiedMfa: role === "customer" && mfa_required,
+      // Customer enrollment comes from the live RPC; staff also need fresh provider TOTP evidence.
+      hasVerifiedMfa,
     },
   };
+}
+
+/** An enrolled AAL1 session must reach its challenge even when login supplied a private destination. */
+export function accountDestinationAfterLogin(identity: IdentityState, next: unknown): string {
+  if (identity.status === "mfa_required") return "/account/security";
+  return identity.status === "active" ? safeAccountReturnPath(next) : "/account";
 }

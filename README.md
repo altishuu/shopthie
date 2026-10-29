@@ -4,7 +4,7 @@ A light editorial storefront for a multi-brand premium technology retailer. Next
 
 ## Current milestone
 
-**Backend Areas 1–4 implemented within their bounded contracts; stopped after saved addresses.** Authority, real login/session, private profiles and owned address CRUD/defaults/reference data are integrated with the dedicated Supabase backend. Real controlled-account address/default/conflict/isolation/logout and narrow mobile save checks passed; synthetic addresses were removed. Acceptance: 136 unit tests, 94 overlapping backend checks, 20 targeted desktop/mobile browser checks, build/static gates and focused review PASS. MFA UI/staff/public-readiness remain unfinished; signup/recovery are gated and commerce remains a demo. Vercel production public Supabase settings are saved, but no redeployment/commit/push was triggered and uncommitted address code is not uploaded. See `docs/backend-area-4.md`, `docs/backend-progress.md` and `docs/backend-vercel-setup.md`.
+**Backend Areas 1–4 accepted; Areas 5–6 authenticator/staff-entry implementation handed off with native privileged MFA verification deferred.** Authority, sessions, self profiles and saved addresses use dedicated Supabase. Area 6 adds staff self TOTP setup/challenge and a minimal protected `/admin`, with current verified TOTP plus AAL2 required in app and SQL. All staff unenrollment (including pending cancellation) is intentionally unavailable; staff/support tools and role management remain disabled. Current candidate: **185 unit tests, 148 overlapping backend checks including 52 embedded SQL tests, 24 targeted browser checks**, build/static gates and independent review after corrections PASS. Hosted staff-entry migration applied/read back; no real staff role or MFA changes. The controlled Customer was left signed out. Synthetic privileged tests are not native OTP/JWT acceptance. Signup/recovery and public readiness remain gated; commerce is still a demo. No assistant commit, push or frontend deployment. See `docs/backend-area-6.md`, `docs/backend-progress.md` and `docs/backend-vercel-setup.md`.
 
 **Phases 1–4 implemented: design foundation, frontend commerce, cinematic motion, and editorial/responsive refinement.**
 
@@ -30,7 +30,7 @@ A light editorial storefront for a multi-brand premium technology retailer. Next
 
 **Phase 5 local handoff ready under the user's focused verification scope:** production build, lint/types/formatting, 89 unit tests, and 16 affected desktop/mobile shopping/focus checks pass on that frontend-only handoff candidate. An earlier complete run passed 138 browser tests before the final small focus correction. Extended browser/performance cycles were deliberately not repeated. Cross-tab transactions, native listener cleanup, stable catalog hydration, and delayed focus/announcement behavior are corrected. See `docs/phase-5-report.md`, `docs/phase-5-acceptance-results.json`, and `docs/HANDOFF.md`. The catalog remains seven source-verified models, not the proposed sixteen.
 
-Supabase now backs identity/session, self-only profiles and saved addresses. Real orders/inventory/payments, an administrative dashboard and a production frontend deployment are not implemented by this bounded work. No commit, push or frontend deployment was performed in Area 3.
+Supabase now backs identity/session, self-only profiles and saved addresses. Real orders/inventory/payments, operational administrative tools and a production frontend deployment are not implemented; `/admin` is only a protected self-readiness entry. No commit, push or frontend deployment was performed in Area 3.
 
 ## Install and run
 
@@ -55,7 +55,7 @@ Stop running development/preview servers before rebuilding the same project; the
 ## Verification
 
 ```bash
-npm test                         # 136 current unit tests
+npm test                         # 185 current unit tests
 npm run lint
 npm run typecheck
 npm run format:check

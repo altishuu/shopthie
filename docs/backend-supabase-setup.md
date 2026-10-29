@@ -59,4 +59,12 @@ Hosted history `20261029031614`, name `addresses`, matches local `supabase/migra
 
 Native controlled-account CRUD, country requirements/resets, manual fallback, atomic default switching, optional clearing, stale conflict/draft retention, deletion and private-cache/logout checks passed. Final readback: zero saved addresses, one retained book at revision 6, existing synthetic profile unchanged with phone NULL. Browser signed out; signup/anonymous OFF and email/confirmation ON rechecked. See `backend-area-4-results.json` for limits.
 
-Vercel production has the matching two public Supabase settings, individually read back, with no private key exposure or redeployment. Details and deployment boundary: `backend-vercel-setup.md`. No later feature, plan upgrade, email setup, commit, push or frontend deployment was performed.
+Vercel production has the matching two public Supabase settings, individually read back, with no private key exposure or redeployment. Details and deployment boundary: `backend-vercel-setup.md`. At the Area 4 handoff no later feature was started; Area 6 was subsequently separately authorized below. No plan upgrade, email setup, commit, push or frontend deployment was performed.
+
+## Area 6 — staff readiness authority installed
+
+Hosted migration history `20261029113028`, name `staff_entry`, read back after one successful apply; local `supabase/migrations/20261029113028_staff_entry.sql` aligned without SQL changes. All 52 local SQL checks passed after alignment.
+
+Readback confirms identity-module `staff.enter` granted only to Owner/Admin; optional staff/support remain disabled. Public zero-argument `shopthie_staff_entry()` returns only `(user_id uuid, role text)`, invoker over a private definer; both have empty search paths, authenticated execute and no anon/PUBLIC execute. Existing `has_permission(text)` has the same narrow ACL and current verified TOTP requirement installed. Raw private table client DML remains denied.
+
+Account/security preflight and post-apply counts match: zero staff memberships, zero verified factors, one pre-existing pending factor. No account role promotion or native MFA operation was performed. The controlled Customer denial/isolation/logout checks are recorded separately; native Owner/Admin enrollment/OTP/AAL2 acceptance remains deferred. No staff unenrollment/recovery is available in the app. Source review passed after blocking findings were corrected; see `backend-area-6-review.json`. No frontend deployment.

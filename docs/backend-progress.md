@@ -58,12 +58,32 @@ The user explicitly authorized the next bounded area after the Area 3 stop. Scop
 
 Accepted: own address CRUD/default handling, cap 10, global revision/stale-editor protection, country/subdivision reference and manual fallback. **136 unit tests, 94 overlapping backend checks including 47 embedded SQL tests, 20 targeted desktop/mobile browser checks**, production build/static gates and focused source review PASS. Hosted `20261029031614_addresses` history/schema/permissions/reference fingerprint read back. Real controlled-account create/reload/edit/default/clear/delete/conflict/draft/isolation/logout and narrow mobile save passed. Synthetic addresses removed; retained book revision 6; browser signed out. See `backend-area-4-results.json`.
 
-Separately authorized Vercel production public Supabase variables were saved and individually verified, without redeployment or uploading uncommitted code. See `backend-vercel-setup.md`. **Stopped after the address area; no later implementation started.**
+Separately authorized Vercel production public Supabase variables were saved and individually verified, without redeployment or uploading uncommitted code. See `backend-vercel-setup.md`. **At the Area 4 handoff, work stopped after addresses. The user subsequently authorized Area 5 below.**
 
-## Remaining roadmap — not implemented
+## Area 5 — customer authenticator MFA implementation handed off; native activation verification deferred
 
-- Remaining B2 controlled-account work: optional customer MFA enrollment/challenge UI. Profiles and saved addresses/reference data are complete within their bounded contracts; public launch remains gated.
-- B3: staff MFA/tooling, Owner-only staff management and audited support-data operations.
+The user explicitly authorized the next bounded area. Implemented self TOTP enrollment/challenge, pending cancellation and current-code removal under existing identity guards, plus private account-security UI and MFA-required login routing. No new SQL schema or provider configuration required. **167 unit tests, 125 overlapping backend checks including 47 embedded SQL tests, 22 targeted desktop/mobile browser checks**, production build and static gates passed. Official SDK cookie/session transitions are tested with explicitly synthetic provider fixtures, not claimed as native OTP/JWT acceptance.
+
+Native read-only checks: real saved-vault login, account/security navigation, required backup acknowledgment, no unchecked setup mutation, cookie-free no-store isolation and narrow-mobile reachability passed. Hosted readback still has **zero verified and zero pending factors**. No native MFA activation/removal has been performed. The user explicitly chose to keep the controlled login unchanged and hand off with live MFA verification pending; do not initiate enrollment to close this area. Focused independent source review PASS, no blocking findings (`backend-area-5-review.json`). **Bounded implementation handed off; stopped after Area 5. Native activation/removal remains explicitly uncertified.** See `backend-area-5.md`, `backend-area-5-results.json` and `backend-mfa-contract.md`.
+
+At the Area 5 handoff no staff work had started. The user subsequently authorized Area 6 below; signup, SMTP, commits, pushes and deployment remain untouched.
+
+## Area 6 — staff authenticator readiness and protected entry handed off; native privileged verification deferred
+
+The user explicitly authorized this next bounded area. Active Owner/Admin can set up/challenge their own TOTP; shared application and native SQL authority both require AAL2 plus a current verified TOTP. `/admin` exposes only self role/readiness, not customer data, role management or an operational dashboard. `staff.enter` is identity-only; staff/support tools remain disabled.
+
+Initial independent review found a cancellation/verification race and acceptance of empty factor_type in mixed evidence. Both corrected with observed RED→GREEN regressions; the safe scope deliberately excludes **all staff unenrollment, including pending cancellation/restart**, rather than relying on another non-atomic check. Customer Area 5 behavior unchanged. Independent targeted re-review `deleg_bfd708a7` PASS, no remaining findings.
+
+**185 unit tests, 148 overlapping backend checks including 52 embedded SQL tests, 24 targeted desktop/mobile browser checks**, build/types/lint/format/whitespace passed. After native history alignment, all 52 SQL checks passed again. Native Customer denial/no staff link/no private role output, cookie-free no-store isolation, mobile reachability and logout passed. These do not prove native staff OTP/JWT behavior.
+
+Hosted migration **`20261029113028_staff_entry`** applied once and read back: self-only zero-argument RPC, invoker/definer boundary, empty search paths, authenticated-only execution, no raw private-table access, Owner/Admin-only identity capability, live TOTP condition installed. Zero staff memberships, zero verified and **one pre-existing pending factor** remain unchanged. Browser left signed out; no real MFA enrollment/removal, role promotion, Owner bootstrap, source commit/push or frontend deployment. See `backend-area-6.md`, `backend-area-6-results.json`, `backend-area-6-review.json` and `backend-staff-entry-database.md`.
+
+**Stopped after Area 6. Native Customer activation/removal and privileged staff MFA acceptance remain deferred, not inferred from fixtures. No next area is implicitly authorized.**
+
+## Remaining roadmap — not accepted / not implemented
+
+- Remaining B2 acceptance: native customer MFA enrollment/challenge/removal with secure user participation; implementation candidate exists but this acceptance is not yet claimed. Profiles and addresses remain accepted within their bounded contracts; public launch remains gated.
+- Remaining B3: native privileged MFA acceptance, separately designed staff pending-setup cleanup/recovery, Owner bootstrap/transfer/last-owner safeguards, staff management and audited support-data tools. Minimal self-entry exists; those operational capabilities do not.
 - B4: email delivery, age/teen safeguards, privacy/retention and public-account readiness.
 
-Public signup and recovery remain gated. No SMTP sender, provider-hook attachment, payments, new staff privileges, commits, pushes or production deployment were added. The core public storefront and local cart/wishlist behavior remain intact; navigation now includes a stable Account link.
+Public signup and recovery remain gated. No SMTP sender, provider-hook attachment, payments, account role promotion, operational staff/support tools, commits, pushes or production frontend deployment were added. The core public storefront and local cart/wishlist behavior remain intact; navigation now includes a stable Account link.

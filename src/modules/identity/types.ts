@@ -15,5 +15,7 @@ export type ProviderUser = {
   email?: string;
   email_confirmed_at?: string;
   is_anonymous?: boolean;
+  /** Authoritative current provider user field, not user_metadata. */
+  factors?: unknown;
 };
 export type VerifiedIdentityClaims = { sub: string; aal?: unknown };

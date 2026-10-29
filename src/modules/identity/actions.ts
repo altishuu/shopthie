@@ -4,7 +4,8 @@ import { revalidatePath } from "next/cache";
 import { redirect, RedirectType } from "next/navigation";
 import { cookies } from "next/headers";
 import { createIdentityClient } from "@/platform/supabase/server";
-import { validateLoginInput } from "./policy";
+import { accountDestinationAfterLogin, validateLoginInput } from "./policy";
+import { getIdentity } from "./server";
 import { isIdentityCookieName } from "@/platform/supabase/client";
 import type { LoginState } from "./types";
 
@@ -12,6 +13,7 @@ export async function loginAction(_previous: LoginState, data: FormData): Promis
   const input = validateLoginInput(data);
   if (!input.valid)
     return { status: "error", message: "Enter a valid email address and password." };
+  let destination = "/account";
   try {
     const client = await createIdentityClient(true);
     const result = await client.auth.signInWithPassword({
@@ -27,6 +29,7 @@ export async function loginAction(_previous: LoginState, data: FormData): Promis
             : "Sign-in failed. Check your details or try again later.",
       };
     }
+    destination = accountDestinationAfterLogin(await getIdentity(), input.next);
   } catch {
     return {
       status: "error",
@@ -34,7 +37,7 @@ export async function loginAction(_previous: LoginState, data: FormData): Promis
     };
   }
   revalidatePath("/account", "layout");
-  redirect(input.next, RedirectType.replace);
+  redirect(destination, RedirectType.replace);
 }
 
 export async function logoutAction(): Promise<void> {

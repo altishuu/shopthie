@@ -27,7 +27,10 @@ test("staff and MFA-enrolled customers cannot bypass the second factor", async (
   const own = { permission: "profile.read_own", resourceOwnerId: userId };
   for (const role of ["owner", "admin"] as const) {
     assert.equal(authorize({ ...customer, role }, own, enabled).allowed, false);
-    assert.equal(authorize({ ...customer, role, aal: "aal2" }, own, enabled).allowed, true);
+    assert.equal(
+      authorize({ ...customer, role, aal: "aal2", hasVerifiedMfa: true }, own, enabled).allowed,
+      true,
+    );
   }
   assert.equal(authorize({ ...customer, hasVerifiedMfa: true }, own, enabled).allowed, false);
   assert.equal(
@@ -66,8 +69,8 @@ test("capabilities fail closed when their module is disabled or configuration is
 
 test("staff permissions enforce target scope and audited support obligations", async () => {
   const { authorize } = await import("../../src/modules/access/permissions.ts");
-  const owner = { ...customer, role: "owner" as const, aal: "aal2" as const };
-  const admin = { ...customer, role: "admin" as const, aal: "aal2" as const };
+  const owner = { ...customer, role: "owner" as const, aal: "aal2" as const, hasVerifiedMfa: true };
+  const admin = { ...customer, role: "admin" as const, aal: "aal2" as const, hasVerifiedMfa: true };
   assert.equal(authorize(admin, { permission: "customer.lookup" }, enabled).allowed, true);
   assert.equal(authorize(customer, { permission: "customer.lookup" }, enabled).allowed, false);
   const status = {

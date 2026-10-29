@@ -15,6 +15,10 @@ before(async () => {
   const profiles = (await readdir(directory)).filter((name) => /^\d+_profiles\.sql$/.test(name));
   assert.equal(profiles.length, 1, "exactly one profiles migration must exist");
   await db.exec(await readFile(new URL(profiles[0], directory), "utf8"));
+  for (const name of (await readdir(directory))
+    .filter((name) => /^\d+_staff_entry\.sql$/.test(name))
+    .sort())
+    await db.exec(await readFile(new URL(name, directory), "utf8"));
 });
 after(async () => {
   await db?.close();

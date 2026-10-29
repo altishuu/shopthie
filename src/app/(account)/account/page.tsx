@@ -18,13 +18,12 @@ const accessMessages = {
   unverified:
     "Your email address has not been confirmed. Account access remains unavailable until your email is verified.",
   suspended: "Access to this account is suspended. No private account details are available.",
-  mfa_required:
-    "Additional identity verification is required. That verification flow is not available here yet, so private account details remain protected.",
 } as const;
 
 async function AccountContent() {
   const identity: IdentityState = await getIdentity();
   if (identity.status === "guest") redirect("/login");
+  if (identity.status === "mfa_required") redirect("/account/security");
 
   return (
     <>
@@ -51,6 +50,20 @@ async function AccountContent() {
             <Link className="identity-text-link" href="/account/addresses" prefetch={false}>
               Manage saved addresses
             </Link>
+            <br />
+            <Link className="identity-text-link" href="/account/security" prefetch={false}>
+              Manage account security
+            </Link>
+            {["owner", "admin"].includes(identity.actor.role) &&
+              identity.actor.aal === "aal2" &&
+              identity.actor.hasVerifiedMfa && (
+                <>
+                  <br />
+                  <Link className="identity-text-link" href="/admin" prefetch={false}>
+                    Staff entry
+                  </Link>
+                </>
+              )}
           </p>
         </>
       ) : (

@@ -17,7 +17,7 @@ before(async () => {
   db = await createAuthFixture();
   const directory = new URL("../../supabase/migrations/", import.meta.url);
   for (const name of (await readdir(directory)).sort()) {
-    if (/^\d+_(authority_foundation|profiles|addresses)\.sql$/.test(name)) {
+    if (/^\d+_(authority_foundation|profiles|addresses|staff_entry)\.sql$/.test(name)) {
       const sql = await readFile(new URL(name, directory), "utf8");
       if (name.endsWith("_addresses.sql")) migration = sql;
       await db.exec(sql);
@@ -274,6 +274,11 @@ test("unknown and foreign address IDs share one conflict response without touchi
       assert.deepEqual(await read(), own);
       assert.deepEqual(await snapshot(), before);
     }
+    await db.exec("reset role");
+    await db.query(
+      "insert into auth.mfa_factors(user_id,status,factor_type) values ($1,'verified','totp')",
+      [customerId],
+    );
     for (const role of ["customer", "admin", "owner"]) {
       await db.exec("reset role");
       await db.query("update shopthie_private.app_user_roles set role_id = $1 where user_id = $2", [

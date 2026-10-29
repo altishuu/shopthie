@@ -1,0 +1,77 @@
+{
+  "status": "handed-off-native-privileged-mfa-acceptance-deferred",
+  "automated": {
+    "unit_tests": 185,
+    "backend_checks": 148,
+    "counts_overlap": true,
+    "embedded_sql_tests": 52,
+    "targeted_browser_checks": 24,
+    "build": true,
+    "types": true,
+    "lint": true,
+    "format": true,
+    "whitespace": true,
+    "failures": 0,
+    "skipped": 0
+  },
+  "initial_review": {
+    "id": "deleg_fddd71a0",
+    "passed": false,
+    "findings": 2
+  },
+  "correction": {
+    "id": "deleg_2ed66b79",
+    "staff_unenrollment": "not implemented, including pending cancellation",
+    "malformed_mixed_factor_evidence": "rejected",
+    "native_account_changes": false
+  },
+  "review": {
+    "passed": true,
+    "id": "deleg_bfd708a7",
+    "scope": "Prior blockers and regressions; unchanged SQL covered by initial review and native readback",
+    "security_concerns": [],
+    "logic_errors": []
+  },
+  "migration": {
+    "local_path": "supabase/migrations/20261029113028_staff_entry.sql",
+    "version": "20261029113028",
+    "name": "staff_entry",
+    "applied": true,
+    "apply_calls": 1,
+    "history_readback": true,
+    "function_signature_acl_search_path_readback": true,
+    "identity_owner_admin_only": true,
+    "live_totp_gate_installed": true,
+    "raw_private_table_dml_denied": true,
+    "optional_staff_support_enabled": false,
+    "post_alignment_sql_passed": 52
+  },
+  "native_readonly": {
+    "controlled_customer_denied": true,
+    "staff_link_absent": true,
+    "cookie_free_no_store": true,
+    "guest_redirect": true,
+    "mobile_width": 320,
+    "logout_target_height_px": 49,
+    "app_auth_cookies_after_logout": 0,
+    "browser_signed_out": true,
+    "initial_verified_factors": 0,
+    "initial_pending_factors": 1,
+    "initial_staff_memberships": 0,
+    "post_apply_counts": {
+      "staff_memberships": 0,
+      "verified_factors": 0,
+      "pending_factors": 1
+    }
+  },
+  "native_privileged_mfa_acceptance": false,
+  "no_commit_push_deployment": true,
+  "account_unchanged": true,
+  "stopped_after_area": 6,
+  "post_apply_http": {
+    "home_shop_login_200": true,
+    "admin_security_guest_streamed_login_redirect": true,
+    "protected_no_store": true,
+    "private_staff_message_absent": true
+  }
+}
