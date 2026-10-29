@@ -37,10 +37,20 @@ const commonMocks = {
     },
   },
 };
-function staff(state: unknown) {
+function staff(
+  state: unknown,
+  lookupState: unknown = { status: "unavailable", message: "Unavailable" },
+) {
   let calls = 0;
+  let lookupCalls = 0;
   const route = load("src/app/(staff)/admin/page.tsx", {
     ...commonMocks,
+    "@/modules/customer-lookup/server": {
+      getCustomerLookupPageState: async () => {
+        lookupCalls++;
+        return lookupState;
+      },
+    },
     "@/modules/staff/server": {
       getStaffPageState: async () => {
         calls++;
@@ -48,7 +58,7 @@ function staff(state: unknown) {
       },
     },
   });
-  return { route, calls: () => calls };
+  return { route, calls: () => calls, lookupCalls: () => lookupCalls };
 }
 async function content(shell: Tree) {
   const boundary = shell.props.children as Tree;
@@ -76,14 +86,14 @@ function html(tree: Tree): string {
   return require("react-dom/server").renderToStaticMarkup(renderable(tree));
 }
 
-test("ready staff entry shows only the own role, disabled-tools notice and direct session exits", async () => {
+test("ready staff entry shows only the own role, honest tools notice and direct session exits", async () => {
   for (const role of ["owner", "admin"]) {
     const { route } = staff({ status: "ready", entry: { subject: "fixture-self-staff", role } });
     const tree = await content(route.default());
     const rendered = html(tree);
     assert.match(rendered, /Staff entry\./);
     assert.match(rendered, new RegExp(`<dd>${role}</dd>`));
-    assert.match(rendered, /staff tools are not enabled/i);
+    assert.match(rendered, /account management and private support.*not available/i);
     assert.doesNotMatch(
       rendered,
       /fixture-self-staff|customer directory|revenue|total orders|audit log/i,
@@ -98,6 +108,31 @@ test("ready staff entry shows only the own role, disabled-tools notice and direc
     assert.equal(forms.length, 1);
     assert.equal(forms[0].props.action, logout);
     assert.equal(elements(forms[0], "button")[0].props.children, "Sign out");
+  }
+});
+
+test("staff entry checks current lookup readiness only after ready staff and links only ready lookup", async () => {
+  for (const status of ["ready", "guest", "mfa_required", "denied", "unavailable"]) {
+    const { route, lookupCalls } = staff(
+      { status: "ready", entry: { subject: "fixture-self-staff", role: "admin" } },
+      { status, subject: "fixture-self-staff", message: "Unavailable" },
+    );
+    assert.equal(lookupCalls(), 0);
+    const tree = await content(route.default());
+    assert.equal(lookupCalls(), 1);
+    assert.equal(
+      elements(tree, "a").some(
+        (link) => link.props.href === "/admin/customers" && link.props.prefetch === false,
+      ),
+      status === "ready",
+    );
+  }
+  for (const status of ["guest", "mfa_required", "denied", "unavailable"]) {
+    const { route, lookupCalls } = staff({ status, message: "Unavailable" });
+    if (status === "guest" || status === "mfa_required")
+      await assert.rejects(content(route.default()), /redirect:/);
+    else await content(route.default());
+    assert.equal(lookupCalls(), 0);
   }
 });
 

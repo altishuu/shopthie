@@ -508,15 +508,20 @@ test("installed function security is locked down with no privileged public RPC",
   ]);
 });
 
-test("SQL module defaults, dependencies, permission owners and role grants match TypeScript contracts", async () => {
+test("historical foundation defaults/dependencies/grants match the pre-lookup TypeScript contract", async () => {
+  // This fixture intentionally loads only foundation + staff_entry. Current complete
+  // registry/SQL parity is separately asserted in database-customer-lookup.test.ts.
+  const historicalModules = Object.fromEntries(
+    Object.entries(backendModuleDependencies).filter(([id]) => id !== "customer_lookup"),
+  );
   const required = resolveBackendModules();
   assert.deepEqual(
     (await db.query("select id, enabled from shopthie_private.app_modules order by id")).rows,
-    Object.keys(backendModuleDependencies)
+    Object.keys(historicalModules)
       .sort()
       .map((id) => ({ id, enabled: required.includes(id as (typeof required)[number]) })),
   );
-  const expectedDependencies = Object.entries(backendModuleDependencies)
+  const expectedDependencies = Object.entries(historicalModules)
     .flatMap(([module_id, dependencies]) =>
       dependencies.map((depends_on) => ({ module_id, depends_on })),
     )
@@ -534,7 +539,7 @@ test("SQL module defaults, dependencies, permission owners and role grants match
   assert.deepEqual(
     (await db.query("select id, module_id from shopthie_private.app_permissions order by id")).rows,
     Object.entries(permissionDefinitions)
-      .map(([id, spec]) => ({ id, module_id: spec.module }))
+      .map(([id, spec]) => ({ id, module_id: id === "customer.lookup" ? "staff" : spec.module }))
       .sort((a, b) => a.id.localeCompare(b.id)),
   );
   const grants = await db.query<{ role_id: string; permissions: string[] }>(`

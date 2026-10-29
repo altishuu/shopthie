@@ -4,7 +4,7 @@ A light editorial storefront for a multi-brand premium technology retailer. Next
 
 ## Current milestone
 
-**Backend Areas 1–4 accepted; Areas 5–6 authenticator/staff-entry implementation handed off with native privileged MFA verification deferred.** Authority, sessions, self profiles and saved addresses use dedicated Supabase. Area 6 adds staff self TOTP setup/challenge and a minimal protected `/admin`, with current verified TOTP plus AAL2 required in app and SQL. All staff unenrollment (including pending cancellation) is intentionally unavailable; staff/support tools and role management remain disabled. Current candidate: **185 unit tests, 148 overlapping backend checks including 52 embedded SQL tests, 24 targeted browser checks**, build/static gates and independent review after corrections PASS. Hosted staff-entry migration applied/read back; no real staff role or MFA changes. The controlled Customer was left signed out. Synthetic privileged tests are not native OTP/JWT acceptance. Signup/recovery and public readiness remain gated; commerce is still a demo. No assistant commit, push or frontend deployment. See `docs/backend-area-6.md`, `docs/backend-progress.md` and `docs/backend-vercel-setup.md`.
+**Backend Areas 1–4 accepted; Areas 5–7 authenticator/staff-entry/audited-lookup implementation handed off with privileged native acceptance deferred.** Authority, sessions, self profiles and saved addresses use dedicated Supabase. Verified staff can access minimal `/admin` and exact Customer lookup at `/admin/customers`, with current TOTP plus AAL2 required in app/SQL. Lookup returns only Customer ID/username/status and requires a reason with transactional audit. Only its dedicated module is enabled; account management/private support/role tools and all staff unenrollment remain unavailable. Current candidate: **203 unit tests, 181 overlapping backend checks including 67 embedded SQL tests, 26 targeted browser checks**, production build/static gates and independent review PASS. Hosted lookup migration applied/read back; no real staff role or MFA changes. Controlled Customer denial/isolation/logout passed; browser signed out. Fixtures are not native privileged OTP/JWT/read acceptance. Signup/recovery/public readiness remain gated; commerce is a demo. No assistant commit, push or frontend deployment. See `docs/backend-area-7.md`, `docs/backend-progress.md` and `docs/backend-vercel-setup.md`.
 
 **Phases 1–4 implemented: design foundation, frontend commerce, cinematic motion, and editorial/responsive refinement.**
 
@@ -30,7 +30,7 @@ A light editorial storefront for a multi-brand premium technology retailer. Next
 
 **Phase 5 local handoff ready under the user's focused verification scope:** production build, lint/types/formatting, 89 unit tests, and 16 affected desktop/mobile shopping/focus checks pass on that frontend-only handoff candidate. An earlier complete run passed 138 browser tests before the final small focus correction. Extended browser/performance cycles were deliberately not repeated. Cross-tab transactions, native listener cleanup, stable catalog hydration, and delayed focus/announcement behavior are corrected. See `docs/phase-5-report.md`, `docs/phase-5-acceptance-results.json`, and `docs/HANDOFF.md`. The catalog remains seven source-verified models, not the proposed sixteen.
 
-Supabase now backs identity/session, self-only profiles and saved addresses. Real orders/inventory/payments, operational administrative tools and a production frontend deployment are not implemented; `/admin` is only a protected self-readiness entry. No commit, push or frontend deployment was performed in Area 3.
+Supabase backs identity/session, self-only profiles/addresses and audited exact Customer lookup for verified staff. Real orders/inventory/payments, account-management/private-support tools and a production frontend deployment are not implemented. Earlier frontend/area reports are historical checkpoints.
 
 ## Install and run
 
@@ -55,7 +55,7 @@ Stop running development/preview servers before rebuilding the same project; the
 ## Verification
 
 ```bash
-npm test                         # 185 current unit tests
+npm test                         # 203 current unit tests
 npm run lint
 npm run typecheck
 npm run format:check

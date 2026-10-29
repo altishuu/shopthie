@@ -1,0 +1,25 @@
+/* Exact customer lookup only; identity layout and route motion remain shared. */
+.customer-lookup-form select {
+  width: 100%;
+  min-width: 0;
+  min-height: 48px;
+  padding: 12px 14px;
+  background: var(--paper);
+  color: var(--ink);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  font: inherit;
+  font-size: 16px;
+}
+.customer-lookup-form .identity-button:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+.customer-lookup-form input:focus-visible,
+.customer-lookup-form select:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 3px;
+}
+.customer-lookup-result {
+  min-width: 0;
+}

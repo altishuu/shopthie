@@ -17,7 +17,7 @@ export const permissionDefinitions = {
   "profile.read_own": { module: "profiles", scope: "self" },
   "profile.update_own": { module: "profiles", scope: "self" },
   "address.manage_own": { module: "addresses", scope: "self" },
-  "customer.lookup": { module: "staff", scope: "directory" },
+  "customer.lookup": { module: "customer_lookup", scope: "directory" },
   "customer.status.manage": { module: "staff", scope: "customer" },
   "support.private.read": { module: "support", scope: "support" },
   "staff.manage": { module: "staff", scope: "staff_assignment" },
@@ -93,7 +93,9 @@ export function authorize(
   }
   switch (definition.scope) {
     case "directory":
-      break;
+      if (!["account_access", "profile_help", "address_help"].includes(request.supportReason ?? ""))
+        return { allowed: false, reason: "lookup_reason_required" };
+      return { allowed: true, requiresAudit: true };
     case "self":
       if (request.resourceOwnerId !== actor.userId) {
         return { allowed: false, reason: "ownership_required" };

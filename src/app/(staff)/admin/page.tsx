@@ -6,6 +6,7 @@ import { redirect } from "next/navigation";
 import { IdentityShell } from "@/modules/identity/components/identity-shell";
 import { getStaffPageState } from "@/modules/staff/server";
 import type { StaffPageState } from "@/modules/staff/types";
+import { getCustomerLookupPageState } from "@/modules/customer-lookup/server";
 
 export const metadata: Metadata = {
   title: "Staff entry",
@@ -16,6 +17,8 @@ async function StaffContent() {
   const state: StaffPageState = await getStaffPageState();
   if (state.status === "guest") redirect("/login");
   if (state.status === "mfa_required") redirect("/account/security");
+  const lookupReady =
+    state.status === "ready" && (await getCustomerLookupPageState()).status === "ready";
   return (
     <>
       <p className="eyebrow">Staff access</p>
@@ -30,8 +33,16 @@ async function StaffContent() {
             </div>
           </dl>
           <p className="identity-description">
-            Staff tools are not enabled. This page confirms only your own staff-session access.
+            Customer lookup is available only when enabled for your current session. Account
+            management and private support are not available.
           </p>
+          {lookupReady && (
+            <nav className="identity-links" aria-label="Available staff tools">
+              <Link href="/admin/customers" prefetch={false}>
+                Customer lookup
+              </Link>
+            </nav>
+          )}
         </>
       ) : (
         <p className="identity-description" role="alert">

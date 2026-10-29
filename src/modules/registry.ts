@@ -8,6 +8,7 @@ export const backendModuleDependencies = {
   profiles: ["identity", "access"],
   geography: [],
   addresses: ["profiles", "geography", "access"],
+  customer_lookup: ["profiles", "access", "audit"],
   staff: ["profiles", "access", "audit"],
   support: ["staff", "profiles", "audit"],
 } as const;

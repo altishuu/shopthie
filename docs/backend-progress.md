@@ -78,12 +78,26 @@ Initial independent review found a cancellation/verification race and acceptance
 
 Hosted migration **`20261029113028_staff_entry`** applied once and read back: self-only zero-argument RPC, invoker/definer boundary, empty search paths, authenticated-only execution, no raw private-table access, Owner/Admin-only identity capability, live TOTP condition installed. Zero staff memberships, zero verified and **one pre-existing pending factor** remain unchanged. Browser left signed out; no real MFA enrollment/removal, role promotion, Owner bootstrap, source commit/push or frontend deployment. See `backend-area-6.md`, `backend-area-6-results.json`, `backend-area-6-review.json` and `backend-staff-entry-database.md`.
 
-**Stopped after Area 6. Native Customer activation/removal and privileged staff MFA acceptance remain deferred, not inferred from fixtures. No next area is implicitly authorized.**
+**At the Area 6 handoff work stopped. The user subsequently authorized Area 7 below. Native Customer activation/removal and privileged staff MFA acceptance remain deferred, not inferred from fixtures.**
+
+## Area 7 — audited exact Customer lookup handed off; privileged native acceptance deferred
+
+The user explicitly authorized the next bounded area. Active Owner/Admin with AAL2 and current verified TOTP can submit an exact username and fixed reason to `/admin/customers`. Only Customer ID/username/status or no-match can return; staff targets excluded. Read and minimal audit insert are one native operation; audit failure returns no DTO. No email/phone/address, listing/export, account status mutation, staff management, private support or audit-list UI.
+
+Only dedicated `customer_lookup` module enabled (profiles/access/audit dependencies); existing Owner/Admin capability grants preserved and `customer.lookup` remapped to it. Broader staff/support modules remain disabled. Native readiness gates the form/link; no private client caches, automatic lookups or stale-result retention. Independent read-only source review `deleg_3a9c53f3` PASS with no blocking findings; optional permanent enum-fixture suggestion recorded, not a release blocker.
+
+**203 unit tests, 181 overlapping backend checks including 67 SQL checks, 26 targeted desktop/mobile browser checks**, build/types/lint/format/whitespace passed. Historical foundation fixture expectations remain pre-lookup; added full-current registry/SQL parity instead of weakening checks. All 67 SQL checks passed again after hosted history alignment.
+
+Hosted **`20261029121812_customer_lookup`** applied once and read back: four exact RPC/helper signatures, invoker/definer boundaries, fixed empty search paths, stable readiness/volatile audited lookup, authenticated-only execute, Owner/Admin grants, no raw private table client DML, dedicated module only. Native unidentified-role calls fail without injected claims or audit rows. Real unchanged-Customer denial/no form/no DTO, cookie-free no-store, 320px reachability and logout/zero cookies passed. Privileged source/SQL/UI fixture results are not native staff acceptance.
+
+Post-apply native counts unchanged: zero staff memberships, zero verified, one pre-existing pending factor and zero audits. No account role/MFA changes or Owner bootstrap. Browser left signed out. No staging/commit/push, paid service, signup/email activation, frontend deployment or later area. See `backend-area-7.md`, `backend-area-7-results.json`, `backend-area-7-review.json` and `backend-customer-lookup-database.md`.
+
+**Stopped after Area 7. Privileged native lookup/MFA acceptance remains deferred; no next area is implicitly authorized.**
 
 ## Remaining roadmap — not accepted / not implemented
 
 - Remaining B2 acceptance: native customer MFA enrollment/challenge/removal with secure user participation; implementation candidate exists but this acceptance is not yet claimed. Profiles and addresses remain accepted within their bounded contracts; public launch remains gated.
-- Remaining B3: native privileged MFA acceptance, separately designed staff pending-setup cleanup/recovery, Owner bootstrap/transfer/last-owner safeguards, staff management and audited support-data tools. Minimal self-entry exists; those operational capabilities do not.
+- Remaining B3: native privileged lookup/MFA acceptance, staff pending-setup cleanup/recovery, Owner bootstrap/transfer/last-owner safeguards, staff management, customer-status changes and audited private support-data tools. Minimal self-entry and exact audited metadata lookup exist; those broader capabilities do not.
 - B4: email delivery, age/teen safeguards, privacy/retention and public-account readiness.
 
-Public signup and recovery remain gated. No SMTP sender, provider-hook attachment, payments, account role promotion, operational staff/support tools, commits, pushes or production frontend deployment were added. The core public storefront and local cart/wishlist behavior remain intact; navigation now includes a stable Account link.
+Public signup and recovery remain gated. No SMTP sender, provider-hook attachment, payments, account role promotion, account-management/private-support tools, commits, pushes or production frontend deployment were added. The core public storefront and local cart/wishlist behavior remain intact; navigation now includes a stable Account link.

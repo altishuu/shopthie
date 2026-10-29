@@ -22,8 +22,9 @@ async function functionContract(signature: string) {
 before(async () => {
   db = await createAuthFixture();
   const directory = new URL("../../supabase/migrations/", import.meta.url);
+  // Area 6's historical pre-tool defaults; Area 7's suite executes ALL migrations.
   for (const name of (await readdir(directory))
-    .filter((name) => /^\d+_.+\.sql$/.test(name))
+    .filter((name) => /^\d+_.+\.sql$/.test(name) && name <= "20261029113028_staff_entry.sql")
     .sort()) {
     if (name.endsWith("_staff_entry.sql")) {
       previousPermission = await functionContract("shopthie_private.has_permission(text)");
