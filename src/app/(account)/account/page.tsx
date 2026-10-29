@@ -48,7 +48,9 @@ async function AccountContent() {
               Edit your profile
             </Link>
             <br />
-            Address management is not available yet.
+            <Link className="identity-text-link" href="/account/addresses" prefetch={false}>
+              Manage saved addresses
+            </Link>
           </p>
         </>
       ) : (

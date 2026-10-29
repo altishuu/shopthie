@@ -1,0 +1,40 @@
+{
+  "retrieved_utc": "2026-10-28T19:24:20.944976+00:00",
+  "license": "CC BY 4.0",
+  "sources": [
+    {
+      "url": "https://download.geonames.org/export/dump/countryInfo.txt",
+      "sha256": "5c710efde90ee4cca15001c9f6a97ae7a74c7020b365504913ddc3afeb6d3671",
+      "bytes": 32115
+    },
+    {
+      "url": "https://download.geonames.org/export/dump/admin1CodesASCII.txt",
+      "sha256": "2e4867f5397acb056ea26377601b57af37cb4c81399770225018e9e439e91ad3",
+      "bytes": 151571
+    },
+    {
+      "url": "https://raw.githubusercontent.com/google/libaddressinput/81eb9628382b07d371d8ea0b11badf7de3857fd5/common/src/main/java/com/google/i18n/addressinput/common/RegionDataConstants.java",
+      "sha256": "ae0c44ef06e64e32e5c2f74ac43e717e69256ee17bc9c6770546ef716e223416",
+      "bytes": 39317
+    }
+  ],
+  "google_commit": "81eb9628382b07d371d8ea0b11badf7de3857fd5",
+  "counts": {
+    "raw_countries": 252,
+    "selectable_countries": 250,
+    "raw_subdivisions": 3865,
+    "selectable_subdivisions": 3847,
+    "countries_without_selectable_subdivisions": 23,
+    "google_country_rules": 252,
+    "raw_subdivisions_excluded_unknown_country": 0,
+    "hk_districts_omitted_for_postal_mismatch": 18
+  },
+  "modifications": [
+    "Exclude obsolete country codes AN/CS; preserve XK as source-defined territory code.",
+    "Subdivision option code is the GeoNames geonameid STRING scoped to country, not ISO 3166-2. Source code remains in vendored data.",
+    "Derived required-presence flags inherit missing Google require from ZZ; not deliverability/strict postal validation.",
+    "Do not offer HK ADM1 districts as postal areas; require explicit manual area instead.",
+    "AC/TA are not separately selectable because absent in GeoNames country list; no silent identifier merge.",
+    "Sort display options; use source Unicode names; retain manual fallback everywhere."
+  ]
+}

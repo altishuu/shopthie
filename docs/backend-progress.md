@@ -52,9 +52,17 @@ Implemented and accepted: self-only profile UI/services/RPCs, unique username, o
 
 **Stopped after Area 3 as requested. No subsequent area is implicitly authorized.**
 
+## Area 4 — saved addresses and geography complete; stopped
+
+The user explicitly authorized the next bounded area after the Area 3 stop. Scope is the self-owned address book plus its geography reference—not MFA, staff, public signup or commerce. See `backend-address-contract.md` and `backend-area-4.md`.
+
+Accepted: own address CRUD/default handling, cap 10, global revision/stale-editor protection, country/subdivision reference and manual fallback. **136 unit tests, 94 overlapping backend checks including 47 embedded SQL tests, 20 targeted desktop/mobile browser checks**, production build/static gates and focused source review PASS. Hosted `20261029031614_addresses` history/schema/permissions/reference fingerprint read back. Real controlled-account create/reload/edit/default/clear/delete/conflict/draft/isolation/logout and narrow mobile save passed. Synthetic addresses removed; retained book revision 6; browser signed out. See `backend-area-4-results.json`.
+
+Separately authorized Vercel production public Supabase variables were saved and individually verified, without redeployment or uploading uncommitted code. See `backend-vercel-setup.md`. **Stopped after the address area; no later implementation started.**
+
 ## Remaining roadmap — not implemented
 
-- Remaining B2 controlled-account work: addresses, geography/reference data and optional customer MFA enrollment/challenge UI. Profiles are complete within the bounded Area 3 contract.
+- Remaining B2 controlled-account work: optional customer MFA enrollment/challenge UI. Profiles and saved addresses/reference data are complete within their bounded contracts; public launch remains gated.
 - B3: staff MFA/tooling, Owner-only staff management and audited support-data operations.
 - B4: email delivery, age/teen safeguards, privacy/retention and public-account readiness.
 

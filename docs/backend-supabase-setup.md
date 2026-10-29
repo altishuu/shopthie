@@ -51,4 +51,12 @@ Catalog readback confirmed profiles RLS, no raw client SELECT/INSERT/UPDATE/DELE
 
 A real controlled Customer saved, reloaded and edited a synthetic profile, cleared the phone, and received a stale-revision conflict without overwrite. A trusted typed draft was retained; cookie-free private-cache isolation and logout denial passed. Database readback confirmed one synthetic profile at revision 2 with SQL NULL phone. The browser was left signed out. Native Auth settings were also rechecked unchanged: signup/anonymous OFF, email/confirmation ON.
 
-This is native one-account application proof, not two-user native isolation or true concurrent lock-wait certification. Those broader fixture/structural distinctions are explicit in `backend-area-3.md` and `backend-area-3-results.json`. No later area, plan upgrade, provider-hook attachment, email setup, commit/push or frontend production deployment followed.
+This was native one-account application proof, not two-user native isolation or true concurrent lock-wait certification. Those distinctions are explicit in the Area 3 reports. The following Area 4 work was separately authorized.
+
+## Area 4 — saved addresses/geography accepted
+
+Hosted history `20261029031614`, name `addresses`, matches local `supabase/migrations/20261029031614_addresses.sql`. Four private tables have RLS and no raw anon/authenticated privileges. Scoped RPC execution/search paths/invoker-definer boundaries and complete data fingerprint match the reviewed source. Only geography/addresses were newly enabled; staff/support remain disabled.
+
+Native controlled-account CRUD, country requirements/resets, manual fallback, atomic default switching, optional clearing, stale conflict/draft retention, deletion and private-cache/logout checks passed. Final readback: zero saved addresses, one retained book at revision 6, existing synthetic profile unchanged with phone NULL. Browser signed out; signup/anonymous OFF and email/confirmation ON rechecked. See `backend-area-4-results.json` for limits.
+
+Vercel production has the matching two public Supabase settings, individually read back, with no private key exposure or redeployment. Details and deployment boundary: `backend-vercel-setup.md`. No later feature, plan upgrade, email setup, commit, push or frontend deployment was performed.

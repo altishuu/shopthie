@@ -1,0 +1,153 @@
+/* Saved addresses only; reuse the existing identity palette and layout. */
+.address-book {
+  min-width: 0;
+  margin-block: 24px;
+}
+.address-help {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.65;
+  margin-block: 8px 16px;
+  overflow-wrap: anywhere;
+}
+.address-book-toolbar,
+.address-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.address-book-toolbar {
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+.address-book-toolbar .address-help {
+  margin: 0;
+}
+.address-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 10px 16px;
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  background: var(--paper);
+  color: var(--ink);
+  font-size: 13px;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+.address-book button:disabled,
+.address-book fieldset:disabled button {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.address-book :is(button, input, select, a):focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 3px;
+}
+.address-list {
+  list-style: none;
+  padding: 0;
+  margin-block: 22px;
+  display: grid;
+  gap: 16px;
+}
+.address-card,
+.address-editor {
+  min-width: 0;
+  padding-block: 20px;
+  border-block: 1px solid var(--line);
+}
+.address-book h2 {
+  margin-block: 0 12px;
+  font-size: 20px;
+  line-height: 1.35;
+  letter-spacing: -0.03em;
+  overflow-wrap: anywhere;
+}
+.address-lines {
+  display: grid;
+  gap: 3px;
+  margin-block: 12px 18px;
+  font-size: 14px;
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+}
+.address-badge {
+  display: inline-block;
+  margin: 0;
+  padding: 5px 10px;
+  background: var(--accent);
+  color: var(--ink);
+  border-radius: 20px;
+  font-size: 12px;
+}
+.address-empty {
+  margin-block: 24px;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.7;
+}
+.address-editor .identity-field select {
+  width: 100%;
+  min-width: 0;
+  min-height: 48px;
+  padding: 12px 10px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--paper);
+  color: var(--ink);
+  font: inherit;
+  font-size: 16px;
+}
+.address-editor .identity-field .address-help {
+  margin: 0;
+}
+.address-default {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 44px;
+  font-size: 14px;
+  line-height: 1.6;
+}
+.address-default input {
+  flex: 0 0 auto;
+  width: 20px;
+  height: 20px;
+  accent-color: var(--ink);
+}
+.address-editor .address-actions .identity-button {
+  width: auto;
+}
+.address-book .address-actions > * {
+  max-width: 100%;
+}
+.address-delete {
+  margin-top: 18px;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+  font-size: 14px;
+  line-height: 1.65;
+}
+.address-delete fieldset {
+  margin: 0;
+  padding: 0;
+  min-width: 0;
+  border: 0;
+}
+.address-saved {
+  color: var(--ink);
+  background: var(--accent);
+  border-radius: 8px;
+  padding: 12px 14px;
+  font-size: 14px;
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+.address-credits a {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}

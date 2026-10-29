@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "sources": [
+    {
+      "id": 1,
+      "url": "https://download.geonames.org/export/dump/readme.txt",
+      "title": "",
+      "accessed": "2026-10-29"
+    },
+    {
+      "id": 2,
+      "url": "https://github.com/google/libaddressinput/blob/81eb9628382b07d371d8ea0b11badf7de3857fd5/README.md",
+      "title": "",
+      "accessed": "2026-10-29"
+    },
+    {
+      "id": 3,
+      "url": "https://github.com/google/libaddressinput/wiki/AddressValidationMetadata",
+      "title": "",
+      "accessed": "2026-10-29"
+    }
+  ]
+}

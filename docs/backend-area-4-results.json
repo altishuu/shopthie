@@ -1,0 +1,104 @@
+{
+  "status": "accepted-bounded-address-area-stopped",
+  "scope": "Self-owned saved addresses and geography only",
+  "project_id": "sjqpfsjgfzmcsshkdrmc",
+  "migration": {
+    "name": "addresses",
+    "version": "20261029031614",
+    "path": "supabase/migrations/20261029031614_addresses.sql",
+    "applied": true,
+    "parent_readback_verified": true,
+    "sql_unchanged_after_version_alignment": true
+  },
+  "automated": {
+    "unit_tests": 136,
+    "backend_checks": 94,
+    "counts_overlap": true,
+    "embedded_sql_tests": 47,
+    "new_address_sql_tests": 17,
+    "targeted_desktop_mobile_browser_checks": 20,
+    "failures": 0,
+    "skipped": 0,
+    "production_build": true,
+    "types": true,
+    "lint": true,
+    "format": true,
+    "whitespace": true
+  },
+  "review": {
+    "id": "deleg_edd298d6",
+    "passed": true,
+    "findings": [],
+    "source_only": true
+  },
+  "reference": {
+    "country_count": 250,
+    "subdivision_count": 3847,
+    "canonical_sha256": "25c9eb03fa97715fbdb0cc311535fd525872be4e20687a73b81fb2e0ce632859",
+    "native_matches_local": true,
+    "notes": "Presence rules and suggestions only; manual fallback and attribution; no shipping/deliverability certification."
+  },
+  "native": {
+    "initial_empty_book": true,
+    "create_coded_region": true,
+    "reload_persistence": true,
+    "country_change_resets": true,
+    "country_specific_presence": true,
+    "default_switch": true,
+    "edit_manual_fallback": true,
+    "clear_optional_line_mobile": true,
+    "stale_revision_denied": true,
+    "draft_retained_on_conflict": true,
+    "conflict_no_overwrite": true,
+    "cancel_delete": true,
+    "delete_default_without_replacement": true,
+    "delete_final_entry": true,
+    "empty_book_revision_retained": true,
+    "cookie_free_no_store_isolation": true,
+    "logout_app_auth_cookies": 0,
+    "post_logout_denied": true,
+    "browser_signed_out": true
+  },
+  "cleanup": {
+    "saved_address_rows": 0,
+    "book_rows": 1,
+    "book_revision": 6,
+    "synthetic_profile_rows": 1,
+    "nonnull_profile_phones": 0
+  },
+  "layout": {
+    "desktop": [1280, 577],
+    "mobile": [320, 740],
+    "visual_inspection": true,
+    "horizontal_overflow": false,
+    "save_action_height_px": 49,
+    "mobile_save_succeeded": true
+  },
+  "auth": {
+    "native_signup_disabled": true,
+    "anonymous_signin_disabled": true,
+    "email_enabled": true,
+    "email_confirmation_required": true,
+    "hook_attached": false
+  },
+  "vercel": {
+    "project_id": "prj_SijFC9odtXKfcQMaIfn8yMCKn04z",
+    "production_public_config_saved_and_read_back": true,
+    "preview_unchanged": true,
+    "deployed_by_assistant": false
+  },
+  "limitations": [
+    "SQL fixtures inject TEST claims; native flows use one controlled Customer plus anonymous isolation.",
+    "No true multi-session concurrency/lock-wait certification or native staff MFA enrollment.",
+    "No broad frontend/three-engine/retention rerun, forced-expiration or hosted HTTPS certification.",
+    "No strict worldwide postal validation, delivery or shipping coverage guarantee."
+  ],
+  "not_started": [
+    "MFA UI",
+    "Staff/support tooling",
+    "Public signup/email readiness",
+    "Real commerce/payments",
+    "Any next area"
+  ],
+  "no_commit_push_or_frontend_deployment": true
+}
