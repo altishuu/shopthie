@@ -29,7 +29,7 @@ before(async () => {
   db = await createAuthFixture();
   const directory = new URL("../../supabase/migrations/", import.meta.url);
   // Area7 historical acceptance fixture. Latest full-schema parity and lifecycle
-  // guards are exercised in database-customer-status.test.ts.
+  // guards and parity are exercised in database-audit-view.test.ts.
   for (const name of (await readdir(directory))
     .filter((name) => /^\d+_.+\.sql$/.test(name) && name <= "20261029121812_customer_lookup.sql")
     .sort()) {
@@ -526,17 +526,17 @@ test("TEST fixture final counts confirm transaction cleanup and only dedicated l
   console.info("TEST fixture final counts (not native):", JSON.stringify(counts));
 });
 
-test("complete current SQL module states, dependencies, permission owners and grants match TypeScript", async () => {
+test("historical Area7 SQL module states, dependencies, permission owners and grants match contract", async () => {
   const enabled = resolveBackendModules(["profiles", "geography", "addresses", "customer_lookup"]);
   assert.deepEqual(
     (await db.query("select id, enabled from shopthie_private.app_modules order by id")).rows,
     Object.keys(backendModuleDependencies)
-      .filter((id) => id !== "customer_status")
+      .filter((id) => !["customer_status", "audit_view"].includes(id))
       .sort()
       .map((id) => ({ id, enabled: enabled.includes(id as (typeof enabled)[number]) })),
   );
   const dependencies = Object.entries(backendModuleDependencies)
-    .filter(([id]) => id !== "customer_status")
+    .filter(([id]) => !["customer_status", "audit_view"].includes(id))
     .flatMap(([module_id, values]) => values.map((depends_on) => ({ module_id, depends_on })))
     .sort(
       (a, b) => a.module_id.localeCompare(b.module_id) || a.depends_on.localeCompare(b.depends_on),
@@ -554,7 +554,8 @@ test("complete current SQL module states, dependencies, permission owners and gr
     Object.entries(permissionDefinitions)
       .map(([id, spec]) => ({
         id,
-        module_id: id === "customer.status.manage" ? "staff" : spec.module,
+        module_id:
+          id === "customer.status.manage" ? "staff" : id === "audit.read" ? "audit" : spec.module,
       }))
       .sort((a, b) => a.id.localeCompare(b.id)),
   );

@@ -1,0 +1,49 @@
+# Area 9 — restricted operational audit history
+
+Status: implementation reviewed and hosted migration installed/read back; native privileged staff/MFA and true multi-session acceptance deferred. Original authorization after Area8, starting clean at user commit `1bf434f added custome application access controls`. Implement/verify this slice and stop; no remaining-roadmap expansion.
+
+## Scope
+
+- Read-only history of implemented app operations: `customer.lookup`, `customer.status.read`, `customer.status.change`. Not a complete security/compliance log. Unknown/future event types are not exposed until explicitly reviewed. No log editing/deletion/retention/export, private support fields, role management, Owner bootstrap, provider Auth/MFA/session changes.
+- Current active confirmed Owner/Admin + AAL2 + current verified TOTP. Admin sees ONLY rows whose actor_id is its actual auth.uid(); Owner sees supported events across actors. No caller-supplied actor/role/scope filter. Caller subject in a form only asserts identity.
+- Separate optional `audit_view` module, dependencies access/audit (identity transitively). Remap ONLY existing `audit.read` from required audit to audit_view; preserve reviewed Owner/Admin grants, no Customer grant. Enable only viewer in addition to existing modules. Disabling viewer must hide UI/block actions/direct RPC but must NOT disable mandatory audit recording. Broader staff/support modules remain OFF.
+- Fixed page size20, read21 eligible records for lookahead. Order `(created_at DESC,id DESC)`, exclusive keyset cursor, no offset/count-all/flexible limits. Next page REPLACES rows, never auto-drains/appends. No automatic data load; explicit Load recent events and Older events. Cursor uses last visible record, only nonnull when lookahead proves more.
+- Exact event DTO: `{id,actorSubject,targetSubject,eventType,reason,outcome,createdAt}`. UUIDs canonical lower, target nullable only for customer.lookup/not_found. No username/phone/email/address/metadata/reason text copied into output. Reasons/outcomes validated by event type; render controlled labels, not arbitrary provider messages.
+- Event reason/outcome allowlist: lookup reasons account_access/profile_help/address_help + found(target present)/not_found(target null); status.read reasons account_security/customer_request/account_review + read; status.change same reasons + active/suspended. Require nonnull actor UUID. Unsupported/malformed legacy rows excluded SQL-side; strict decoding still rejects expanded or malformed responses.
+- UTC timestamp cursor format EXACT `YYYY-MM-DDTHH:mm:ss.ffffffZ` (six fractional digits), e.g. produced by `to_char(created_at AT TIME ZONE 'UTC','YYYY-MM-DD"T"HH24:MI:SS.US"Z"')`. Preserve full microseconds literally; never roundtrip a cursor through JS Date/ISO milliseconds. JS date formatting may be display-only. Validate real calendar timestamps; compare canonical timestamp+UUID tuples for strict order and page-boundary constraints.
+
+## Fixed interfaces / ownership
+
+Parent owns `src/modules/audit-view/{types,policy,service,adapter,server,actions}.ts`, registry/access changes, own policy/service/SDK/server tests and historical foundation/lookup parity expectation alignment. SQL worker owns one new `*_audit_view.sql`, tests/backend/database-audit-view.test.ts and database doc. May freeze database-customer-status.test.ts to historical status cutoff/update historical parity expectation; no weakened assertions, latest complete registry/schema/dependency/grant parity in new suite. Do not edit deployed migrations.
+
+Types:
+
+- `AuditScope = 'own'|'all'`.
+- `AuditCursor={createdAt:string;id:string}`.
+- `AuditEvent={id:string;actorSubject:string;targetSubject:string|null;eventType:'customer.lookup'|'customer.status.read'|'customer.status.change';reason: 'account_access'|'profile_help'|'address_help'|'account_security'|'customer_request'|'account_review';outcome:'found'|'not_found'|'read'|'active'|'suspended';createdAt:string}`.
+- `AuditPage={scope:AuditScope;events:AuditEvent[];nextCursor:AuditCursor|null}` (EXACT envelope).
+- `AuditPageState = {status:'ready';subject:string;scope:AuditScope}|{status:'guest'}|{status:'mfa_required'}|{status:'denied'|'unavailable';message:string}`.
+- `AuditActionResult={status:'ready'|'error';message:string;page:AuditPage|null}`. Error always page null; no raw provider strings.
+- `getAuditViewPageState():Promise<AuditPageState>` server.ts: verified request identity/permission/module then strict boolean readiness, derive scope only from trusted current role.
+- `checkAuditViewSessionAction():Promise<AuditPageState>` actions.ts, zero arguments, self capability only, no event reads/audit writes.
+- `loadAuditEventsAction(FormData):Promise<AuditActionResult>` actions.ts. Exactly one each `expected_subject`,`cursor_created_at`,`cursor_id` plus framework bookkeeping; first page uses both cursor values empty strings. Subsequent requires canonical timestamp+UUID pair. No actor/role/scope/limit input. Verify fresh trusted staff, current readiness; native RPC rechecks scope. Decoder requires scope matching trusted current role, Admin actor matches on EVERY row, exact keys/allowlisted combinations, max20, strict descending tuple order, rows older than submitted cursor, nonnull next only at20 rows and exact last visible tuple. Never normalize cursor.
+
+Native RPCs public invoker → private definer, empty paths, authenticated execute only; no PUBLIC/anon/raw-table/audit-write grants:
+
+- `shopthie_audit_view_ready()` -> boolean STABLE; has_permission('audit.read') + current Owner/Admin role. No event data.
+- `shopthie_audit_events(p_before_time text,p_before_id uuid)` -> jsonb EXACT AuditPage. Null/null means first; other combinations invalid. VOLATILE because parent account SHARE lock/fresh rechecks; read-only in effects, no audit insert for viewing history. Initial permission before data/validation, lock actor account, recheck, derive current role from trusted membership. Filter Admin to own actor before pagination; Owner supported events only. Native calendar/canonical timestamp validation before cast/use. Read21 eligible records with stable timestamp+UUID ordering, return20 and justified cursor. Recheck current actor/capability/role before returning. Appropriate timeline and actor/timeline indexes allowed; no new tables or data mutation. Existing account-writer lock discipline and native concurrency limits unchanged.
+
+## UI worker
+
+Own audit-view/components/audit-history-manager.tsx, app/(staff)/admin/audit/page.tsx, scoped app/audit.css, staff entry page + its UI tests, new audit UI/e2e tests only. Do not edit parent server/types/actions/policy/registry or SQL.
+
+- `AuditHistoryManager({subject,scope}:{subject:string;scope:AuditScope})` imports session/load actions above. Production AND actual development StrictMode/Activity fixtures, not hooks imitation. Start empty/disabled, current same-subject/scope self-capability verifies setup/replay; never restore old events/cursor/pending responses. Scoped pagehide/pageshow/focus/visibility/storage/account change listeners and cleanup. Revalidate self-readiness on restoration/focus without any automatic event data read. Drop stale responses and records before reuse; changed subject/scope render cannot leak old rows. Pagehide should clear prior to a persisted-page restore; no local/session storage/cache or source snapshots.
+- Explicit Load recent events clears/replaces data, Older events only when cursor nonnull. One in-flight request; no automatic data load, pagination, export or retry. Validate entire action/page/event payload at runtime before rendering (can reuse parent's pure policy decoder when exported, agree interface if needed; don't edit it). Cursor strings remain untouched. Display fixed labels, UTC times, opaque actor/target IDs (target null as no match), no profiles/contact links or free-form provider messages. Empty and safe error states, labels/status, 16px inputs if any, >=44px buttons, 320px long IDs usable.
+- Noindex protected Suspense/IdentityShell/RouteMotionReady `/admin/audit`: guest -> login; MFA -> account/security; no manager on denial/unavailable; subject+scope key. Explain Admin own/Owner supported-all scope and incomplete operational log. Direct signout/account/staff/security links. No auth fetch on public storefront.
+- Staff entry link only when current audit readiness and same subject match; update stale copy to acknowledge Customer application-access controls while private support/staff-role tools remain absent. No fake dashboard stats. Tiny guest desktop/mobile e2e, no broad motion matrix or global animation changes.
+
+## Verification/delivery
+
+Vertical RED→GREEN, scoped SQL actual roles/ACLs with TEST claims; test Admin cannot forge Owner/another actor, Owner scope, missing/stale MFA and current role/status/module/grant changes, unknown events/PII exclusion, null targets, tied timestamps/microseconds >20 pages/no duplicates/forged cursors, empty pages, no audit-write side effect, raw denial and disabling viewer leaves audit writers functional. Full current registry parity plus preserved historical fixtures. Essential types/lint/format/unit/backend/build/affected mobile-desktop. Independent focused security review before one hosted migration apply; exact history/signature/ACL/module/index/count readback and local filename alignment.
+
+Native unchanged-account decision remains: no creating/promoting staff, actual role/status/MFA mutation, resetting pending factor or Owner bootstrap merely to exercise history. Actual controlled Customer/guest denial/no-store/logout may be checked. Positive native privileged reads/MFA and true multi-session acceptance remain unverified unless separately authorized participation exists. Keep source-copy prohibition, user index, free-only, signup/email/privacy gates, no commit/push/frontend deployment and stop after Area9.

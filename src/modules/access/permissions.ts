@@ -21,7 +21,7 @@ export const permissionDefinitions = {
   "customer.status.manage": { module: "customer_status", scope: "customer" },
   "support.private.read": { module: "support", scope: "support" },
   "staff.manage": { module: "staff", scope: "staff_assignment" },
-  "audit.read": { module: "audit", scope: "audit" },
+  "audit.read": { module: "audit_view", scope: "audit" },
 } as const satisfies Record<string, { module: BackendModuleId; scope: Scope }>;
 export type ApplicationPermission = keyof typeof permissionDefinitions;
 

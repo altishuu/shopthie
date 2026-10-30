@@ -510,10 +510,10 @@ test("installed function security is locked down with no privileged public RPC",
 
 test("historical foundation defaults/dependencies/grants match the pre-lookup TypeScript contract", async () => {
   // This fixture intentionally loads only foundation + staff_entry. Current complete
-  // registry/SQL parity is separately asserted in database-customer-lookup.test.ts.
+  // registry/SQL parity is separately asserted in database-audit-view.test.ts.
   const historicalModules = Object.fromEntries(
     Object.entries(backendModuleDependencies).filter(
-      ([id]) => !["customer_lookup", "customer_status"].includes(id),
+      ([id]) => !["customer_lookup", "customer_status", "audit_view"].includes(id),
     ),
   );
   const required = resolveBackendModules();
@@ -545,7 +545,9 @@ test("historical foundation defaults/dependencies/grants match the pre-lookup Ty
         id,
         module_id: ["customer.lookup", "customer.status.manage"].includes(id)
           ? "staff"
-          : spec.module,
+          : id === "audit.read"
+            ? "audit"
+            : spec.module,
       }))
       .sort((a, b) => a.id.localeCompare(b.id)),
   );

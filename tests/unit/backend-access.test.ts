@@ -16,6 +16,7 @@ const enabled = [
   "addresses",
   "customer_lookup",
   "customer_status",
+  "audit_view",
   "staff",
   "support",
 ];

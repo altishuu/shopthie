@@ -7,6 +7,7 @@ import { IdentityShell } from "@/modules/identity/components/identity-shell";
 import { getStaffPageState } from "@/modules/staff/server";
 import type { StaffPageState } from "@/modules/staff/types";
 import { getCustomerLookupPageState } from "@/modules/customer-lookup/server";
+import { getAuditViewPageState } from "@/modules/audit-view/server";
 
 export const metadata: Metadata = {
   title: "Staff entry",
@@ -19,6 +20,12 @@ async function StaffContent() {
   if (state.status === "mfa_required") redirect("/account/security");
   const lookupReady =
     state.status === "ready" && (await getCustomerLookupPageState()).status === "ready";
+  const auditState =
+    state.status === "ready" ? await getAuditViewPageState().catch(() => null) : null;
+  const auditReady =
+    state.status === "ready" &&
+    auditState?.status === "ready" &&
+    auditState.subject === state.entry.subject;
   return (
     <>
       <p className="eyebrow">Staff access</p>
@@ -33,14 +40,22 @@ async function StaffContent() {
             </div>
           </dl>
           <p className="identity-description">
-            Customer lookup is available only when enabled for your current session. Account
-            management and private support are not available.
+            Customer lookup and Customer application-access controls are available only when enabled
+            for your current session. Restricted operational audit history is separately gated;
+            private support and staff-role tools remain unavailable.
           </p>
-          {lookupReady && (
+          {(lookupReady || auditReady) && (
             <nav className="identity-links" aria-label="Available staff tools">
-              <Link href="/admin/customers" prefetch={false}>
-                Customer lookup
-              </Link>
+              {lookupReady && (
+                <Link href="/admin/customers" prefetch={false}>
+                  Customer lookup
+                </Link>
+              )}
+              {auditReady && (
+                <Link href="/admin/audit" prefetch={false}>
+                  Operational audit history
+                </Link>
+              )}
             </nav>
           )}
         </>

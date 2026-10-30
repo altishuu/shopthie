@@ -10,7 +10,11 @@ import { permissionDefinitions, rolePermissions } from "../../src/modules/access
 // transitions. Synthetic trusted claims, not native JWT/OTP or multi-session proof.
 let db: PGlite;
 
-test("latest full schema module/dependency/permission/grant contracts match the current app", async () => {
+// Area 8 is a historical migration fixture, not the latest installed schema.
+// Only Area 9's audit_view module/deps and audit.read remap are excluded below;
+// all remaining exact historical parity assertions stay active. Latest complete
+// source/schema/grant parity is owned by database-audit-view.test.ts.
+test("Area 8 historical full module/dependency/permission/grant contracts remain exact", async () => {
   const enabled = resolveBackendModules([
     "profiles",
     "geography",
@@ -21,10 +25,12 @@ test("latest full schema module/dependency/permission/grant contracts match the 
   assert.deepEqual(
     (await db.query("select id,enabled from shopthie_private.app_modules order by id")).rows,
     Object.keys(backendModuleDependencies)
+      .filter((id) => id !== "audit_view")
       .sort()
       .map((id) => ({ id, enabled: enabled.includes(id as (typeof enabled)[number]) })),
   );
   const dependencies = Object.entries(backendModuleDependencies)
+    .filter(([module_id]) => module_id !== "audit_view")
     .flatMap(([module_id, values]) => values.map((depends_on) => ({ module_id, depends_on })))
     .sort(
       (a, b) => a.module_id.localeCompare(b.module_id) || a.depends_on.localeCompare(b.depends_on),
@@ -40,7 +46,7 @@ test("latest full schema module/dependency/permission/grant contracts match the 
   assert.deepEqual(
     (await db.query("select id,module_id from shopthie_private.app_permissions order by id")).rows,
     Object.entries(permissionDefinitions)
-      .map(([id, spec]) => ({ id, module_id: spec.module }))
+      .map(([id, spec]) => ({ id, module_id: id === "audit.read" ? "audit" : spec.module }))
       .sort((a, b) => a.id.localeCompare(b.id)),
   );
   const grants = (
@@ -434,7 +440,7 @@ before(async () => {
   db = await createAuthFixture();
   const directory = new URL("../../supabase/migrations/", import.meta.url);
   for (const name of (await readdir(directory))
-    .filter((name) => /^\d+_.+\.sql$/.test(name))
+    .filter((name) => /^\d+_.+\.sql$/.test(name) && name <= "20261029165555_customer_status.sql")
     .sort()) {
     await db.exec(await readFile(new URL(name, directory), "utf8"));
   }

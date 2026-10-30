@@ -40,11 +40,20 @@ const commonMocks = {
 function staff(
   state: unknown,
   lookupState: unknown = { status: "unavailable", message: "Unavailable" },
+  auditState: unknown = { status: "unavailable", message: "Unavailable" },
 ) {
   let calls = 0;
   let lookupCalls = 0;
+  let auditCalls = 0;
   const route = load("src/app/(staff)/admin/page.tsx", {
     ...commonMocks,
+    "@/modules/audit-view/server": {
+      getAuditViewPageState: async () => {
+        auditCalls++;
+        if (auditState instanceof Error) throw auditState;
+        return auditState;
+      },
+    },
     "@/modules/customer-lookup/server": {
       getCustomerLookupPageState: async () => {
         lookupCalls++;
@@ -58,7 +67,12 @@ function staff(
       },
     },
   });
-  return { route, calls: () => calls, lookupCalls: () => lookupCalls };
+  return {
+    route,
+    calls: () => calls,
+    lookupCalls: () => lookupCalls,
+    auditCalls: () => auditCalls,
+  };
 }
 async function content(shell: Tree) {
   const boundary = shell.props.children as Tree;
@@ -93,7 +107,8 @@ test("ready staff entry shows only the own role, honest tools notice and direct 
     const rendered = html(tree);
     assert.match(rendered, /Staff entry\./);
     assert.match(rendered, new RegExp(`<dd>${role}</dd>`));
-    assert.match(rendered, /account management and private support.*not available/i);
+    assert.match(rendered, /Customer application-access controls/);
+    assert.match(rendered, /private support and staff-role tools remain unavailable/i);
     assert.doesNotMatch(
       rendered,
       /fixture-self-staff|customer directory|revenue|total orders|audit log/i,
@@ -133,6 +148,47 @@ test("staff entry checks current lookup readiness only after ready staff and lin
       await assert.rejects(content(route.default()), /redirect:/);
     else await content(route.default());
     assert.equal(lookupCalls(), 0);
+  }
+});
+
+test("staff entry links audit only after current same-subject readiness and safely ignores failures", async () => {
+  for (const auditState of [
+    { status: "ready", subject: "fixture-self-staff", scope: "own" },
+    { status: "ready", subject: "fixture-self-staff", scope: "all" },
+    { status: "ready", subject: "different-staff", scope: "all" },
+    ...["guest", "mfa_required", "denied", "unavailable"].map((status) => ({
+      status,
+      message: "RAW PROVIDER SECRET",
+    })),
+    new Error("RAW PROVIDER SECRET"),
+  ]) {
+    const loaded = staff(
+      { status: "ready", entry: { subject: "fixture-self-staff", role: "admin" } },
+      undefined,
+      auditState,
+    );
+    assert.equal(loaded.auditCalls(), 0);
+    const tree = await content(loaded.route.default());
+    assert.equal(loaded.auditCalls(), 1);
+    assert.equal(
+      elements(tree, "a").some(
+        (link) => link.props.href === "/admin/audit" && link.props.prefetch === false,
+      ),
+      "status" in auditState &&
+        auditState.status === "ready" &&
+        "subject" in auditState &&
+        auditState.subject === "fixture-self-staff",
+    );
+    assert.doesNotMatch(html(tree), /RAW PROVIDER SECRET/);
+  }
+  for (const status of ["guest", "mfa_required", "denied", "unavailable"]) {
+    const loaded = staff({ status, message: "Unavailable" });
+    try {
+      await content(loaded.route.default());
+    } catch (error) {
+      assert.match(String(error), /redirect:/);
+    }
+    assert.equal(loaded.auditCalls(), 0);
   }
 });
 

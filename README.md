@@ -4,7 +4,7 @@ A light editorial storefront for a multi-brand premium technology retailer. Next
 
 ## Current milestone
 
-**Backend Areas 1–4 accepted; Areas 5–8 MFA/staff lookup/Customer-access implementation handed off with privileged native acceptance deferred.** Dedicated Supabase backs identity, self profiles/addresses, audited exact Customer lookup and explicit Customer application suspension/reactivation for verified Owner/Admin. Current TOTP plus AAL2 required; reasons/confirmation/revision CAS and transactional audit; no staff/self-target changes or provider ban/session-revocation claim. Lookup/status have isolated modules; broader staff/private-support/Owner tools and staff unenrollment remain unavailable. Current candidate: **223 unit tests, 214 overlapping backend checks including 80 SQL checks, 26 targeted browser checks**, build/static gates and independent correction review PASS. Hosted status migration applied/read back; existing real account status/roles/MFA unchanged, browser signed out. StrictMode/Activity regressions pass; true multi-session/native privileged write/OTP acceptance remains deferred. Signup/recovery/public readiness gated; commerce stays a demo. No assistant commit/push/frontend deployment. See `docs/backend-area-8.md`, `docs/backend-progress.md` and `docs/backend-vercel-setup.md`.
+**Backend Areas1–4 accepted; Areas5–9 implementation installed, with privileged native acceptance deferred.** Dedicated Supabase backs identity, self profiles/addresses, staff MFA readiness, audited exact Customer lookup/application-access changes and restricted operational history at `/admin/audit`. Admin history is own-actor only; Owner sees supported events across actors. Current verified TOTP+AAL2 required; no contact/profile fields, export or general security-log claim. Optional viewer never disables required recording; broad staff/support/Owner-management tools and staff unenrollment remain unavailable. **245 unit tests, 251 overlapping backend checks including95 SQL checks, 22 affected browser checks**, build/static gates and independent review PASS36 focused checks. Hosted audit-view migration applied/read back; actual Customer denial/isolation/logout verified, browser signed out; real roles/status/MFA unchanged. Positive native staff/MFA and true concurrency remain deferred. Public signup/recovery/privacy readiness gated; commerce remains a demo. No assistant commit/push/frontend deployment. See `docs/backend-area-9.md`, `docs/backend-progress.md` and `docs/backend-vercel-setup.md`.
 
 **Phases 1–4 implemented: design foundation, frontend commerce, cinematic motion, and editorial/responsive refinement.**
 
@@ -30,7 +30,7 @@ A light editorial storefront for a multi-brand premium technology retailer. Next
 
 **Phase 5 local handoff ready under the user's focused verification scope:** production build, lint/types/formatting, 89 unit tests, and 16 affected desktop/mobile shopping/focus checks pass on that frontend-only handoff candidate. An earlier complete run passed 138 browser tests before the final small focus correction. Extended browser/performance cycles were deliberately not repeated. Cross-tab transactions, native listener cleanup, stable catalog hydration, and delayed focus/announcement behavior are corrected. See `docs/phase-5-report.md`, `docs/phase-5-acceptance-results.json`, and `docs/HANDOFF.md`. The catalog remains seven source-verified models, not the proposed sixteen.
 
-Supabase backs identity/session, self profiles/addresses, audited exact lookup and Customer application-access changes for verified staff. Real orders/inventory/payments, staff-role/Owner/private-support tools and a production frontend deployment are not implemented. Earlier frontend/area reports are historical checkpoints.
+Supabase backs identity/session, self profiles/addresses, audited exact lookup, Customer application-access changes and restricted supported-event history for verified staff. Real orders/inventory/payments, staff-role/Owner/private-support tools and a production frontend deployment are not implemented. Earlier frontend/area reports are historical checkpoints.
 
 ## Install and run
 
@@ -55,7 +55,7 @@ Stop running development/preview servers before rebuilding the same project; the
 ## Verification
 
 ```bash
-npm test                         # 223 current unit tests
+npm test                         # 245 current unit tests
 npm run lint
 npm run typecheck
 npm run format:check
