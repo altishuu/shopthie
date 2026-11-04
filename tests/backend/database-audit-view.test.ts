@@ -3,8 +3,58 @@ import { readFile, readdir } from "node:fs/promises";
 import { after, before, test } from "node:test";
 import type { PGlite } from "@electric-sql/pglite";
 import { asActor, createAuthFixture, customerId, otherId, provision } from "./auth-fixture.ts";
-import { backendModuleDependencies, resolveBackendModules } from "../../src/modules/registry.ts";
-import { permissionDefinitions, rolePermissions } from "../../src/modules/access/permissions.ts";
+// Historical Area 9 parity, pinned independently of latest source. Area 10's
+// profile_support module and support.profile.read permission/grants do NOT exist
+// at this cutoff. Complete unfiltered latest-source parity lives in
+// database-profile-support.test.ts; never exclude the new capability there.
+const backendModuleDependencies: Record<string, readonly string[]> = {
+  identity: [],
+  access: ["identity"],
+  audit: ["identity", "access"],
+  profiles: ["identity", "access"],
+  geography: [],
+  addresses: ["profiles", "geography", "access"],
+  customer_lookup: ["profiles", "access", "audit"],
+  customer_status: ["customer_lookup", "access", "audit"],
+  audit_view: ["access", "audit"],
+  staff: ["profiles", "access", "audit"],
+  support: ["staff", "profiles", "audit"],
+};
+const permissionDefinitions = {
+  "staff.enter": { module: "identity" },
+  "profile.read_own": { module: "profiles" },
+  "profile.update_own": { module: "profiles" },
+  "address.manage_own": { module: "addresses" },
+  "customer.lookup": { module: "customer_lookup" },
+  "customer.status.manage": { module: "customer_status" },
+  "staff.manage": { module: "staff" },
+  "support.private.read": { module: "support" },
+  "audit.read": { module: "audit_view" },
+};
+const rolePermissions = {
+  customer: ["profile.read_own", "profile.update_own", "address.manage_own"],
+  admin: [
+    "profile.read_own",
+    "profile.update_own",
+    "address.manage_own",
+    "staff.enter",
+    "customer.lookup",
+    "customer.status.manage",
+    "support.private.read",
+    "audit.read",
+  ],
+  owner: [
+    "profile.read_own",
+    "profile.update_own",
+    "address.manage_own",
+    "staff.enter",
+    "customer.lookup",
+    "customer.status.manage",
+    "support.private.read",
+    "audit.read",
+    "staff.manage",
+  ],
+};
 
 // TEST ONLY: actual PostgreSQL functions/roles/ACLs with synthetic trusted claims.
 // No native Auth/MFA validation, provider operations or multi-session concurrency.
@@ -44,7 +94,9 @@ before(async () => {
   ).rows;
   previousFunctions = (await db.query(writersSql)).rows;
   previousRawSecurity = (await db.query(rawSecuritySql)).rows;
-  for (const name of names.filter((name) => name >= migration))
+  // Explicit historical cutoff: install ONLY Area 9 after capturing Area 8.
+  // Later migrations belong to the latest-chain Area 10 suite, not this fixture.
+  for (const name of names.filter((name) => name === migration))
     await db.exec(await readFile(new URL(name, directory), "utf8"));
 });
 after(async () => {
@@ -670,15 +722,18 @@ test("Owner history includes opaque historical UUIDs without profile/account joi
     assert.deepEqual(await page(), { scope: "own", events: [], nextCursor: null });
   }));
 
-test("latest full registry/dependencies/permission mapping and all reviewed grants match current source", async () => {
-  const enabled = resolveBackendModules([
+test("historical Area 9 registry/dependencies/permission mapping and all reviewed grants match the explicit 20261030012105 cutoff", async () => {
+  const enabled = [
+    "identity",
+    "access",
+    "audit",
     "profiles",
     "geography",
     "addresses",
     "customer_lookup",
     "customer_status",
     "audit_view",
-  ]);
+  ];
   assert.deepEqual(
     (await db.query("select id,enabled from shopthie_private.app_modules order by id")).rows,
     Object.keys(backendModuleDependencies)

@@ -22,6 +22,7 @@ const eventLabels = {
   "customer.lookup": "Customer lookup",
   "customer.status.read": "Application access check",
   "customer.status.change": "Application access change",
+  "support.profile.read": "Profile support access",
 };
 const reasonLabels = {
   account_access: "Account access",

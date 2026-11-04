@@ -1,0 +1,77 @@
+{
+  "status": "hosted-installed-native-privileged-acceptance-deferred",
+  "automated": {
+    "unit_tests": 270,
+    "backend_checks": 302,
+    "counts_overlap": true,
+    "targeted_browser_checks": 22,
+    "build": true,
+    "types": true,
+    "lint": true,
+    "format": true,
+    "whitespace": true,
+    "failures": 0,
+    "embedded_sql_checks_after_alignment": 121
+  },
+  "review": {
+    "id": "deleg_4950ac9a",
+    "passed": true,
+    "focused_checks": 106,
+    "pending": false
+  },
+  "migration": {
+    "name": "profile_support",
+    "version": "20261104120706",
+    "path": "supabase/migrations/20261104120706_profile_support.sql",
+    "applied": true,
+    "apply_calls": 1,
+    "hosted_schema_acl_module_grants_readback": true,
+    "sql_checks_after_alignment": 121
+  },
+  "native_preflight": {
+    "healthy": true,
+    "staff_memberships": 0,
+    "verified_factors": 0,
+    "pending_factors": 1,
+    "changed_accounts": 0,
+    "audit_rows": 0,
+    "rpc_exists": false,
+    "migration_count": 0,
+    "profile_modules": 0,
+    "profile_permissions": 0
+  },
+  "final_http": [
+    {
+      "path": "/",
+      "status": 200
+    },
+    {
+      "path": "/shop",
+      "status": 200
+    },
+    {
+      "path": "/login",
+      "status": 200
+    },
+    {
+      "path": "/admin/customers",
+      "status": 200,
+      "no_store": true,
+      "login_redirect": true,
+      "profile_support_controls": false
+    }
+  ],
+  "native_positive_privileged_phone_mfa_acceptance": false,
+  "true_multi_session_concurrency_acceptance": false,
+  "no_actual_account_role_status_mfa_changes": true,
+  "no_commit_push_frontend_deployment": true,
+  "native_post_apply": {
+    "staff_memberships": 0,
+    "verified_factors": 0,
+    "pending_factors": 1,
+    "changed_accounts": 0,
+    "audit_rows": 0,
+    "no_subject_readiness_false_and_read_denied": true,
+    "claims_injected": false
+  }
+}

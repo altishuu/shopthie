@@ -21,6 +21,89 @@ const enabled = [
   "support",
 ];
 
+test("profile support is a separate Customer-only audited scope with explicit staff grants", async () => {
+  const { authorize, rolePermissions, permissionDefinitions } =
+    await import("../../src/modules/access/permissions.ts");
+  const { resolveBackendModules, backendModuleDependencies } =
+    await import("../../src/modules/registry.ts");
+  const modules = ["profiles", "customer_lookup", "profile_support"];
+  const request = {
+    permission: "support.profile.read",
+    resourceOwnerId: otherId,
+    targetRole: "customer",
+    supportReason: "profile_help",
+  };
+  for (const role of ["owner", "admin"] as const) {
+    const actor = { ...customer, role, aal: "aal2" as const, hasVerifiedMfa: true };
+    assert.deepEqual(authorize(actor, request, modules), { allowed: true, requiresAudit: true });
+    assert.ok(rolePermissions[role].includes("support.profile.read"));
+    for (const patch of [
+      { resourceOwnerId: userId },
+      { resourceOwnerId: undefined },
+      { targetRole: "owner" },
+      { targetRole: "admin" },
+      { targetRole: undefined },
+      { supportReason: "account_access" },
+      { supportReason: "address_help" },
+      { supportReason: "PROFILE_HELP" },
+      { supportReason: "profile_help " },
+      { supportReason: undefined },
+    ])
+      assert.equal(authorize(actor, { ...request, ...patch }, modules).allowed, false);
+    for (const patch of [
+      { status: "suspended" },
+      { status: "pending" },
+      { aal: "aal1" },
+      { aal: undefined },
+      { hasVerifiedMfa: false },
+      { hasVerifiedMfa: undefined },
+      { role: "manager" },
+    ])
+      assert.equal(
+        authorize({ ...actor, ...patch } as typeof actor, request, modules).allowed,
+        false,
+      );
+    for (const unavailable of [
+      [],
+      ["profiles", "customer_lookup"],
+      ["profile_support"],
+      [...modules, "unknown"],
+    ])
+      assert.equal(authorize(actor, request, unavailable).allowed, false);
+    assert.equal(
+      authorize(actor, { ...request, permission: "support.private.read" }, modules).allowed,
+      false,
+    );
+    assert.equal(
+      authorize(
+        actor,
+        {
+          permission: "staff.manage",
+          resourceOwnerId: otherId,
+          targetRole: "customer",
+          desiredRole: "admin",
+        },
+        modules,
+      ).allowed,
+      false,
+    );
+  }
+  assert.equal(authorize(customer, request, modules).allowed, false);
+  assert.equal(authorize(null, request, modules).allowed, false);
+  assert.equal(rolePermissions.customer.includes("support.profile.read"), false);
+  assert.deepEqual(permissionDefinitions["support.profile.read"], {
+    module: "profile_support",
+    scope: "profile_support",
+  });
+  assert.deepEqual(backendModuleDependencies.profile_support, [
+    "customer_lookup",
+    "profiles",
+    "access",
+    "audit",
+  ]);
+  assert.ok(resolveBackendModules(modules).includes("profile_support"));
+});
+
 test("own-profile access is bound to an active account and the actual owner", async () => {
   const { authorize } = await import("../../src/modules/access/permissions.ts");
   const own = { permission: "profile.read_own", resourceOwnerId: userId };

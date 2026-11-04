@@ -223,6 +223,46 @@ function samplePage(count = 20) {
   };
 }
 
+test("profile-support history uses a fixed label and never renders private diagnostic text", async () => {
+  const { browser, page, errors } = await renderedManager();
+  try {
+    await page.evaluate((value) => (window as unknown as FixtureWindow).finishSession(value), {
+      status: "ready",
+      subject,
+      scope: "own",
+    });
+    await page.getByRole("button", { name: "Load recent events", exact: true }).click();
+    const history = {
+      ...samplePage(1),
+      events: [
+        {
+          ...samplePage(1).events[0],
+          eventType: "support.profile.read",
+          reason: "profile_help",
+          outcome: "read",
+        },
+      ],
+    };
+    await page.evaluate((value) => (window as unknown as FixtureWindow).finishPage(value), {
+      status: "ready",
+      message: "SecretUser +12025550123",
+      page: history,
+    });
+    await page.locator("[data-audit-event]").waitFor({ timeout: 2000 });
+    assert.equal(
+      await page.getByRole("heading", { name: "Profile support access", exact: true }).count(),
+      1,
+    );
+    assert.doesNotMatch(
+      await page.locator("body").innerText(),
+      /SecretUser|\+12025550123|support\.profile\.read/,
+    );
+    assert.deepEqual(errors, []);
+  } finally {
+    await browser.close();
+  }
+});
+
 test("explicit recent/older reads submit only raw cursor fields once and replace the fixed page", async () => {
   const { browser, page, errors } = await renderedManager();
   try {

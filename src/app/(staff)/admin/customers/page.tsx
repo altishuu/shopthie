@@ -7,7 +7,9 @@ import { IdentityShell } from "@/modules/identity/components/identity-shell";
 import { getCustomerLookupPageState } from "@/modules/customer-lookup/server";
 import { CustomerLookupManager } from "@/modules/customer-lookup/components/customer-lookup-manager";
 import { getCustomerStatusPageState } from "@/modules/customer-status/server";
+import { getProfileSupportPageState } from "@/modules/profile-support/server";
 import "@/app/staff.css";
+import "@/app/profile-support.css";
 
 export const metadata: Metadata = {
   title: "Customer lookup",
@@ -24,20 +26,28 @@ async function CustomerLookupContent() {
     state.status === "ready" &&
     statusState?.status === "ready" &&
     statusState.subject === state.subject;
+  const profileState =
+    state.status === "ready" ? await getProfileSupportPageState().catch(() => null) : null;
+  const profileSupportEnabled =
+    state.status === "ready" &&
+    profileState?.status === "ready" &&
+    profileState.subject === state.subject;
   return (
     <>
       <p className="eyebrow">Staff access</p>
       <h1 id="identity-heading">Customer lookup.</h1>
       <p className="identity-description">
         Each submitted lookup is audited. Search only by exact username. Authorized staff may also
-        check and change Customer application access. Private support fields, roles and MFA are not
-        available here.
+        check and change Customer application access. Separately authorized profile support may show
+        a customer-supplied, unverified phone after an explicit audited request. Private addresses,
+        email, roles and MFA tools remain unavailable here.
       </p>
       {state.status === "ready" ? (
         <CustomerLookupManager
           key={state.subject}
           subject={state.subject}
           statusEnabled={statusEnabled}
+          profileSupportEnabled={profileSupportEnabled}
         />
       ) : (
         <p className="identity-description" role="alert">

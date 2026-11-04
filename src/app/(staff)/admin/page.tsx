@@ -41,8 +41,10 @@ async function StaffContent() {
           </dl>
           <p className="identity-description">
             Customer lookup and Customer application-access controls are available only when enabled
-            for your current session. Restricted operational audit history is separately gated;
-            private support and staff-role tools remain unavailable.
+            for your current session. Separately authorized profile support may show a
+            customer-supplied, unverified phone after an explicit audited request from a selected
+            Customer lookup. Restricted operational audit history is separately gated. Private
+            addresses, email, roles and MFA tools remain unavailable.
           </p>
           {(lookupReady || auditReady) && (
             <nav className="identity-links" aria-label="Available staff tools">

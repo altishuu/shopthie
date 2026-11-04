@@ -108,7 +108,10 @@ test("ready staff entry shows only the own role, honest tools notice and direct 
     assert.match(rendered, /Staff entry\./);
     assert.match(rendered, new RegExp(`<dd>${role}</dd>`));
     assert.match(rendered, /Customer application-access controls/);
-    assert.match(rendered, /private support and staff-role tools remain unavailable/i);
+    assert.match(rendered, /customer-supplied, unverified phone/i);
+    assert.match(rendered, /explicit audited request/i);
+    assert.match(rendered, /Private addresses, email, roles and MFA tools remain unavailable/i);
+    assert.doesNotMatch(rendered, /private support and staff-role tools remain unavailable/i);
     assert.doesNotMatch(
       rendered,
       /fixture-self-staff|customer directory|revenue|total orders|audit log/i,

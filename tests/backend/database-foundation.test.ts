@@ -510,10 +510,11 @@ test("installed function security is locked down with no privileged public RPC",
 
 test("historical foundation defaults/dependencies/grants match the pre-lookup TypeScript contract", async () => {
   // This fixture intentionally loads only foundation + staff_entry. Current complete
-  // registry/SQL parity is separately asserted in database-audit-view.test.ts.
+  // registry/SQL parity is separately asserted in database-profile-support.test.ts.
   const historicalModules = Object.fromEntries(
     Object.entries(backendModuleDependencies).filter(
-      ([id]) => !["customer_lookup", "customer_status", "audit_view"].includes(id),
+      ([id]) =>
+        !["customer_lookup", "customer_status", "audit_view", "profile_support"].includes(id),
     ),
   );
   const required = resolveBackendModules();
@@ -541,6 +542,7 @@ test("historical foundation defaults/dependencies/grants match the pre-lookup Ty
   assert.deepEqual(
     (await db.query("select id, module_id from shopthie_private.app_permissions order by id")).rows,
     Object.entries(permissionDefinitions)
+      .filter(([id]) => id !== "support.profile.read")
       .map(([id, spec]) => ({
         id,
         module_id: ["customer.lookup", "customer.status.manage"].includes(id)
@@ -558,7 +560,10 @@ test("historical foundation defaults/dependencies/grants match the pre-lookup Ty
   assert.deepEqual(
     Object.fromEntries(grants.rows.map((row) => [row.role_id, row.permissions])),
     Object.fromEntries(
-      Object.entries(rolePermissions).map(([role, permissions]) => [role, [...permissions].sort()]),
+      Object.entries(rolePermissions).map(([role, permissions]) => [
+        role,
+        permissions.filter((id) => id !== "support.profile.read").sort(),
+      ]),
     ),
   );
 });

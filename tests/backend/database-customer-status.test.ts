@@ -13,7 +13,7 @@ let db: PGlite;
 // Area 8 is a historical migration fixture, not the latest installed schema.
 // Only Area 9's audit_view module/deps and audit.read remap are excluded below;
 // all remaining exact historical parity assertions stay active. Latest complete
-// source/schema/grant parity is owned by database-audit-view.test.ts.
+// source/schema/grant parity is owned by database-profile-support.test.ts.
 test("Area 8 historical full module/dependency/permission/grant contracts remain exact", async () => {
   const enabled = resolveBackendModules([
     "profiles",
@@ -25,12 +25,12 @@ test("Area 8 historical full module/dependency/permission/grant contracts remain
   assert.deepEqual(
     (await db.query("select id,enabled from shopthie_private.app_modules order by id")).rows,
     Object.keys(backendModuleDependencies)
-      .filter((id) => id !== "audit_view")
+      .filter((id) => !["audit_view", "profile_support"].includes(id))
       .sort()
       .map((id) => ({ id, enabled: enabled.includes(id as (typeof enabled)[number]) })),
   );
   const dependencies = Object.entries(backendModuleDependencies)
-    .filter(([module_id]) => module_id !== "audit_view")
+    .filter(([module_id]) => !["audit_view", "profile_support"].includes(module_id))
     .flatMap(([module_id, values]) => values.map((depends_on) => ({ module_id, depends_on })))
     .sort(
       (a, b) => a.module_id.localeCompare(b.module_id) || a.depends_on.localeCompare(b.depends_on),
@@ -46,6 +46,7 @@ test("Area 8 historical full module/dependency/permission/grant contracts remain
   assert.deepEqual(
     (await db.query("select id,module_id from shopthie_private.app_permissions order by id")).rows,
     Object.entries(permissionDefinitions)
+      .filter(([id]) => id !== "support.profile.read")
       .map(([id, spec]) => ({ id, module_id: id === "audit.read" ? "audit" : spec.module }))
       .sort((a, b) => a.id.localeCompare(b.id)),
   );
@@ -57,7 +58,10 @@ test("Area 8 historical full module/dependency/permission/grant contracts remain
   assert.deepEqual(
     Object.fromEntries(grants.map((row) => [row.role_id, row.permissions])),
     Object.fromEntries(
-      Object.entries(rolePermissions).map(([role, permissions]) => [role, [...permissions].sort()]),
+      Object.entries(rolePermissions).map(([role, permissions]) => [
+        role,
+        permissions.filter((id) => id !== "support.profile.read").sort(),
+      ]),
     ),
   );
 });

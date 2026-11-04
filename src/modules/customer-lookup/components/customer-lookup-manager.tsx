@@ -4,6 +4,7 @@ import { useLayoutEffect, useRef, useState } from "react";
 import { checkCustomerLookupSessionAction, lookupCustomerAction } from "../actions";
 import type { LookupActionResult, LookupReason } from "../types";
 import { CustomerStatusManager } from "../../customer-status/components/customer-status-manager";
+import { ProfileSupportManager } from "../../profile-support/components/profile-support-manager";
 
 const usernamePattern = /^[A-Za-z0-9][A-Za-z0-9_-]{2,31}$/;
 const reasons: LookupReason[] = ["account_access", "profile_help", "address_help"];
@@ -55,9 +56,11 @@ function validatedResult(value: unknown, submittedUsername: string): LookupActio
 export function CustomerLookupManager({
   subject,
   statusEnabled = false,
+  profileSupportEnabled = false,
 }: {
   subject: string;
   statusEnabled?: boolean;
+  profileSupportEnabled?: boolean;
 }) {
   const [username, setUsername] = useState("");
   const [reason, setReason] = useState("");
@@ -251,6 +254,14 @@ export function CustomerLookupManager({
               key={`${subject}:${result.customer.subject}`}
               actorSubject={subject}
               customerSubject={result.customer.subject}
+            />
+          )}
+          {profileSupportEnabled && (
+            <ProfileSupportManager
+              key={`${subject}:${result.customer.subject}:${result.customer.username}`}
+              subject={subject}
+              customerSubject={result.customer.subject}
+              username={result.customer.username}
             />
           )}
         </>

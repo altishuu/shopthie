@@ -20,9 +20,11 @@ function compile(path: string) {
 function route(
   state: unknown,
   statusState: unknown = { status: "denied", message: "Unavailable" },
+  profileState: unknown = { status: "denied", message: "Unavailable" },
 ) {
   let calls = 0;
   let statusCalls = 0;
+  let profileCalls = 0;
   const exports: Record<string, unknown> = {};
   const mocks: Record<string, unknown> = {
     "@/modules/identity/components/identity-shell": { IdentityShell: "shell" },
@@ -43,7 +45,15 @@ function route(
         return statusState;
       },
     },
+    "@/modules/profile-support/server": {
+      getProfileSupportPageState: async () => {
+        profileCalls++;
+        if (profileState instanceof Error) throw profileState;
+        return profileState;
+      },
+    },
     "@/app/staff.css": {},
+    "@/app/profile-support.css": {},
     "next/link": { default: "a" },
     "next/navigation": {
       redirect: (url: string) => {
@@ -60,6 +70,7 @@ function route(
     metadata: exports.metadata as { robots: { index: boolean; follow: boolean } },
     calls: () => calls,
     statusCalls: () => statusCalls,
+    profileCalls: () => profileCalls,
   };
 }
 function elements(node: unknown, type: unknown): Tree[] {
@@ -93,11 +104,16 @@ type FixtureWindow = Window & {
   finishStatusSession: (value: unknown, index?: number) => void;
   rejectStatusSession: (index?: number) => void;
   renderStatus: (mode: "visible" | "hidden", actor?: string, target?: string) => void;
+  profileCalls: [string, string][][];
+  profileSessionCalls: number;
+  finishProfileSession: (value: unknown) => void;
+  finishProfile: (value: unknown) => void;
 };
 export async function renderedManager(
   statusEnabled = false,
   developmentStrict = false,
   deferStatusSession = false,
+  profileSupportEnabled = false,
 ) {
   const component = compile("src/modules/customer-lookup/components/customer-lookup-manager.tsx");
   const { chromium } = require("@playwright/test") as typeof import("@playwright/test");
@@ -127,6 +143,8 @@ export async function renderedManager(
   modules.manager = component;
   const statusPath = "src/modules/customer-status/components/customer-status-manager.tsx";
   modules.status = compile(statusPath);
+  modules.profile = compile("src/modules/profile-support/components/profile-support-manager.tsx");
+  modules["../policy"] = compile("src/modules/profile-support/policy.ts");
   await page.route("http://lookup-fixture.invalid/**", (route: import("@playwright/test").Route) =>
     route.fulfill({
       contentType: "text/html",
@@ -142,6 +160,9 @@ export async function renderedManager(
   });
   const staffCss = new URL("src/app/staff.css", root);
   if (existsSync(staffCss)) await page.addStyleTag({ content: readFileSync(staffCss, "utf8") });
+  await page.addStyleTag({
+    content: readFileSync(new URL("src/app/profile-support.css", root), "utf8"),
+  });
   await page.addScriptTag({
     content: `(() => {
     const sources = ${JSON.stringify(modules)};
@@ -150,6 +171,16 @@ export async function renderedManager(
     window.sessionCalls = 0;
     window.statusCalls = [];
     window.statusSessionCalls = 0;
+    window.profileCalls = []; window.profileSessionCalls = 0;
+    const checkProfileSupportSessionAction = async (...args) => {
+      if(args.length) throw new Error('Self-only readiness');
+      window.profileSessionCalls++;
+      return new Promise(resolve => { window.finishProfileSession = resolve; });
+    };
+    const loadProfileSupportAction = async data => {
+      window.profileCalls.push(Array.from(data.entries()));
+      return new Promise(resolve => { window.finishProfile = resolve; });
+    };
     const statusSessions = [];
     window.finishStatusSession = (value, index = statusSessions.length - 1) => statusSessions[index]?.resolve(value);
     window.rejectStatusSession = (index = statusSessions.length - 1) => statusSessions[index]?.reject(new Error('RAW PROVIDER SECRET'));
@@ -173,9 +204,11 @@ export async function renderedManager(
     };
     function require(id) {
       if (id === '../actions') return { lookupCustomerAction: action, checkCustomerLookupSessionAction: checkSession,
+        checkProfileSupportSessionAction, loadProfileSupportAction,
         checkCustomerStatusSessionAction: checkStatusSession,
         loadCustomerStatusAction: statusAction('read'), changeCustomerStatusAction: statusAction('change') };
       if (id.includes('customer-status-manager')) return require('status');
+      if (id.includes('profile-support-manager')) return require('profile');
       if (cache[id]) return cache[id].exports;
       if (!sources[id]) throw new Error('Unmapped fixture dependency: ' + id);
       const module = { exports: {} }; cache[id] = module;
@@ -188,7 +221,7 @@ export async function renderedManager(
     const render = child => root.render(${JSON.stringify(developmentStrict)} ? React.createElement(React.StrictMode, null, child) : child);
     window.renderLookup = (mode, actor = ${JSON.stringify(subject)}) => render(
       React.createElement(React.Activity, {mode}, React.createElement(require('manager').CustomerLookupManager,
-        { subject: actor, statusEnabled: ${JSON.stringify(statusEnabled)} })));
+        { subject: actor, statusEnabled: ${JSON.stringify(statusEnabled)}, profileSupportEnabled: ${JSON.stringify(profileSupportEnabled)} })));
     window.renderLookup('visible');
     window.renderStatus = (mode, actor = ${JSON.stringify(subject)}, target = '33333333-3333-4333-8333-333333333333') => render(
       React.createElement(React.Activity, {mode}, React.createElement(require('status').CustomerStatusManager,
@@ -199,6 +232,76 @@ export async function renderedManager(
   await page.getByLabel("Exact username").waitFor();
   return { browser, page };
 }
+
+test("profile support stays opt-in and selected-context-only with its own reason/capability and no automatic disclosure", async () => {
+  const target = "33333333-3333-4333-8333-333333333333";
+  const { browser, page } = await renderedManager(false, true, false, true);
+  try {
+    await page.evaluate((value) => (window as unknown as FixtureWindow).finishSession(value), {
+      status: "ready",
+      subject,
+    });
+    assert.equal(await page.locator(".profile-support-manager").count(), 0);
+    await page.getByLabel("Exact username").fill("Test_Customer");
+    await page.getByLabel("Lookup reason").selectOption("profile_help");
+    await page.getByRole("button", { name: "Look up customer", exact: true }).click();
+    await page.evaluate((value) => (window as unknown as FixtureWindow).finishLookup(value), {
+      status: "found",
+      message: "Found",
+      customer: { subject: target, username: "Test_Customer", status: "suspended" },
+    });
+    const view = page.getByRole("button", { name: "View profile support", exact: true });
+    await view.waitFor({ timeout: 1500 });
+    assert.equal(await view.isDisabled(), true);
+    assert.equal(await page.getByLabel("Profile support reason").inputValue(), "");
+    assert.equal(
+      await page.evaluate(() => (window as unknown as FixtureWindow).profileSessionCalls),
+      2,
+    );
+    assert.deepEqual(
+      await page.evaluate(() => (window as unknown as FixtureWindow).profileCalls),
+      [],
+    );
+    await page.evaluate(
+      (value) => (window as unknown as FixtureWindow).finishProfileSession(value),
+      { status: "ready", subject },
+    );
+    await page.getByLabel("Profile support reason").selectOption("profile_help");
+    await view.click();
+    assert.deepEqual(await page.evaluate(() => (window as unknown as FixtureWindow).profileCalls), [
+      [
+        ["expected_subject", subject],
+        ["target_subject", target],
+        ["username", "Test_Customer"],
+        ["reason", "profile_help"],
+      ],
+    ]);
+    await page.getByLabel("Exact username").fill("Another_Customer");
+    await page.evaluate((value) => (window as unknown as FixtureWindow).finishProfile(value), {
+      status: "ready",
+      message: "Read",
+      profile: { subject: target, username: "Test_Customer", phone: "+12025550123" },
+    });
+    assert.equal(
+      await page.locator(".profile-support-manager,[data-profile-support-record]").count(),
+      0,
+    );
+    assert.doesNotMatch(await page.locator("body").innerText(), /\+12025550123/);
+    assert.equal(
+      await page.getByRole("button", { name: "Check current access", exact: true }).count(),
+      0,
+    );
+    assert.match(
+      readFileSync(
+        new URL("src/modules/customer-lookup/components/customer-lookup-manager.tsx", root),
+        "utf8",
+      ),
+      /key=\{`\$\{subject\}:\$\{result.customer.subject\}:\$\{result.customer.username\}`\}/,
+    );
+  } finally {
+    await browser.close();
+  }
+});
 
 test("rendered fixture submits only exact fields once and renders a validated minimal result", async () => {
   const { browser, page } = await renderedManager();
@@ -239,6 +342,15 @@ test("rendered fixture submits only exact fields once and renders a validated mi
       await page.getByRole("button", { name: "Check current access", exact: true }).count(),
       0,
       "status capability defaults off",
+    );
+    assert.equal(
+      await page.locator(".profile-support-manager").count(),
+      0,
+      "profile support defaults off",
+    );
+    assert.equal(
+      await page.evaluate(() => (window as unknown as FixtureWindow).profileSessionCalls),
+      0,
     );
   } finally {
     await browser.close();
@@ -1345,6 +1457,42 @@ test("RSC enables status only after lookup readiness for the same actor and subj
       0,
       "status readiness is never called before lookup readiness",
     );
+  }
+});
+
+test("RSC enables profile support only after current same-actor lookup readiness", async () => {
+  for (const profileState of [
+    { status: "ready", subject },
+    { status: "ready", subject: "22222222-2222-4222-8222-222222222222" },
+    { status: "denied", message: "RAW PROVIDER SECRET" },
+    { status: "guest" },
+    new Error("RAW PROVIDER SECRET"),
+  ]) {
+    const loaded = route({ status: "ready", subject }, undefined, profileState);
+    assert.equal(loaded.profileCalls(), 0);
+    const tree = await content(loaded.page());
+    assert.equal(loaded.profileCalls(), 1);
+    assert.equal(
+      elements(tree, "lookup")[0].props.profileSupportEnabled,
+      "status" in profileState &&
+        profileState.status === "ready" &&
+        profileState.subject === subject,
+    );
+    assert.match(JSON.stringify(tree), /customer-supplied[\s\S]*unverified/i);
+    assert.match(JSON.stringify(tree), /addresses[\s\S]*roles[\s\S]*MFA[\s\S]*unavailable/i);
+    assert.doesNotMatch(JSON.stringify(tree), /RAW PROVIDER SECRET|Private support fields/);
+  }
+  for (const status of ["denied", "unavailable", "guest", "mfa_required"]) {
+    const loaded = route({ status, message: "Unavailable" }, undefined, {
+      status: "ready",
+      subject,
+    });
+    try {
+      await content(loaded.page());
+    } catch (error) {
+      assert.match(String(error), /redirect:/);
+    }
+    assert.equal(loaded.profileCalls(), 0);
   }
 });
 

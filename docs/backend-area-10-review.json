@@ -1,0 +1,12 @@
+{
+  "passed": true,
+  "status": "source-approved-native-privileged-acceptance-deferred",
+  "id": "deleg_4950ac9a",
+  "security_concerns": [],
+  "logic_errors": [],
+  "suggestions": [],
+  "focused_checks": 106,
+  "failures": 0,
+  "whitespace": true,
+  "summary": "Independent read-only in-place review against user HEAD 89f7082 of 19 tracked and 18 untracked files plus existing authority. No concrete security or correctness defects. Focused API, SDK, wrapper, UI, access, history and SQL tests: 106 passed, 0 failed or skipped. No reviewer source edits, provider calls or account changes. Native privileged phone/MFA and true multi-session acceptance remain deferred."
+}

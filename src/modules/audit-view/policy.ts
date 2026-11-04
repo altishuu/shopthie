@@ -104,7 +104,12 @@ export function decodeAuditPage(
       ((raw.eventType === "customer.status.read" && raw.outcome === "read") ||
         (raw.eventType === "customer.status.change" &&
           ["active", "suspended"].includes(raw.outcome)));
-    if (!lookup && !status) return { valid: false };
+    const profileSupport =
+      raw.eventType === "support.profile.read" &&
+      raw.reason === "profile_help" &&
+      raw.outcome === "read" &&
+      raw.targetSubject !== null;
+    if (!lookup && !status && !profileSupport) return { valid: false };
     events.push({
       id: raw.id,
       actorSubject: raw.actorSubject,

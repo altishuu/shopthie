@@ -1,6 +1,29 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 
+test("audit history adds only the reviewed minimal profile-support read combination", async () => {
+  const { decodeAuditPage } = await import("../../src/modules/audit-view/policy.ts");
+  const supported = {
+    ...event(),
+    eventType: "support.profile.read",
+    reason: "profile_help",
+    outcome: "read",
+  };
+  const page = { scope: "own", events: [supported], nextCursor: null };
+  assert.equal(decodeAuditPage(page, subject, "own", null).valid, true);
+  for (const row of [
+    { ...supported, reason: "account_access" },
+    { ...supported, reason: "address_help" },
+    { ...supported, outcome: "found" },
+    { ...supported, targetSubject: null },
+    { ...supported, phone: "+12025550123" },
+    { ...supported, username: "Customer_Name" },
+    { ...supported, eventType: "support.private.read" },
+    { ...supported, actorSubject: target },
+  ])
+    assert.equal(decodeAuditPage({ ...page, events: [row] }, subject, "own", null).valid, false);
+});
+
 test("audit input rejects malformed/partial/normalized cursors and authority overrides", async () => {
   const { validateAuditInput, validAuditTimestamp } =
     await import("../../src/modules/audit-view/policy.ts");

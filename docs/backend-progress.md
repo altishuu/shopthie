@@ -120,6 +120,12 @@ Hosted **20261030012105_audit_view** applied once after review and user-requeste
 
 See backend-area-9.md and its results/review, backend-audit-view-contract.md and database companion. **Stopped after Area9. Native positive privileged staff/MFA and true multi-session acceptance remain deferred; no next area implicitly authorized.** No staging/commit/push/frontend deployment, paid service, public signup/email activation or source-copy workaround.
 
+## Area 10 — audited profile support installed
+
+Selected Customer optional unverified phone can be disclosed only through explicit profile-help request by current verified Owner/Admin, with mandatory transactional audit and strict selected-subject/username binding. No email/address, export, editing or staff-role controls. Dedicated profile_support module and staff-only permission; broader support/staff remain off, required audit on. Audit history exposes event categories and opaque IDs, not phone or username.
+
+Independent review deleg_4950ac9a passed 106 focused checks. Integrated 270 units, 302 overlapping backend and 22 browser checks passed with build/static gates. Hosted migration **20261104120706_profile_support** applied once on November 4, 2026, after the user authorized continuation; function ACLs, paths, grants, modules and unchanged account counts read back. Local filename aligned, 121 SQL tests passed. No-subject readiness false/read denied in a rolled-back probe. Positive native staff/MFA and independent-session concurrency remain deferred; no real account status/role/MFA mutation for acceptance. Current frontend not deployed. See backend-area-10.md.
+
 ## Remaining roadmap — not accepted / not implemented
 
 - Remaining B2 acceptance: native customer MFA enrollment/challenge/removal with secure user participation; implementation candidate exists but this acceptance is not yet claimed. Profiles and addresses remain accepted within their bounded contracts; public launch remains gated.

@@ -4,7 +4,8 @@ export type AuditEvent = {
   id: string;
   actorSubject: string;
   targetSubject: string | null;
-  eventType: "customer.lookup" | "customer.status.read" | "customer.status.change";
+  eventType:
+    "customer.lookup" | "customer.status.read" | "customer.status.change" | "support.profile.read";
   reason:
     | "account_access"
     | "profile_help"

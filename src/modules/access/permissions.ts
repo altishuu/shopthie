@@ -11,7 +11,8 @@ export type AuthorizationActor = {
   hasVerifiedMfa: boolean;
 };
 
-type Scope = "self" | "directory" | "customer" | "staff_assignment" | "support" | "audit";
+type Scope =
+  "self" | "directory" | "customer" | "staff_assignment" | "support" | "profile_support" | "audit";
 export const permissionDefinitions = {
   "staff.enter": { module: "identity", scope: "self" },
   "profile.read_own": { module: "profiles", scope: "self" },
@@ -19,6 +20,7 @@ export const permissionDefinitions = {
   "address.manage_own": { module: "addresses", scope: "self" },
   "customer.lookup": { module: "customer_lookup", scope: "directory" },
   "customer.status.manage": { module: "customer_status", scope: "customer" },
+  "support.profile.read": { module: "profile_support", scope: "profile_support" },
   "support.private.read": { module: "support", scope: "support" },
   "staff.manage": { module: "staff", scope: "staff_assignment" },
   "audit.read": { module: "audit_view", scope: "audit" },
@@ -31,6 +33,7 @@ const staffPermissions = [
   "staff.enter",
   "customer.lookup",
   "customer.status.manage",
+  "support.profile.read",
   "support.private.read",
   "audit.read",
 ] as const;
@@ -103,12 +106,18 @@ export function authorize(
       break;
     case "customer":
     case "support":
+    case "profile_support":
       if (
         !request.resourceOwnerId ||
         request.resourceOwnerId === actor.userId ||
         request.targetRole !== "customer"
       ) {
         return { allowed: false, reason: "target_restricted" };
+      }
+      if (definition.scope === "profile_support") {
+        if (request.supportReason !== "profile_help")
+          return { allowed: false, reason: "profile_support_reason_required" };
+        return { allowed: true, requiresAudit: true };
       }
       if (definition.scope === "customer") {
         if (

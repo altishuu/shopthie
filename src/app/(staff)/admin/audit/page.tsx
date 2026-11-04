@@ -22,8 +22,9 @@ async function AuditContent() {
       <p className="eyebrow">Staff access</p>
       <h1 id="identity-heading">Operational audit history.</h1>
       <p className="identity-description">
-        Supported Customer lookup and application-access operations only. This is not a complete
-        security or compliance log. Events are loaded only when you ask, in pages of up to 20.
+        Supported Customer lookup, application-access and profile-support operations only. This is
+        not a complete security or compliance log. Events are loaded only when you ask, in pages of
+        up to 20.
       </p>
       {state.status === "ready" ? (
         <AuditHistoryManager

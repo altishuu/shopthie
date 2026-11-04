@@ -29,7 +29,7 @@ before(async () => {
   db = await createAuthFixture();
   const directory = new URL("../../supabase/migrations/", import.meta.url);
   // Area7 historical acceptance fixture. Latest full-schema parity and lifecycle
-  // guards and parity are exercised in database-audit-view.test.ts.
+  // guards and parity are exercised in database-profile-support.test.ts.
   for (const name of (await readdir(directory))
     .filter((name) => /^\d+_.+\.sql$/.test(name) && name <= "20261029121812_customer_lookup.sql")
     .sort()) {
@@ -531,12 +531,12 @@ test("historical Area7 SQL module states, dependencies, permission owners and gr
   assert.deepEqual(
     (await db.query("select id, enabled from shopthie_private.app_modules order by id")).rows,
     Object.keys(backendModuleDependencies)
-      .filter((id) => !["customer_status", "audit_view"].includes(id))
+      .filter((id) => !["customer_status", "audit_view", "profile_support"].includes(id))
       .sort()
       .map((id) => ({ id, enabled: enabled.includes(id as (typeof enabled)[number]) })),
   );
   const dependencies = Object.entries(backendModuleDependencies)
-    .filter(([id]) => !["customer_status", "audit_view"].includes(id))
+    .filter(([id]) => !["customer_status", "audit_view", "profile_support"].includes(id))
     .flatMap(([module_id, values]) => values.map((depends_on) => ({ module_id, depends_on })))
     .sort(
       (a, b) => a.module_id.localeCompare(b.module_id) || a.depends_on.localeCompare(b.depends_on),
@@ -552,6 +552,7 @@ test("historical Area7 SQL module states, dependencies, permission owners and gr
   assert.deepEqual(
     (await db.query("select id, module_id from shopthie_private.app_permissions order by id")).rows,
     Object.entries(permissionDefinitions)
+      .filter(([id]) => id !== "support.profile.read")
       .map(([id, spec]) => ({
         id,
         module_id:
@@ -565,7 +566,10 @@ test("historical Area7 SQL module states, dependencies, permission owners and gr
   assert.deepEqual(
     Object.fromEntries(grants.rows.map((row) => [row.role_id, row.permissions])),
     Object.fromEntries(
-      Object.entries(rolePermissions).map(([role, permissions]) => [role, [...permissions].sort()]),
+      Object.entries(rolePermissions).map(([role, permissions]) => [
+        role,
+        permissions.filter((id) => id !== "support.profile.read").sort(),
+      ]),
     ),
   );
 });

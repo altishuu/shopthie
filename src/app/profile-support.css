@@ -1,0 +1,43 @@
+.profile-support-manager {
+  min-width: 0;
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--color-line, #d9d9d9);
+  overflow-wrap: anywhere;
+}
+
+.profile-support-manager h2 {
+  margin-bottom: 0.75rem;
+  font-size: 1.25rem;
+}
+
+.profile-support-manager .profile-support-form,
+.profile-support-manager .identity-field,
+.profile-support-manager .identity-details,
+.profile-support-manager [data-profile-support-record] {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.profile-support-manager select,
+.profile-support-manager button {
+  min-height: 44px;
+  max-width: 100%;
+  min-width: 0;
+  width: 100%;
+  font-size: 16px;
+}
+
+.profile-support-manager button {
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+.profile-support-manager select {
+  text-overflow: ellipsis;
+}
+
+.profile-support-manager .identity-details dd {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
