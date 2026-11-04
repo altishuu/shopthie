@@ -1,0 +1,19 @@
+# Owner freeze database cutover
+
+This migration is a restrictive freeze, not an Owner bootstrap or recovery mechanism. It installs with no Owners; Owner membership transitions and changes to existing Owner account identity or status are denied. Existing application grants and RLS policies are not changed. Installation takes NOWAIT access-exclusive locks and rolls back if it cannot acquire them.
+
+## Snapshot cutover
+
+A REPEATABLE READ or SERIALIZABLE transaction whose snapshot predates the cutover cannot see the newly inserted marker. Guarded writes in that old transaction are denied with `owner_freeze_cutover_not_visible`, even when the target is a Customer. This is intentional fail-closed behavior, not a permanent Customer freeze: roll back the transaction and retry the operation in a fresh transaction, which can see the marker. READ COMMITTED obtains fresh statement snapshots. A caller must also handle normal serialization errors and retry whole transactions where appropriate.
+
+## Security boundary and operating assumptions
+
+The creating role, which owns the marker and both security-definer functions, and superusers are trusted. Both protected tables and the private schema must be owned inside that same trusted boundary; otherwise installation fails. Nontrusted effective SET or ALTER SYSTEM privileges on session_replication_role also reject installation. All four freeze triggers are ENABLE ALWAYS, protecting even sessions that retained replica trigger mode before cutover. Installation rejects nontrusted role membership permitting SET ROLE to the creator or a superuser. PostgreSQL's predefined NOLOGIN `pg_write_all_data` role intrinsically writes all tables; installation permits that role itself but rejects nontrusted members, including NOINHERIT members. It rejects any other nontrusted role with effective marker INSERT, UPDATE, DELETE, TRUNCATE or relevant column write privilege, and any unexpected effective EXECUTE privilege on either guard function. Checks include inherited and default grants. Trusted administrators can bypass or undo this freeze and must be controlled separately.
+
+The definer must have SELECT on `app_user_roles` and complete RLS visibility: when RLS is enabled it must either bypass RLS (superuser or BYPASSRLS), or own the table with FORCE ROW LEVEL SECURITY disabled. Installation checks the actual relation owner, RLS flags, definer identity, and bypass attribute. Installation-time catalog checks cannot prevent a later privileged administrator from changing ownership, role memberships, ACLs, RLS, trigger definitions, or the marker; those changes require separate controls and revalidation. The migration does not change RLS policies.
+
+Verification in embedded fixtures is not a substitute for native multi-session PostgreSQL testing or independent security review. In particular, exercise all three isolation levels, the pre-cutover snapshot and fresh-transaction retry, concurrent NOWAIT behavior, and cascading deletes. Record actual tested and hosted versions separately: this slice passed48 independent-session checks on signed local PostgreSQL18.6, while hosted PostgreSQL17.11 catalog prerequisites and installed definitions were read back. These are not identical-engine native provider Auth/MFA or Owner-write acceptance.
+
+## Installed state
+
+Hosted `20261104143127_owner_freeze` was applied once after independent correction review and explicit user approval on November 4, 2026. Local filename matches hosted history without SQL changes. Native readback: one marker row owned by postgres, four ENABLE ALWAYS triggers, private postgres-only guard execution, empty search paths, no nontrusted marker writers, unchanged modules and unchanged real account/role/status/MFA/audit counts. No Owner bootstrap; zero Owners remain zero. Further bootstrap/transfer/recovery requires a separately approved design, not disabling guards as a convenience.

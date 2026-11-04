@@ -1,4 +1,6 @@
-# Area 11 — Owner safety investigation and stop gate
+# Area 11 — historical Owner safety investigation
+
+**Current outcome:** the original last-Owner-count design below was blocked and not installed. The user subsequently approved the stricter interim Owner freeze; its corrected migration passed independent review and was installed/read back as `20261104143127_owner_freeze`. See `backend-area-11.md`. Preserve the findings below as historical evidence, not the current installation status.
 
 **Decision: blocked; no Owner-safety migration or guard has been installed.** Repository inspection does not establish a safe, enforced lock protocol across all account, membership and provider-deletion entry points. No hosted/provider/native access was made during this investigation. This is a source audit, not a live catalog readback or a concurrency proof.
 
@@ -8,6 +10,10 @@
 - The same migration enables RLS and revokes all private-table privileges from PUBLIC, anon and authenticated (lines 91–98); authenticated receives schema usage and narrowly granted functions, not raw authority-table DML. This describes migration-defined ACLs, not a current hosted-catalog proof. Provisioning (`:68-79`) is an Auth-insert trigger that creates an active account and **Customer** membership, with no Owner bootstrap.
 - `20261029165555_customer_status.sql:6-30` guards account revision and immutable subject but does not protect the last Owner or account deletion. `:37-60` attaches a membership/profile BEFORE ROW trigger that acquires the parent account `FOR UPDATE`, tolerating an absent parent on DELETE for cascades; it does not count Owners. `:187-227` is the existing status writer: it locks actor and target parent rows in UUID order and only changes a current Customer; it cannot be counted as an Owner-management path. Repository searches of `src` and `supabase` found no additional direct application-account/membership writers or Auth admin deletion call, beyond provisioning, this status writer and the declared cascades. Privileged SQL/operator/provider writers are not exhaustively enumerable from source, and table owners or sufficiently privileged administrators can bypass ordinary ACL/trigger assumptions.
 - Profile/address writers and audited lookup/status/support reads also lock parent account rows; see `20261028181746_profiles.sql:52`, `20261029031614_addresses.sql:108,202`, `20261029165555_customer_status.sql:86-89,155-156,199-200`, and `20261104120706_profile_support.sql:52,121`. The existing Area 8 documentation explicitly warns that child-row triggers do not enforce parent-first ordering for arbitrary trusted direct child writes (`docs/backend-customer-status-database.md:13-19`).
+
+## Hosted catalog readback (read-only)
+
+A subsequent read-only Supabase catalog check confirmed both FK cascades, RLS on both authority tables, the existing account-revision and membership-writer triggers, and table ACLs limited to the database owner. The check did not inspect or modify provider deletion implementation. Counts remained zero staff memberships, verified factors, changed accounts and audit events, with one pre-existing pending factor. No hosted mutation was performed.
 
 ## Why a partial guard is unsafe
 

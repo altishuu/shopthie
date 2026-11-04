@@ -96,3 +96,11 @@ Native no-subject readinessfalse/read denied in rolled-back probe without inject
 ## Area 10 — profile support installed
 
 Hosted `20261104120706_profile_support` applied November 4, 2026, after independent review; exact history, four function ACLs/search paths, optional module/dependencies and Owner/Admin grants read back. Required audit is on, broad staff/support off. No-subject readiness denied and no-subject read rejected without injected claims. Account/factor/audit counts unchanged. Local migration filename aligned; 121 SQL tests passed. Native privileged staff/MFA and true multi-session acceptance remain deferred; no frontend deployment. See `backend-area-10.md`.
+
+## Area 11 — restrictive temporary Owner freeze installed
+
+Hosted **20261104143127_owner_freeze** applied once on November 4, 2026, after independent correction review **deleg_6006267f PASS** and explicit user approval. Local filename matches hosted history without SQL changes. The fixed Owner set is frozen: no creation/promotion/removal/demotion, or Owner application-account suspension/deletion; zero existing Owners remain zero, with no bootstrap. Ordinary fresh Customer operations remain supported. Pre-cutover Repeatable Read/Serializable guarded writes must roll back and restart in a fresh transaction.
+
+Native readback confirms one private marker row and four ENABLE ALWAYS guards, postgres-owned security-definer helpers with empty search paths, no nontrusted effective marker mutation or guard EXECUTE rights, unchanged enabled modules and unchanged staff0/Owners0/verified0/pending1/changed accounts0/audits0. All required ownership/visibility/default/inherited ACL/membership/replication prerequisites passed at installation. No provider Auth DDL, real role/status/MFA mutation or frontend deployment.
+
+Integrated270 unit and312 overlapping backend checks,10 included Owner-freeze regressions and48 signed-local PostgreSQL18.6 independent-session checks passed. Hosted catalog/installation is PostgreSQL17.11; local synthetic cascade/claims tests are not native Auth deletion, OTP/MFA or hosted positive Owner acceptance. Trusted schema/guard operators can alter protections and are outside the guarantee. See `backend-area-11.md` and its results/review. Stopped after this bounded area.

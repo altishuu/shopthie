@@ -2,6 +2,14 @@
 
 User authorized the next area after Area 10. Starting with the prerequisite Owner safety baseline, not the entire staff-management roadmap. Preserve all existing Area 10 uncommitted/untracked work and the Git index. Never stage, stash, reset, commit, push, deploy, make source copies/snapshots/archives/manifests, expose secrets, or modify existing accounts/roles/MFA for testing. Free only. No public signup or unrelated project changes.
 
+## User-approved interim restriction
+
+On November 4, 2026, the user explicitly approved pursuing an interim **Owner freeze**: reject Owner creation/promotion, removal/demotion, and suspension or deletion of Owner app accounts until a separate transfer/recovery design is approved. This preserves existing Owners more restrictively than a last-Owner count, and permits installation with zero Owners; it does not bootstrap one. This approval does not authorize changing any actual account, installing unreviewed migration, or modifying provider Auth DDL. Prove cutover/snapshot, bulk/TRUNCATE, FK cascades, permissions, isolation and concurrent paths; exclude trusted operators who can disable triggers or change schema, and do not promise prevention of provider bans, MFA/email changes or login failure. If safe cutover cannot be proven, fail closed and do not apply.
+
+## Customer operations must remain available
+
+The user rejected the proposed blanket freeze of all application account status changes/deletions and chose to investigate a narrower Owner guard while keeping Customer controls working. Do not install an all-account freeze or disable the existing Customer suspension/reactivation feature. A narrow design must address stale snapshots and queued statements, enumerate permitted isolation levels and provider cascade limits, and prove unchanged Customer operation; unresolved issues block installation.
+
 ## Required outcome
 
 Design and, only if safely enforceable across the current application database write paths, implement transactional last-active-Owner protection as a prerequisite to future Owner/staff operations. Protect removal or demotion of an active Owner, suspension/deletion of the corresponding application account, and relevant account-deletion cascades. Concurrent attempts affecting different Owners must not both succeed in eliminating the final active Owner. A project with zero Owners before installation must remain installable; do not create/promote an Owner or make an implicit first-user rule.

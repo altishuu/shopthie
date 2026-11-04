@@ -1,0 +1,86 @@
+{
+  "status": "installed-read-back-bounded-area-handed-off",
+  "automated": {
+    "unit_tests": 270,
+    "backend_checks": 312,
+    "counts_overlap": true,
+    "backend_command": "node --test --test-concurrency=1 tests/backend/*.test.ts tests/unit/backend-*.test.ts",
+    "initial_parallel_backend_attempt": "180-second command timeout; no assertion failures, interrupted files; bounded-concurrency rerun312/312 passed",
+    "owner_freeze_embedded_tests": 10,
+    "real_postgres_independent_session_checks": 48,
+    "post_alignment_sql_checks": 131,
+    "production_build": true,
+    "guest_route_smoke": {
+      "passed": 5,
+      "paths": ["/", "/shop", "/login", "/admin/customers", "/admin/audit"],
+      "admin_no_store_streamed_login": true
+    },
+    "types": true,
+    "lint": true,
+    "format": true,
+    "whitespace": true,
+    "failures_final": 0
+  },
+  "review": {
+    "initial": "deleg_24154811/task-1 failed",
+    "first_correction": "deleg_b76d9997 failed",
+    "final_id": "deleg_6006267f",
+    "final_pending": false,
+    "passed": true
+  },
+  "migration": {
+    "name": "owner_freeze",
+    "version": "20261104143127",
+    "path": "supabase/migrations/20261104143127_owner_freeze.sql",
+    "applied": true,
+    "apply_calls": 1,
+    "approval": "User selected Apply the reviewed Owner freeze now",
+    "sql_unchanged_on_rename": true
+  },
+  "hosted_preflight": {
+    "executor": "postgres",
+    "schema_owner": "postgres",
+    "protected_table_owners": "postgres",
+    "server_version": "17.11",
+    "rls": true,
+    "force_rls": false,
+    "unexpected_replication_privileges": [],
+    "unexpected_trusted_memberships": [],
+    "freeze_exists": false
+  },
+  "hosted_post_apply": {
+    "history_matches": true,
+    "marker_rows": 1,
+    "marker_owner": "postgres",
+    "always_guard_triggers": 4,
+    "guard_functions": 2,
+    "guard_owner": "postgres",
+    "security_definer": true,
+    "empty_search_path": true,
+    "nontrusted_marker_writers": [],
+    "nontrusted_guard_executors": [],
+    "enabled_modules": [
+      "access",
+      "addresses",
+      "audit",
+      "audit_view",
+      "customer_lookup",
+      "customer_status",
+      "geography",
+      "identity",
+      "profile_support",
+      "profiles"
+    ],
+    "owners": 0,
+    "staff": 0,
+    "verified_factors": 0,
+    "pending_factors": 1,
+    "changed_accounts": 0,
+    "audits": 0
+  },
+  "local_postgres": "signed PostgreSQL18.6 binaries; synthetic Auth fixtures; stopped",
+  "native_positive_owner_mfa_provider_delete_acceptance": false,
+  "no_actual_accounts_roles_status_mfa_changed": true,
+  "no_frontend_motion_layout_changes": true,
+  "no_commit_push_frontend_deployment": true
+}

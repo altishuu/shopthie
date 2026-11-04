@@ -1,0 +1,11 @@
+# Owner freeze — correction evidence (review passed; installed)
+
+Final independent correction review `deleg_6006267f` passed with no remaining findings. After the user explicitly selected application, hosted `20261104143127_owner_freeze` installed once and was read back on November 4, 2026. The pre-install evidence below is historical; current installation and unchanged counts are in `backend-area-11.md` and its results.
+
+The second correction adds enforced trusted ownership of both app_accounts/app_user_roles and the private schema; inherited trusted-owner membership remains rejected. It rejects nontrusted effective session_replication_role SET/ALTER SYSTEM privilege and enables all four guard triggers ALWAYS, including retained replica sessions.
+
+Observed RED: both untrusted protected-table-owner cases and parameter privilege succeeded unexpectedly (three failing tests). A separate retained replica-mode test reproduced an Owner status bypass. GREEN: all10 embedded Owner-freeze regressions pass, including those four corrections and prior marker/default/inherited function/RLS tests.
+
+Exact corrected migration was executed by tests/backend/owner-freeze-concurrency.py using signature-verified local PostgreSQL18 packages: **48 checks passed**, server stopped. Four checks now prove stale Customer Repeatable Read and Serializable transactions fail closed, then the same session rolls back and restarts at the same isolation level, commits the requested Customer status change and exactly one audit. Fresh Owner/Admin Customer RPCs pass all three isolation levels; old Owner/prepared/queued/NOWAIT/cascade/truncate/ACL cases remain.
+
+Parent read-only hosted catalog confirms PostgreSQL17.11, execution/schema/table owner postgres, membership and account RLS enabled without FORCE, postgres BYPASSRLS, no unexpected nontrusted parameter privileges or trusted memberships. No freeze marker was installed at that preflight readback; post-apply readback now confirms one marker row and all four ALWAYS guards. Local PostgreSQL18 concurrency tests are not native provider Auth deletion, OTP/MFA or live Owner acceptance. No real roles/status/MFA changed. Both initial independent reviews remain failed historical evidence; the subsequent correction re-review passed before the authorized hosted installation.

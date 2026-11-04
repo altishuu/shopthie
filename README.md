@@ -4,7 +4,7 @@ A light editorial storefront for a multi-brand premium technology retailer. Next
 
 ## Current milestone
 
-**Backend Areas 1–10 implemented; hosted migrations installed, with privileged native acceptance deferred.** Supabase backs identity, self profiles/addresses, audited Customer lookup and application-access changes, restricted audit history and audited profile-support phone reads. Current verified staff TOTP + AAL2 required. Phone is customer-supplied and unverified; no private email/address support, export or staff role management. **270 unit tests, 302 overlapping backend checks, 22 affected browser checks**, build/static gates and independent review passed; 121 SQL checks passed after migration alignment. Positive native staff/MFA and true multi-session concurrency remain unverified. Public signup/recovery and commerce remain gated/demo. No assistant commit/push/frontend deployment. See `docs/backend-area-10.md` and `docs/backend-progress.md`.
+**Backend Areas 1–11 implemented; hosted migrations installed, with privileged native acceptance deferred.** Supabase backs identity, self profiles/addresses, audited Customer lookup and application-access changes, restricted audit history and audited profile-support phone reads. Area 11 installs the approved temporary **Owner freeze**: no Owner creation/promotion, removal/demotion, or Owner application-account suspension/deletion; the current zero-Owner state is preserved without bootstrap. Ordinary fresh Customer operations remain supported. **270 unit tests, 312 overlapping backend checks, 48 real local PostgreSQL multi-session checks** and independent correction review passed. Local synthetic Auth/concurrency fixtures are not hosted positive Owner/MFA/provider-deletion acceptance. No frontend or motion changes in Area 11; Area 10's 22 browser checks remain the prior UI checkpoint. Public signup/recovery and commerce stay gated/demo. No assistant commit/push/frontend deployment. See `docs/backend-area-11.md` and `docs/backend-progress.md`.
 
 **Phases 1–4 implemented: design foundation, frontend commerce, cinematic motion, and editorial/responsive refinement.**
 
@@ -55,7 +55,7 @@ Stop running development/preview servers before rebuilding the same project; the
 ## Verification
 
 ```bash
-npm test                         # 245 current unit tests
+npm test                         # 270 current unit tests
 npm run lint
 npm run typecheck
 npm run format:check

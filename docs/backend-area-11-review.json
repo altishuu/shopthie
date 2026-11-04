@@ -1,0 +1,35 @@
+{
+  "passed": true,
+  "security_concerns": [],
+  "logic_errors": [],
+  "suggestions": [],
+  "review_id": "deleg_6006267f",
+  "scope": "Corrected exact Owner-freeze migration, embedded regressions, native concurrency harness and independent hosted catalog-only preflight",
+  "executed": {
+    "embedded": { "passed": 10, "failed": 0 },
+    "independent_postgresql": {
+      "passed": 48,
+      "failed": 0,
+      "signed_packages_verified": true,
+      "server_stopped": true
+    },
+    "hosted_catalog": {
+      "server_version": "17.11",
+      "executor_session": "postgres",
+      "protected_table_schema_owners": "postgres",
+      "bypassrls": true,
+      "rls": true,
+      "force_rls": false,
+      "unexpected_replication_privileges": [],
+      "unexpected_trusted_memberships": [],
+      "relevant_default_grants": [],
+      "freeze_installed": false
+    }
+  },
+  "limitations": [
+    "Synthetic local Auth fixtures are not provider Auth deletion, native login/MFA or hosted positive Owner acceptance.",
+    "Trusted schema/table/guard operators and superusers can alter protections and are outside the guarantee."
+  ],
+  "historical_failed_reviews": ["deleg_24154811/task-1", "deleg_b76d9997"],
+  "transcript": "/home/ivanadcan35/.hermes/cache/delegation/live/deleg_6006267f/task-0.log"
+}

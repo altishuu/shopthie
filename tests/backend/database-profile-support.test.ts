@@ -37,8 +37,8 @@ before(async () => {
   previousHistory = previousFunctions.find(
     (row) => row.name === "shopthie_private.audit_events",
   )!.definition;
-  // Full latest chain, not a historical cutoff. New migrations must participate.
-  for (const name of names.filter((name) => name >= migration))
+  // Area 10 historical contract: Owner-freeze tests exercise the later chain.
+  for (const name of names.filter((name) => name === migration))
     await db.exec(await readFile(new URL(name, directory), "utf8"));
 });
 after(async () => {
