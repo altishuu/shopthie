@@ -11,9 +11,9 @@ import { permissionDefinitions, rolePermissions } from "../../src/modules/access
 let db: PGlite;
 
 // Area 8 is a historical migration fixture, not the latest installed schema.
-// Only Area 9's audit_view module/deps and audit.read remap are excluded below;
+// Later audit_view/profile_support/owner_setup modules and their new grants are excluded;
 // all remaining exact historical parity assertions stay active. Latest complete
-// source/schema/grant parity is owned by database-profile-support.test.ts.
+// source/schema/grant parity is owned by database-owner-bootstrap.test.ts.
 test("Area 8 historical full module/dependency/permission/grant contracts remain exact", async () => {
   const enabled = resolveBackendModules([
     "profiles",
@@ -25,12 +25,12 @@ test("Area 8 historical full module/dependency/permission/grant contracts remain
   assert.deepEqual(
     (await db.query("select id,enabled from shopthie_private.app_modules order by id")).rows,
     Object.keys(backendModuleDependencies)
-      .filter((id) => !["audit_view", "profile_support"].includes(id))
+      .filter((id) => !["audit_view", "profile_support", "owner_setup"].includes(id))
       .sort()
       .map((id) => ({ id, enabled: enabled.includes(id as (typeof enabled)[number]) })),
   );
   const dependencies = Object.entries(backendModuleDependencies)
-    .filter(([module_id]) => !["audit_view", "profile_support"].includes(module_id))
+    .filter(([module_id]) => !["audit_view", "profile_support", "owner_setup"].includes(module_id))
     .flatMap(([module_id, values]) => values.map((depends_on) => ({ module_id, depends_on })))
     .sort(
       (a, b) => a.module_id.localeCompare(b.module_id) || a.depends_on.localeCompare(b.depends_on),
@@ -46,7 +46,7 @@ test("Area 8 historical full module/dependency/permission/grant contracts remain
   assert.deepEqual(
     (await db.query("select id,module_id from shopthie_private.app_permissions order by id")).rows,
     Object.entries(permissionDefinitions)
-      .filter(([id]) => id !== "support.profile.read")
+      .filter(([id]) => !["support.profile.read", "owner.bootstrap.request_own"].includes(id))
       .map(([id, spec]) => ({ id, module_id: id === "audit.read" ? "audit" : spec.module }))
       .sort((a, b) => a.id.localeCompare(b.id)),
   );
@@ -60,7 +60,9 @@ test("Area 8 historical full module/dependency/permission/grant contracts remain
     Object.fromEntries(
       Object.entries(rolePermissions).map(([role, permissions]) => [
         role,
-        permissions.filter((id) => id !== "support.profile.read").sort(),
+        permissions
+          .filter((id) => !["support.profile.read", "owner.bootstrap.request_own"].includes(id))
+          .sort(),
       ]),
     ),
   );

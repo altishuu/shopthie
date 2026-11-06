@@ -1,0 +1,88 @@
+{
+  "status": "design-testing-handed-off-reviewed-partial-feasibility",
+  "scope": "Design and local synthetic tests only",
+  "production_ready": false,
+  "activation_approved": false,
+  "user_choices": {
+    "identity": "dedicated Owner account, designated later",
+    "initial_owners": 1,
+    "lost_authenticator_recovery": true,
+    "account_replacement": true
+  },
+  "prototype": {
+    "directory": "spikes/012-owner-bootstrap",
+    "command": "python spikes/012-owner-bootstrap/runner.py",
+    "parent_rerun_exit": 0,
+    "assertions": 43,
+    "passed": 43,
+    "failed": 0,
+    "complete": true,
+    "verdict": "PARTIAL",
+    "server_stopped": true,
+    "local_postgres": "18.6",
+    "signed_packages_verified": true,
+    "runtime_files_compared": 1464,
+    "source_migrations_per_fixture": 9,
+    "migration_executions": 18,
+    "source_copied": false,
+    "negative_comparison_observations_included": true,
+    "known_recovery_limitation_observation_included": true,
+    "native_jwt_otp_proof": false,
+    "native_provider_acceptance": false
+  },
+  "existing_mfa_safety_tests": {
+    "command": "node --test --test-concurrency=1 tests/unit/backend-mfa.test.ts tests/unit/backend-mfa-service.test.ts",
+    "passed": 15,
+    "failed": 0
+  },
+  "findings": {
+    "owner_transition": "Narrow atomic marker-renewal protocol supported by synthetic local bootstrap/replacement tests; not production implementation",
+    "factor_loss_fresh_transaction": "Stale AAL2 without current verified TOTP denied",
+    "factor_loss_old_rr_transaction": "Actual private-read RPC still succeeded after synthetic factor deletion; test rolled back",
+    "replacement_old_rr_transaction": "Stable permission/context retained old authority; tested locking private read serialized on changed old actor account",
+    "marker_comparators": "No renewal and DELETE/reinsert each permitted an isolated stale Owner status mutation; both test transactions rolled back"
+  },
+  "blocking_production_gates": [
+    "Reviewed in-flight transaction/session containment for MFA recovery",
+    "Native target-bound identity, consent, current-factor and fresh AAL2 proof",
+    "Attributable operator approval and installed audit/provider integration",
+    "Native Auth/approval-row locking and SQL timeout protocol, catalog revalidation",
+    "Separate approval for any production implementation or actual account activation"
+  ],
+  "implementation_worker": {
+    "id": "deleg_1fccb4b6",
+    "final_summary": "Interrupted by provider content filter after local run completed",
+    "parent_verified_from_actual_artifacts_and_rerun": true
+  },
+  "runner_cleanup_regressions": {
+    "command": "python -B spikes/012-owner-bootstrap/test_runner_cleanup.py",
+    "passed": 5,
+    "failed": 0,
+    "observed_red_before_green": true,
+    "covers": [
+      "startup failure",
+      "startup timeout",
+      "client cleanup race",
+      "retain data if shutdown unconfirmed",
+      "interruption remains incomplete and re-raises after shutdown"
+    ],
+    "temporary_dependency_expired": "Historical scratch PostgreSQL files were absent; exact signed packages were restored without system installation, and corrected full43-check run passed"
+  },
+  "review": {
+    "previous_id": "deleg_a179b5ce",
+    "previous_status": "rate-limited without verdict; partial lifecycle finding reproduced and fixed",
+    "failed_review_id": "deleg_694ac2f7",
+    "status": "passed bounded local design/evidence/lifecycle correction review; not production approval",
+    "interruption_finding_corrected": true,
+    "id": "deleg_20663be6",
+    "passed": true
+  },
+  "unchanged": {
+    "production_source_and_migrations": true,
+    "installed_owner_freeze": true,
+    "live_accounts_roles_status_mfa_sessions": true,
+    "git_index_and_history": true,
+    "frontend_deployment": true
+  },
+  "build_browser_motion_rerun": "Not repeated: no production source, UI, migration or deployed behavior changed"
+}

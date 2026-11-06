@@ -4,7 +4,7 @@ import test from "node:test";
 import { createAuthFixture, provision, customerId, otherId } from "./auth-fixture.ts";
 const directory = new URL("../../supabase/migrations/", import.meta.url);
 const migration = "20261104143127_owner_freeze.sql";
-test("owner freeze installs with zero Owners and blocks owner promotion while Customer status remains writable", async () => {
+test("historical Area11 owner freeze installs with zero Owners and blocks promotion while Customer status remains writable", async () => {
   const db = await createAuthFixture();
   try {
     for (const name of (await readdir(directory))
@@ -44,10 +44,12 @@ test("owner freeze installs with zero Owners and blocks owner promotion while Cu
     assert.deepEqual(
       (await db.query("select id,enabled from shopthie_private.app_modules order by id")).rows,
       Object.keys(backendModuleDependencies)
+        .filter((id) => id !== "owner_setup")
         .sort()
         .map((id) => ({ id, enabled: enabled.includes(id as (typeof enabled)[number]) })),
     );
     const dependencies = Object.entries(backendModuleDependencies)
+      .filter(([id]) => id !== "owner_setup")
       .flatMap(([module_id, values]) => values.map((depends_on) => ({ module_id, depends_on })))
       .sort(
         (a, b) =>
@@ -65,6 +67,7 @@ test("owner freeze installs with zero Owners and blocks owner promotion while Cu
       (await db.query("select id,module_id from shopthie_private.app_permissions order by id"))
         .rows,
       Object.entries(permissionDefinitions)
+        .filter(([id]) => id !== "owner.bootstrap.request_own")
         .map(([id, spec]) => ({ id, module_id: spec.module }))
         .sort((a, b) => a.id.localeCompare(b.id)),
     );
@@ -78,7 +81,7 @@ test("owner freeze installs with zero Owners and blocks owner promotion while Cu
       Object.fromEntries(
         Object.entries(rolePermissions).map(([role, permissions]) => [
           role,
-          [...permissions].sort(),
+          permissions.filter((id) => id !== "owner.bootstrap.request_own").sort(),
         ]),
       ),
     );

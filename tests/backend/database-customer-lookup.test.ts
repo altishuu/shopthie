@@ -531,12 +531,16 @@ test("historical Area7 SQL module states, dependencies, permission owners and gr
   assert.deepEqual(
     (await db.query("select id, enabled from shopthie_private.app_modules order by id")).rows,
     Object.keys(backendModuleDependencies)
-      .filter((id) => !["customer_status", "audit_view", "profile_support"].includes(id))
+      .filter(
+        (id) => !["customer_status", "audit_view", "profile_support", "owner_setup"].includes(id),
+      )
       .sort()
       .map((id) => ({ id, enabled: enabled.includes(id as (typeof enabled)[number]) })),
   );
   const dependencies = Object.entries(backendModuleDependencies)
-    .filter(([id]) => !["customer_status", "audit_view", "profile_support"].includes(id))
+    .filter(
+      ([id]) => !["customer_status", "audit_view", "profile_support", "owner_setup"].includes(id),
+    )
     .flatMap(([module_id, values]) => values.map((depends_on) => ({ module_id, depends_on })))
     .sort(
       (a, b) => a.module_id.localeCompare(b.module_id) || a.depends_on.localeCompare(b.depends_on),
@@ -552,7 +556,7 @@ test("historical Area7 SQL module states, dependencies, permission owners and gr
   assert.deepEqual(
     (await db.query("select id, module_id from shopthie_private.app_permissions order by id")).rows,
     Object.entries(permissionDefinitions)
-      .filter(([id]) => id !== "support.profile.read")
+      .filter(([id]) => !["support.profile.read", "owner.bootstrap.request_own"].includes(id))
       .map(([id, spec]) => ({
         id,
         module_id:
@@ -568,7 +572,9 @@ test("historical Area7 SQL module states, dependencies, permission owners and gr
     Object.fromEntries(
       Object.entries(rolePermissions).map(([role, permissions]) => [
         role,
-        permissions.filter((id) => id !== "support.profile.read").sort(),
+        permissions
+          .filter((id) => !["support.profile.read", "owner.bootstrap.request_own"].includes(id))
+          .sort(),
       ]),
     ),
   );

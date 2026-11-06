@@ -1,0 +1,33 @@
+{
+  "complete": true,
+  "testedAt": "2026-11-05T19:05:01.024Z",
+  "scope": "Actual current production build, guest-only protected routing. Positive consent/MFA coverage is synthetic; no native identity, role or factor mutations.",
+  "results": [
+    {
+      "label": "desktop",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "guestRedirect": "/login",
+      "protectedResponseStatus": 200,
+      "cacheControl": "private, no-store, max-age=0, must-revalidate",
+      "horizontalOverflow": false,
+      "pageErrors": [],
+      "protectedControlsAbsent": true
+    },
+    {
+      "label": "mobile",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "guestRedirect": "/login",
+      "protectedResponseStatus": 200,
+      "cacheControl": "private, no-store, max-age=0, must-revalidate",
+      "horizontalOverflow": false,
+      "pageErrors": [],
+      "protectedControlsAbsent": true
+    }
+  ]
+}

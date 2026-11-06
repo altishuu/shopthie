@@ -54,6 +54,14 @@ async function AccountContent() {
             <Link className="identity-text-link" href="/account/security" prefetch={false}>
               Manage account security
             </Link>
+            {identity.actor.role === "customer" && (
+              <>
+                <br />
+                <Link className="identity-text-link" href="/account/owner-setup" prefetch={false}>
+                  Owner setup
+                </Link>
+              </>
+            )}
             {["owner", "admin"].includes(identity.actor.role) &&
               identity.actor.aal === "aal2" &&
               identity.actor.hasVerifiedMfa && (

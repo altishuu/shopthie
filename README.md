@@ -4,7 +4,11 @@ A light editorial storefront for a multi-brand premium technology retailer. Next
 
 ## Current milestone
 
+**Area 13 first-Owner setup handed off locally; independent correction review passed.** Protected setup page, current self-MFA verification and explicit audited consent are implemented, with separate trusted-operator designation/one-time activation SQL. No app endpoint grants ownership. Current checks: **289 unit tests, 131 historical SQL tests, 55 corrected candidate SQL tests and31 local PostgreSQL independent-session checks**, build/static gates, protected desktop/mobile guest routing and StrictMode/Activity fixtures pass. Local Auth/session fixtures are synthetic. The candidate is **not installed, activated or deployed**; native positive MFA/Owner acceptance remains deferred. See `docs/backend-area-13.md`.
+
 **Backend Areas 1–11 implemented; hosted migrations installed, with privileged native acceptance deferred.** Supabase backs identity, self profiles/addresses, audited Customer lookup and application-access changes, restricted audit history and audited profile-support phone reads. Area 11 installs the approved temporary **Owner freeze**: no Owner creation/promotion, removal/demotion, or Owner application-account suspension/deletion; the current zero-Owner state is preserved without bootstrap. Ordinary fresh Customer operations remain supported. **270 unit tests, 312 overlapping backend checks, 48 real local PostgreSQL multi-session checks** and independent correction review passed. Local synthetic Auth/concurrency fixtures are not hosted positive Owner/MFA/provider-deletion acceptance. No frontend or motion changes in Area 11; Area 10's 22 browser checks remain the prior UI checkpoint. Public signup/recovery and commerce stay gated/demo. No assistant commit/push/frontend deployment. See `docs/backend-area-11.md` and `docs/backend-progress.md`.
+
+**Area 12 design/testing handed off; PARTIAL feasibility, no activation.** The proposal targets one dedicated future Owner and covers bootstrap, lost-authenticator recovery and account replacement. The local proof completed43 assertions, five lifecycle regressions and15 existing MFA checks; independent bounded correction review passed. A measured old-snapshot MFA/private-read limitation and native proof/operator/provider gates still block production implementation or recovery activation. No production source/migration/account changes. See `docs/backend-area-12.md`.
 
 **Phases 1–4 implemented: design foundation, frontend commerce, cinematic motion, and editorial/responsive refinement.**
 
@@ -30,7 +34,7 @@ A light editorial storefront for a multi-brand premium technology retailer. Next
 
 **Phase 5 local handoff ready under the user's focused verification scope:** production build, lint/types/formatting, 89 unit tests, and 16 affected desktop/mobile shopping/focus checks pass on that frontend-only handoff candidate. An earlier complete run passed 138 browser tests before the final small focus correction. Extended browser/performance cycles were deliberately not repeated. Cross-tab transactions, native listener cleanup, stable catalog hydration, and delayed focus/announcement behavior are corrected. See `docs/phase-5-report.md`, `docs/phase-5-acceptance-results.json`, and `docs/HANDOFF.md`. The catalog remains seven source-verified models, not the proposed sixteen.
 
-Supabase backs identity/session, self profiles/addresses, audited exact lookup, Customer application-access changes and restricted supported-event history for verified staff. Real orders/inventory/payments, staff-role/Owner/private-support tools and a production frontend deployment are not implemented. Earlier frontend/area reports are historical checkpoints.
+Supabase backs identity/session, self profiles/addresses, audited exact lookup, Customer application-access changes, restricted supported-event history and bounded profile-support phone reads for verified staff. First-Owner setup is a local, uninstalled candidate. Real orders/inventory/payments, broader staff-role/private-support tools, Owner recovery/replacement and a production frontend deployment are not implemented. Earlier frontend/area reports are historical checkpoints.
 
 ## Install and run
 
@@ -55,7 +59,7 @@ Stop running development/preview servers before rebuilding the same project; the
 ## Verification
 
 ```bash
-npm test                         # 270 current unit tests
+node --test --test-concurrency=1 tests/unit/*.test.ts  # 289 current unit tests
 npm run lint
 npm run typecheck
 npm run format:check

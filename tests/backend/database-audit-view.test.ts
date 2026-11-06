@@ -6,7 +6,7 @@ import { asActor, createAuthFixture, customerId, otherId, provision } from "./au
 // Historical Area 9 parity, pinned independently of latest source. Area 10's
 // profile_support module and support.profile.read permission/grants do NOT exist
 // at this cutoff. Complete unfiltered latest-source parity lives in
-// database-profile-support.test.ts; never exclude the new capability there.
+// database-owner-bootstrap.test.ts; never exclude new capabilities there.
 const backendModuleDependencies: Record<string, readonly string[]> = {
   identity: [],
   access: ["identity"],

@@ -12,6 +12,7 @@ export const backendModuleDependencies = {
   customer_status: ["customer_lookup", "access", "audit"],
   profile_support: ["customer_lookup", "profiles", "access", "audit"],
   audit_view: ["access", "audit"],
+  owner_setup: ["identity", "access", "audit"],
   staff: ["profiles", "access", "audit"],
   support: ["staff", "profiles", "audit"],
 } as const;

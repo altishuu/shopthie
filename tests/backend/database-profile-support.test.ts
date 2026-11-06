@@ -525,7 +525,8 @@ test("disabled profile support leaves lookup/status/profile writers, mandatory a
       );
   }));
 
-test("latest complete registry/dependencies/permissions/ALL role grants match current source without exclusions", async () => {
+// This fixture ends at Area10. Full unfiltered current parity lives in database-owner-bootstrap.test.ts.
+test("historical Area10 registry/dependencies/permissions/ALL role grants stay exact before owner_setup", async () => {
   const enabled = resolveBackendModules([
     "profiles",
     "geography",
@@ -538,6 +539,7 @@ test("latest complete registry/dependencies/permissions/ALL role grants match cu
   assert.deepEqual(
     (await db.query("select id,enabled from shopthie_private.app_modules order by id")).rows,
     Object.keys(backendModuleDependencies)
+      .filter((id) => id !== "owner_setup")
       .sort()
       .map((id) => ({ id, enabled: enabled.includes(id as (typeof enabled)[number]) })),
   );
@@ -548,6 +550,7 @@ test("latest complete registry/dependencies/permissions/ALL role grants match cu
       )
     ).rows,
     Object.entries(backendModuleDependencies)
+      .filter(([id]) => id !== "owner_setup")
       .flatMap(([module_id, deps]) => deps.map((depends_on) => ({ module_id, depends_on })))
       .sort(
         (a, b) =>
@@ -557,6 +560,7 @@ test("latest complete registry/dependencies/permissions/ALL role grants match cu
   assert.deepEqual(
     (await db.query("select id,module_id from shopthie_private.app_permissions order by id")).rows,
     Object.entries(permissionDefinitions)
+      .filter(([id]) => id !== "owner.bootstrap.request_own")
       .map(([id, spec]) => ({ id, module_id: spec.module }))
       .sort((a, b) => a.id.localeCompare(b.id)),
   );
@@ -568,7 +572,9 @@ test("latest complete registry/dependencies/permissions/ALL role grants match cu
     ).rows,
     Object.entries(rolePermissions)
       .flatMap(([role_id, permissions]) =>
-        permissions.map((permission_id) => ({ role_id, permission_id })),
+        permissions
+          .filter((id) => id !== "owner.bootstrap.request_own")
+          .map((permission_id) => ({ role_id, permission_id })),
       )
       .sort(
         (a, b) =>

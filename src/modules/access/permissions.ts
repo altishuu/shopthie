@@ -12,9 +12,17 @@ export type AuthorizationActor = {
 };
 
 type Scope =
-  "self" | "directory" | "customer" | "staff_assignment" | "support" | "profile_support" | "audit";
+  | "self"
+  | "directory"
+  | "customer"
+  | "staff_assignment"
+  | "support"
+  | "profile_support"
+  | "audit"
+  | "owner_bootstrap";
 export const permissionDefinitions = {
   "staff.enter": { module: "identity", scope: "self" },
+  "owner.bootstrap.request_own": { module: "owner_setup", scope: "owner_bootstrap" },
   "profile.read_own": { module: "profiles", scope: "self" },
   "profile.update_own": { module: "profiles", scope: "self" },
   "address.manage_own": { module: "addresses", scope: "self" },
@@ -39,7 +47,10 @@ const staffPermissions = [
 ] as const;
 export const rolePermissions: Readonly<Record<ApplicationRole, readonly ApplicationPermission[]>> =
   Object.freeze({
-    customer: Object.freeze([...ownPermissions]),
+    customer: Object.freeze([
+      ...ownPermissions,
+      "owner.bootstrap.request_own",
+    ] as ApplicationPermission[]),
     admin: Object.freeze([...staffPermissions]),
     owner: Object.freeze([...staffPermissions, "staff.manage"] as ApplicationPermission[]),
   });
@@ -95,6 +106,14 @@ export function authorize(
     return { allowed: false, reason: "forbidden" };
   }
   switch (definition.scope) {
+    case "owner_bootstrap":
+      if (request.resourceOwnerId !== actor.userId)
+        return { allowed: false, reason: "ownership_required" };
+      if (actor.aal !== "aal2" || actor.hasVerifiedMfa !== true)
+        return { allowed: false, reason: "mfa_required" };
+      // Only consent eligibility; native designation/recent TOTP/session checks
+      // and transactional audit remain mandatory. This never grants a role.
+      return { allowed: true, requiresAudit: true };
     case "directory":
       if (!["account_access", "profile_help", "address_help"].includes(request.supportReason ?? ""))
         return { allowed: false, reason: "lookup_reason_required" };

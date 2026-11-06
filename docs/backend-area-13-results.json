@@ -1,0 +1,36 @@
+{
+  "area": 13,
+  "status": "implementation-handed-off-reviewed-not-installed",
+  "implementationComplete": true,
+  "productionReady": false,
+  "hostedMigrationInstalled": false,
+  "activationApproved": false,
+  "realOwnerDesignatedOrActivated": false,
+  "application": {
+    "unit": { "command": "node --test --test-concurrency=1 tests/unit/*.test.ts", "tests": 289, "passed": 289, "failed": 0 },
+    "historicalSql": { "scope": "Nine earlier migration fixtures pinned to their explicit cutoffs", "tests": 131, "passed": 131, "failed": 0 },
+    "lint": "passed after correction",
+    "typecheck": "passed after correction, incremental output disabled",
+    "affectedFormatting": "passed after correction",
+    "productionBuild": "passed; /account/owner-setup included; application source unchanged by later database-only corrections",
+    "browserEvidence": "docs/backend-area-13-browser-results.json",
+    "browserScope": "Actual built application desktop/mobile guest redirect and no-store/no-private-controls checks. Positive consent/MFA UI tests use fictional DTOs/SDK fixtures and installed React StrictMode/Activity, not native privileged accounts."
+  },
+  "database": {
+    "embeddedSql": { "tests": 55, "passed": 55, "failed": 0, "verifiedBy": "parent execution of corrected source; includes full unfiltered registry/grant parity" },
+    "independentFocusedCorrectionTests": { "tests": 28, "passed": 28, "failed": 0, "overlap": "Subset of candidate SQL55; not additive" },
+    "runnerLifecycle": { "tests": 5, "passed": 5, "failed": 0, "verifiedBy": "parent and final independent reviewer executions" },
+    "independentSessions": { "checks": 31, "passed": 31, "failed": 0, "complete": true, "serverStopped": true, "evidence": "Final independent reviewer executed corrected exact-source chain once, deleg_9b1c5470" },
+    "runtimeLimit": "Local PostgreSQL18.6 synthetic Auth/session data and claims, non-superuser BYPASSRLS owner, authenticated executable packages; not native hosted17.11 JWT/OTP/GoTrue acceptance"
+  },
+  "independentReview": { "passed": true, "reviewId": "deleg_9b1c5470", "record": "docs/backend-area-13-review.json", "outstandingFindings": 0, "scope": "Corrected implementation source only; no live authorization" },
+  "productionStaticScan": { "filesScanned": 12, "findings": [], "scope": "In-memory Area13 production source pattern scan, not independent security approval" },
+  "remainingImplementationGates": [],
+  "deferred": [
+    "Hosted migration installation/readback requires separate approval",
+    "Real dedicated identity designation and first-Owner activation require separate authorization and secure participation",
+    "Native positive JWT/TOTP/GoTrue and provider lock-race acceptance",
+    "Recovery, Owner replacement, MFA enrollment/removal, staff management and frontend deployment"
+  ],
+  "preservation": "User-staged Area12 index preserved; no staging, commits, pushes, real account/security changes or hosted writes."
+}

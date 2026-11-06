@@ -1,0 +1,208 @@
+{
+  "prototype": "NON_DEPLOYABLE_FIXTURE_ONLY",
+  "verdict": "PARTIAL",
+  "hostedVersion": "not queried; no hosted connection path",
+  "serverStopped": true,
+  "checks": [
+    {
+      "name": "signed packages verified and runtime contents match before execution",
+      "passed": true,
+      "observation": {
+        "packages": 2,
+        "regularRuntimeFilesCompared": 1464
+      }
+    },
+    {
+      "name": "private mode-0700 Unix socket and TCP disabled",
+      "passed": true
+    },
+    {
+      "name": "nine real migrations installed in place under non-superuser BYPASSRLS owner; zero frozen Owners",
+      "passed": true
+    },
+    {
+      "name": "direct zero-to-one transition blocked by installed freeze",
+      "passed": true
+    },
+    {
+      "name": "no application role or PUBLIC can invoke transition or edit approval evidence",
+      "passed": true
+    },
+    {
+      "name": "missing operator approval denied",
+      "passed": true
+    },
+    {
+      "name": "operator target binding denied",
+      "passed": true
+    },
+    {
+      "name": "eligibility denies missing identity",
+      "passed": true
+    },
+    {
+      "name": "eligibility denies unconfirmed email",
+      "passed": true
+    },
+    {
+      "name": "eligibility denies suspended account",
+      "passed": true
+    },
+    {
+      "name": "eligibility denies non-Customer role",
+      "passed": true
+    },
+    {
+      "name": "eligibility denies no current verified TOTP",
+      "passed": true
+    },
+    {
+      "name": "missing TEST-only verified proof denied",
+      "passed": true
+    },
+    {
+      "name": "synthetic AAL1 proof denied",
+      "passed": true
+    },
+    {
+      "name": "TEST-only proof subject, request nonce and freshness binding denied",
+      "passed": true
+    },
+    {
+      "name": "bootstrap audit failure rolls back marker, memberships, approval and ALWAYS guards",
+      "passed": true
+    },
+    {
+      "name": "NOWAIT busy app_accounts rolls back completely",
+      "passed": true
+    },
+    {
+      "name": "NOWAIT busy app_user_roles rolls back completely",
+      "passed": true
+    },
+    {
+      "name": "NOWAIT busy owner_freeze_cutover rolls back completely",
+      "passed": true
+    },
+    {
+      "name": "bootstrap atomically freezes exactly one Owner and audits; same OID renewed marker storage",
+      "passed": true
+    },
+    {
+      "name": "bootstrap replay rejected",
+      "passed": true
+    },
+    {
+      "name": "new bootstrap approval cannot add a second Owner",
+      "passed": true
+    },
+    {
+      "name": "old repeatable read snapshot bootstrap Owner mutation denied by renewed marker",
+      "passed": true
+    },
+    {
+      "name": "old serializable snapshot bootstrap Owner mutation denied by renewed marker",
+      "passed": true
+    },
+    {
+      "name": "queued READ COMMITTED Owner mutation fails after bootstrap commits",
+      "passed": true
+    },
+    {
+      "name": "stale Customer denied then fresh same-session actual RPC retry repeatable read",
+      "passed": true
+    },
+    {
+      "name": "stale Customer denied then fresh same-session actual RPC retry serializable",
+      "passed": true
+    },
+    {
+      "name": "fresh Customer actual status RPC read committed",
+      "passed": true
+    },
+    {
+      "name": "fresh Customer actual status RPC repeatable read",
+      "passed": true
+    },
+    {
+      "name": "fresh Customer actual status RPC serializable",
+      "passed": true
+    },
+    {
+      "name": "replacement exact sole old Owner, caller binding and different target required",
+      "passed": true
+    },
+    {
+      "name": "replacement audit failure restores old Owner access, marker and ALWAYS guards",
+      "passed": true
+    },
+    {
+      "name": "replacement atomically promotes target, demotes and suspends old Owner with audit",
+      "passed": true
+    },
+    {
+      "name": "replacement replay rejected",
+      "passed": true
+    },
+    {
+      "name": "old repeatable read snapshot replacement Owner mutation denied by renewed marker",
+      "passed": true
+    },
+    {
+      "name": "old serializable snapshot replacement Owner mutation denied by renewed marker",
+      "passed": true
+    },
+    {
+      "name": "replacement stale stable authority remains true but actual locking private read serializes",
+      "passed": true,
+      "observation": "stable permission/context stale=true; private read denied by changed parent tuple serialization"
+    },
+    {
+      "name": "fresh replaced old Owner privileged private read denied",
+      "passed": true
+    },
+    {
+      "name": "fresh synthetic old AAL2 without current verified TOTP denies permissions and private RPC",
+      "passed": true
+    },
+    {
+      "name": "lost-MFA old RR snapshot retains authority AND actual private-read access (limitation)",
+      "passed": true,
+      "observation": "observed stale private-read success; marker rotation is not global factor/JWT revocation"
+    },
+    {
+      "name": "TEST-only renewed verified factor plus injected AAL2 restores fresh private read",
+      "passed": true,
+      "observation": "not a native recovery or OTP/JWT integration test"
+    },
+    {
+      "name": "unsafe NO marker rotation permits stale bootstrap Owner status mutation",
+      "passed": true,
+      "observation": "forbidden mutation actually executed in old RR transaction, then deliberately rolled back"
+    },
+    {
+      "name": "unsafe DELETE plus INSERT marker permits stale replacement Owner status mutation",
+      "passed": true,
+      "observation": "old marker tuple remains visible; forbidden mutation actually executed then rolled back"
+    }
+  ],
+  "observations": {
+    "safeMarkerRotation": "old RR/SERIALIZABLE writes rejected; same marker OID, renewed storage",
+    "unsafeNoRotation": "old RR bootstrap Owner status mutation succeeded, test rolled it back",
+    "unsafeDeleteInsert": "old RR replacement Owner status mutation succeeded, test rolled it back",
+    "replacementStaleReads": "plain stable permission/context retain old authority; actual locking private read serializes on suspended parent",
+    "lostMfaStaleReads": "old RR actual private read still succeeds after synthetic factor deletion",
+    "freshNoTotp": "synthetic old AAL2 denied by installed current-factor mandatory checks",
+    "productionEvidence": "unresolved: trusted operator authorization, exact identity designation, native verified target-bound consent/AAL2, provider recovery, JWT/session/draining semantics",
+    "migrationExecutions": 18,
+    "sourceMigrationCountPerFixture": 9,
+    "applicationSqlCopied": false,
+    "nativeProviderActions": false,
+    "appAuthorityInstantlyRevokedForEveryInflightSnapshot": false
+  },
+  "localVersion": "18.6",
+  "passed": 43,
+  "failed": 0,
+  "checkCount": 43,
+  "complete": true
+}
